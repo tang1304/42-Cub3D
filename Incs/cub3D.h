@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/14 10:31:16 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/14 17:25:48 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include "../libft/libft.h"
+# include "../libft/incs/libft.h"
 # include "../mlx/mlx.h"
 # include <unistd.h>
 # include <limits.h>
@@ -48,12 +48,24 @@ typedef struct s_data
 {
 	void	*mlx; //mlx pointer
 	void	*win; //window pointer
+	int		win_h;
+	int		win_l;
 	t_img	*img;
+
+	// Array 2D
+	int		**arr;
+	int		arr_h;
+	int		arr_l;
+	int		square_size;
 }			t_data;
 
-/*	close.c	*/
-int		ft_close(t_data *data);
-int		ft_close_win_error(t_data *data);
-int		ft_close_map_error(t_data *data);
+/*	utils.c	*/
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
+/*	window.c	*/
+void	white(int i, int j, t_data *data, int size);
+void	create_window(t_data *data);
+void	create_array(t_data *data);
+void	init_data(t_data *data);
+void	create_chess_board(t_data *data);
 #endif
