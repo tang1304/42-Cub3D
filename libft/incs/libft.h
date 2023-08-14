@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:11:10 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/04 08:35:44 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/14 14:33:20 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int			ft_isdigit(int c);
 int			ft_isalnum(int c);
 int			ft_isascii(int c);
 int			ft_isprint(int c);
+int			ft_is_space(char c);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -75,7 +76,7 @@ void		ft_lstdelone(t_list *lst, void (*del)(void *));
 void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 char		*get_next_line(int fd);
-char		*get_next_line_bonus(int fd);
+char		*get_all_lines(int fd);
 int			ft_strcmp(char *s1, char *s2);
 char		*ft_strjoin_gnl(char *s1, char *s2);
 char		*ft_strchr(const char *s, int c);
