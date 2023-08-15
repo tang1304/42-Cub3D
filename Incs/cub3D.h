@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/15 11:13:27 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/15 14:49:56 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 # define LEFT 68
 # define RIGHT 67
 # define RED_CROSS 33
+
+# define COLOR_CHAR "Wrong char in array, must be only digits\n"
+# define COLOR_NBR "Wrong color numbers, must be 3 colors x,y,z\n"
+# define COLOR_VAL "Wrong color value, must be between 0 and 255 included\n"
 
 typedef struct s_img
 {
@@ -60,8 +64,8 @@ typedef struct s_map
 	t_texture	*so;
 	t_texture	*ea;
 	t_texture	*we;
-	int			f;//floor color
-	int			c;//ceiling color
+	int			f[3];//floor color
+	int			c[3];//ceiling color
 	// int		width;
 	// int		height;
 }			t_map;
@@ -81,6 +85,7 @@ void	close_win_error(t_data *data);
 void	close_map_error(t_data *data);
 
 /*	errors.c	*/
+void	exit_error(char *str);
 void	get_texture_error(t_map *map);
 
 /*	frees.c	*/
@@ -89,5 +94,8 @@ void	t_map_cleaning(t_map *map);
 
 /*	map.c	*/
 int		map_init(t_data *data, int argc, char **argv);
+
+/*	utils.c	*/
+int		new_str_start(char *str, int k);
 
 #endif
