@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/14 14:24:41 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/15 11:13:27 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <fcntl.h>
 
 # define ESC 65307
@@ -75,8 +76,18 @@ typedef struct s_data
 }			t_data;
 
 /*	close.c	*/
-int		ft_close(t_data *data);
-int		ft_close_win_error(t_data *data);
-int		ft_close_map_error(t_data *data);
+void	close_all(t_data *data);
+void	close_win_error(t_data *data);
+void	close_map_error(t_data *data);
+
+/*	errors.c	*/
+void	get_texture_error(t_map *map);
+
+/*	frees.c	*/
+void	t_texture_cleaning(t_texture *text);
+void	t_map_cleaning(t_map *map);
+
+/*	map.c	*/
+int		map_init(t_data *data, int argc, char **argv);
 
 #endif

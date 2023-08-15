@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close.c                                            :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 09:58:17 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/15 11:12:15 by tgellon          ###   ########lyon.fr   */
+/*   Created: 2023/08/14 16:06:36 by tgellon           #+#    #+#             */
+/*   Updated: 2023/08/15 10:48:08 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-void	close_map_error(t_data *data)
+void	get_texture_error(t_map *map)
 {
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
+	printf("Error in get_texture_path function\n");
+	t_map_cleaning(map);
 	exit(EXIT_FAILURE);
-}
-
-void	close_win_error(t_data *data)
-{
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	ft_free_maps(data);
-	exit(EXIT_FAILURE);
-}
-
-void	close_all(t_data *data)
-{
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	ft_free_maps(data);
-	exit(EXIT_SUCCESS);
 }

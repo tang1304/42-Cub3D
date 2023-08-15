@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/14 15:25:37 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/15 11:09:19 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	map_format(char *argv)
 	return (0);
 }
 
-static int	get_texture_path(t_map *map, char *str)
+static char	*get_texture_path(t_data *data, t_map *map, char *str)
 {
 	int		k;
 	char	*tmp;
@@ -32,14 +32,11 @@ static int	get_texture_path(t_map *map, char *str)
 	char	*new;
 
 	k = 0;
-	tmp = ft_strtrim(str, " ");
+	tmp = ft_strtrim_double(str, " ", "\t");
 	if (!tmp)
-		return (0);
-	tmp = ft_strtrim(str, "\t");
-	if (!tmp)
-		return (free(tmp), 0);
+		get_texture_error(map);
 	if (ft_strlen(tmp) == 2)
-		return (free(tmp), 0);
+		return (free(tmp), NULL);
 	while (ft_isalpha(str[k]))
 		k++;
 	while (ft_is_space(str[k]))
@@ -47,12 +44,15 @@ static int	get_texture_path(t_map *map, char *str)
 	cpy = &tmp[k];
 	new = ft_strdup(cpy);
 	if (!new)
-		return (free(tmp), 0);
+	{
+		free(tmp);
+		get_texture_error(map);
+	}
 	free(tmp);
 	return (new);
 }
 
-static int	get_textures(t_map *map)
+static int	get_textures(t_data *data, t_map *map)
 {
 	int	i;
 	int	j;
@@ -64,13 +64,13 @@ static int	get_textures(t_map *map)
 		while (ft_is_space(map->tmp[i][j]))
 			j++;
 		if (ft_strncmp(map->tmp[i], "NO", (j + 2)))
-			map->no->addr = get_texture_path(map, map->tmp[i]);
+			map->no->addr = get_texture_path(data, map, map->tmp[i]);
 		else if (ft_strncmp(map->tmp[i], "SO", (j + 2)))
-			map->so->addr = get_texture_path(map, map->tmp[i]);
+			map->so->addr = get_texture_path(data, map, map->tmp[i]);
 		if (ft_strncmp(map->tmp[i], "EA", (j + 2)))
-			map->ea->addr = get_texture_path(map, map->tmp[i]);
+			map->ea->addr = get_texture_path(data, map, map->tmp[i]);
 		if (ft_strncmp(map->tmp[i], "WE", (j + 2)))
-			map->we->addr = get_texture_path(map, map->tmp[i]);
+			map->we->addr = get_texture_path(data, map, map->tmp[i]);
 	}
 }
 
@@ -85,7 +85,7 @@ static int	get_datas(t_data *data, int fd)
 	if (!data->map->tmp)
 		return (free(temp), 0);
 	free(temp);
-	if (!get_textures(data))
+	if (!get_textures(data, data->map))
 		return (free(data->map->tmp), 0);
 	return (1);
 }
