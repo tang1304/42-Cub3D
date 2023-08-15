@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 09:58:17 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/15 13:04:13 by tgellon          ###   ########lyon.fr   */
+/*   Created: 2023/08/15 14:00:52 by tgellon           #+#    #+#             */
+/*   Updated: 2023/08/15 14:02:47 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-void	close_map_error(t_data *data)
+int	new_str_start(char *str, int k)
 {
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	exit(EXIT_FAILURE);
-}
-
-void	close_win_error(t_data *data)
-{
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	ft_free_maps(data);
-	exit(EXIT_FAILURE);
-}
-
-void	close_all(t_data *data)
-{
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	ft_free_maps(data);
-	exit(EXIT_SUCCESS);
+	while (str[k] && ft_isalpha_num(str[k]))
+		k++;
+	while (str[k] && ft_is_space(str[k]))
+		k++;
+	return (k);
 }
