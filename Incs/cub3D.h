@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/16 14:35:47 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 15:52:35 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ typedef struct s_data
 {
 	void	*mlx;//mlx pointer
 	void	*win;//window pointer
-	t_img	*img;
-	t_map	*map;
+	t_img	img;
+	t_map	map;
 }			t_data;
 
 /*	close.c	*/

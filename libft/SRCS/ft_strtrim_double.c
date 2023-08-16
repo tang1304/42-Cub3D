@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:29:47 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/16 15:23:49 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 16:11:49 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ dprintf(1, "str: %s\n", str);
 	start = index_front(str, s1, s2);
 	end = index_back(str, s1, s2, start);
 	ptr = (char *)malloc(sizeof(*ptr) * ((end - start) + 1));
-	if (ptr == NULL)
+	if (!ptr)
 		return (NULL);
 	while (start + i < end)
 	{
@@ -94,5 +94,6 @@ dprintf(1, "str: %s\n", str);
 		i++;
 	}
 	ptr[i] = '\0';
+dprintf(1, "ptr: %s\n", ptr);
 	return (ptr);
 }
