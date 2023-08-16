@@ -1,6 +1,6 @@
-NO ../sprites/
-SO ../sprites/
-EA ../sprites/
+ 	NO ../sprites/
+	SO ../sprites/
+ EA ../sprites/
 WE ../sprites/
 
 F xxx,xxx,xxx
