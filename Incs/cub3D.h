@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/14 17:25:48 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 15:59:38 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 # define ESC 65307
 # define W 119
@@ -38,7 +39,7 @@ typedef struct s_map
 {
 	int		p_x;
 	int		p_y;
-	char	**map;
+	int		**map;
 	int		width;
 	int		height;
 	int		p;
@@ -50,22 +51,29 @@ typedef struct s_data
 	void	*win; //window pointer
 	int		win_h;
 	int		win_l;
-	t_img	*img;
+	t_map	map;
+	t_img	img;
 
 	// Array 2D
 	int		**arr;
-	int		arr_h;
-	int		arr_l;
 	int		square_size;
 }			t_data;
 
 /*	utils.c	*/
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
+/*	array_init.c	*/
+void	create_arr(t_data *data);
+void	init_array_data(t_data *data);
+
 /*	window.c	*/
-void	white(int i, int j, t_data *data, int size);
 void	create_window(t_data *data);
-void	create_array(t_data *data);
-void	init_data(t_data *data);
-void	create_chess_board(t_data *data);
+void	img_loop(t_data *data);
+void	create_board_img(t_data *data);
+
+/*	hooks.c	*/
+void	hooks(t_data *data);
+
+/*	hooks_changes.c	*/
+void	change_chessboard(t_data *data);
 #endif

@@ -3,7 +3,9 @@
 CC = cc -g3
 CFLAGS = -Wall -Wextra -Werror
 SRCS =	main.c \
-		mouse_hook.c \
+		array_init.c \
+		hooks.c \
+		hooks_changes.c \
 		window.c \
 		utils.c
 SRCS_DIR = ./Srcs/
