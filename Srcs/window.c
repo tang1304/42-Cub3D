@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/14 17:30:03 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 16:19:31 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,78 +15,60 @@
 void	create_window(t_data *data)
 {
 	t_img	img;
-
-	data->win_l = 1920;
-	data->win_h = 1080;
+dprintf(1, "width1: %d\n", data->map.width);
+dprintf(1, "height1: %d\n", data->map.height);
 	data->win = mlx_new_window(data->mlx, data->win_l, data->win_h, "cub3D");
 	img.img = mlx_new_image(data->mlx, data->win_l, data->win_h);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_l, &img.endian);
-	data->img = &img;
-	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
+	data->img = img;
+	img_loop(data);
+}
+
+void	img_loop(t_data *data)
+{
+dprintf(1, "width2: %d\n", data->map.width);
+dprintf(1, "height2: %d\n", data->map.height);
+	create_board_img(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	hooks(data);
 	mlx_loop(data->mlx);
-	create_array(data);
 }
 
-void	create_array(t_data *data)
+static void	add_squares(int x, int y, t_data *data)
 {
 	int	i;
 	int	j;
+	int	s;
 
-	i = 0;
-	data->square_size = 40; // Or create func to collect smallest common div sinon... gros plantage
-	data->arr_h = data->win_h / data->square_size;
-	data->arr_l = data->win_l / data->square_size;
-	data->arr = (int **)malloc(sizeof(int *) * (data->arr_h));
-	if (data->arr == NULL)
-		exit(1);//
-	while (i < data->arr_h)
+	s = data->square_size;
+	i = x * s;
+	while (i < (x * s) + s)
 	{
-		data->arr[i] = (int *)malloc(sizeof(int) * (data->arr_l));
-		if (data->arr[i] == NULL)
-			exit(1);//
-	}
-	init_array(data);
-	create_chess_board(data);
-}
-
-void	init_data(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	ft_calloc(data->arr_h, data->arr_l);
-	while (i < data->arr_h)
-	{
-		j = 0;
-		while (j < data->arr_l)
+		j = y * s;
+		while (j < (y * s) + s)
 		{
-			if (i % 2 == 0 && j % 2 != 0)
-				data->arr[i][j] = 1;
+			my_mlx_pixel_put(&data->img, i, j, 0xFFFFFFFF);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	create_chess_board(t_data *data)
+void	create_board_img(t_data *data)
 {
 	int	x;
 	int	y;
 
-	x = 0;
-	y = 0;
-	while (x < data->arr_h)
+dprintf(1, "width3: %d\n", data->map.width);
+dprintf(1, "height3: %d\n", data->map.height);
+	x = -1;
+	while (++x < data->map.height) //ligne
 	{
-		while (y < data->arr_l)
+		y = -1;
+		while (++y < data->map.width) //col
 		{
 			if (data->arr[x][y] == 1)
-			{
-
-			}
-			// my_mlx_pixel_put(data->img, x, y, 0xFFFFFFFF);
-			y++;
+				add_squares(y, x, data);
 		}
-		x++;
 	}
 }
