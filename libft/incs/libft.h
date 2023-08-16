@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:11:10 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/15 10:59:10 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 15:23:46 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char		*ft_strndup(const char *s1, size_t n);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
-char		*ft_strtrim_double(char const *str, char const *s1, char const *s2);
+char		*ft_strtrim_double(char *str, char const *s1, char const *s2);
 char		*ft_strtrim_free(char *s1, char const *set, int *err);
 char		**ft_split(char const *s, char c);
 char		*ft_itoa(int c);

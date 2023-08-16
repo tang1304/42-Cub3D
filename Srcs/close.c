@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 09:58:17 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/15 13:04:13 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 09:54:50 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ void	close_map_error(t_data *data)
 	exit(EXIT_FAILURE);
 }
 
-void	close_win_error(t_data *data)
-{
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	ft_free_maps(data);
-	exit(EXIT_FAILURE);
-}
+// void	close_win_error(t_data *data)
+// {
+// 	mlx_destroy_display(data->mlx);
+// 	free(data->mlx);
+// 	ft_free_maps(data);
+// 	exit(EXIT_FAILURE);
+// }
 
-void	close_all(t_data *data)
-{
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	ft_free_maps(data);
-	exit(EXIT_SUCCESS);
-}
+// void	close_all(t_data *data)
+// {
+// 	mlx_destroy_window(data->mlx, data->win);
+// 	mlx_destroy_display(data->mlx);
+// 	free(data->mlx);
+// 	ft_free_maps(data);
+// 	exit(EXIT_SUCCESS);
+// }

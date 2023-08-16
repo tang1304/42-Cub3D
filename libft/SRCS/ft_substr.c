@@ -3,37 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 10:23:43 by rrebois           #+#    #+#             */
-/*   Updated: 2023/06/06 15:06:18 by rrebois          ###   ########lyon.fr   */
+/*   Created: 2022/11/14 16:08:18 by tgellon           #+#    #+#             */
+/*   Updated: 2023/03/06 15:43:29 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+/* Allocate and return a new string from '*s', starting on index "start" and
+   that has a maximum length of "len"*/
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+#include "libft.h"
+
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	char	*ptr;
+	char	*dest;
+	char	*temp;
 	size_t	i;
 
-	if (s == NULL)
+	temp = ft_strdup(s);
+	if (!s || !temp)
 		return (NULL);
-	if (start > ft_strlen(s))
-		len = 0;
-	else if (start + len > ft_strlen(s))
-		len = ft_strlen(s) - start;
-	ptr = (char *)malloc(sizeof(*ptr) * (len + 1));
-	if (ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len && s[start + i] != '\0')
+	if (ft_strlen(s) <= start)
+		return (ft_strdup(""));
+	if (len > ft_strlen(s))
+		dest = (char *)malloc(sizeof(const char) * (ft_strlen(s) - start + 1));
+	else if (len + start > ft_strlen (s))
+		dest = (char *)malloc(sizeof(const char) * (len));
+	else
+		dest = (char *)malloc(sizeof(const char) * (len + 1));
+	if (!dest)
+		return (free(temp), NULL);
+	i = -1;
+	while (++i < len && s[start])
 	{
-		ptr[i] = *(char *)(s + start + i);
-		i++;
+		dest[i] = s[start];
+		start++;
 	}
-	ptr[i] = '\0';
-	if (ptr[0] == '\0')
-		return (free(ptr), NULL);
-	return (ptr);
+	dest[i] = '\0';
+	return (free(temp), dest);
 }

@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:15:24 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/14 11:59:39 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 14:09:54 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,66 +66,12 @@ static char	*ft_read(int fd, char *stock)
 	return (free(str), stock);
 }
 
-static char	*ft_get_str(char *stock)
-{
-	char	*newstr;
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	if (!stock[i])
-		return (NULL);
-	while (stock[i] != '\0')
-		i++;
-	if (stock[i] == '\n')
-		i++;
-	newstr = ft_calloc(i + 1, sizeof(char));
-	if (!newstr)
-		return (NULL);
-	while (j < i)
-	{
-		newstr[j] = stock[j];
-		j++;
-	}
-	newstr[j] = '\0';
-	return (newstr);
-}
-
-static char	*ft_clear(char *stock)
-{
-	size_t	i;
-	size_t	j;
-	char	*new_stock;
-
-	i = 0;
-	while (stock[i] != '\0' && stock[i])
-		i++;
-	if (!stock[i])
-	{
-		free(stock);
-		return (NULL);
-	}
-	new_stock = ft_calloc((ft_strlen(stock) - i + 1), sizeof(char));
-	if (!new_stock)
-		return (NULL);
-	j = 0;
-	while (stock[i])
-	{
-		new_stock[j] = stock[i + 1];
-		i++;
-		j++;
-	}
-	new_stock[j] = '\0';
-	free(stock);
-	return (new_stock);
-}
-
 char	*get_all_lines(int fd)
 {
 	static char	*stock;
 	char		*line;
 
+	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!stock)
@@ -136,9 +82,9 @@ char	*get_all_lines(int fd)
 		free (stock);
 		return (NULL);
 	}
-	line = ft_get_str(stock);
+	line = ft_strdup(stock);
 	if (!line)
 		return (NULL);
-	stock = ft_clear(stock);
+	free(stock);
 	return (line);
 }

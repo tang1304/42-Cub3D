@@ -6,13 +6,13 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/15 14:49:56 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 14:35:47 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include "../libft/libft.h"
+# include "../libft/incs/libft.h"
 # include "../mlx/mlx.h"
 # include <unistd.h>
 # include <limits.h>
@@ -29,9 +29,12 @@
 # define RIGHT 67
 # define RED_CROSS 33
 
-# define COLOR_CHAR "Wrong char in array, must be only digits\n"
-# define COLOR_NBR "Wrong color numbers, must be 3 colors x,y,z\n"
-# define COLOR_VAL "Wrong color value, must be between 0 and 255 included\n"
+# define COLOR_CHAR "Error\nWrong char in array, must be only digits\n"
+# define COLOR_NBR "Error\nWrong color numbers, must be 3 colors x,y,z\n"
+# define COLOR_VAL "Error\nWrong color value, must be between 0 and 255 \
+included\n"
+# define FILE_ELEM "Error\nNot all configuration elements are present before \
+the map\nYou must have NO, SO, EA, WE, F and C\n"
 
 typedef struct s_img
 {
@@ -76,7 +79,6 @@ typedef struct s_data
 	void	*win;//window pointer
 	t_img	*img;
 	t_map	*map;
-	
 }			t_data;
 
 /*	close.c	*/
@@ -86,7 +88,7 @@ void	close_map_error(t_data *data);
 
 /*	errors.c	*/
 void	exit_error(char *str);
-void	get_texture_error(t_map *map);
+void	get_texture_error(t_map *map, char *str);
 
 /*	frees.c	*/
 void	t_texture_cleaning(t_texture *text);
@@ -94,6 +96,12 @@ void	t_map_cleaning(t_map *map);
 
 /*	map.c	*/
 int		map_init(t_data *data, int argc, char **argv);
+
+/*	map2.c	*/
+void	map_format(char *argv);
+void	get_ceiling_color(t_map *map, char *str);
+void	get_floor_color(t_map *map, char *str);
+void	get_map(t_map *map, int i);
 
 /*	utils.c	*/
 int		new_str_start(char *str, int k);

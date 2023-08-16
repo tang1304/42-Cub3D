@@ -6,10 +6,11 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:29:47 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/15 10:36:53 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 15:23:49 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "../incs/libft.h"
 
 static size_t	index_front(char const *str, char const *s1, char const *s2)
@@ -71,7 +72,7 @@ static size_t	index_back(char const *str, char const *s1, char const *s2, \
 	return (i);
 }
 
-char	*ft_strtrim_double(char const *str, char const *s1, char const *s2)
+char	*ft_strtrim_double(char *str, char const *s1, char const *s2)
 {
 	char	*ptr;
 	size_t	start;
@@ -81,6 +82,7 @@ char	*ft_strtrim_double(char const *str, char const *s1, char const *s2)
 	i = 0;
 	if (str == NULL || (s1 == NULL && s2 == NULL))
 		return (NULL);
+dprintf(1, "str: %s\n", str);
 	start = index_front(str, s1, s2);
 	end = index_back(str, s1, s2, start);
 	ptr = (char *)malloc(sizeof(*ptr) * ((end - start) + 1));
