@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/16 15:03:49 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 16:18:16 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ static char	*get_texture_path(t_map *map, char *str)
 	char	*new;
 
 	k = 0;
-	tmp = ft_strtrim_double(str, " ", "\t");
-// dprintf(1, "%s\n", tmp);
+	// tmp = ft_strtrim_double(str, " ", "\t");
+// faire 2 strtrim !=
+	tmp = ft_strtrim(str, " ");
+dprintf(1, "%s\n", tmp);
 	if (!tmp)
 		get_texture_error(map, "Error\nMalloc failed\n");
 	if (ft_strlen(tmp) == 2)
@@ -55,14 +57,12 @@ static int	get_textures(t_map *map)
 // dprintf(1, "%s\n\n", map->tmp[0]);
 	while (map->tmp[++i])
 	{
-dprintf(1, "ici\n");
+// dprintf(1, "ici\n");
 		j = 0;
 		while (ft_is_space(map->tmp[i][j]))
 			j++;
 		if (ft_strncmp(map->tmp[i], "NO", (j + 2)))
-		{
 			map->no->addr = get_texture_path(map, map->tmp[i]);
-		}
 		else if (ft_strncmp(map->tmp[i], "SO", (j + 2)))
 			map->so->addr = get_texture_path(map, map->tmp[i]);
 		else if (ft_strncmp(map->tmp[i], "EA", (j + 2)))
@@ -74,7 +74,7 @@ dprintf(1, "ici\n");
 		else if (ft_strncmp(map->tmp[i], "C", (j + 1)))
 			get_ceiling_color(map, map->tmp[i]);
 	}
-// dprintf(1, "%s\n", map->no->addr);
+dprintf(1, "%s\n", map->no->addr);
 	check_enough_datas(map);
 dprintf(1, "3\n");
 	return (i);
@@ -90,23 +90,23 @@ static int	get_datas(t_data *data, int fd)
 dprintf(1, "%s\n\n", temp);
 	if (!temp)
 		exit_error("Error\nMalloc failed\n");
-	data->map->tmp = ft_split(temp, '\n');
-	if (!data->map->tmp || data->map->tmp[0] == NULL)
+	data->map.tmp = ft_split(temp, '\n');
+	if (!data->map.tmp || data->map.tmp[0] == NULL)
 	{
 		free(temp);
 		close(fd);
 		exit_error("Error\nMalloc failed\n");
 	}
-	// close(fd);
-	// free(temp);
+	close(fd);
+	free(temp);
 // while (data->map->tmp && data->map->tmp[k][0])
 // {
 // dprintf(1, "%s\n\n", data->map->tmp[k]);
 // k++;
 // }
-	i = get_textures(data->map);
+	i = get_textures(&data->map);
 dprintf(1, "2\n");
-	get_map(data->map, i);
+	get_map(&data->map, i);
 	return (1);
 }
 

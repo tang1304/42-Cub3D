@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/16 14:04:25 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 15:58:21 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,28 @@ void	texture_init(t_data *data)
 	t_texture	ea;
 	t_texture	we;
 
-	data->map->no = &no;
-	ft_bzero(data->map->no, sizeof(t_texture));
-	data->map->so = &so;
-	ft_bzero(data->map->so, sizeof(t_texture));
-	data->map->ea = &ea;
-	ft_bzero(data->map->ea, sizeof(t_texture));
-	data->map->we = &we;
-	ft_bzero(data->map->we, sizeof(t_texture));
+	data->map.no = &no;
+	ft_bzero(data->map.no, sizeof(t_texture));
+	data->map.so = &so;
+	ft_bzero(data->map.so, sizeof(t_texture));
+	data->map.ea = &ea;
+	ft_bzero(data->map.ea, sizeof(t_texture));
+	data->map.we = &we;
+	ft_bzero(data->map.we, sizeof(t_texture));
 }
 
 void	data_init(t_data *data)
 {
-	t_img	img;
-	t_map	map;
+	// t_img	img;
+	// t_map	map;
 
 	ft_bzero(data, sizeof(t_data));
-	data->img = &img;
-	ft_bzero(data->img, sizeof(t_img));
-	data->map = &map;
-	ft_bzero(data->map, sizeof(t_map));
-	data->map->c[0] = -1;
-	data->map->f[0] = -1;
+	// data->img = img;
+	// ft_bzero(&data->img, sizeof(t_img));
+	// data->map = map;
+	// ft_bzero(&data->map, sizeof(t_map));
+	data->map.c[0] = -1;
+	data->map.f[0] = -1;
 	texture_init(data);
 }
 
