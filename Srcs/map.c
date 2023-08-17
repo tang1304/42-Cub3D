@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/16 16:18:16 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 11:48:16 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	check_enough_datas(t_map *map)
 {
-	if (!map->no->addr || !map->so->addr || !map->ea->addr || !map->we->addr \
+	if (!map->no.addr || !map->so.addr || !map->ea.addr || !map->we.addr \
 		|| map->c[0] == -1 || map->f[0] == -1)
 		get_texture_error(map, FILE_ELEM);
 	printf("4\n");
 }
 
-static char	*get_texture_path(t_map *map, char *str)
+static char	*get_texture_path(t_map *map, char *str, char *elem, int i)
 {
 	int		k;
 	char	*tmp;
@@ -28,15 +28,13 @@ static char	*get_texture_path(t_map *map, char *str)
 	char	*new;
 
 	k = 0;
-	// tmp = ft_strtrim_double(str, " ", "\t");
-// faire 2 strtrim !=
-	tmp = ft_strtrim(str, " ");
-dprintf(1, "%s\n", tmp);
+	tmp = double_strtrim(str, " ", "\t");
+dprintf(1, "tmp:%s\n", tmp);
 	if (!tmp)
 		get_texture_error(map, "Error\nMalloc failed\n");
-	if (ft_strlen(tmp) == 2)
+	if (ft_strlen(tmp) == 2 || ft_strncmp(tmp, elem, i) != 0)
 		return (free(tmp), NULL);
-	k = new_str_start(str, k);
+	k = new_str_start(tmp, k);
 	cpy = &tmp[k];
 	new = ft_strdup(cpy);
 	if (!new)
@@ -54,27 +52,35 @@ static int	get_textures(t_map *map)
 	int	j;
 
 	i = -1;
-// dprintf(1, "%s\n\n", map->tmp[0]);
 	while (map->tmp[++i])
 	{
-// dprintf(1, "ici\n");
 		j = 0;
+		dprintf(1, "tmp[i]: %s\n", map->tmp[i]);
 		while (ft_is_space(map->tmp[i][j]))
 			j++;
-		if (ft_strncmp(map->tmp[i], "NO", (j + 2)))
-			map->no->addr = get_texture_path(map, map->tmp[i]);
-		else if (ft_strncmp(map->tmp[i], "SO", (j + 2)))
-			map->so->addr = get_texture_path(map, map->tmp[i]);
-		else if (ft_strncmp(map->tmp[i], "EA", (j + 2)))
-			map->ea->addr = get_texture_path(map, map->tmp[i]);
-		else if (ft_strncmp(map->tmp[i], "WE", (j + 2)))
-			map->we->addr = get_texture_path(map, map->tmp[i]);
-		else if (ft_strncmp(map->tmp[i], "F", (j + 1)))
-			get_floor_color(map, map->tmp[i]);
-		else if (ft_strncmp(map->tmp[i], "C", (j + 1)))
-			get_ceiling_color(map, map->tmp[i]);
+		if (ft_strstr(map->tmp[i], "NO"))
+			map->no.addr = get_texture_path(map, map->tmp[i], "NO", 2);
+		else if (ft_strstr(map->tmp[i], "SO"))
+			map->so.addr = get_texture_path(map, map->tmp[i], "SO", 2);
+		else if (ft_strstr(map->tmp[i], "EA"))
+			map->ea.addr = get_texture_path(map, map->tmp[i], "EA", 2);
+		else if (ft_strstr(map->tmp[i], "WE"))
+			map->we.addr = get_texture_path(map, map->tmp[i], "WE", 2);
+		else if (ft_strstr(map->tmp[i], "F"))
+			get_floor_color(map, map->tmp[i], "F", 1);
+		else if (ft_strstr(map->tmp[i], "C"))
+			get_ceiling_color(map, map->tmp[i], "C", 1);
 	}
-dprintf(1, "%s\n", map->no->addr);
+dprintf(1, "no addr: %s\n", map->no.addr);
+dprintf(1, "so addr: %s\n", map->so.addr);
+dprintf(1, "ea addr: %s\n", map->ea.addr);
+dprintf(1, "we addr: %s\n", map->we.addr);
+dprintf(1, "c color: %d\n", map->c[0]);
+dprintf(1, "c color: %d\n", map->c[1]);
+dprintf(1, "c color: %d\n", map->c[2]);
+dprintf(1, "f color: %d\n", map->f[0]);
+dprintf(1, "f color: %d\n", map->f[1]);
+dprintf(1, "f color: %d\n", map->f[2]);
 	check_enough_datas(map);
 dprintf(1, "3\n");
 	return (i);

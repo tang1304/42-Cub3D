@@ -6,21 +6,21 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:38:32 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/16 10:01:55 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 12:21:09 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-void	map_format(char *argv)
+static int	check_element(char *tmp, char *elem, int i)
 {
-	int	i;
-
-	i = ft_strlen(argv);
-	if (argv[i - 1] == 'b' && argv[i - 2] == 'u' && argv[i - 3] == 'c' \
-		&& argv[i - 4] == '.' && argv[i - 5] != '/')
-		return ;
-	exit_error("Error\nWrong map file format\n");
+	if (ft_strlen(tmp) == 1 || ft_strncmp(tmp, elem, i) != 0 \
+		|| !ft_is_space(tmp[i]))
+	{
+		free(tmp);
+		return (0);
+	}
+	return (1);
 }
 
 static int	get_rgb(int *color, char **tab)
@@ -32,8 +32,11 @@ static int	get_rgb(int *color, char **tab)
 	while (tab[++i])
 	{
 		j = -1;
-		if (!ft_isdigit(tab[i][++j]))
-			return (ft_free_pp(tab), printf(COLOR_CHAR), 0);
+		while (tab[i][++j])
+		{
+			if (!ft_isdigit(tab[i][j]))
+				return (printf(COLOR_CHAR, tab[i]), ft_free_pp(tab), 0);
+		}
 	}
 	if (i != 3)
 		return (ft_free_pp(tab), printf(COLOR_NBR), 0);
@@ -41,13 +44,13 @@ static int	get_rgb(int *color, char **tab)
 	{
 		color[i] = ft_atoi(tab[i]);
 		if (color[i] < 0 || color[i] > 255)
-			return (ft_free_pp(tab), printf(COLOR_VAL), 0);
+			return (printf(COLOR_VAL, color[i]), ft_free_pp(tab), 0);
 	}
 	ft_free_pp(tab);
 	return (1);
 }
 
-void	get_ceiling_color(t_map *map, char *str)
+void	get_ceiling_color(t_map *map, char *str, char *elem, int i)
 {
 	int		k;
 	char	*tmp;
@@ -55,27 +58,28 @@ void	get_ceiling_color(t_map *map, char *str)
 	char	**new;
 
 	k = 0;
-	tmp = ft_strtrim_double(str, " ", "\t");
+	tmp = double_strtrim(str, " ", "\t");
 	if (!tmp)
 		get_texture_error(map, "Error\nMalloc failed\n");
-	if (ft_strlen(tmp) == 1)
-	{
-		free(tmp);
+	if (!check_element(tmp, elem, i))
 		return ;
-	}
 	k = new_str_start(str, k);
 	cpy = &tmp[k];
-	new = ft_split(str, ',');
+	new = ft_split(cpy, ',');
 	if (!new)
 	{
 		free(tmp);
 		get_texture_error(map, "Error\nMalloc failed\n");
 	}
 	if (!get_rgb(map->c, new))
-		get_texture_error(map, NULL);
+	{
+		free(tmp);
+		get_texture_error(map, "");
+	}
+	free(tmp);
 }
 
-void	get_floor_color(t_map *map, char *str)
+void	get_floor_color(t_map *map, char *str, char *elem, int i)
 {
 	int		k;
 	char	*tmp;
@@ -83,24 +87,25 @@ void	get_floor_color(t_map *map, char *str)
 	char	**new;
 
 	k = 0;
-	tmp = ft_strtrim_double(str, " ", "\t");
+	tmp = double_strtrim(str, " ", "\t");
 	if (!tmp)
 		get_texture_error(map, "Error\nMalloc failed\n");
-	if (ft_strlen(tmp) == 1)
-	{
-		free(tmp);
+	if (!check_element(tmp, elem, i))
 		return ;
-	}
 	k = new_str_start(str, k);
 	cpy = &tmp[k];
-	new = ft_split(str, ',');
+	new = ft_split(cpy, ',');
 	if (!new)
 	{
 		free(tmp);
 		get_texture_error(map, "Error\nMalloc failed\n");
 	}
 	if (!get_rgb(map->f, new))
-		get_texture_error(map, NULL);
+	{
+		free(tmp);
+		get_texture_error(map, "");
+	}
+	free(tmp);
 }
 
 void	get_map(t_map *map, int i)
