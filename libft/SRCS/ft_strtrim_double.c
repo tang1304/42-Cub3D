@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:29:47 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/16 16:11:49 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 10:30:44 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ char	*ft_strtrim_double(char *str, char const *s1, char const *s2)
 	i = 0;
 	if (str == NULL || (s1 == NULL && s2 == NULL))
 		return (NULL);
-dprintf(1, "str: %s\n", str);
 	start = index_front(str, s1, s2);
 	end = index_back(str, s1, s2, start);
 	ptr = (char *)malloc(sizeof(*ptr) * ((end - start) + 1));
@@ -94,6 +93,5 @@ dprintf(1, "str: %s\n", str);
 		i++;
 	}
 	ptr[i] = '\0';
-dprintf(1, "ptr: %s\n", ptr);
 	return (ptr);
 }

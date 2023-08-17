@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/16 15:52:35 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 11:44:04 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 # define RIGHT 67
 # define RED_CROSS 33
 
-# define COLOR_CHAR "Error\nWrong char in array, must be only digits\n"
+# define COLOR_CHAR "Error\nWrong char in array (%s), must be only digits\n"
 # define COLOR_NBR "Error\nWrong color numbers, must be 3 colors x,y,z\n"
-# define COLOR_VAL "Error\nWrong color value, must be between 0 and 255 \
+# define COLOR_VAL "Error\nWrong color value (%d), must be between 0 and 255 \
 included\n"
 # define FILE_ELEM "Error\nNot all configuration elements are present before \
 the map\nYou must have NO, SO, EA, WE, F and C\n"
@@ -63,10 +63,10 @@ typedef struct s_map
 	char		direction;//player orientation
 	char		**tmp;//content of .cub file
 	char		**map;
-	t_texture	*no;
-	t_texture	*so;
-	t_texture	*ea;
-	t_texture	*we;
+	t_texture	no;
+	t_texture	so;
+	t_texture	ea;
+	t_texture	we;
 	int			f[3];//floor color
 	int			c[3];//ceiling color
 	// int		width;
@@ -99,11 +99,12 @@ int		map_init(t_data *data, int argc, char **argv);
 
 /*	map2.c	*/
 void	map_format(char *argv);
-void	get_ceiling_color(t_map *map, char *str);
-void	get_floor_color(t_map *map, char *str);
+void	get_ceiling_color(t_map *map, char *str, char *elem, int i);
+void	get_floor_color(t_map *map, char *str, char *elem, int i);
 void	get_map(t_map *map, int i);
 
 /*	utils.c	*/
 int		new_str_start(char *str, int k);
+char	*double_strtrim(char *str, char *s1, char *s2);
 
 #endif

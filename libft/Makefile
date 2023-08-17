@@ -30,7 +30,7 @@ LST_SRCS	=	ft_isalnum.c ft_memcmp.c ft_strdup.c ft_strnstr.c ft_isalpha.c ft_mem
 				ft_lstiter.c ft_lstmap.c  ft_strndup.c ft_strtrim_double.c ft_free_pp.c \
 				get_next_line.c get_next_line_utils.c get_all_lines.c \
 				ft_convert_address.c ft_convert_nbr.c ft_printf.c ft_dprintf.c\
-				ft_putchar.c ft_putnbr_unsigned.c ft_putnbr.c ft_putstr.c
+				ft_putchar.c ft_putnbr_unsigned.c ft_putnbr.c ft_putstr.c ft_strstr.c
 
 SRCS		=	$(addprefix $(D_SRCS), $(LST_SRCS))
 

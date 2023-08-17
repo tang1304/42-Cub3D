@@ -9,6 +9,7 @@ SRCS =	close.c \
 		main.c \
 		map.c \
 		map_2.c \
+		map_3.c \
 		utils.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
