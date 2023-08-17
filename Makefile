@@ -7,6 +7,7 @@ SRCS =	main.c \
 		hooks.c \
 		hooks_changes.c \
 		window.c \
+		line.c \
 		utils.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
