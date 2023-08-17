@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/17 08:41:32 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 14:55:38 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	data_init(t_data *data)
 	// ft_bzero(&data->map, sizeof(t_map));
 	data->map.c[0] = -1;
 	data->map.f[0] = -1;
+	data->map.map = NULL;
+	data->map.tmp = NULL;
 	// texture_init(data);
 }
 
@@ -51,6 +53,7 @@ int	main(int argc, char **argv)
 	data_init(&data);
 	map_init(&data, argc, argv);
 	printf("1\n");
+	t_map_cleaning(&data.map);
 	// data.mlx = mlx_init();
 	// if (!data.mlx)
 	// 	return (printf("Error\nMlx error\n"), 0);

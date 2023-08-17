@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:38:32 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/17 12:21:09 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 15:49:51 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_element(char *tmp, char *elem, int i)
 	return (1);
 }
 
-static int	get_rgb(int *color, char **tab)
+static int	get_rgb(t_map *map, int *color, char **tab)
 {
 	int	i;
 	int	j;
@@ -31,6 +31,9 @@ static int	get_rgb(int *color, char **tab)
 	i = -1;
 	while (tab[++i])
 	{
+		tab[i] = double_strtrim_free(tab[i], " ", "\t");
+		if (!tab[i])
+			return (ft_free_pp(tab), 0);
 		j = -1;
 		while (tab[i][++j])
 		{
@@ -46,8 +49,7 @@ static int	get_rgb(int *color, char **tab)
 		if (color[i] < 0 || color[i] > 255)
 			return (printf(COLOR_VAL, color[i]), ft_free_pp(tab), 0);
 	}
-	ft_free_pp(tab);
-	return (1);
+	return (ft_free_pp(tab), map->elems++, 1);
 }
 
 void	get_ceiling_color(t_map *map, char *str, char *elem, int i)
@@ -71,7 +73,7 @@ void	get_ceiling_color(t_map *map, char *str, char *elem, int i)
 		free(tmp);
 		get_texture_error(map, "Error\nMalloc failed\n");
 	}
-	if (!get_rgb(map->c, new))
+	if (!get_rgb(map, map->c, new))
 	{
 		free(tmp);
 		get_texture_error(map, "");
@@ -100,7 +102,7 @@ void	get_floor_color(t_map *map, char *str, char *elem, int i)
 		free(tmp);
 		get_texture_error(map, "Error\nMalloc failed\n");
 	}
-	if (!get_rgb(map->f, new))
+	if (!get_rgb(map, map->f, new))
 	{
 		free(tmp);
 		get_texture_error(map, "");
@@ -115,6 +117,8 @@ void	get_map(t_map *map, int i)
 
 	j = i - 1;
 	k = 0;
+	i++;
+//Check creation de map->map, decalage de 1 byte dans memoire
 	while (map->tmp[i] && map->tmp[i][0] == '\n')
 		i++;
 	while (map->tmp[++j])
@@ -131,5 +135,6 @@ void	get_map(t_map *map, int i)
 		i++;
 		k++;
 	}
-	ft_free_pp(map->tmp);
+	if (!check_if_map(map))
+		get_texture_error(map, MORE_ELEM);
 }
