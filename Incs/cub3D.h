@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/16 15:59:38 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 11:18:15 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define A 97
 # define S 115
 # define D 100
+# define Z 122
+# define X 120
 # define RED_CROSS 33
 
 typedef struct s_img
@@ -75,5 +77,5 @@ void	create_board_img(t_data *data);
 void	hooks(t_data *data);
 
 /*	hooks_changes.c	*/
-void	change_chessboard(t_data *data);
+void	change_board(t_data *data, int keycode);
 #endif

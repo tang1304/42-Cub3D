@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:34:53 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/16 16:03:34 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 09:39:22 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	create_arr(t_data *data)
 	t_map	map;
 
 	i = -1;
-	ft_bzero(&map, sizeof(t_map));
+	// ft_bzero(&map, sizeof(t_map));
 	data->win_l = 1920;
 	data->win_h = 1080;
 	data->square_size = 40;

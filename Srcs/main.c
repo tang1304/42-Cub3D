@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/16 16:05:53 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 11:20:39 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {(void)argc;(void)argv;
 	t_data	data;
 
-	ft_bzero(&data, sizeof(t_data));
+	// ft_bzero(&data, sizeof(t_data));
 	data.mlx = mlx_init();
 	// if (!data.mlx)
 	// 	return (printf("Error\nMlx error\n"), 0);
