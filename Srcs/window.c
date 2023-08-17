@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/16 16:19:31 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 11:19:27 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ dprintf(1, "height2: %d\n", data->map.height);
 	mlx_loop(data->mlx);
 }
 
-static void	add_squares(int x, int y, t_data *data)
+static void	add_squares(int x, int y, t_data *data, int num)
 {
 	int	i;
 	int	j;
@@ -47,7 +47,10 @@ static void	add_squares(int x, int y, t_data *data)
 		j = y * s;
 		while (j < (y * s) + s)
 		{
-			my_mlx_pixel_put(&data->img, i, j, 0xFFFFFFFF);
+			if (num == 1)
+				my_mlx_pixel_put(&data->img, i, j, 0xFFFFFFFF);
+			else
+				my_mlx_pixel_put(&data->img, i, j, 0x00000000);
 			j++;
 		}
 		i++;
@@ -68,7 +71,9 @@ dprintf(1, "height3: %d\n", data->map.height);
 		while (++y < data->map.width) //col
 		{
 			if (data->arr[x][y] == 1)
-				add_squares(y, x, data);
+				add_squares(y, x, data, 1);
+			else
+				add_squares(y, x, data, 0);
 		}
 	}
 }
