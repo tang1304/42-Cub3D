@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:00:52 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/17 10:35:24 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 15:17:34 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,25 @@ char	*double_strtrim(char *str, char *s1, char *s2)
 	if (!new)
 		return (free(new), NULL);
 	return (new);
+}
+
+char	*double_strtrim_free(char *str, char *s1, char *s2)
+{
+	char	*new;
+
+	new = ft_strtrim_free(str, s1);
+	if (!new)
+		return (NULL);
+	new = ft_strtrim_free(new, s2);
+	if (!new)
+		return (free(new), NULL);
+	return (new);
+}
+
+int	correct_map_char(char c)
+{
+	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' \
+		|| ft_is_space(c))
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/17 11:48:16 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 15:44:02 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,18 @@
 
 static void	check_enough_datas(t_map *map)
 {
+	int	i;
+	int	j;
+
+	i = -1;
+	j = 0;
 	if (!map->no.addr || !map->so.addr || !map->ea.addr || !map->we.addr \
 		|| map->c[0] == -1 || map->f[0] == -1)
-		get_texture_error(map, FILE_ELEM);
+		get_texture_error(map, LESS_ELEM);
+	// while (map->tmp[++i])
+	// {
+	// 	if ;
+	// }
 	printf("4\n");
 }
 
@@ -43,6 +52,7 @@ dprintf(1, "tmp:%s\n", tmp);
 		get_texture_error(map, "Error\nMalloc failed\n");
 	}
 	free(tmp);
+	map->elems++;
 	return (new);
 }
 
@@ -55,7 +65,6 @@ static int	get_textures(t_map *map)
 	while (map->tmp[++i])
 	{
 		j = 0;
-		dprintf(1, "tmp[i]: %s\n", map->tmp[i]);
 		while (ft_is_space(map->tmp[i][j]))
 			j++;
 		if (ft_strstr(map->tmp[i], "NO"))
@@ -70,19 +79,9 @@ static int	get_textures(t_map *map)
 			get_floor_color(map, map->tmp[i], "F", 1);
 		else if (ft_strstr(map->tmp[i], "C"))
 			get_ceiling_color(map, map->tmp[i], "C", 1);
+		if (map->elems == 6)
+			break ;
 	}
-dprintf(1, "no addr: %s\n", map->no.addr);
-dprintf(1, "so addr: %s\n", map->so.addr);
-dprintf(1, "ea addr: %s\n", map->ea.addr);
-dprintf(1, "we addr: %s\n", map->we.addr);
-dprintf(1, "c color: %d\n", map->c[0]);
-dprintf(1, "c color: %d\n", map->c[1]);
-dprintf(1, "c color: %d\n", map->c[2]);
-dprintf(1, "f color: %d\n", map->f[0]);
-dprintf(1, "f color: %d\n", map->f[1]);
-dprintf(1, "f color: %d\n", map->f[2]);
-	check_enough_datas(map);
-dprintf(1, "3\n");
 	return (i);
 }
 
@@ -90,10 +89,8 @@ static int	get_datas(t_data *data, int fd)
 {
 	char	*temp;
 	int		i;
-	// int		k=0;
 
 	temp = get_all_lines(fd);
-dprintf(1, "%s\n\n", temp);
 	if (!temp)
 		exit_error("Error\nMalloc failed\n");
 	data->map.tmp = ft_split(temp, '\n');
@@ -105,12 +102,8 @@ dprintf(1, "%s\n\n", temp);
 	}
 	close(fd);
 	free(temp);
-// while (data->map->tmp && data->map->tmp[k][0])
-// {
-// dprintf(1, "%s\n\n", data->map->tmp[k]);
-// k++;
-// }
 	i = get_textures(&data->map);
+	check_enough_datas(&data->map);
 dprintf(1, "2\n");
 	get_map(&data->map, i);
 	return (1);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map3.c                                             :+:      :+:    :+:   */
+/*   map_3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:07 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/17 11:36:32 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 15:42:24 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,22 @@ void	map_format(char *argv)
 		&& argv[i - 4] == '.' && argv[i - 5] != '/')
 		return ;
 	exit_error("Error\nWrong map file format\n");
+}
+
+int	check_if_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (map->map[i])
+	{
+		if (correct_map_char(map->map[i][0]))
+		{
+			i++;
+			continue ;
+		}
+		else
+			return (0);
+	}
+	return (1);
 }
