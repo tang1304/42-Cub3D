@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/17 11:20:39 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 11:29:45 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	main(int argc, char **argv)
 	// mlx_hook(data.win, 17, 0, ft_close, &data);
 
 	create_arr(&data);
-dprintf(1, "width0': %d\n", data.map.width);
-dprintf(1, "height0': %d\n", data.map.height);
 	create_window(&data);
 	return (0);
 }

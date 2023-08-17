@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/17 11:18:15 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 14:30:36 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <math.h>
 
 # define ESC 65307
 # define W 119
@@ -37,6 +38,12 @@ typedef struct s_img
 	int		line_l; //line length
 }			t_img;
 
+typedef struct s_coord
+{
+	int	x;
+	int	y;
+}				t_coord;
+
 typedef struct s_map
 {
 	int		p_x;
@@ -44,6 +51,7 @@ typedef struct s_map
 	int		**map;
 	int		width;
 	int		height;
+	t_coord	center;
 	int		p;
 }			t_map;
 
@@ -78,4 +86,8 @@ void	hooks(t_data *data);
 
 /*	hooks_changes.c	*/
 void	change_board(t_data *data, int keycode);
+int draw_line(t_data *data);
+
+/*	line.c	*/
+void	create_line(t_data *data);
 #endif

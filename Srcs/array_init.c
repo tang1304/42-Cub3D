@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:34:53 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/17 09:39:22 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 15:31:27 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,17 @@ void	create_arr(t_data *data)
 {
 	int	i;
 	t_map	map;
+	t_coord	coord;
 
 	i = -1;
-	// ft_bzero(&map, sizeof(t_map));
+	ft_bzero(&map, sizeof(t_map));
 	data->win_l = 1920;
 	data->win_h = 1080;
 	data->square_size = 40;
+	coord.x = data->win_l / 2;
+	coord.y = data->win_h / 2;
 	map.height = data->win_h / data->square_size;
 	map.width = data->win_l / data->square_size;
-dprintf(1, "width0: %d\n", map.width);
-dprintf(1, "height0: %d\n", map.height);
 	map.map = malloc(sizeof(int *) * (map.height));
 	if (map.map == NULL)
 		exit(1);//
@@ -65,6 +66,7 @@ dprintf(1, "height0: %d\n", map.height);
 			exit(1);//
 	}
 	data->map = map;
+	data->map.center = coord;
 	init_array_data(data);
 }
 
