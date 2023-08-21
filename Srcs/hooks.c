@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/21 13:17:19 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 16:06:57 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ static int	key_pressed(int keycode, t_data *data)
 
 int mouse_moved(int x, int y, t_data *data)
 {(void)x;(void)y;
+
 	create_line(data);
+	init_data_collision(data);
 	return (0);
 }
 

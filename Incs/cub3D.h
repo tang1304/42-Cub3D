@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/21 12:45:07 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 14:51:39 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,17 @@ typedef struct s_img
 	int		line_l; //line length
 }			t_img;
 
-typedef struct s_coord
+typedef struct s_coord_d
 {
-	int	x;
-	int	y;
-}				t_coord;
+	double	x;
+	double	y;
+}				t_coord_d;
+
+typedef struct s_coord_f
+{
+	float	x;
+	float	y;
+}				t_coord_f;
 
 typedef struct s_map
 {
@@ -56,14 +62,14 @@ typedef struct s_map
 
 typedef struct s_col
 {
-	t_coord	center;
-	t_coord	map;
-	t_coord	dir;
-	t_coord	dest;
-	t_coord	step;
-	t_coord	side_d;
-	t_coord	delta_d;
-	t_coord	cell;
+	t_coord_d	center;
+	t_coord_d	map;
+	t_coord_f	dir;
+	t_coord_f	dest;
+	t_coord_f	step;
+	t_coord_f	side_d;
+	t_coord_f	delta_d;
+	t_coord_d	cell;
 }			t_col;
 
 typedef struct s_data
@@ -103,7 +109,7 @@ void	change_board(t_data *data, int keycode);
 void	create_line(t_data *data);
 
 /*	collision.c	*/
-void	draw_coll_circle(t_data *data);
+void	draw_coll(t_data *data);
 void	init_data_collision(t_data *data);
 void	wall_detection(t_data *data);
 
