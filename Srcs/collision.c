@@ -6,42 +6,51 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/21 13:04:53 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 16:10:53 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
-
-void	draw_coll_circle(t_data *data)
+// draw-cool works ok BUT if we havea U wall shape just below the edge of the line, we have
+// a wronf collision detected.
+void	draw_coll(t_data *data)
 {
-	int	i = 10;
-	int	j = data->col.cell.x - i;
-	int	z;
-	while (j< data->col.cell.x + i)
+	t_coord_d	start;
+	t_coord_d	end;
+
+	start.x = data->col.map.x - 5;
+	end.x = data->col.map.x + 5;
+	end.y = data->col.map.y + 5;
+	while (start.x <= end.x)
 	{
-		z = data->col.cell.y - i;
-		while (z < data->col.cell.y + i)
+		// printf("start.x: %f\n", start.x);
+		start.y = data->col.map.y - 5;
+		while (start.y <= end.y)
 		{
-			my_mlx_pixel_put(&data->img, j, z, 0xFF000000);
-			z++;
+			my_mlx_pixel_put(&data->img, start.x, start.y, 0xFF00FF00);
+			start.y = start.y + 1;
 		}
-		j++;
+		start.x = start.x + 1;
 	}
 }
 
 void	init_data_collision(t_data *data)
 {
-	mlx_mouse_get_pos(data->mlx, data->win, &data->col.dest.x, \
-						&data->col.dest.y);
+	int	i;
+	int	j;
+
+	mlx_mouse_get_pos(data->mlx, data->win, &i, &j);
+	data->col.dest.x = (double)i;
+	data->col.dest.y = (double)j;
 	data->col.map = data->col.center;
 	data->col.dir.x = (data->col.dest.x - data->col.center.x);
 	data->col.dir.y = (data->col.dest.y - data->col.center.y);
 	if (data->col.dir.x == 0)
-		data->col.delta_d.x = 1e8;
+		data->col.delta_d.x = (int)1e30;
 	else
 		data->col.delta_d.x = fabs(1.0f / data->col.dir.x);
 	if (data->col.dir.y == 0)
-		data->col.delta_d.y = 1e8;
+		data->col.delta_d.y = (int)1e30;
 	else
 		data->col.delta_d.y = fabs(1.0f / data->col.dir.y);
 	if (data->col.dir.x < 0)
@@ -69,6 +78,7 @@ void	init_data_collision(t_data *data)
 								data->col.delta_d.y;
 	}
 	wall_detection(data);
+	draw_coll(data);
 }
 
 void	wall_detection(t_data *data)
@@ -87,10 +97,7 @@ void	wall_detection(t_data *data)
 		}
 		data->col.cell.x = data->col.map.x / data->square_size;
 		data->col.cell.y = data->col.map.y / data->square_size;
-		if (data->arr[data->col.cell.y][data->col.cell.x] == 1)
-		{
-			// printf("x:%d\ny:%d\n", data->col.cell.x, data->col.cell.y);
+		if (data->arr[(int)data->col.cell.y][(int)data->col.cell.x] == 1)
 			return ;
-		}
 	}
 }

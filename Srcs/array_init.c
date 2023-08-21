@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:34:53 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/21 10:38:16 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 13:51:34 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@ void	init_array_data(t_data *data)
 		j = -1;
 		while (++j < data->map.width)
 		{
-			data->map.map[i][j] = (j % 2 + i) % 2;
+			if (i == 0 || i == 26 || j == 0 || j == 47)
+				data->map.map[i][j] = 1;
+			else
+				data->map.map[i][j] = 0;
 			// printf("%d", data->map->map[i][j]);
 		}
 		// printf("\n");
