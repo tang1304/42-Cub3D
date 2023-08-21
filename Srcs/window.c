@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/17 13:54:13 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 13:12:27 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	add_squares(int x, int y, t_data *data, int num)
 		while (j < (y * s) + s)
 		{
 			if (num == 1)
-				my_mlx_pixel_put(&data->img, i, j, 0xFFFFFFFF);
+				my_mlx_pixel_put(&data->img, i, j, 0xFFFFFFFF); // wall
 			else
 				my_mlx_pixel_put(&data->img, i, j, 0x00000000);
 			j++;
