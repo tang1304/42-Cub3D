@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/17 15:44:02 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 11:03:26 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	check_enough_datas(t_map *map)
 	// {
 	// 	if ;
 	// }
-	printf("4\n");
 }
 
 static char	*get_texture_path(t_map *map, char *str, char *elem, int i)
@@ -38,7 +37,6 @@ static char	*get_texture_path(t_map *map, char *str, char *elem, int i)
 
 	k = 0;
 	tmp = double_strtrim(str, " ", "\t");
-dprintf(1, "tmp:%s\n", tmp);
 	if (!tmp)
 		get_texture_error(map, "Error\nMalloc failed\n");
 	if (ft_strlen(tmp) == 2 || ft_strncmp(tmp, elem, i) != 0)
@@ -104,7 +102,6 @@ static int	get_datas(t_data *data, int fd)
 	free(temp);
 	i = get_textures(&data->map);
 	check_enough_datas(&data->map);
-dprintf(1, "2\n");
 	get_map(&data->map, i);
 	return (1);
 }

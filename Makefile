@@ -1,7 +1,7 @@
 # --- VARIABLES --- #
 
 CC = cc -g3
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror# -fsanitize=address
 SRCS =	close.c \
 		errors.c \
 		frees.c \
