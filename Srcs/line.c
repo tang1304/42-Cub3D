@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:00 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/17 13:48:40 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 13:20:36 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,36 @@
 
 void	create_line(t_data *data)
 {
-	printf("here\n");
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	mlx_mouse_get_pos(data->mlx, data->win, &i, &j);
+	if (i > data->win_l || i < 0 || j > data->win_h || j < 0)
+		return ;
+
+	double	deltaX;
+	// if (data->map.center.x > i)
+		deltaX = i - data->col.center.x;
+	// else
+		// deltaX = i - data->map.center.x;
+	double	deltaY;
+	// if (data->map.center.x > i)
+		deltaY = j - data->col.center.y;
+	// else
+		// deltaY = j - data->map.center.y;
+	int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
+	deltaX /= pixels;
+	deltaY /= pixels;
+	double pixelX = data->col.center.x;
+	double pixelY = data->col.center.y;
+	while (pixels)
+	{
+		mlx_pixel_put(data->mlx, data->win, pixelX, pixelY, 0x00FF0000);
+		pixelX += deltaX;
+		pixelY += deltaY;
+		--pixels;
+	}
+	// draw_coll_circle(data);
+	// create_board_img(data);
+	// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/17 14:30:36 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 12:45:07 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,20 @@ typedef struct s_map
 	int		**map;
 	int		width;
 	int		height;
-	t_coord	center;
 	int		p;
 }			t_map;
+
+typedef struct s_col
+{
+	t_coord	center;
+	t_coord	map;
+	t_coord	dir;
+	t_coord	dest;
+	t_coord	step;
+	t_coord	side_d;
+	t_coord	delta_d;
+	t_coord	cell;
+}			t_col;
 
 typedef struct s_data
 {
@@ -62,6 +73,7 @@ typedef struct s_data
 	int		win_h;
 	int		win_l;
 	t_map	map;
+	t_col	col;
 	t_img	img;
 
 	// Array 2D
@@ -86,8 +98,13 @@ void	hooks(t_data *data);
 
 /*	hooks_changes.c	*/
 void	change_board(t_data *data, int keycode);
-int draw_line(t_data *data);
 
 /*	line.c	*/
 void	create_line(t_data *data);
+
+/*	collision.c	*/
+void	draw_coll_circle(t_data *data);
+void	init_data_collision(t_data *data);
+void	wall_detection(t_data *data);
+
 #endif
