@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:38:32 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/17 15:49:51 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 10:52:33 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,11 @@ void	get_map(t_map *map, int i)
 	j = i - 1;
 	k = 0;
 	i++;
-//Check creation de map->map, decalage de 1 byte dans memoire
 	while (map->tmp[i] && map->tmp[i][0] == '\n')
 		i++;
 	while (map->tmp[++j])
 		k++;
-	map->map = (char **)malloc(sizeof(char *) * (k + 1));
+	map->map = malloc(sizeof(char *) * (k + 1));
 	if (!map->map)
 		get_texture_error(map, "Error\nMalloc failed\n");
 	k = 0;
@@ -135,6 +134,7 @@ void	get_map(t_map *map, int i)
 		i++;
 		k++;
 	}
+	map->map[k] = NULL;
 	if (!check_if_map(map))
 		get_texture_error(map, MORE_ELEM);
 }

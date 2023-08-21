@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:07 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/17 15:42:24 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 10:21:59 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_if_map(t_map *map)
 	i = 0;
 	while (map->map[i])
 	{
-		if (correct_map_char(map->map[i][0]))
+		if (map->map[i][0] && correct_map_char(map->map[i][0]))
 		{
 			i++;
 			continue ;
