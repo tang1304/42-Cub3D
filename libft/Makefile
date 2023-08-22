@@ -26,11 +26,11 @@ LST_SRCS	=	ft_isalnum.c ft_memcmp.c ft_strdup.c ft_strnstr.c ft_isalpha.c ft_mem
 				ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
 				ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_atoi_ll.c \
 				ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_strcmp.c ft_strtrim_free.c\
-				ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
-				ft_lstiter.c ft_lstmap.c  ft_strndup.c\
-				get_next_line.c get_next_line_utils.c \
+				ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_is_space.c \
+				ft_lstiter.c ft_lstmap.c  ft_strndup.c ft_strtrim_double.c ft_free_pp.c \
+				get_next_line.c get_next_line_utils.c get_all_lines.c  get_next_line_error.c\
 				ft_convert_address.c ft_convert_nbr.c ft_printf.c ft_dprintf.c\
-				ft_putchar.c ft_putnbr_unsigned.c ft_putnbr.c ft_putstr.c
+				ft_putchar.c ft_putnbr_unsigned.c ft_putnbr.c ft_putstr.c ft_strstr.c
 
 SRCS		=	$(addprefix $(D_SRCS), $(LST_SRCS))
 

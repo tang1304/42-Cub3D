@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook.c                                         :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 09:47:43 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/16 09:57:55 by tgellon          ###   ########lyon.fr   */
+/*   Created: 2023/08/14 16:06:36 by tgellon           #+#    #+#             */
+/*   Updated: 2023/08/16 09:57:27 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-// int	keyhook(int keycode, t_data *data)
-// {
-// 	int	tmp;
+void	exit_error(char *str)
+{
+	printf("%s", str);
+	exit(EXIT_FAILURE);
+}
 
-// 	tmp = 1;
-// 	if (keycode == ESC)
-// 	{
-// 		ft_printf("You gave up !\n");
-// 		ft_close(data);
-// 	}
-// }
+void	get_texture_error(t_map *map, char *str)
+{
+	t_map_cleaning(map);
+	printf("%s", str);
+	exit(EXIT_FAILURE);
+}
