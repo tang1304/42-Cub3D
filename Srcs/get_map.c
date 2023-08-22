@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_2.c                                            :+:      :+:    :+:   */
+/*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:38:32 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/21 10:52:33 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/22 10:28:17 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ static int	get_rgb(t_map *map, int *color, char **tab)
 	i = -1;
 	while (tab[++i])
 	{
-		tab[i] = double_strtrim_free(tab[i], " ", "\t");
+		tab[i] = triple_strtrim_free(tab[i], "\n", " ", "\t");
 		if (!tab[i])
 			return (ft_free_pp(tab), 0);
 		j = -1;
-		while (tab[i][++j])
+		while (tab[i][++j] && tab[i][j] != '\n')
 		{
 			if (!ft_isdigit(tab[i][j]))
 				return (printf(COLOR_CHAR, tab[i]), ft_free_pp(tab), 0);

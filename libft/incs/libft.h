@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:11:10 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/17 10:36:33 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 13:02:18 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void		ft_lstdelone(t_list *lst, void (*del)(void *));
 void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 char		*get_next_line(int fd);
+char		*get_next_line_error(int fd, int *err);
 char		*get_all_lines(int fd);
 int			ft_strcmp(char *s1, char *s2);
 char		*ft_strjoin_gnl(char *s1, char *s2);
