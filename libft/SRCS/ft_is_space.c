@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook.c                                         :+:      :+:    :+:   */
+/*   ft_is_space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 09:47:43 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/16 09:57:55 by tgellon          ###   ########lyon.fr   */
+/*   Created: 2023/08/14 14:27:57 by tgellon           #+#    #+#             */
+/*   Updated: 2023/08/14 14:29:01 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Incs/cub3D.h"
+#include "../incs/libft.h"
 
-// int	keyhook(int keycode, t_data *data)
-// {
-// 	int	tmp;
-
-// 	tmp = 1;
-// 	if (keycode == ESC)
-// 	{
-// 		ft_printf("You gave up !\n");
-// 		ft_close(data);
-// 	}
-// }
+int	ft_is_space(char c)
+{
+	if (c == ' ' || (c >= 9 && c <= 13))
+		return (1);
+	return (0);
+}
