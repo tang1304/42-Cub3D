@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/17 15:11:48 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/22 10:43:51 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ included\n"
 # define LESS_ELEM "Error\nNot all configuration elements are present before \
 the map\nYou must have NO, SO, EA, WE, F and C\n"
 # define MORE_ELEM "Error\nToo much elements before the map, must be only NO, \
-SO, EA, WE, F and C\n"
+SO, EA, WE, F and C, one of each\n"
 
 typedef struct s_img
 {
@@ -97,22 +97,25 @@ void	get_texture_error(t_map *map, char *str);
 void	t_texture_cleaning(t_texture *text);
 void	t_map_cleaning(t_map *map);
 
-/*	map.c	*/
+/*	map_init.c	*/
 int		map_init(t_data *data, int argc, char **argv);
 
-/*	map_2.c	*/
+/*	get_map.c	*/
 void	get_ceiling_color(t_map *map, char *str, char *elem, int i);
 void	get_floor_color(t_map *map, char *str, char *elem, int i);
 void	get_map(t_map *map, int i);
 
-/*	map_3.c	*/
+/*	map_utils.c	*/
 void	map_format(char *argv);
 int		check_if_map(t_map *map);
+void	check_enough_datas(t_map *map);
+int		count_lines(int fd);
 
 /*	utils.c	*/
 int		new_str_start(char *str, int k);
 char	*double_strtrim(char *str, char *s1, char *s2);
 char	*double_strtrim_free(char *str, char *s1, char *s2);
+char	*triple_strtrim_free(char *str, char *s1, char *s2, char *s3);
 int		correct_map_char(char c);
 
 #endif

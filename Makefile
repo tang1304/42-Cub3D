@@ -7,9 +7,9 @@ SRCS =	close.c \
 		frees.c \
 		key_hook.c \
 		main.c \
-		map.c \
-		map_2.c \
-		map_3.c \
+		map_init.c \
+		get_map.c \
+		map_utils.c \
 		utils.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)

@@ -1,32 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/21 11:03:26 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 14:56:08 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
-
-static void	check_enough_datas(t_map *map)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	j = 0;
-	if (!map->no.addr || !map->so.addr || !map->ea.addr || !map->we.addr \
-		|| map->c[0] == -1 || map->f[0] == -1)
-		get_texture_error(map, LESS_ELEM);
-	// while (map->tmp[++i])
-	// {
-	// 	if ;
-	// }
-}
 
 static char	*get_texture_path(t_map *map, char *str, char *elem, int i)
 {
@@ -83,23 +67,46 @@ static int	get_textures(t_map *map)
 	return (i);
 }
 
-static int	get_datas(t_data *data, int fd)
+static char	**get_file_lines(int fd, int n)
 {
-	char	*temp;
 	int		i;
+	int		err;
+	char	**tab;
 
-	temp = get_all_lines(fd);
-	if (!temp)
-		exit_error("Error\nMalloc failed\n");
-	data->map.tmp = ft_split(temp, '\n');
-	if (!data->map.tmp || data->map.tmp[0] == NULL)
+	i = -1;
+	err = 0;
+	tab = malloc(sizeof(char *) * (n + 1));
+	if (!tab)
+		return (close(fd), NULL);
+	while (++i < n)
 	{
-		free(temp);
-		close(fd);
-		exit_error("Error\nMalloc failed\n");
+		tab[i] = get_next_line_error(fd, &err);
+		if (err == 1)
+			return (ft_free_pp(tab), close(fd), NULL);
 	}
+	tab[i] = NULL;
+	return (tab);
+}
+
+static int	get_datas(t_data *data, int fd, int fd_2)
+{
+	int		i;
+	int		n;
+
+	n = count_lines(fd_2);
+	if (n == -1)
+		exit_error("Error\nMalloc failed\n");
+	data->map.tmp = get_file_lines(fd, n);
+	if (!data->map.tmp)
+		exit_error("Error\nMalloc failed\n");
+	// data->map.tmp = ft_split(temp, '\n');
+	// if (!data->map.tmp || data->map.tmp[0] == NULL)
+	// {
+	// 	free(temp);
+	// 	close(fd);
+	// 	exit_error("Error\nMalloc failed\n");
+	// }
 	close(fd);
-	free(temp);
 	i = get_textures(&data->map);
 	check_enough_datas(&data->map);
 	get_map(&data->map, i);
@@ -109,14 +116,16 @@ static int	get_datas(t_data *data, int fd)
 int	map_init(t_data *data, int argc, char **argv)
 {
 	int	fd;
+	int	tmp;
 
 	if (argc != 2)
 		exit_error("Error\nWrong argument, must be './cub3D xxx.cub' only\n");
 	map_format(argv[1]);
 	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
+	tmp = open(argv[1], O_RDONLY);
+	if (fd == -1 || tmp == -1)
 		exit_error("Error\nCouldn't open the .cub file\n");
-	if (!get_datas(data, fd))
+	if (!get_datas(data, fd, tmp))
 	{
 		ft_printf("Error\nGet_map crashed\n");
 		return (close(fd), 0);
