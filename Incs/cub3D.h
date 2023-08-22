@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/22 10:43:51 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/22 16:20:25 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ included\n"
 the map\nYou must have NO, SO, EA, WE, F and C\n"
 # define MORE_ELEM "Error\nToo much elements before the map, must be only NO, \
 SO, EA, WE, F and C, one of each\n"
+# define WALLS_ERR "Error\nThe map must be surrounded by walls\n"
+# define WRONG_CHAR "Error\nWrong char in map, must be 0, 1, N, S, E, W or a \
+whitespace\n"
+# define MORE_DIRECTION "Error\nThere must be only one player direction\n"
+# define LESS_DIRECTION "Error\nThere must be a player direction (N,S,E or W)\n"
 
 typedef struct s_img
 {
@@ -73,7 +78,7 @@ typedef struct s_map
 	int			c[3];//ceiling color
 	int			elems;
 	// int		width;
-	// int		height;
+	int		height;
 }			t_map;
 
 typedef struct s_data
@@ -91,7 +96,7 @@ void	close_map_error(t_data *data);
 
 /*	errors.c	*/
 void	exit_error(char *str);
-void	get_texture_error(t_map *map, char *str);
+void	map_error(t_map *map, char *str);
 
 /*	frees.c	*/
 void	t_texture_cleaning(t_texture *text);
@@ -104,6 +109,14 @@ int		map_init(t_data *data, int argc, char **argv);
 void	get_ceiling_color(t_map *map, char *str, char *elem, int i);
 void	get_floor_color(t_map *map, char *str, char *elem, int i);
 void	get_map(t_map *map, int i);
+
+/*	map_char_checks.c	*/
+void	direction_check(t_map *map, char c, int i, int j);
+void	one_check(t_map *map, int i, int j);
+
+/*	map_parsing.c	*/
+int		neighbour_ok(char c);
+void	parse_map(t_map *map);
 
 /*	map_utils.c	*/
 void	map_format(char *argv);
