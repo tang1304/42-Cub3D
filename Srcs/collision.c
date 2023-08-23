@@ -6,34 +6,12 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/21 16:10:53 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 16:45:44 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
-// draw-cool works ok BUT if we havea U wall shape just below the edge of the line, we have
-// a wronf collision detected.
-void	draw_coll(t_data *data)
-{
-	t_coord_d	start;
-	t_coord_d	end;
-
-	start.x = data->col.map.x - 5;
-	end.x = data->col.map.x + 5;
-	end.y = data->col.map.y + 5;
-	while (start.x <= end.x)
-	{
-		// printf("start.x: %f\n", start.x);
-		start.y = data->col.map.y - 5;
-		while (start.y <= end.y)
-		{
-			my_mlx_pixel_put(&data->img, start.x, start.y, 0xFF00FF00);
-			start.y = start.y + 1;
-		}
-		start.x = start.x + 1;
-	}
-}
-
+// Using dda algorithm
 void	init_data_collision(t_data *data)
 {
 	int	i;
@@ -99,5 +77,27 @@ void	wall_detection(t_data *data)
 		data->col.cell.y = data->col.map.y / data->square_size;
 		if (data->arr[(int)data->col.cell.y][(int)data->col.cell.x] == 1)
 			return ;
+	}
+}
+
+// draw-cool works ok BUT if we havea U wall shape just below the edge of the line, we have
+// a wronf collision detected.
+void	draw_coll(t_data *data)
+{
+	t_coord_d	start;
+	t_coord_d	end;
+
+	start.x = data->col.map.x - 5;
+	end.x = data->col.map.x + 5;
+	end.y = data->col.map.y + 5;
+	while (start.x <= end.x)
+	{
+		start.y = data->col.map.y - 5;
+		while (start.y <= end.y)
+		{
+			my_mlx_pixel_put(&data->img, start.x, start.y, 0xFF00FF00);
+			start.y = start.y + 1;
+		}
+		start.x = start.x + 1;
 	}
 }
