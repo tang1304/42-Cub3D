@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:52:32 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/22 16:27:12 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 10:13:43 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,45 @@ static int	direction_neighbour(char c)
 		return (0);
 }
 
+void	direction_neighbour_check(t_map *map, char **tab, int i, int j)
+{
+	int	len_up;
+	int	len_down;
+
+	len_up = len_line_up(map, i);
+	len_down = len_line_down(map, i);
+	if (j == 0 || i == 0 || i == map->height - 1)
+		map_error(map, DIRECTION_OUT);
+	if (j > 0 && ft_is_space(tab[i][j - 1]))
+		map_error(map, DIRECTION_OUT);
+	if (ft_is_space(tab[i][j + 1]))
+		map_error(map, DIRECTION_OUT);
+	if (j < len_up && ft_is_space(tab[i - 1][j]))
+		map_error(map, DIRECTION_OUT);
+	if (j < len_down && ft_is_space(tab[i + 1][j]))
+		map_error(map, DIRECTION_OUT);
+	if (i > 0 && j > 0 && j < len_up && !direction_neighbour(tab[i - 1][j - 1]))
+		map_error(map, DIRECTION_OUT);
+	if (i > 0 && j < len_up && !direction_neighbour(tab[i - 1][j + 1]))
+		map_error(map, DIRECTION_OUT);
+	if (j > 0 && j < len_down && !direction_neighbour(tab[i + 1][j - 1]))
+		map_error(map, DIRECTION_OUT);
+	if (j < len_down && !direction_neighbour(tab[i + 1][j + 1]))
+		map_error(map, DIRECTION_OUT);
+	if (map->map[i][j + 1] == '\0')
+		map_error(map, DIRECTION_OUT);
+}
+
 void	direction_check(t_map *map, char c, int i, int j)
 {
 	if (map->direction)
 		map_error(map, MORE_DIRECTION);
 	else
 		map->direction = c;
-	if (ft_is_space(map->map[i][j - 1]) || ft_is_space(map->map[i][j + 1]) || \
-		ft_is_space(map->map[i - 1][j]) || ft_is_space(map->map[i + 1][j]) || \
-		!direction_neighbour(map->map[i - 1][j - 1]) \
-		|| !direction_neighbour(map->map[i - 1][j + 1]) \
-		|| !direction_neighbour(map->map[i + 1][j - 1]) \
-		|| !direction_neighbour(map->map[i + 1][j + 1]) \
-		|| map->map[i][j + 1] == '\0' || j == 0)
-		map_error(map, WALLS_ERR);
+	direction_neighbour_check(map, map->map, i, j);
 }
 
-static int	len_line_up(t_map *map, int i)
+int	len_line_up(t_map *map, int i)
 {
 	int	len;
 
@@ -47,7 +69,7 @@ static int	len_line_up(t_map *map, int i)
 	return (len);
 }
 
-static int	len_line_down(t_map *map, int i)
+int	len_line_down(t_map *map, int i)
 {
 	int	len;
 
@@ -56,33 +78,4 @@ static int	len_line_down(t_map *map, int i)
 	else
 		len = 0;
 	return (len);
-}
-
-void	one_check(t_map *map, int i, int j)
-{
-	int	neighbour;
-	int	len_up;
-	int	len_down;
-
-	neighbour = 0;
-	len_up = len_line_up(map, i);
-	len_down = len_line_down(map, i);
-	if (j > 0)
-		neighbour += neighbour_ok(map->map[i][j - 1]);
-	if (map->map[i][j + 1])
-		neighbour += neighbour_ok(map->map[i][j + 1]);
-	if (i > 0 && j < len_down)
-		neighbour += neighbour_ok(map->map[i - 1][j]);
-	if (j < len_down)
-		neighbour += neighbour_ok(map->map[i + 1][j]);
-	if (i > 0 && j > 0 && j < len_up)
-		neighbour += neighbour_ok(map->map[i - 1][j - 1]);
-	if (i > 0 && j < len_up)
-		neighbour += neighbour_ok(map->map[i - 1][j + 1]);
-	if (j > 0 && j < len_down)
-		neighbour += neighbour_ok(map->map[i + 1][j - 1]);
-	if (j < len_down)
-		neighbour += neighbour_ok(map->map[i + 1][j + 1]);
-	if (neighbour == 0)
-		map_error(map, WALLS_ERR);
 }

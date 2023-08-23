@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 11:11:35 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/22 16:20:33 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 10:14:28 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,62 @@ int	neighbour_ok(char c)
 		return (0);
 }
 
-static void	zero_check(t_map *map, char **tab, int i, int j)
+void	zero_check(t_map *map, char **tab, int i, int j)
 {
-	if (ft_is_space(tab[i][j - 1]) || ft_is_space(tab[i][j + 1]) || \
-		ft_is_space(tab[i - 1][j]) || ft_is_space(tab[i + 1][j]) || \
-		!neighbour_ok(tab[i - 1][j - 1]) || !neighbour_ok(tab[i - 1][j + 1]) \
-		|| !neighbour_ok(tab[i + 1][j - 1]) \
-		|| !neighbour_ok(tab[i + 1][j + 1]) \
-		|| map->map[i][j + 1] == '\0' || j == 0)
+	int	len_up;
+	int	len_down;
+
+	len_up = len_line_up(map, i);
+	len_down = len_line_down(map, i);
+	if (j == 0 || i == 0 || i == map->height - 1)
 		map_error(map, WALLS_ERR);
+	if (j > 0 && ft_is_space(tab[i][j - 1]))
+		map_error(map, WALLS_ERR);
+	if (ft_is_space(tab[i][j + 1]))
+		map_error(map, WALLS_ERR);
+	if (j < len_up && ft_is_space(tab[i - 1][j]))
+		map_error(map, WALLS_ERR);
+	if (j < len_down && ft_is_space(tab[i + 1][j]))
+		map_error(map, WALLS_ERR);
+	if (i > 0 && j > 0 && j < len_up && !neighbour_ok(tab[i - 1][j - 1]))
+		map_error(map, WALLS_ERR);
+	if (i > 0 && j < len_up && !neighbour_ok(tab[i - 1][j + 1]))
+		map_error(map, WALLS_ERR);
+	if (j > 0 && j < len_down && !neighbour_ok(tab[i + 1][j - 1]))
+		map_error(map, WALLS_ERR);
+	if (j < len_down && !neighbour_ok(tab[i + 1][j + 1]))
+		map_error(map, WALLS_ERR);
+	if (map->map[i][j + 1] == '\0')
+		map_error(map, WALLS_ERR);
+}
+
+static void	one_check(t_map *map, int i, int j)
+{
+	int	neighbour;
+	int	len_up;
+	int	len_down;
+
+	neighbour = 0;
+	len_up = len_line_up(map, i);
+	len_down = len_line_down(map, i);
+	if (j > 0)
+		neighbour += neighbour_ok(map->map[i][j - 1]);
+	if (map->map[i][j + 1])
+		neighbour += neighbour_ok(map->map[i][j + 1]);
+	if (i > 0 && j < len_up)
+		neighbour += neighbour_ok(map->map[i - 1][j]);
+	if (j < len_down)
+		neighbour += neighbour_ok(map->map[i + 1][j]);
+	if (i > 0 && j > 0 && j < len_up)
+		neighbour += neighbour_ok(map->map[i - 1][j - 1]);
+	if (i > 0 && j < len_up)
+		neighbour += neighbour_ok(map->map[i - 1][j + 1]);
+	if (j > 0 && j < len_down)
+		neighbour += neighbour_ok(map->map[i + 1][j - 1]);
+	if (j < len_down)
+		neighbour += neighbour_ok(map->map[i + 1][j + 1]);
+	if (neighbour == 0)
+		map_error(map, WALLS_ALONE);
 }
 
 void	parse_map(t_map *map)
@@ -55,8 +102,6 @@ void	parse_map(t_map *map)
 				continue ;
 			if (!authorized_char(map->map[i][j]))
 				map_error(map, WRONG_CHAR);
-			if ((i == 0 || i == map->height - 1) && map->map[i][j] != '1')
-				map_error(map, WALLS_ERR);
 			if (map->map[i][j] == '1')
 				one_check(map, i, j);
 			else if (map->map[i][j] == '0')
