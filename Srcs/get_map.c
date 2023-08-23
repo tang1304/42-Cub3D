@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:38:32 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/22 10:28:17 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/22 13:03:25 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	get_ceiling_color(t_map *map, char *str, char *elem, int i)
 	k = 0;
 	tmp = double_strtrim(str, " ", "\t");
 	if (!tmp)
-		get_texture_error(map, "Error\nMalloc failed\n");
+		map_error(map, "Error\nMalloc failed\n");
 	if (!check_element(tmp, elem, i))
 		return ;
 	k = new_str_start(str, k);
@@ -71,12 +71,12 @@ void	get_ceiling_color(t_map *map, char *str, char *elem, int i)
 	if (!new)
 	{
 		free(tmp);
-		get_texture_error(map, "Error\nMalloc failed\n");
+		map_error(map, "Error\nMalloc failed\n");
 	}
 	if (!get_rgb(map, map->c, new))
 	{
 		free(tmp);
-		get_texture_error(map, "");
+		map_error(map, "");
 	}
 	free(tmp);
 }
@@ -91,7 +91,7 @@ void	get_floor_color(t_map *map, char *str, char *elem, int i)
 	k = 0;
 	tmp = double_strtrim(str, " ", "\t");
 	if (!tmp)
-		get_texture_error(map, "Error\nMalloc failed\n");
+		map_error(map, "Error\nMalloc failed\n");
 	if (!check_element(tmp, elem, i))
 		return ;
 	k = new_str_start(str, k);
@@ -100,12 +100,12 @@ void	get_floor_color(t_map *map, char *str, char *elem, int i)
 	if (!new)
 	{
 		free(tmp);
-		get_texture_error(map, "Error\nMalloc failed\n");
+		map_error(map, "Error\nMalloc failed\n");
 	}
 	if (!get_rgb(map, map->f, new))
 	{
 		free(tmp);
-		get_texture_error(map, "");
+		map_error(map, "");
 	}
 	free(tmp);
 }
@@ -124,17 +124,17 @@ void	get_map(t_map *map, int i)
 		k++;
 	map->map = malloc(sizeof(char *) * (k + 1));
 	if (!map->map)
-		get_texture_error(map, "Error\nMalloc failed\n");
-	k = 0;
+		map_error(map, "Error\nMalloc failed\n");
+	k = -1;
 	while (map->tmp[i])
 	{
-		map->map[k] = ft_strdup(map->tmp[i]);
+		map->map[++k] = ft_strtrim(map->tmp[i], "\n");
 		if (!map->map[k])
-			get_texture_error(map, "Error\nMalloc failed\n");
+			map_error(map, "Error\nMalloc failed\n");
 		i++;
-		k++;
 	}
-	map->map[k] = NULL;
+	map->map[++k] = NULL;
+	map->height = k;
 	if (!check_if_map(map))
-		get_texture_error(map, MORE_ELEM);
+		map_error(map, MORE_ELEM);
 }
