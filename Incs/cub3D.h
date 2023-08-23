@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/23 10:32:27 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 15:39:21 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct s_data
 	int		win_l;
 	float	view_d;
 	float	ray_len;
-	t_ray	*ray;
+	t_ray	**ray;
 	t_map	map;
 	t_col	col;
 	t_img	img;
@@ -124,8 +124,8 @@ void	change_board(t_data *data, int keycode);
 void	create_line(t_data *data);
 
 /*	collision.c	*/
-void	draw_coll(t_data *data);
-void	init_data_collision(t_data *data);
-void	wall_detection(t_data *data);
+void	init_data_collision(t_data *data, int r);
+void	wall_detection(t_data *data, int r);
+void	draw_coll(t_data *data, int r);
 
 #endif
