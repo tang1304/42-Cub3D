@@ -3,7 +3,8 @@
 CC = cc -g3
 CFLAGS = -Wall -Wextra -Werror
 SRCS =	main.c \
-		array_init.c \
+		init_array_map.c \
+		init_data_struct.c \
 		hooks.c \
 		hooks_changes.c \
 		window.c \

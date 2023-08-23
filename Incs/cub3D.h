@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/23 08:22:06 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 10:32:27 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,15 @@ typedef struct s_coord_f
 	float	y;
 }				t_coord_f;
 
+typedef struct s_ray
+{
+	t_coord_f	hit_p;
+	t_coord_d	cell;
+	double		len;
+	int			side_hit;
+	double		angle;
+}				t_ray;
+
 typedef struct s_map
 {
 	int		p_x;
@@ -80,6 +89,7 @@ typedef struct s_data
 	int		win_l;
 	float	view_d;
 	float	ray_len;
+	t_ray	*ray;
 	t_map	map;
 	t_col	col;
 	t_img	img;
@@ -92,9 +102,12 @@ typedef struct s_data
 /*	utils.c	*/
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
-/*	array_init.c	*/
-void	create_arr(t_data *data);
-void	init_array_data(t_data *data);
+/*	init_data_struct.c	*/
+void	init_data_values(t_data *data);
+void	init_data_map_values(t_data *data);
+
+/*	init_array_map.c	*/
+void	init_map(t_data *data);
 
 /*	window.c	*/
 void	create_window(t_data *data);
