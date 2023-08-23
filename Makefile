@@ -17,8 +17,8 @@ SRCS = close.c \
 		map_init.c \
 		map_parsing.c \
 		map_utils.c \
-		utils.c
-		window.c \
+		utils.c \
+		window.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
 OBJ_DIR = objs/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/21 15:54:00 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 11:40:14 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	img_loop(t_data *data)
 	create_board_img(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	hooks(data);
+	// mlx_hook(data->win, 17, 0, ft_close, &data);//segfault sur croix
 	mlx_loop(data->mlx);
 }
 

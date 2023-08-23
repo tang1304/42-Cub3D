@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/23 11:22:56 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 11:34:14 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_map
 	int			p_y;//player position on y
 	char		direction;//player orientation
 	char		**tmp;//content of .cub file
-	int			**map;
+	char		**map;
 	t_texture	no;
 	t_texture	so;
 	t_texture	ea;
@@ -103,7 +103,7 @@ typedef struct s_map
 	int			f[3];//floor color
 	int			c[3];//ceiling color
 	int			elems;
-	// int		width;
+	int		width;
 	int		height;
 }			t_map;
 
@@ -135,16 +135,13 @@ typedef struct s_data
 	// Array 2D
 	int		**arr;
 	int		square_size;
-	void	*mlx;//mlx pointer
-	void	*win;//window pointer
-	t_img	img;
-	t_map	map;
 }			t_data;
 
 /*	close.c	*/
 void	close_all(t_data *data);
 void	close_win_error(t_data *data);
 void	close_map_error(t_data *data);
+int		ft_close(t_data *data);
 
 /*	collision.c	*/
 void	draw_coll(t_data *data);

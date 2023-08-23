@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:48:45 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/21 12:45:34 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 10:37:36 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,10 @@ void	t_texture_cleaning(t_texture *text)
 
 void	t_map_cleaning(t_map *map)
 {
-	// if (&map->no)
-		t_texture_cleaning(&map->no);
-	// if (&map->so)
-		t_texture_cleaning(&map->so);
-	// if (&map->ea)
-		t_texture_cleaning(&map->ea);
-	// if (&map->we)
-		t_texture_cleaning(&map->we);
+	t_texture_cleaning(&map->no);
+	t_texture_cleaning(&map->so);
+	t_texture_cleaning(&map->ea);
+	t_texture_cleaning(&map->we);
 	if (map->map)
 		ft_free_pp(map->map);
 	if (map->tmp)
