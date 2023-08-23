@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/21 14:51:39 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 16:46:24 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_data
 	void	*win; //window pointer
 	int		win_h;
 	int		win_l;
+	float	view_d;
 	t_map	map;
 	t_col	col;
 	t_img	img;
