@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/22 16:20:25 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 10:03:22 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ the map\nYou must have NO, SO, EA, WE, F and C\n"
 # define MORE_ELEM "Error\nToo much elements before the map, must be only NO, \
 SO, EA, WE, F and C, one of each\n"
 # define WALLS_ERR "Error\nThe map must be surrounded by walls\n"
+# define WALLS_ALONE "Error\nThere is a wall outside the map\n"
 # define WRONG_CHAR "Error\nWrong char in map, must be 0, 1, N, S, E, W or a \
 whitespace\n"
 # define MORE_DIRECTION "Error\nThere must be only one player direction\n"
 # define LESS_DIRECTION "Error\nThere must be a player direction (N,S,E or W)\n"
+# define DIRECTION_OUT "Error\nThe player is not inside the map\n"
 
 typedef struct s_img
 {
@@ -112,7 +114,8 @@ void	get_map(t_map *map, int i);
 
 /*	map_char_checks.c	*/
 void	direction_check(t_map *map, char c, int i, int j);
-void	one_check(t_map *map, int i, int j);
+int		len_line_up(t_map *map, int i);
+int		len_line_down(t_map *map, int i);
 
 /*	map_parsing.c	*/
 int		neighbour_ok(char c);
