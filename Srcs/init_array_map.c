@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   array_init.c                                       :+:      :+:    :+:   */
+/*   init_array_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:34:53 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/23 08:45:03 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 10:31:41 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-static void	create_cpy_arr(t_data *data)
+static void	create_cpy_map_arr(t_data *data)
 {
 	int	i;
 	int	j;
@@ -32,45 +32,11 @@ static void	create_cpy_arr(t_data *data)
 	{
 		j = -1;
 		while (++j < data->map.width)
-		{
 			data->arr[i][j] = data->map.map[i][j];
-			// printf("%d", data->arr[i][j]);
-		}
-		// printf("\n");
 	}
-	// printf("\n");
 }
 
-void	create_arr(t_data *data)
-{
-	int	i;
-	t_map	map;
-	t_col	coord;
-
-	i = -1;
-	ft_bzero(&map, sizeof(t_map));
-	data->win_l = 1920;
-	data->win_h = 1080;
-	data->square_size = 40;
-	coord.center.x = data->win_l / 2;
-	coord.center.y = data->win_h / 2;
-	map.height = data->win_h / data->square_size;
-	map.width = data->win_l / data->square_size;
-	map.map = malloc(sizeof(int *) * (map.height));
-	if (map.map == NULL)
-		exit(1);//
-	while (++i < map.height)
-	{
-		map.map[i] = malloc(sizeof(int) * (map.width));
-		if (map.map[i] == NULL)
-			exit(1);//
-	}
-	data->map = map;
-	data->col = coord;
-	init_array_data(data);
-}
-
-void	init_array_data(t_data *data)
+void	init_map(t_data *data)
 {
 	int	i;
 	int	j;
@@ -86,10 +52,7 @@ void	init_array_data(t_data *data)
 				data->map.map[i][j] = 1;
 			else
 				data->map.map[i][j] = 0;
-			// printf("%d", data->map->map[i][j]);
 		}
-		// printf("\n");
 	}
-	// printf("\n");
-	create_cpy_arr(data);
+	create_cpy_map_arr(data);
 }
