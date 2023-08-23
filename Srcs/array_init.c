@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:34:53 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/21 16:46:44 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 08:45:03 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	init_array_data(t_data *data)
 	int	j;
 
 	i = -1;
+	data->view_d = 10;
 	while (++i < data->map.height)
 	{
 		j = -1;
