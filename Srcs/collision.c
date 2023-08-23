@@ -6,11 +6,21 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/21 16:45:44 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 08:37:44 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
+
+static float	vector_d_len_sq(t_coord_d center, t_coord_d map)
+{
+	float	value;
+
+	value = sqrt((center.x - map.x) * (center.x - map.x) + \
+			(center.y - map.y) * (center.y - map.y));
+	return (value);
+}
+
 // Using dda algorithm
 void	init_data_collision(t_data *data)
 {
@@ -61,7 +71,8 @@ void	init_data_collision(t_data *data)
 
 void	wall_detection(t_data *data)
 {
-	while (1)
+	data->ray_len = vector_d_len_sq(data->col.center, data->col.map);
+	while (data->ray_len < data->view_d * data->view_d)
 	{
 		if (data->col.side_d.x < data->col.side_d.y)
 		{
@@ -73,8 +84,13 @@ void	wall_detection(t_data *data)
 			data->col.side_d.y += data->col.delta_d.y;
 			data->col.map.y += data->col.step.y;
 		}
+		data->ray_len = vector_d_len_sq(data->col.center, data->col.map);
 		data->col.cell.x = data->col.map.x / data->square_size;
 		data->col.cell.y = data->col.map.y / data->square_size;
+		if (data->col.cell.x < 0 || data->col.cell.x >= data->win_l)
+			continue ;
+		if (data->col.cell.y < 0 || data->col.cell.y >= data->win_h)
+			continue ;
 		if (data->arr[(int)data->col.cell.y][(int)data->col.cell.x] == 1)
 			return ;
 	}
