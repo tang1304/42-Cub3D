@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/23 10:03:22 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 11:22:56 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <math.h>
 
 # define ESC 65307
 # define W 119
@@ -27,6 +28,8 @@
 # define D 100
 # define LEFT 68
 # define RIGHT 67
+# define Z 122
+# define X 120
 # define RED_CROSS 33
 
 # define COLOR_CHAR "Error\nWrong char in array (%s), must be only digits\n"
@@ -65,13 +68,34 @@ typedef struct s_texture
 	int		width;
 }			t_texture;
 
+typedef struct s_coord_d
+{
+	double	x;
+	double	y;
+}				t_coord_d;
+
+typedef struct s_coord_f
+{
+	float	x;
+	float	y;
+}				t_coord_f;
+
+typedef struct s_ray
+{
+	t_coord_f	hit_p;
+	t_coord_d	cell;
+	double		len;
+	int			side_hit;
+	double		angle;
+}				t_ray;
+
 typedef struct s_map
 {
 	int			p_x;//player position on x
 	int			p_y;//player position on y
 	char		direction;//player orientation
 	char		**tmp;//content of .cub file
-	char		**map;
+	int			**map;
 	t_texture	no;
 	t_texture	so;
 	t_texture	ea;
@@ -83,8 +107,34 @@ typedef struct s_map
 	int		height;
 }			t_map;
 
+typedef struct s_col
+{
+	t_coord_d	center;
+	t_coord_d	map;
+	t_coord_f	dir;
+	t_coord_f	dest;
+	t_coord_f	step;
+	t_coord_f	side_d;
+	t_coord_f	delta_d;
+	t_coord_d	cell;
+}			t_col;
+
 typedef struct s_data
 {
+	void	*mlx; //mlx pointer
+	void	*win; //window pointer
+	int		win_h;
+	int		win_l;
+	float	view_d;
+	float	ray_len;
+	t_ray	*ray;
+	t_map	map;
+	t_col	col;
+	t_img	img;
+
+	// Array 2D
+	int		**arr;
+	int		square_size;
 	void	*mlx;//mlx pointer
 	void	*win;//window pointer
 	t_img	img;
@@ -96,6 +146,11 @@ void	close_all(t_data *data);
 void	close_win_error(t_data *data);
 void	close_map_error(t_data *data);
 
+/*	collision.c	*/
+void	draw_coll(t_data *data);
+void	init_data_collision(t_data *data);
+void	wall_detection(t_data *data);
+
 /*	errors.c	*/
 void	exit_error(char *str);
 void	map_error(t_map *map, char *str);
@@ -104,18 +159,34 @@ void	map_error(t_map *map, char *str);
 void	t_texture_cleaning(t_texture *text);
 void	t_map_cleaning(t_map *map);
 
-/*	map_init.c	*/
-int		map_init(t_data *data, int argc, char **argv);
-
 /*	get_map.c	*/
 void	get_ceiling_color(t_map *map, char *str, char *elem, int i);
 void	get_floor_color(t_map *map, char *str, char *elem, int i);
 void	get_map(t_map *map, int i);
 
+/*	hooks.c	*/
+void	hooks(t_data *data);
+
+/*	hooks_changes.c	*/
+void	change_board(t_data *data, int keycode);
+
+/*	init_data_struct.c	*/
+void	init_data_values(t_data *data);
+void	init_data_map_values(t_data *data);
+
+/*	init_array_map.c	*/
+void	init_map(t_data *data);
+
+/*	line.c	*/
+void	create_line(t_data *data);
+
 /*	map_char_checks.c	*/
 void	direction_check(t_map *map, char c, int i, int j);
 int		len_line_up(t_map *map, int i);
 int		len_line_down(t_map *map, int i);
+
+/*	map_init.c	*/
+int		map_init(t_data *data, int argc, char **argv);
 
 /*	map_parsing.c	*/
 int		neighbour_ok(char c);
@@ -133,5 +204,13 @@ char	*double_strtrim(char *str, char *s1, char *s2);
 char	*double_strtrim_free(char *str, char *s1, char *s2);
 char	*triple_strtrim_free(char *str, char *s1, char *s2, char *s3);
 int		correct_map_char(char c);
+
+/*	utils.c	*/
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+
+/*	window.c	*/
+void	create_window(t_data *data);
+void	img_loop(t_data *data);
+void	create_board_img(t_data *data);
 
 #endif
