@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/22 15:22:59 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 13:35:52 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static char	*get_texture_path(t_map *map, char *str, char *elem, int i)
 	char	*tmp;
 	char	*cpy;
 	char	*new;
+	int		len;
 
 	k = 0;
 	tmp = double_strtrim(str, " ", "\t");
@@ -27,7 +28,8 @@ static char	*get_texture_path(t_map *map, char *str, char *elem, int i)
 		return (free(tmp), NULL);
 	k = new_str_start(tmp, k);
 	cpy = &tmp[k];
-	new = ft_strdup(cpy);
+	len = ft_strlen(cpy);
+	new = ft_strndup(cpy, len - 2);
 	if (!new)
 	{
 		free(tmp);
