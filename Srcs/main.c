@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/23 15:54:23 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 14:42:27 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	data_init(t_data *data)
 }
 
 int	main(int argc, char **argv)
-{(void)argc;(void)argv;
+{
 	t_data	data;
 
 	data_init(&data);
