@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:00 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/24 09:25:28 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 14:37:17 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,4 @@ void	create_line(t_data *data)
 		pixelY += deltaY;
 		--pixels;
 	}
-	// init_data_collision(data);
-	// draw_coll_circle(data);
-	// create_board_img(data);
 }
