@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/23 18:27:31 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 10:00:48 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	init_data_collision(t_data *data, int r)
 	int	j;
 
 	mlx_mouse_get_pos(data->mlx, data->win, &i, &j);
-	data->col.dest.x = (double)i;
-	data->col.dest.y = (double)j;
+	data->ray[i]->hit_p.x = (double)i;
+	data->ray[i]->hit_p.y = (double)j;
 	data->col.map = data->col.center;
-	data->col.dir.x = (data->col.dest.x - data->col.center.x);
-	data->col.dir.y = (data->col.dest.y - data->col.center.y);
+	data->col.dir.x = (data->ray[i]->hit_p.x - data->col.center.x);
+	data->col.dir.y = (data->ray[i]->hit_p.y - data->col.center.y);
 	if (data->col.dir.x == 0)
 		data->col.delta_d.x = 1e8;
 	else
@@ -65,38 +65,31 @@ void	init_data_collision(t_data *data, int r)
 		data->col.side_d.y = (data->col.map.y + 1.0f - data->col.center.y) * \
 								data->col.delta_d.y;
 	}
-	// if (data->col.step.x == 1 && data->col.step.y == 1)
-	// 	data->ray[r]->side_hit = 0;
-	// else if (data->col.step.x == -1 && data->col.step.y == -1)
-	// 	data->ray[r]->side_hit = 1;
-	// else if (data->col.step.x == -1 && data->col.step.y == 1)
-	// 	data->ray[r]->side_hit = 2;
-	// else if (data->col.step.x == 1 && data->col.step.y == -1)
-	// 	data->ray[r]->side_hit = 3;
 	wall_detection(data, 0);
-	draw_coll(data, 0);
 }
 
-static	calculate_test(t_data *data, int r)
-{(void)r;
-	// data->col.cell.x = data->col.map.x / data->square_size;
-	// 	data->col.cell.y
-	t_coord_f	start;
-	t_coord_f	end;
-
-	start.x = data->col.cell.x * 40;
-	start.y = data->col.cell.y * 40;
-	end.x = data->col.cell.x + 40;
-	end.y = data->col.cell.y + 40;
-	while (start.x < end.x)
+static void	detection_wall_touched(t_data *data, int r)
+{
+	// right and left side
+	if (data->col.side_touched == 0)
 	{
-		if (data->col.cell.x == start.x)
-
+		if (data->col.step.x == 1)
+			data->ray[r]->side_hit = 0;
+		else
+			data->ray[r]->side_hit = 1;
+	}
+	// top and bottom side
+	else
+	{
+		if (data->col.step.y == 1)
+			data->ray[r]->side_hit = 2;
+		else
+			data->ray[r]->side_hit = 3;
 	}
 }
 
 void	wall_detection(t_data *data, int r)
-{(void)r;
+{
 	data->ray_len = vector_d_len_sq(data->col.center, data->col.map);
 
 	while (data->ray_len < data->view_d * data->view_d)
@@ -105,29 +98,30 @@ void	wall_detection(t_data *data, int r)
 		{
 			data->col.side_d.x += data->col.delta_d.x;
 			data->col.map.x += data->col.step.x;
+			data->col.side_touched = 0;
 		}
 		else
 		{
 			data->col.side_d.y += data->col.delta_d.y;
 			data->col.map.y += data->col.step.y;
+			data->col.side_touched = 1;
 		}
 		data->ray_len = vector_d_len_sq(data->col.center, data->col.map);
-		data->col.cell.x = data->col.map.x / data->square_size;
-		data->col.cell.y = data->col.map.y / data->square_size;
-		if (data->col.cell.x < 0 || data->col.cell.x >= data->win_l)
+		data->ray[r]->cell.x = data->col.map.x / data->square_size;
+		data->ray[r]->cell.y = data->col.map.y / data->square_size;
+		if (data->ray[r]->cell.x < 0 || data->ray[r]->cell.x >= data->win_l)
 			continue ;
-		if (data->col.cell.y < 0 || data->col.cell.y >= data->win_h)
+		if (data->ray[r]->cell.y < 0 || data->ray[r]->cell.y >= data->win_h)
 			continue ;
-		if (data->arr[(int)data->col.cell.y][(int)data->col.cell.x] == 1)
+		if (data->arr[(int)data->ray[r]->cell.y][(int)data->ray[r]->cell.x] == 1)
 		{
-			calculate_test(data);
+			detection_wall_touched(data, r);
+			draw_coll(data, r);
 			return ;
 		}
 	}
 }
 
-// draw-cool works ok BUT if we havea U wall shape just below the edge of the line, we have
-// a wronf collision detected.
 void	draw_coll(t_data *data, int r)
 {
 	t_coord_d	start;
@@ -142,7 +136,7 @@ void	draw_coll(t_data *data, int r)
 		while (start.y <= end.y)
 		{
 			if (data->ray[r]->side_hit == 3)
-				my_mlx_pixel_put(&data->img, start.x, start.y, 0x00000000);
+				my_mlx_pixel_put(&data->img, start.x, start.y, 0x002C55010);
 			else if (data->ray[r]->side_hit == 2)
 				my_mlx_pixel_put(&data->img, start.x, start.y, 0x0000FF00);
 			else if (data->ray[r]->side_hit == 1)
