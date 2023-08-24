@@ -6,11 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/08/23 15:51:45 by tgellon          ###   ########lyon.fr   */
-=======
-/*   Updated: 2023/08/24 09:35:00 by rrebois          ###   ########lyon.fr   */
->>>>>>> origin/ray_implementation_step4
+/*   Updated: 2023/08/24 14:39:54 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,9 +152,9 @@ void	close_map_error(t_data *data);
 int		ft_close(t_data *data);
 
 /*	collision.c	*/
-void	draw_coll(t_data *data);
-void	init_data_collision(t_data *data);
-void	wall_detection(t_data *data);
+void	init_data_collision(t_data *data, int r);
+void	wall_detection(t_data *data, int r);
+void	draw_coll(t_data *data, int r);
 
 /*	errors.c	*/
 void	exit_error(char *str);
@@ -189,7 +185,6 @@ void	init_map(t_data *data);
 /*	line.c	*/
 void	create_line(t_data *data);
 
-<<<<<<< HEAD
 /*	map_char_checks.c	*/
 void	direction_check(t_map *map, char c, int i, int j);
 int		len_line_up(t_map *map, int i);
@@ -215,19 +210,11 @@ char	*double_strtrim(char *str, char *s1, char *s2);
 char	*double_strtrim_free(char *str, char *s1, char *s2);
 char	*triple_strtrim_free(char *str, char *s1, char *s2, char *s3);
 int		correct_map_char(char c);
-
-/*	utils.c	*/
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 /*	window.c	*/
 void	create_window(t_data *data);
 void	img_loop(t_data *data);
 void	create_board_img(t_data *data);
-=======
-/*	collision.c	*/
-void	init_data_collision(t_data *data, int r);
-void	wall_detection(t_data *data, int r);
-void	draw_coll(t_data *data, int r);
->>>>>>> origin/ray_implementation_step4
 
 #endif
