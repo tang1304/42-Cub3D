@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/21 10:26:10 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 14:16:14 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ int	main(int argc, char **argv)
 	data_init(&data);
 	map_init(&data, argc, argv);
 	printf("1\n");
-	t_map_cleaning(&data.map);
 	// data.mlx = mlx_init();
 	// if (!data.mlx)
 	// 	return (printf("Error\nMlx error\n"), 0);
+	t_map_cleaning(&data.map);
 	// data.win = mlx_new_window(data.mlx, (data.map.width * 64), \
 	// 		(data.map.height * 64), "Cub3D");
 	// if (!data.win)
