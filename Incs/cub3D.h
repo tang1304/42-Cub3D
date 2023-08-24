@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/23 15:39:21 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 09:35:00 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_col
 	t_coord_f	dest;
 	t_coord_f	step;
 	t_coord_f	side_d;
+	int			side_touched;
 	t_coord_f	delta_d;
 	t_coord_d	cell;
 }			t_col;
