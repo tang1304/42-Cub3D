@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:07 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/22 13:03:25 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 14:13:40 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,19 @@ int	count_lines(int fd)
 	}
 	close(fd);
 	return (i);
+}
+
+void	define_map_width(t_map *map)
+{
+	int	i;
+	int	len;
+
+	i = -1;
+	len = 0;
+	while (map->map[++i])
+	{
+		len = ft_strlen(map->map[i]);
+		if (len > map->width)
+			map->width = len;
+	}
 }
