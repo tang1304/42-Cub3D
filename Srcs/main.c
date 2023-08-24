@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/23 11:38:05 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 15:54:23 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,8 @@ void	data_init(t_data *data)
 	// t_map	map;
 
 	ft_bzero(data, sizeof(t_data));
-	// data->img = img;
-	// ft_bzero(&data->img, sizeof(t_img));
-	// data->map = map;
-	// ft_bzero(&data->map, sizeof(t_map));
 	data->map.c[0] = -1;
 	data->map.f[0] = -1;
-	// data->map.map = NULL;
-	// data->map.tmp = NULL;
 	// texture_init(data);
 }
 
@@ -53,7 +47,6 @@ int	main(int argc, char **argv)
 	data_init(&data);
 	map_init(&data, argc, argv);
 	printf("OK\n");
-	t_map_cleaning(&data.map);
 	// data.mlx = mlx_init();
 	// if (!data.mlx)
 	// 	return (printf("Error\nMlx error\n"), 0);
@@ -62,6 +55,7 @@ int	main(int argc, char **argv)
 	data.mlx = mlx_init();
 	init_data_values(&data);
 	create_window(&data);
+	t_map_cleaning(&data.map);
 	// mlx_key_hook(data.win, keyhook, &data);
 	// mlx_hook(data.win, 2, 1L<<0, keyhook, &data);
 	return (0);

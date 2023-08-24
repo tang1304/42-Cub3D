@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_changes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/21 13:16:41 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 09:24:10 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 void	change_board(t_data *data, int keycode)
 {
-	int		x;
-	int		y;
+	int	x;
+	int	y;
+	// int	m_x;
+	// int	m_y;
 
+	x = (data->win_l / 2) - (data->mini.width / 2);
+	y = (data->win_h / 2) - (data->mini.height / 2);
 	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
-	x = x / data->square_size;
-	y = y / data->square_size;
+	// m_x = x / data->square_size;
+	// m_y = y / data->square_size;
 	if (x < 0 || y < 0 || x > data->map.width || y > data->map.height)
 		return ;
 	if (keycode == Z)

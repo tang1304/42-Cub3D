@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/23 11:34:14 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 15:51:45 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_map
 	int			p_y;//player position on y
 	char		direction;//player orientation
 	char		**tmp;//content of .cub file
-	char		**map;
+	char		**map;//only the map
 	t_texture	no;
 	t_texture	so;
 	t_texture	ea;
@@ -103,9 +103,9 @@ typedef struct s_map
 	int			f[3];//floor color
 	int			c[3];//ceiling color
 	int			elems;
-	int		width;
-	int		height;
-}			t_map;
+	int			width;
+	int			height;
+}				t_map;
 
 typedef struct s_col
 {
@@ -119,6 +119,12 @@ typedef struct s_col
 	t_coord_d	cell;
 }			t_col;
 
+typedef struct s_mini
+{
+	int	height;
+	int	width;
+}				t_mini;
+
 typedef struct s_data
 {
 	void	*mlx; //mlx pointer
@@ -129,6 +135,7 @@ typedef struct s_data
 	float	ray_len;
 	t_ray	*ray;
 	t_map	map;
+	t_mini	mini;
 	t_col	col;
 	t_img	img;
 
@@ -194,6 +201,7 @@ void	map_format(char *argv);
 int		check_if_map(t_map *map);
 void	check_enough_datas(t_map *map);
 int		count_lines(int fd);
+void	define_map_width(t_map *map);
 
 /*	utils.c	*/
 int		new_str_start(char *str, int k);
