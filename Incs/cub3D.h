@@ -6,7 +6,11 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/08/23 15:51:45 by tgellon          ###   ########lyon.fr   */
+=======
+/*   Updated: 2023/08/24 09:35:00 by rrebois          ###   ########lyon.fr   */
+>>>>>>> origin/ray_implementation_step4
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +119,7 @@ typedef struct s_col
 	t_coord_f	dest;
 	t_coord_f	step;
 	t_coord_f	side_d;
+	int			side_touched;
 	t_coord_f	delta_d;
 	t_coord_d	cell;
 }			t_col;
@@ -133,7 +138,7 @@ typedef struct s_data
 	int		win_l;
 	float	view_d;
 	float	ray_len;
-	t_ray	*ray;
+	t_ray	**ray;
 	t_map	map;
 	t_mini	mini;
 	t_col	col;
@@ -184,6 +189,7 @@ void	init_map(t_data *data);
 /*	line.c	*/
 void	create_line(t_data *data);
 
+<<<<<<< HEAD
 /*	map_char_checks.c	*/
 void	direction_check(t_map *map, char c, int i, int j);
 int		len_line_up(t_map *map, int i);
@@ -217,5 +223,11 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	create_window(t_data *data);
 void	img_loop(t_data *data);
 void	create_board_img(t_data *data);
+=======
+/*	collision.c	*/
+void	init_data_collision(t_data *data, int r);
+void	wall_detection(t_data *data, int r);
+void	draw_coll(t_data *data, int r);
+>>>>>>> origin/ray_implementation_step4
 
 #endif
