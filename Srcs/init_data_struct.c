@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/24 14:37:00 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 15:37:20 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ void	init_data_values(t_data *data)
 
 	data->win_l = 1920;
 	data->win_h = 1080;
-	data->square_size = 40;
+	data->square_size = 12;
 	data->view_d = 1000;
-	coord.center.x = data->win_l / 2;
-	coord.center.y = data->win_h / 2;
+	data->mini.height = data->square_size * data->map.height;
+	data->mini.width = data->square_size * data->map.width;
+	coord.center.x = data->mini.width / 2;
+	coord.center.y = data->mini.height / 2;
 	ray = (t_ray **)ft_calloc(data->win_l * data->win_h, sizeof(*ray)); //calloc less maybe?
 	if (ray == NULL)
 		exit (1);//free all
@@ -59,7 +61,5 @@ void	init_data_map_values(t_data *data)
 	// 		exit(1);//free all
 	// }
 	// data->map = map;
-	data->mini.height = data->square_size * data->map.height;
-	data->mini.width = data->square_size * data->map.width;
 	init_map(data);
 }
