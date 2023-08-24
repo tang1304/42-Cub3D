@@ -12,6 +12,7 @@ SRCS =	close.c \
 		map_init.c \
 		map_parsing.c \
 		map_utils.c \
+		textures.c \
 		utils.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
