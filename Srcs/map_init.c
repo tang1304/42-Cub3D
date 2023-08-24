@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/21 14:56:08 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 13:35:52 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,22 @@ static char	*get_texture_path(t_map *map, char *str, char *elem, int i)
 	char	*tmp;
 	char	*cpy;
 	char	*new;
+	int		len;
 
 	k = 0;
 	tmp = double_strtrim(str, " ", "\t");
 	if (!tmp)
-		get_texture_error(map, "Error\nMalloc failed\n");
+		map_error(map, "Error\nMalloc failed\n");
 	if (ft_strlen(tmp) == 2 || ft_strncmp(tmp, elem, i) != 0)
 		return (free(tmp), NULL);
 	k = new_str_start(tmp, k);
 	cpy = &tmp[k];
-	new = ft_strdup(cpy);
+	len = ft_strlen(cpy);
+	new = ft_strndup(cpy, len - 2);
 	if (!new)
 	{
 		free(tmp);
-		get_texture_error(map, "Error\nMalloc failed\n");
+		map_error(map, "Error\nMalloc failed\n");
 	}
 	free(tmp);
 	map->elems++;
@@ -99,17 +101,11 @@ static int	get_datas(t_data *data, int fd, int fd_2)
 	data->map.tmp = get_file_lines(fd, n);
 	if (!data->map.tmp)
 		exit_error("Error\nMalloc failed\n");
-	// data->map.tmp = ft_split(temp, '\n');
-	// if (!data->map.tmp || data->map.tmp[0] == NULL)
-	// {
-	// 	free(temp);
-	// 	close(fd);
-	// 	exit_error("Error\nMalloc failed\n");
-	// }
 	close(fd);
 	i = get_textures(&data->map);
 	check_enough_datas(&data->map);
 	get_map(&data->map, i);
+	parse_map(&data->map);
 	return (1);
 }
 
@@ -130,13 +126,5 @@ int	map_init(t_data *data, int argc, char **argv)
 		ft_printf("Error\nGet_map crashed\n");
 		return (close(fd), 0);
 	}
-printf("0\n");
 	return (1);
-	// if (!map_char_check(data))
-	// 	return (free(data->tmp), 0);
-	// if (!map_empty_line_check(data))
-	// 	return (0);
-	// if (!map_parsing(data))
-	// 	return (0);
-	// return (1);
 }

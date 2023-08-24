@@ -41,6 +41,7 @@ void	data_init(t_data *data)
 	// ft_bzero(&data->map, sizeof(t_map));
 	data->map.c[0] = -1;
 	data->map.f[0] = -1;
+	data->map.data = data;
 	// data->map.map = NULL;
 	// data->map.tmp = NULL;
 	// texture_init(data);
@@ -52,11 +53,12 @@ int	main(int argc, char **argv)
 
 	data_init(&data);
 	map_init(&data, argc, argv);
-	printf("1\n");
-	// data.mlx = mlx_init();
-	// if (!data.mlx)
-	// 	return (printf("Error\nMlx error\n"), 0);
-	t_map_cleaning(&data.map);
+	data.mlx = mlx_init();
+	if (!data.mlx)
+		map_error(&data.map, "Error\nMlx_init problem\n");
+	open_textures(&data);
+	printf("OK\n");
+	close_all(&data);
 	// data.win = mlx_new_window(data.mlx, (data.map.width * 64), \
 	// 		(data.map.height * 64), "Cub3D");
 	// if (!data.win)

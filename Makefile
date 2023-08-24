@@ -5,11 +5,14 @@ CFLAGS = -Wall -Wextra -Werror# -fsanitize=address
 SRCS =	close.c \
 		errors.c \
 		frees.c \
+		get_map.c \
 		key_hook.c \
 		main.c \
+		map_char_checks.c \
 		map_init.c \
-		get_map.c \
+		map_parsing.c \
 		map_utils.c \
+		textures.c \
 		utils.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)

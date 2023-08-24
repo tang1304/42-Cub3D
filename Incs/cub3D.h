@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/22 10:43:51 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 13:35:57 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ included\n"
 the map\nYou must have NO, SO, EA, WE, F and C\n"
 # define MORE_ELEM "Error\nToo much elements before the map, must be only NO, \
 SO, EA, WE, F and C, one of each\n"
+# define WALLS_ERR "Error\nThe map must be surrounded by walls\n"
+# define WALLS_ALONE "Error\nThere is a wall outside the map\n"
+# define WRONG_CHAR "Error\nWrong char in map, must be 0, 1, N, S, E, W or a \
+whitespace\n"
+# define MORE_DIRECTION "Error\nThere must be only one player direction\n"
+# define LESS_DIRECTION "Error\nThere must be a player direction (N,S,E or W)\n"
+# define DIRECTION_OUT "Error\nThe player is not inside the map\n"
+# define XPM_OPEN_ERR "Error\nProblem opening the xpm texture\n"
 
 typedef struct s_img
 {
@@ -60,20 +68,21 @@ typedef struct s_texture
 
 typedef struct s_map
 {
-	int			p_x;//player position on x
-	int			p_y;//player position on y
-	char		direction;//player orientation
-	char		**tmp;//content of .cub file
-	char		**map;
-	t_texture	no;
-	t_texture	so;
-	t_texture	ea;
-	t_texture	we;
-	int			f[3];//floor color
-	int			c[3];//ceiling color
-	int			elems;
-	// int		width;
-	// int		height;
+	int				p_x;//player position on x
+	int				p_y;//player position on y
+	char			direction;//player orientation
+	char			**tmp;//content of .cub file
+	char			**map;
+	t_texture		no;
+	t_texture		so;
+	t_texture		ea;
+	t_texture		we;
+	int				f[3];//floor color
+	int				c[3];//ceiling color
+	int				elems;
+	// int			width;
+	int				height;
+	struct s_data	*data;
 }			t_map;
 
 typedef struct s_data
@@ -91,10 +100,10 @@ void	close_map_error(t_data *data);
 
 /*	errors.c	*/
 void	exit_error(char *str);
-void	get_texture_error(t_map *map, char *str);
+void	map_error(t_map *map, char *str);
 
 /*	frees.c	*/
-void	t_texture_cleaning(t_texture *text);
+void	t_texture_cleaning(t_map *map, t_texture *text);
 void	t_map_cleaning(t_map *map);
 
 /*	map_init.c	*/
@@ -105,11 +114,23 @@ void	get_ceiling_color(t_map *map, char *str, char *elem, int i);
 void	get_floor_color(t_map *map, char *str, char *elem, int i);
 void	get_map(t_map *map, int i);
 
+/*	map_char_checks.c	*/
+void	direction_check(t_map *map, char c, int i, int j);
+int		len_line_up(t_map *map, int i);
+int		len_line_down(t_map *map, int i);
+
+/*	map_parsing.c	*/
+int		neighbour_ok(char c);
+void	parse_map(t_map *map);
+
 /*	map_utils.c	*/
 void	map_format(char *argv);
 int		check_if_map(t_map *map);
 void	check_enough_datas(t_map *map);
 int		count_lines(int fd);
+
+/*	texture.c	*/
+void	open_textures(t_data *data);
 
 /*	utils.c	*/
 int		new_str_start(char *str, int k);
