@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:00 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/23 12:58:35 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 12:39:09 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	create_line(t_data *data)
 {
 	int		i;
 	int		j;
+
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	mlx_mouse_get_pos(data->mlx, data->win, &i, &j);
 	if (i > data->win_l || i < 0 || j > data->win_h || j < 0)
 		return ;
-
 	double	deltaX;
 	// if (data->map.center.x > i)
 		deltaX = i - data->col.center.x;
@@ -38,7 +38,7 @@ void	create_line(t_data *data)
 	double pixelY = data->col.center.y;
 	while (pixels)
 	{
-		mlx_pixel_put(data->mlx, data->win, pixelX, pixelY, 0x00FF0000);
+		mlx_pixel_put(data->mlx, data->win, pixelX, pixelY, RED);
 		pixelX += deltaX;
 		pixelY += deltaY;
 		--pixels;

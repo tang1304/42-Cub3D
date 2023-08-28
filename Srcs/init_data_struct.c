@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/23 13:08:46 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 10:16:01 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 void	init_data_values(t_data *data)
 {
-	int	i;
+	int		i;
 	t_ray	**ray;
 	t_col	coord;
 
 	data->win_l = 1920;
 	data->win_h = 1080;
 	data->square_size = 40;
-	data->view_d = 1000;
+	data->view_d = 20;
+	data->fov = 60 * M_PI / 180;
 	coord.center.x = data->win_l / 2;
 	coord.center.y = data->win_h / 2;
-	ray = (t_ray **)ft_calloc(data->win_l * data->win_h, sizeof(*ray)); //calloc less maybe?
+	ray = (t_ray **)ft_calloc(data->win_l * data->win_h, sizeof(*ray));
 	if (ray == NULL)
 		exit (1);//free all
 	i = -1;
