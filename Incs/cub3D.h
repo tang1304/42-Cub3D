@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/24 09:35:00 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 11:51:54 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # define Z 122
 # define X 120
 # define RED_CROSS 33
+# define GREEN 0x0000FF00
+# define RED 0x00FF0000
+# define BLUE 0x000000FF
 
 typedef struct s_img
 {
@@ -56,7 +59,6 @@ typedef struct s_ray
 	t_coord_d	cell;
 	double		len;
 	int			side_hit;
-	double		angle;
 }				t_ray;
 
 typedef struct s_map
@@ -67,6 +69,7 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		p;
+	double	angle;
 }			t_map;
 
 typedef struct s_col
@@ -88,6 +91,7 @@ typedef struct s_data
 	void	*win; //window pointer
 	int		win_h;
 	int		win_l;
+	double	fov;
 	float	view_d;
 	float	ray_len;
 	t_ray	**ray;
@@ -127,6 +131,12 @@ void	create_line(t_data *data);
 /*	collision.c	*/
 void	init_data_collision(t_data *data, int r);
 void	wall_detection(t_data *data, int r);
-void	draw_coll(t_data *data, int r);
+
+/*	draw.c	*/
+void	draw_point(t_data *data, double tX, double tY);
+void	draw_coll(t_data *data, int x, int y, int r);
+
+/*	rays.c	*/
+void	create_rays(t_data *data);
 
 #endif

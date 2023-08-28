@@ -10,6 +10,8 @@ SRCS =	main.c \
 		window.c \
 		line.c \
 		collision.c \
+		draw.c \
+		rays.c \
 		utils.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
