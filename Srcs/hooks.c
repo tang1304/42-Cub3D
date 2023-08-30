@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/28 12:39:19 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/29 09:24:59 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int mouse_moved(int x, int y, t_data *data)
 {(void)x;(void)y;
 
 	create_line(data);
-	create_rays(data);
-	init_data_collision(data, 0);
+	// create_rays(data);
+	// init_data_collision(data, 0);
 	return (0);
 }
 

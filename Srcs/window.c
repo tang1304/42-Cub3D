@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/28 10:03:47 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/30 12:47:58 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	create_window(t_data *data)
 {
 	t_img	img;
-	data->win = mlx_new_window(data->mlx, data->win_l, data->win_h, "cub3D");
-	img.img = mlx_new_image(data->mlx, data->win_l, data->win_h);
+	data->win = mlx_new_window(data->mlx, data->win_w, data->win_h, "cub3D");
+	img.img = mlx_new_image(data->mlx, data->win_w, data->win_h);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_l, &img.endian);
 	data->img = img;
 	img_loop(data);

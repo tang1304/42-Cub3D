@@ -25,7 +25,7 @@ void	create_rays(t_data *data)
 	// int			opp_len;
 	// t_coord_f	pos;
 	// t_coord_f	neg;
-
+(void)angle;
 	angle = get_straight_angle(data);
 	// opp_len = tan(data->fov / 2) * data->view_d;
 

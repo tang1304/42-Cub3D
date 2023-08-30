@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/28 11:00:23 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/30 12:48:23 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	wall_detection(t_data *data, int r)
 		data->ray_len = vector_d_len_sq(data->col.center, data->col.map);
 		data->ray[r]->cell.x = data->col.map.x / data->square_size;
 		data->ray[r]->cell.y = data->col.map.y / data->square_size;
-		if (data->ray[r]->cell.x < 0 || data->ray[r]->cell.x >= data->win_l)
+		if (data->ray[r]->cell.x < 0 || data->ray[r]->cell.x >= data->win_w)
 			continue ;
 		if (data->ray[r]->cell.y < 0 || data->ray[r]->cell.y >= data->win_h)
 			continue ;
