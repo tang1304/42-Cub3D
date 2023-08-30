@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/24 14:39:54 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/30 10:15:07 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,6 @@ void	change_board(t_data *data, int keycode);
 
 /*	init_data_struct.c	*/
 void	init_data_values(t_data *data);
-void	init_data_map_values(t_data *data);
 
 /*	init_array_map.c	*/
 void	init_map(t_data *data);
