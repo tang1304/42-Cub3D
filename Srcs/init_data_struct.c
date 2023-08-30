@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/24 15:37:20 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/30 10:14:49 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,6 @@ void	init_data_values(t_data *data)
 	}
 	data->ray = ray;
 	data->col = coord;
-	init_data_map_values(data);
-	// init_map(data);
-}
-
-void	init_data_map_values(t_data *data)
-{
-	// int		i;
-	// t_map	map;
-
-	// i = -1;
-	// ft_bzero(&map, sizeof(t_map));
-	// map.height = data->win_h / data->square_size;
-	// map.width = data->win_l / data->square_size;
-	// map.map = malloc(sizeof(int *) * (map.height));
-	// if (map.map == NULL)
-	// 	exit(1);// free all
-	// while (++i < map.height)
-	// {
-	// 	map.map[i] = malloc(sizeof(int) * (map.width));
-	// 	if (map.map[i] == NULL)
-	// 		exit(1);//free all
-	// }
-	// data->map = map;
 	init_map(data);
 }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/23 12:52:01 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/30 09:09:19 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int mouse_moved(int x, int y, t_data *data)
 {(void)x;(void)y;
 
 	create_line(data);
-	init_data_collision(data, 0); // a modif
+	// init_data_collision(data, 0); // sgfault sur minimap
 	return (0);
 }
 

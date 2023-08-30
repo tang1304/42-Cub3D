@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/24 15:18:01 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/30 10:33:55 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ void	create_board_img(t_data *data)
 	int	y;
 
 	x = -1;
-	while (++x < data->map.height) //ligne
+	while (++x < data->map.height)
 	{
 		y = -1;
-		while (data->map.map[x][++y]) //col
+		while (data->map.map[x][++y])
 		{
 			if (data->arr[x][y] == '1')
 				add_squares(y, x, data, 1);
