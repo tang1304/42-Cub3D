@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:34:53 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/23 11:25:49 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/29 09:26:59 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	init_map(t_data *data)
 		j = -1;
 		while (++j < data->map.width)
 		{
-			if (i == 0 || i == 26 || j == 0 || j == 47)
+			if (i == 0 || i == data->map.height - 1 || j == 0 || j == data->map.width - 1)
 				data->map.map[i][j] = 1;
 			else
 				data->map.map[i][j] = 0;

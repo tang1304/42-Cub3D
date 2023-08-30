@@ -9,6 +9,7 @@ SRCS =	main.c \
 		hooks_changes.c \
 		window.c \
 		line.c \
+		line_utils.c \
 		collision.c \
 		draw.c \
 		rays.c \

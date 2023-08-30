@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/28 11:51:54 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/30 12:45:59 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_img
 
 typedef struct s_coord_d
 {
-	double	x;
-	double	y;
+	int	x;
+	int	y;
 }				t_coord_d;
 
 typedef struct s_coord_f
@@ -52,6 +52,16 @@ typedef struct s_coord_f
 	float	x;
 	float	y;
 }				t_coord_f;
+
+typedef struct s_bresebham
+{
+	int	x;
+	int	y;
+	int	dx;
+	int	dy;
+	int	incX;
+	int	incY;
+}				t_bresenham;
 
 typedef struct s_ray
 {
@@ -87,17 +97,18 @@ typedef struct s_col
 
 typedef struct s_data
 {
-	void	*mlx; //mlx pointer
-	void	*win; //window pointer
-	int		win_h;
-	int		win_l;
-	double	fov;
-	float	view_d;
-	float	ray_len;
-	t_ray	**ray;
-	t_map	map;
-	t_col	col;
-	t_img	img;
+	void		*mlx; //mlx pointer
+	void		*win; //window pointer
+	int			win_h;
+	int			win_w;
+	double		fov;
+	float		view_d;
+	float		ray_len;
+	t_ray		**ray;
+	t_map		map;
+	t_col		col;
+	t_img		img;
+	t_bresenham	bre;
 
 	// Array 2D
 	int		**arr;
@@ -127,6 +138,11 @@ void	change_board(t_data *data, int keycode);
 
 /*	line.c	*/
 void	create_line(t_data *data);
+void	bresenham_algo(t_data *data, t_coord_d mouse);
+
+/*	line_utils.c	*/
+int		get_inc_value(int i);
+void	draw_hor_ver_line(t_data *data, t_coord_d dest);
 
 /*	collision.c	*/
 void	init_data_collision(t_data *data, int r);
