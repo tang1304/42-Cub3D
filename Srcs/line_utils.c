@@ -11,26 +11,58 @@ int	get_inc_value(int i)
 
 void	draw_hor_ver_line(t_data *data, t_coord_d dest)
 {
-	t_coord_d	start;
-
-	start.x = 0;
-	start.y = 0;
 	if (data->bre.dy == 0)
 	{
-		start.x = data->col.center.x;
-		while (start.x != dest.x + data->bre.incX)
+		while (data->bre.x != dest.x + data->bre.incX)
 		{
-			mlx_pixel_put(data->mlx, data->win, start.x, start.y, RED);
-			start.x += data->bre.incX;
+			mlx_pixel_put(data->mlx, data->win, data->bre.x, data->col.center.y, RED);
+			data->bre.x += data->bre.incX;
 		}
 	}
 	else
 	{
-		start.y = data->col.center.y;
-		while (start.y != dest.y + data->bre.incY)
+		while (data->bre.y != dest.y + data->bre.incY)
 		{
-			mlx_pixel_put(data->mlx, data->win, start.x, start.y, RED);
-			start.y += data->bre.incY;
+			mlx_pixel_put(data->mlx, data->win, data->col.center.x, data->bre.y, RED);
+			data->bre.y += data->bre.incY;
 		}
+	}
+}
+
+void	draw_x_line(t_data *data, t_coord_d dest)
+{
+	data->bre.slope = 2 * data->bre.dy;
+	data->bre.error = -data->bre.dx;
+	data->bre.errorInc = -2 * data->bre.dx;
+	while (data->bre.x != dest.x + data->bre.incX)
+	{
+		mlx_pixel_put(data->mlx, data->win, data->bre.x, data->bre.y, RED);
+		data->bre.error += data->bre.slope;
+
+		if (data->bre.error >= 0)
+		{
+			data->bre.y += data->bre.incY;
+			data->bre.error += data->bre.errorInc;
+		}
+		data->bre.x += data->bre.incX;
+	}
+}
+
+void	draw_y_line(t_data *data, t_coord_d dest)
+{
+	data->bre.slope = 2 * data->bre.dx;
+	data->bre.error = -data->bre.dy;
+	data->bre.errorInc = -2 * data->bre.dy;
+	while (data->bre.y != dest.y + data->bre.incX)
+	{
+		mlx_pixel_put(data->mlx, data->win, data->bre.x, data->bre.y, RED);
+		data->bre.error += data->bre.slope;
+
+		if (data->bre.error >= 0)
+		{
+			data->bre.x += data->bre.incX;
+			data->bre.error += data->bre.errorInc;
+		}
+		data->bre.y += data->bre.incY;
 	}
 }
