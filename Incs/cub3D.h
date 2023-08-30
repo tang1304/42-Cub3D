@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/30 12:45:59 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/30 15:36:31 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ typedef struct s_bresebham
 	int	dy;
 	int	incX;
 	int	incY;
+	int	slope;
+	int	error;
+	int	errorInc;
 }				t_bresenham;
 
 typedef struct s_ray
@@ -137,15 +140,17 @@ void	hooks(t_data *data);
 void	change_board(t_data *data, int keycode);
 
 /*	line.c	*/
-void	create_line(t_data *data);
-void	bresenham_algo(t_data *data, t_coord_d mouse);
+void	create_line(t_data *data, t_coord_d dest);
+void	bresenham_algo(t_data *data, t_coord_d dest);
 
 /*	line_utils.c	*/
 int		get_inc_value(int i);
 void	draw_hor_ver_line(t_data *data, t_coord_d dest);
+void	draw_x_line(t_data *data, t_coord_d dest);
+void	draw_y_line(t_data *data, t_coord_d dest);
 
 /*	collision.c	*/
-void	init_data_collision(t_data *data, int r);
+void	init_data_collision(t_data *data, t_coord_d dest, int r);
 void	wall_detection(t_data *data, int r);
 
 /*	draw.c	*/

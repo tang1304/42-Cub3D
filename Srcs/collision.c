@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/30 12:48:23 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/08/30 15:47:49 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,19 @@ static float	vector_d_len_sq(t_coord_d center, t_coord_d map)
 }
 
 // Using dda algorithm
-void	init_data_collision(t_data *data, int r)
+void	init_data_collision(t_data *data, t_coord_d dest, int r)
 {
-	int	i;
-	int	j;
-
-	mlx_mouse_get_pos(data->mlx, data->win, &i, &j);
-	data->ray[i]->hit_p.x = (double)i;
-	data->ray[i]->hit_p.y = (double)j;
+	data->ray[r]->hit_p.x = (double)dest.x;
+	data->ray[r]->hit_p.y = (double)dest.y;
 	data->col.map = data->col.center;
-	data->col.dir.x = (data->ray[i]->hit_p.x - data->col.center.x);
-	data->col.dir.y = (data->ray[i]->hit_p.y - data->col.center.y);
+	data->col.dir.x = (data->ray[r]->hit_p.x - data->col.center.x);
+	data->col.dir.y = (data->ray[r]->hit_p.y - data->col.center.y);
 	if (data->col.dir.x == 0)
-		data->col.delta_d.x = 1e7;
+		data->col.delta_d.x = INT_MAX;
 	else
 		data->col.delta_d.x = fabs(1.0f / data->col.dir.x);
 	if (data->col.dir.y == 0)
-		data->col.delta_d.y = 1e7;
+		data->col.delta_d.y = INT_MAX;
 	else
 		data->col.delta_d.y = fabs(1.0f / data->col.dir.y);
 	if (data->col.dir.x < 0)
