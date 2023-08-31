@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/30 09:29:01 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 17:28:19 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 	// data.mlx = mlx_init();
 	// if (!data.mlx)
 	// 	return (printf("Error\nMlx error\n"), 0);
-	// data.win = mlx_new_window(data.mlx, (data.map.width * 64), \
+	// data.win = mlx_new_window(data.mlx, (data.map.width * 64), 
 	// ft_bzero(&data, sizeof(t_data));
 	data.mlx = mlx_init();
 	init_data_values(&data);

@@ -6,11 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/08/30 12:47:58 by rrebois          ###   ########lyon.fr   */
-=======
-/*   Updated: 2023/08/30 10:33:55 by tgellon          ###   ########lyon.fr   */
->>>>>>> transform_map_to_minimap
+/*   Updated: 2023/08/31 17:30:54 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +15,9 @@
 void	create_window(t_data *data)
 {
 	t_img	img;
-<<<<<<< HEAD
+
 	data->win = mlx_new_window(data->mlx, data->win_w, data->win_h, "cub3D");
 	img.img = mlx_new_image(data->mlx, data->win_w, data->win_h);
-=======
-
-	data->win = mlx_new_window(data->mlx, data->win_l, data->win_h, "cub3D");
-	img.img = mlx_new_image(data->mlx, data->win_l, data->win_h);
->>>>>>> transform_map_to_minimap
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_l, &img.endian);
 	data->img = img;
 	img_loop(data);
@@ -41,11 +32,8 @@ void	img_loop(t_data *data)
 	// y = (data->win_h / 2) - (data->mini.height / 2);
 	create_board_img(data);
 	hooks(data);
-<<<<<<< HEAD
 	// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-=======
 	mlx_hook(data->win, 17, 0, ft_close, &data);//segfault sur croix
->>>>>>> transform_map_to_minimap
 	mlx_loop(data->mlx);
 }
 

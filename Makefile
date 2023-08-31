@@ -12,13 +12,9 @@ SRCS = close.c \
 		init_array_map.c \
 		init_data_struct.c \
 		line.c \
-<<<<<<< HEAD
 		line_utils.c \
-		collision.c \
 		draw.c \
 		rays.c \
-		utils.c
-=======
 		main.c \
 		map_char_checks.c \
 		map_init.c \
@@ -26,7 +22,6 @@ SRCS = close.c \
 		map_utils.c \
 		utils.c \
 		window.c
->>>>>>> transform_map_to_minimap
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
 OBJ_DIR = objs/

@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/31 17:21:50 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 17:28:10 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_data_values(t_data *data)
 	}
 	data->ray = ray;
 	data->col = coord;
-	init_data_map_values(data);
+	init_map(data);
 }
 
 
