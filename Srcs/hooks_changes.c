@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/24 09:24:10 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 17:27:18 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	change_board(t_data *data, int keycode)
 	// int	m_x;
 	// int	m_y;
 
-	x = (data->win_l / 2) - (data->mini.width / 2);
+	x = (data->win_w / 2) - (data->mini.width / 2);
 	y = (data->win_h / 2) - (data->mini.height / 2);
 	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
 	// m_x = x / data->square_size;
