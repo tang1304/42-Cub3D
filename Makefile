@@ -2,18 +2,31 @@
 
 CC = cc -g3
 CFLAGS = -Wall -Wextra -Werror
-SRCS =	main.c \
-		init_array_map.c \
-		init_data_struct.c \
+SRCS = close.c \
+		collision.c \
+		errors.c \
+		frees.c \
+		get_map.c \
 		hooks.c \
 		hooks_changes.c \
-		window.c \
+		init_array_map.c \
+		init_data_struct.c \
 		line.c \
+<<<<<<< HEAD
 		line_utils.c \
 		collision.c \
 		draw.c \
 		rays.c \
 		utils.c
+=======
+		main.c \
+		map_char_checks.c \
+		map_init.c \
+		map_parsing.c \
+		map_utils.c \
+		utils.c \
+		window.c
+>>>>>>> transform_map_to_minimap
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
 OBJ_DIR = objs/
@@ -63,4 +76,4 @@ fclean :
 
 re : 	fclean all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re FORCE bonus

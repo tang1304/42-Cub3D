@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim_free.c                                  :+:      :+:    :+:   */
+/*   ft_strtrim_double.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:29:47 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/17 10:36:20 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 10:30:44 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "../incs/libft.h"
 
-static size_t	index_front(char *s1, char const *set)
+static size_t	index_front(char const *str, char const *s1, char const *s2)
 {
 	size_t	i;
 	size_t	j;
 	int		check;
 
 	i = 0;
-	while (s1[i] != '\0')
+	while (str[i] != '\0')
 	{
-		j = 0;
+		j = -1;
 		check = 0;
-		while (set[j] != '\0')
+		while (s1[++j] != '\0')
 		{
-			if (s1[i] == set[j])
+			if (str[i] == s1[j])
 				check = 1;
-			j++;
+		}
+		j = -1;
+		while (s2[++j] != '\0')
+		{
+			if (str[i] == s2[j])
+				check = 1;
 		}
 		if (check == 0)
 			break ;
@@ -36,22 +42,28 @@ static size_t	index_front(char *s1, char const *set)
 	return (i);
 }
 
-static size_t	index_back(char *s1, char const *set, size_t start)
+static size_t	index_back(char const *str, char const *s1, char const *s2, \
+							size_t start)
 {
 	size_t	i;
 	size_t	j;
 	int		check;
 
-	i = ft_strlen(s1);
+	i = ft_strlen(str);
 	while (i - 1 > start)
 	{
-		j = 0;
+		j = -1;
 		check = 0;
-		while (set[j] != '\0')
+		while (s1[++j] != '\0')
 		{
-			if (set[j] == s1[i - 1])
+			if (s1[j] == str[i - 1])
 				check = 1;
-			j++;
+		}
+		j = -1;
+		while (s2[++j] != '\0')
+		{
+			if (s2[j] == str[i - 1])
+				check = 1;
 		}
 		if (check == 0)
 			break ;
@@ -60,7 +72,7 @@ static size_t	index_back(char *s1, char const *set, size_t start)
 	return (i);
 }
 
-char	*ft_strtrim_free(char *s1, char const *set)
+char	*ft_strtrim_double(char *str, char const *s1, char const *s2)
 {
 	char	*ptr;
 	size_t	start;
@@ -68,16 +80,12 @@ char	*ft_strtrim_free(char *s1, char const *set)
 	size_t	i;
 
 	i = 0;
-	if (s1 == NULL || set == NULL || s1[0] == '\0')
-	{
-		if (s1)
-			free(s1);
+	if (str == NULL || (s1 == NULL && s2 == NULL))
 		return (NULL);
-	}
-	start = index_front(s1, set);
-	end = index_back(s1, set, start);
+	start = index_front(str, s1, s2);
+	end = index_back(str, s1, s2, start);
 	ptr = (char *)malloc(sizeof(*ptr) * ((end - start) + 1));
-	if (ptr == NULL)
+	if (!ptr)
 		return (NULL);
 	while (start + i < end)
 	{
@@ -85,6 +93,5 @@ char	*ft_strtrim_free(char *s1, char const *set)
 		i++;
 	}
 	ptr[i] = '\0';
-	free(s1);
 	return (ptr);
 }
