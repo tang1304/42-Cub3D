@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/04 08:17:21 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/04 10:21:08 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,8 @@ int		count_lines(int fd);
 void	define_map_width(t_map *map);
 
 /*	rays.c	*/
-void	create_rays(t_data *data);
+double	get_straight_angle(t_data *data, t_coord_d dest);
+void	create_rays(t_data *data, t_coord_d dest);
 
 /*	utils.c	*/
 int		new_str_start(char *str, int k);
