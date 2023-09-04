@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/04 10:31:16 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/04 15:38:59 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	init_data_values(t_data *data)
 
 	data->win_w = 1920;
 	data->win_h = 1080;
-	data->square_size = 20;
-	data->view_d = 10;
+	data->square_size = 50;
+	data->view_d = 15;
 	data->fov = 60 * M_PI / 180;
 	data->mini.height = data->square_size * data->map.height;
 	data->mini.width = data->square_size * data->map.width;

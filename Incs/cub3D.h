@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/04 10:21:08 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/04 13:22:03 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_ray
 	t_coord_d	cell;
 	double		len;
 	int			side_hit;
+	int			dist;
 }				t_ray;
 
 typedef struct s_map
@@ -174,7 +175,7 @@ void	init_data_collision(t_data *data, t_coord_d dest, int r);
 void	wall_detection(t_data *data, int r);
 
 /*	draw.c	*/
-void	draw_point(t_data *data, double tX, double tY);
+void	draw_point(t_data *data, double tX, double tY, int color);
 void	draw_coll(t_data *data, int x, int y, int r);
 
 /*	errors.c	*/
