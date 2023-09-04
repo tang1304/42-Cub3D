@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/31 16:55:13 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/04 09:57:19 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int mouse_moved(int x, int y, t_data *data)
 	dest.x = x;
 	dest.y = y;
 	create_line(data, dest);
-	// create_rays(data);
+	create_rays(data);
 	init_data_collision(data, dest, 0);
 	return (0);
 }

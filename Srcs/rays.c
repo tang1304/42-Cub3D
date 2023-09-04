@@ -15,7 +15,8 @@ double	get_straight_angle(t_data *data)
 			((double)i - data->col.center.x) * ((double)i - data->col.center.x));
 
 	angle = acos(d1/d2);
-	// printf("angle deg: %f\n", angle * 180 /3.14);
+	printf("angle deg: %f\n", (angle * 180) / M_PI);
+	
 	return (angle);
 }
 
