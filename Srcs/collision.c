@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/31 16:41:05 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/04 08:47:36 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	init_data_collision(t_data *data, t_coord_d dest, int r)
 	data->col.dir.x = (data->ray[r]->hit_p.x - data->col.center.x);
 	data->col.dir.y = (data->ray[r]->hit_p.y - data->col.center.y);
 	if (data->col.dir.x == 0)
-		data->col.delta_d.x = INT_MAX;
+		data->col.delta_d.x = (float)INT_MAX;
 	else
 		data->col.delta_d.x = fabs(1.0f / data->col.dir.x);
 	if (data->col.dir.y == 0)
-		data->col.delta_d.y = INT_MAX;
+		data->col.delta_d.y = (float)INT_MAX;
 	else
 		data->col.delta_d.y = fabs(1.0f / data->col.dir.y);
 	if (data->col.dir.x < 0)
@@ -106,9 +106,9 @@ void	wall_detection(t_data *data, int r)
 		data->ray_len = vector_d_len_sq(data->col.center, data->col.map);
 		data->ray[r]->cell.x = data->col.map.x / data->square_size;
 		data->ray[r]->cell.y = data->col.map.y / data->square_size;
-		if (data->ray[r]->cell.x < 0 || data->ray[r]->cell.x >= data->win_w)
+		if (data->ray[r]->cell.x < 0 || data->ray[r]->cell.x >= data->mini.width)
 			continue ;
-		if (data->ray[r]->cell.y < 0 || data->ray[r]->cell.y >= data->win_h)
+		if (data->ray[r]->cell.y < 0 || data->ray[r]->cell.y >= data->mini.height)
 			continue ;
 		if (data->arr[(int)data->ray[r]->cell.y][(int)data->ray[r]->cell.x] == 1)
 		{

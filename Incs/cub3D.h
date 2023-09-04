@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/31 17:14:09 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/04 08:17:21 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdint.h>
 # include <fcntl.h>
 # include <math.h>
 
@@ -199,7 +200,7 @@ void	change_board(t_data *data, int keycode);
 void	init_data_values(t_data *data);
 
 /*	init_array_map.c	*/
-void	init_map(t_data *data);
+void	create_cpy_map_arr(t_data *data);
 
 /*	line.c	*/
 void	create_line(t_data *data, t_coord_d dest);
