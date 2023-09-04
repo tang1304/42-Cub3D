@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/04 08:47:36 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/04 09:46:10 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	wall_detection(t_data *data, int r)
 			continue ;
 		if (data->ray[r]->cell.y < 0 || data->ray[r]->cell.y >= data->mini.height)
 			continue ;
-		if (data->arr[(int)data->ray[r]->cell.y][(int)data->ray[r]->cell.x] == 1)
+		if (data->arr[(int)data->ray[r]->cell.y][(int)data->ray[r]->cell.x] == '1')
 		{
 			detection_wall_touched(data, r);
 			return ;
