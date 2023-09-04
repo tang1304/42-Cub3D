@@ -8,6 +8,7 @@ void	draw_point(t_data *data, double tX, double tY)
 	start.x = tX - 5;
 	end.x = tX + 5;
 	end.y = tY + 5;
+		return ;
 	while (start.x <= end.x)
 	{
 		start.y = tY - 5;
