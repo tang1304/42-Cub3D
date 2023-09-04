@@ -43,8 +43,23 @@ void	create_rays(t_data *data, t_coord_d dest)
 	// int			opp_len;
 	// t_coord_f	pos;
 	// t_coord_f	neg;
+	t_coord_d max_view;
+	t_coord_d max_left;
+	t_coord_d max_right;
+
 (void)angle;
 	angle = get_straight_angle(data, dest);
+	max_view.x = pow(data->view_d,2) * cos(-angle) + data->col.center.x;
+	max_view.y = pow(data->view_d,2) * sin(-angle) + data->col.center.y;
+	draw_point(data, max_view.x, max_view.y, 0x0FFFF00);
+
+	max_left.x = pow(data->view_d,2) * cos(-angle - data->fov/2) + data->col.center.x;
+	max_left.y = pow(data->view_d,2) * sin(-angle - data->fov/2) + data->col.center.y;
+	draw_point(data, max_left.x, max_left.y, 0x0FF8B00);
+
+	max_right.x = pow(data->view_d,2) * cos(-angle + data->fov/2) + data->col.center.x;
+	max_right.y = pow(data->view_d,2) * sin(-angle + data->fov/2) + data->col.center.y;
+	draw_point(data, max_right.x, max_right.y, 0x0BDFF00);
 	// opp_len = tan(data->fov / 2) * data->view_d;
 
 	// d32 = (x - center.x)2 + (y - center.y)2
