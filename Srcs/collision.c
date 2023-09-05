@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/04 09:49:38 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 09:26:45 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static float	vector_d_len_sq(t_coord_d center, t_coord_d map)
 }
 
 // Using dda algorithm
-void	init_data_collision(t_data *data, t_coord_d dest, int r)
+void	init_data_collision(t_data *data, t_coord_d dest, t_ray ray)
 {
-	data->ray[r]->hit_p.x = (double)dest.x;
-	data->ray[r]->hit_p.y = (double)dest.y;
+	ray.hit_p.x = (double)dest.x;
+	ray.hit_p.y = (double)dest.y;
 	data->col.map = data->col.center;
-	data->col.dir.x = (data->ray[r]->hit_p.x - data->col.center.x);
-	data->col.dir.y = (data->ray[r]->hit_p.y - data->col.center.y);
+	data->col.dir.x = (ray.hit_p.x - data->col.center.x);
+	data->col.dir.y = (ray.hit_p.y - data->col.center.y);
 	if (data->col.dir.x == 0)
 		data->col.delta_d.x = (float)INT_MAX;
 	else
@@ -61,35 +61,35 @@ void	init_data_collision(t_data *data, t_coord_d dest, int r)
 		data->col.side_d.y = (data->col.map.y + 1.0f - data->col.center.y) * \
 								data->col.delta_d.y;
 	}
-	wall_detection(data, 0);
-	draw_coll(data, data->col.map.x, data->col.map.y, r);
+	wall_detection(data, ray);
+	draw_coll(data, data->col.map.x, data->col.map.y, ray);
 }
 
-static void	detection_wall_touched(t_data *data, int r)
+static void	detection_wall_touched(t_data *data, t_ray ray)
 {
 	// right and left side
 	if (data->col.side_touched == 0)
 	{
 		if (data->col.step.x == 1)
-			data->ray[r]->side_hit = 1;
+			ray.side_hit = 1;
 		else
-			data->ray[r]->side_hit = 2;
+			ray.side_hit = 2;
 	}
 	// top and bottom side
 	else
 	{
 		if (data->col.step.y == 1)
-			data->ray[r]->side_hit = 3;
+			ray.side_hit = 3;
 		else
-			data->ray[r]->side_hit = 4;
+			ray.side_hit = 4;
 	}
 }
 
-void	wall_detection(t_data *data, int r)
+void	wall_detection(t_data *data, t_ray ray)
 {
-	data->ray[r]->side_hit = 0;
+	ray.side_hit = 0;
 	data->ray_len = vector_d_len_sq(data->col.center, data->col.map);
-	while (data->ray_len < data->view_d * data->view_d)
+	while (data->ray_len < data->square_view_d)
 	{
 		if (data->col.side_d.x < data->col.side_d.y)
 		{
@@ -104,15 +104,15 @@ void	wall_detection(t_data *data, int r)
 			data->col.side_touched = 1;
 		}
 		data->ray_len = vector_d_len_sq(data->col.center, data->col.map);
-		data->ray[r]->cell.x = data->col.map.x / data->square_size;
-		data->ray[r]->cell.y = data->col.map.y / data->square_size;
-		if (data->ray[r]->cell.x < 0 || data->ray[r]->cell.x >= data->mini.width)
+		ray.cell.x = data->col.map.x / data->square_size;
+		ray.cell.y = data->col.map.y / data->square_size;
+		if (ray.cell.x < 0 || ray.cell.x >= data->mini.width)
 			continue ;
-		if (data->ray[r]->cell.y < 0 || data->ray[r]->cell.y >= data->mini.height)
+		if (ray.cell.y < 0 || ray.cell.y >= data->mini.height)
 			continue ;
-		if (data->arr[(int)data->ray[r]->cell.y][(int)data->ray[r]->cell.x] == '1')
+		if (data->arr[(int)ray.cell.y][(int)ray.cell.x] == '1')
 		{
-			detection_wall_touched(data, r);
+			detection_wall_touched(data, ray);
 			return ;
 		}
 	}
