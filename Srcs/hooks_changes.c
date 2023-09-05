@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_changes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/04 08:47:29 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 12:55:30 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	change_board(t_data *data, int keycode)
 {
 	int	x;
 	int	y;
+
 	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
 	x /= data->square_size;
 	y /= data->square_size;
@@ -27,4 +28,17 @@ void	change_board(t_data *data, int keycode)
 		data->arr[y][x] = '1';
 	create_board_img(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+}
+
+void	rotate(t_data *data, int keycode)
+{
+	double	rot_speed;
+	double	old_dir_x;
+
+	old_dir_x = data->player.dir.x;
+	if (keycode == A)
+		rot_speed = 1.5f;
+	else
+		rot_speed = -1.5f;
+	// data->player
 }

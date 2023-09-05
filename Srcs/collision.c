@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 11:37:13 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 13:21:33 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static float	vector_d_len_sq(t_coord_d center, t_coord_d map)
 	value_sq = (center.x - map.x) * (center.x - map.x) + \
 			(center.y - map.y) * (center.y - map.y);
 	return (value_sq);
+
 }
 
 static void	detection_wall_touched(t_data *data, t_ray *ray)
@@ -41,11 +42,15 @@ static void	detection_wall_touched(t_data *data, t_ray *ray)
 	}
 }
 
-static void	wall_detection(t_data *data, t_ray *ray)
+static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 {
+	t_coord_f	miss;
+
+	miss.x = -1;
+	miss.y = -1;
 	ray->side_hit = 0;
 	data->ray_len_sq = vector_d_len_sq(data->col.center, data->col.map);
-	while (data->ray_len_sq < data->square_view_d)
+	while (data->ray_len_sq < data->square_view_d * data->square_view_d)
 	{
 		if (data->col.side_d.x < data->col.side_d.y)
 		{
@@ -69,16 +74,21 @@ static void	wall_detection(t_data *data, t_ray *ray)
 		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1')
 		{
 			detection_wall_touched(data, ray);
-			return ;
+			miss.x = (float)data->col.map.x;
+			miss.y = (float)data->col.map.y;
+			return (miss);
 		}
 	}
+	return (miss);
 }
 
 // Using dda algorithm
-void	init_data_collision(t_data *data, t_coord_d dest, t_ray *ray)
+t_coord_f	init_data_collision(t_data *data, t_ray *ray)
 {
-	ray->hit_p.x = (double)dest.x;
-	ray->hit_p.y = (double)dest.y;
+	t_coord_f	miss;
+
+	ray->hit_p.x = ray->dest.x;
+	ray->hit_p.y = ray->dest.y;
 	data->col.map = data->col.center;
 	data->col.dir.x = (ray->hit_p.x - data->col.center.x);
 	data->col.dir.y = (ray->hit_p.y - data->col.center.y);
@@ -114,6 +124,6 @@ void	init_data_collision(t_data *data, t_coord_d dest, t_ray *ray)
 		data->col.side_d.y = (data->col.map.y + 1.0f - data->col.center.y) * \
 								data->col.delta_d.y;
 	}
-	wall_detection(data, ray);
-	draw_coll(data, data->col.map.x, data->col.map.y, ray);
+	miss = wall_detection(data, ray);
+	return (miss);
 }

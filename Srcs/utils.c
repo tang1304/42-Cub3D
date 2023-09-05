@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:00:52 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/23 11:24:54 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 14:53:54 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ int	correct_map_char(char c)
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
-	char	*dst;
+	// char	*dst;
 
-	dst = img->addr + (y * img->line_l + x * (img->bpp / 8));
-	*(unsigned int*)dst = color;
+	// dst = img->addr + (y * img->line_l + x * (img->bpp / 8));
+	// *(unsigned int*)dst = color;
+	((int *)img->addr)[y * (img->line_l >> 2) + x] = color;
 }
