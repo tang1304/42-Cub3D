@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   init_data_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 09:28:03 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 11:31:14 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
+
+static void	bressenham_init(t_data *data)
+{
+	t_bresenham	bre;
+
+	ft_bzero(&bre, sizeof(t_bresenham));
+	data->bre = bre;
+}
 
 void	init_data_values(t_data *data)
 {
@@ -39,6 +47,7 @@ void	init_data_values(t_data *data)
 	// }
 	data->ray = ray;
 	data->col = coord;
+	bressenham_init(data);
 	create_cpy_map_arr(data);
 }
 

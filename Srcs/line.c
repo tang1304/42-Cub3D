@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:00 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 09:14:52 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 11:32:53 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,8 @@
 // 	init_data_collision(data, dest, data->ray[1]);
 // }
 
-void	create_line(t_data *data, t_ray ray, t_coord_d dest)
+void	create_line(t_data *data, t_ray *ray, t_coord_d dest)
 {
-	t_bresenham	bre;
-
-	ft_bzero(&bre, sizeof(t_bresenham));
-	data->bre = bre;
-	// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	if (dest.x > data->win_w || dest.y > data->win_h)
 		return ;
 	data->bre.dx = dest.x - data->col.center.x;
