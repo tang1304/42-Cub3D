@@ -11,33 +11,36 @@ static t_coord_d	compare(t_data *data, t_coord_d dest)
 	return (comp);
 }
 
-double	get_straight_angle(t_data *data, t_coord_d dest)
+static double	get_straight_angle(t_data *data, t_coord_d dest)
 {
 	t_coord_d	comp;
 	double	angle;
-	double	d1;
-	double	d2;
-	double	d3;
+	double	d1_sq;
+	double	d2_sq;
+	double	d3_sq;
 
 	comp = compare(data, dest);
-	d2 = sqrt(pow((double)dest.y - data->col.center.y, 2) + \
-			pow((double)dest.x - data->col.center.x, 2));
-	d1 = sqrt(pow((double)dest.x - data->col.center.x, 2));
-	d3 = sqrt(pow((double)dest.y - data->col.center.y, 2));
-
+	d2_sq = (((double)dest.y - data->col.center.y) * \
+				((double)dest.y - data->col.center.y)) + \
+			((double)dest.x - data->col.center.x) * \
+				((double)dest.x - data->col.center.x);
+	d1_sq = ((double)dest.x - data->col.center.x) * \
+				((double)dest.x - data->col.center.x);
+	d3_sq = ((double)dest.y - data->col.center.y) * \
+				((double)dest.y - data->col.center.y);
 	if (comp.x >= 0 && comp.y < 0) // right top
-		angle = acos(d1/d2);
+		angle = acos(d1_sq/d2_sq);
 	else if (comp.x < 0 && comp.y <= 0)
-		angle = M_PI * 0.5 + acos(d3/d2);
+		angle = M_PI * 0.5 + acos(d3_sq/d2_sq);
 	else if (comp.x < 0 && comp.y > 0)
-		angle = M_PI + acos(d1/d2);
+		angle = M_PI + acos(d1_sq/d2_sq);
 	else
-		angle = 3 * M_PI * 0.5 + acos(d3/d2);
-printf("angle: %.1f\n", angle * 180 / M_PI);
+		angle = 3 * M_PI * 0.5 + acos(d3_sq/d2_sq);
+// printf("angle: %.1f\n", angle * 180 / M_PI);
 	return (angle);
 }
 
-void	create_cone_multi_rays(t_data *data, double angle)
+static void	create_cone_multi_rays(t_data *data, double angle)
 {
 	double		min_ang;
 	double		max_ang;
@@ -60,12 +63,12 @@ void	create_cone_multi_rays(t_data *data, double angle)
 // create_line(data, data->ray[0], max_view);
 // create_line(data, data->ray[1], dest);
 
-	inc = data->fov / 100;
-	while (++i < 100)
+	inc = data->fov / data->win_w;
+	while (++i < data->win_w)
 	{
 		dest.x = data->square_view_d * cos(-min_ang - inc * i) + data->col.center.x;
 		dest.y = data->square_view_d * sin(-min_ang - inc * i) + data->col.center.y;
-		create_line(data, data->ray[i], dest);
+		create_line(data, &data->ray[i], dest);
 	}
 }
 
