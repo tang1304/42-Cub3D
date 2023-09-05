@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/05 15:40:49 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 16:34:57 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <math.h>
 
 # define M_PI 3.14159265358979323846
+# define M_PI_2 1.57079632679489661923
 // Keycodes
 # define ESC 65307
 # define W 119
@@ -42,7 +43,7 @@
 
 // data info
 # define VIEW_DIST 15
-# define SQUARE_SIZE 40
+# define SQUARE_SIZE 20
 # define WIN_WIDTH 1920
 # define WIN_LEN 1080
 # define FOV 60
