@@ -9,7 +9,7 @@ int	get_inc_value(int i)
 	return (0);
 }
 
-void	draw_hor_ver_line(t_data *data, t_coord_d dest)
+void	draw_hor_ver_line(t_data *data, t_coord_f dest)
 {
 	if (data->bre.dy == 0)
 	{
@@ -31,7 +31,7 @@ void	draw_hor_ver_line(t_data *data, t_coord_d dest)
 	}
 }
 
-void	draw_x_line(t_data *data, t_coord_d dest)
+void	draw_x_line(t_data *data, t_coord_f dest)
 {
 	data->bre.slope = 2 * data->bre.dy;
 	data->bre.error = -data->bre.dx;
@@ -50,7 +50,7 @@ void	draw_x_line(t_data *data, t_coord_d dest)
 	}
 }
 
-void	draw_y_line(t_data *data, t_coord_d dest)
+void	draw_y_line(t_data *data, t_coord_f dest)
 {
 	data->bre.slope = 2 * data->bre.dx;
 	data->bre.error = -data->bre.dy;

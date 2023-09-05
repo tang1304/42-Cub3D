@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:00 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 09:14:52 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 10:21:36 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 // 	init_data_collision(data, dest, data->ray[1]);
 // }
 
-void	create_line(t_data *data, t_ray ray, t_coord_d dest)
+void	create_line(t_data *data, t_coord_f dest)
 {
 	t_bresenham	bre;
 
@@ -65,10 +65,9 @@ void	create_line(t_data *data, t_ray ray, t_coord_d dest)
 	data->bre.x = data->col.center.x;
 	data->bre.y = data->col.center.y;
 	bresenham_algo(data, dest);
-	init_data_collision(data, dest, ray);
 }
 
-void	bresenham_algo(t_data *data, t_coord_d dest)
+void	bresenham_algo(t_data *data, t_coord_f dest)
 {
 	if (data->bre.dy == 0 || data->bre.dx == 0)
 		draw_hor_ver_line(data, dest);

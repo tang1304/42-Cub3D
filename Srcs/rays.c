@@ -37,35 +37,42 @@ printf("angle: %.1f\n", angle * 180 / M_PI);
 	return (angle);
 }
 
+static double	calculate_len_vector(t_data *data, t_coord_f hit)
+{
+	double	len;
+
+	len = sqrt(pow(hit.x - data->col.center.x, 2) + \
+				pow(hit.y - data->col.center.y, 2));
+	return (len);
+}
+
 void	create_cone_multi_rays(t_data *data, double angle)
 {
 	double		min_ang;
 	double		max_ang;
-	t_coord_d	dest;
 	double		inc;
+	t_coord_f	miss;
 	int			i;
 
 	i = -1;
+	inc = data->fov / 100;
 	min_ang = angle - data->fov / 2;
-// printf("angle: %.1f\n", min_ang * 180 /M_PI);
 	max_ang = angle + data->fov / 2;
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-
-// t_coord_d max_view;
-// max_view.x = data->square_view_d * cos(-angle) + data->col.center.x;
-// max_view.y = data->square_view_d * sin(-angle) + data->col.center.y;
-
-// dest.x = data->square_view_d * cos(-min_ang) + data->col.center.x;
-// dest.y = data->square_view_d * sin(-min_ang) + data->col.center.y;
-// create_line(data, data->ray[0], max_view);
-// create_line(data, data->ray[1], dest);
-
-	inc = data->fov / 100;
 	while (++i < 100)
 	{
-		dest.x = data->square_view_d * cos(-min_ang - inc * i) + data->col.center.x;
-		dest.y = data->square_view_d * sin(-min_ang - inc * i) + data->col.center.y;
-		create_line(data, data->ray[i], dest);
+		data->ray[i].dest.x = data->square_view_d * cos(-min_ang - inc * i) + data->col.center.x;
+		data->ray[i].dest.y = data->square_view_d * sin(-min_ang - inc * i) + data->col.center.y;
+		miss = init_data_collision(data, &data->ray[i]);
+		if (miss.x != -1 && miss.y != -1)
+		{
+			data->ray[i].hit_p = miss;
+			data->ray[i].len = calculate_len_vector(data, miss);
+		}
+		else
+			data->ray[i].len = -1;
+		create_line(data, data->ray[i].hit_p);
+		draw_coll(data, data->col.map.x, data->col.map.y, &data->ray[i]);
 	}
 }
 
@@ -75,5 +82,4 @@ void	create_rays(t_data *data, t_coord_d dest)
 
 	angle = get_straight_angle(data, dest);
 	create_cone_multi_rays(data, angle);
-	// create_cone_lines(data, angle);
 }
