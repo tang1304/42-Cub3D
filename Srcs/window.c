@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/31 17:30:54 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 16:23:50 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	img_loop(t_data *data)
 	// y = (data->win_h / 2) - (data->mini.height / 2);
 	create_board_img(data);
 	hooks(data);
-	// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	mlx_hook(data->win, 17, 0, ft_close, &data);//segfault sur croix
 	mlx_loop(data->mlx);
 }

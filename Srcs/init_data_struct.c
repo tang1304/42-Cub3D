@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 11:31:14 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 13:12:40 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,27 @@ static void	bressenham_init(t_data *data)
 
 void	init_data_values(t_data *data)
 {
-	// int		i;
-	t_ray	*ray;
-	t_col	coord;
+	t_ray		*ray;
+	t_col		coord;
+	t_player	player;
 
-	data->win_w = 1920;
-	data->win_h = 1080;
-	data->square_size = 40;
-	data->square_view_d = 11 * 11;
-	data->fov = 60 * M_PI / 180;
+	player.dir.x = 0;
+	player.dir.y = -1;
+	data->win_w = WIN_WIDTH;
+	data->win_h = WIN_LEN;
+	data->square_size = SQUARE_SIZE;
+	data->square_view_d = VIEW_DIST * VIEW_DIST;
+	data->fov = FOV * M_PI / 180;
 	data->mini.height = data->square_size * data->map.height;
 	data->mini.width = data->square_size * data->map.width;
 	coord.center.x = data->mini.width / 2;
 	coord.center.y = data->mini.height / 2;
-	ray = (t_ray *)ft_calloc(data->win_w, sizeof(*ray)); //calloc less maybe?
+	ray = (t_ray *)ft_calloc(data->win_w, sizeof(*ray));
 	if (ray == NULL)
 		exit (1);//free all
-	// i = -1;
-	// while (++i < data->win_w * data->win_h)
-	// {
-	// 	ray[i] = ft_calloc(1, sizeof(t_ray));
-	// 	if (ray[i] == NULL)
-	// 		exit (1);//free all
-	// }
 	data->ray = ray;
 	data->col = coord;
+	data->player = player;
 	bressenham_init(data);
 	create_cpy_map_arr(data);
 }

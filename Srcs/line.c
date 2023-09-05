@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:00 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 11:32:53 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 13:11:04 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,22 @@
 // 	init_data_collision(data, dest, data->ray[1]);
 // }
 
-void	create_line(t_data *data, t_ray *ray, t_coord_d dest)
+void	create_line(t_data *data, t_coord_f dest)
 {
 	if (dest.x > data->win_w || dest.y > data->win_h)
 		return ;
 	data->bre.dx = dest.x - data->col.center.x;
 	data->bre.dy = dest.y - data->col.center.y;
-	data->bre.incX = get_inc_value(data->bre.dx);
-	data->bre.incY = get_inc_value(data->bre.dy);
+	data->bre.inc_x = get_inc_value(data->bre.dx);
+	data->bre.inc_y = get_inc_value(data->bre.dy);
 	data->bre.dx = abs(data->bre.dx);
 	data->bre.dy = abs(data->bre.dy);
 	data->bre.x = data->col.center.x;
 	data->bre.y = data->col.center.y;
 	bresenham_algo(data, dest);
-	init_data_collision(data, dest, ray);
 }
 
-void	bresenham_algo(t_data *data, t_coord_d dest)
+void	bresenham_algo(t_data *data, t_coord_f dest)
 {
 	if (data->bre.dy == 0 || data->bre.dx == 0)
 		draw_hor_ver_line(data, dest);
