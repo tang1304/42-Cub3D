@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/05 11:38:26 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 12:47:33 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <fcntl.h>
 # include <math.h>
 
+# define M_PI 3.14159265358979323846
 # define ESC 65307
 # define W 119
 # define A 97
