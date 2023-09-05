@@ -15,7 +15,8 @@ void	draw_hor_ver_line(t_data *data, t_coord_d dest)
 	{
 		while (data->bre.x != dest.x + data->bre.incX)
 		{
-			mlx_pixel_put(data->mlx, data->win, data->bre.x, data->col.center.y, RED);
+			mlx_pixel_put(data->mlx, data->win, data->bre.x, \
+						data->col.center.y, RED);
 			data->bre.x += data->bre.incX;
 		}
 	}
@@ -23,7 +24,8 @@ void	draw_hor_ver_line(t_data *data, t_coord_d dest)
 	{
 		while (data->bre.y != dest.y + data->bre.incY)
 		{
-			mlx_pixel_put(data->mlx, data->win, data->col.center.x, data->bre.y, RED);
+			mlx_pixel_put(data->mlx, data->win, data->col.center.x, \
+						data->bre.y, RED);
 			data->bre.y += data->bre.incY;
 		}
 	}

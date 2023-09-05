@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/04 15:06:32 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 09:26:16 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,11 +151,11 @@ typedef struct s_data
 	int			win_h;
 	int			win_w;
 	double		fov;
-	float		view_d;
+	float		square_view_d;
 	float		ray_len;
 	int			**arr;
 	int			square_size;
-	t_ray		**ray;
+	t_ray		*ray;
 	t_map		map;
 	t_col		col;
 	t_img		img;
@@ -170,12 +170,12 @@ void	close_map_error(t_data *data);
 int		ft_close(t_data *data);
 
 /*	collision.c	*/
-void	init_data_collision(t_data *data, t_coord_d dest, int r);
-void	wall_detection(t_data *data, int r);
+void	init_data_collision(t_data *data, t_coord_d dest, t_ray ray);
+void	wall_detection(t_data *data, t_ray ray);
 
 /*	draw.c	*/
 void	draw_point(t_data *data, double tX, double tY, int color);
-void	draw_coll(t_data *data, int x, int y, int r);
+void	draw_coll(t_data *data, int x, int y, t_ray ray);
 
 /*	errors.c	*/
 void	exit_error(char *str);
@@ -203,7 +203,7 @@ void	init_data_values(t_data *data);
 void	create_cpy_map_arr(t_data *data);
 
 /*	line.c	*/
-void	create_line(t_data *data, t_coord_d dest);
+void	create_line(t_data *data, t_ray ray, t_coord_d dest);
 void	bresenham_algo(t_data *data, t_coord_d dest);
 
 /*	line_utils.c	*/
