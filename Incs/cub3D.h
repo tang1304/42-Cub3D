@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/05 10:23:10 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 12:49:21 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <fcntl.h>
 # include <math.h>
 
+// Keycodes
 # define ESC 65307
 # define W 119
 # define A 97
@@ -32,10 +33,20 @@
 # define Z 122
 # define X 120
 # define RED_CROSS 33
+
+// Colors
 # define GREEN 0x0000FF00
 # define RED 0x00FF0000
 # define BLUE 0x000000FF
 
+// data info
+# define VIEW_DIST 15
+# define SQUARE_SIZE 40
+# define WIN_WIDTH 1920
+# define WIN_LEN 1080
+# define FOV 60
+
+// strings
 # define COLOR_CHAR "Error\nWrong char in array (%s), must be only digits\n"
 # define COLOR_NBR "Error\nWrong color numbers, must be 3 colors x,y,z\n"
 # define COLOR_VAL "Error\nWrong color value (%d), must be between 0 and 255 \
@@ -84,17 +95,24 @@ typedef struct s_coord_f
 	float	y;
 }				t_coord_f;
 
+typedef struct s_player
+{
+	t_coord_f	pos;
+	t_coord_d	view_dist_pos;
+	t_coord_f	dir;
+}				t_player;
+
 typedef struct s_bresenham
 {
 	int	x;
 	int	y;
 	int	dx;
 	int	dy;
-	int	incX;
-	int	incY;
+	int	inc_x;
+	int	inc_y;
 	int	slope;
 	int	error;
-	int	errorInc;
+	int	error_inc;
 }				t_bresenham;
 
 typedef struct s_ray
@@ -157,6 +175,7 @@ typedef struct s_data
 	int			**arr;
 	int			square_size;
 	t_ray		*ray;
+	t_player	player;
 	t_map		map;
 	t_col		col;
 	t_img		img;
@@ -196,6 +215,7 @@ void		hooks(t_data *data);
 
 /*	hooks_changes.c	*/
 void		change_board(t_data *data, int keycode);
+void		rotate(t_data *data, int keycode);
 
 /*	init_data_struct.c	*/
 void		init_data_values(t_data *data);
