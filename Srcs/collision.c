@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 10:42:28 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 11:26:45 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 static float	vector_d_len_sq(t_coord_d center, t_coord_d map)
 {
-	float	value;
-
-	value = sqrt((center.x - map.x) * (center.x - map.x) + \
+	float	sq_value;
+//sqrt
+	sq_value = ((center.x - map.x) * (center.x - map.x) + \
 			(center.y - map.y) * (center.y - map.y));
-	return (value);
+	return (sq_value);
 }
 
 // Using dda algorithm
 t_coord_f	init_data_collision(t_data *data, t_ray *ray)
 {
 	t_coord_f	miss;
+
 	ray->hit_p.x = ray->dest.x;
 	ray->hit_p.y = ray->dest.y;
 	data->col.map = data->col.center;
@@ -94,7 +95,7 @@ t_coord_f	wall_detection(t_data *data, t_ray *ray)
 	miss.y = -1;
 	ray->side_hit = 0;
 	data->ray_len = vector_d_len_sq(data->col.center, data->col.map);
-	while (data->ray_len < data->square_view_d)
+	while (data->ray_len < data->square_view_d * data->square_view_d)
 	{
 		if (data->col.side_d.x < data->col.side_d.y)
 		{

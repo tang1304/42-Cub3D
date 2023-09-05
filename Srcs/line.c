@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:00 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 10:21:36 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 11:34:45 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	create_line(t_data *data, t_coord_f dest)
 		return ;
 	data->bre.dx = dest.x - data->col.center.x;
 	data->bre.dy = dest.y - data->col.center.y;
-	data->bre.incX = get_inc_value(data->bre.dx);
-	data->bre.incY = get_inc_value(data->bre.dy);
+	data->bre.inc_x = get_inc_value(data->bre.dx);
+	data->bre.inc_y = get_inc_value(data->bre.dy);
 	data->bre.dx = abs(data->bre.dx);
 	data->bre.dy = abs(data->bre.dy);
 	data->bre.x = data->col.center.x;
