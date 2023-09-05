@@ -31,11 +31,11 @@ static double	get_straight_angle(t_data *data, t_coord_d dest)
 	if (comp.x >= 0 && comp.y < 0) // right top
 		angle = acos(d1_sq/d2_sq);
 	else if (comp.x < 0 && comp.y <= 0)
-		angle = M_PI * 0.5 + acos(d3_sq/d2_sq);
+		angle = M_PI_2 + acos(d3_sq/d2_sq);
 	else if (comp.x < 0 && comp.y > 0)
 		angle = M_PI + acos(d1_sq/d2_sq);
 	else
-		angle = 3 * M_PI * 0.5 + acos(d3_sq/d2_sq);
+		angle = 3 * M_PI_2 + acos(d3_sq/d2_sq);
 	return (angle);
 }
 
