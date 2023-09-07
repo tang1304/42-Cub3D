@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 16:29:39 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 16:55:11 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static void	player_dst_pos(t_data *data, int keycode)
 {
 	if (data->player.view_dst_pos.x == INT_MAX && \
 		data->player.view_dst_pos.y == INT_MAX)
-		data->player.angle = M_PI_4;
+		data->player.angle = 0;
 	else if (keycode == A)
-		data->player.angle += M_PI_4 * 0.5;
+		data->player.angle += M_PI_4;
 	else if (keycode == D)
-		data->player.angle -= M_PI_4 * 0.5;
+		data->player.angle -= M_PI_4;
 printf("angle initial: %f\n", data->player.angle * 180 / M_PI);
 	data->player.view_dst_pos.x = data->square_view_d * \
 			cos(-data->player.angle) + data->player.pos.x;
@@ -55,7 +55,7 @@ void	rotate(t_data *data, int keycode)
 	// t_coord_f	dest;
 
 	player_dst_pos(data, keycode);
-	create_rays(data, data->player.view_dst_pos);
+	create_rays(data, data->player.view_dst_pos, data->player.angle);
 	// else
 
 
