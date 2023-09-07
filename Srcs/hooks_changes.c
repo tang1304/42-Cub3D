@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_changes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 15:36:12 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 16:29:39 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,69 +30,61 @@ void	change_board(t_data *data, int keycode)
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
 
-static t_coord_f	calculate_dest_coord(t_data *data)
+static void	player_dst_pos(t_data *data, int keycode)
 {
-	t_coord_f	dest;
-	double		angle;
-
-	angle = get_straight_angle(data, data->player.dir);
-	dest.x = data->square_view_d * \
-			cos(-angle) + data->player.dir.x;
-	dest.y = data->square_view_d * \
-			sin(-angle) + data->player.dir.y;
-	return (dest);
+	if (data->player.view_dst_pos.x == INT_MAX && \
+		data->player.view_dst_pos.y == INT_MAX)
+		data->player.angle = M_PI_4;
+	else if (keycode == A)
+		data->player.angle += M_PI_4 * 0.5;
+	else if (keycode == D)
+		data->player.angle -= M_PI_4 * 0.5;
+printf("angle initial: %f\n", data->player.angle * 180 / M_PI);
+	data->player.view_dst_pos.x = data->square_view_d * \
+			cos(-data->player.angle) + data->player.pos.x;
+	data->player.view_dst_pos.y = data->square_view_d * \
+			sin(-data->player.angle) + data->player.pos.y;
+printf("x: %d\n", data->player.view_dst_pos.x);
+printf("y: %d\n", data->player.view_dst_pos.y);
 }
 
 void	rotate(t_data *data, int keycode)
-{
-	double		rot_speed;
-	double		old_dir_x;
-	t_coord_f	dest;
-printf("playerbefX: %f\n", data->player.dir.x);
-printf("playerbefY: %f\n", data->player.dir.y);
-printf("angbef: %f\n", get_straight_angle(data, data->player.dir)*180 / M_PI);
-	// return ;
-	dest = calculate_dest_coord(data);
-	old_dir_x = data->player.dir.x;
-	if (keycode == A)
-		rot_speed = M_PI_4;
-	else
-		rot_speed = M_PI_4;
-	data->player.dir.x = data->player.dir.x * cos(rot_speed) - \
-						data->player.dir.y * sin(rot_speed);
-printf("playerX: %f\n", data->player.dir.x);
-	data->player.dir.y = old_dir_x * sin(rot_speed) + data->player.dir.y * \
-						cos(rot_speed);
-printf("playerY: %f\n", data->player.dir.y);
-printf("X: %f\n", dest.x);
-printf("y: %f\n", dest.y);
-	create_rays(data, dest);
+{(void)keycode;
+	// double		rot_speed;
+	// double		old_dir_x;
+	// t_coord_f	dest;
+
+	player_dst_pos(data, keycode);
+	create_rays(data, data->player.view_dst_pos);
+	// else
+
+
 }
 
-void	move_forward(t_data *data)
-{
-	double		move_speed;
-	t_coord_f	new_pos;
+// void	move_forward(t_data *data)
+// {
+// 	double		move_speed;
+// 	t_coord_d	new_pos;
 
-	move_speed = 10;
-	new_pos.x = data->player.dir.x * move_speed;
-	new_pos.y = data->player.dir.y * move_speed;
+// 	move_speed = 10;
+// 	new_pos.x = data->player.dir.x * move_speed;
+// 	new_pos.y = data->player.dir.y * move_speed;
 
-	data->player.pos.x += new_pos.x;
-	data->player.pos.y += new_pos.y;
-	create_rays(data, data->player.dir);
-}
+// 	data->player.pos.x += new_pos.x;
+// 	data->player.pos.y += new_pos.y;
+// 	create_rays(data, data->player.dir);
+// }
 
-void	move_backward(t_data *data)
-{
-	double		move_speed;
-	t_coord_f	new_pos;
+// void	move_backward(t_data *data)
+// {
+// 	double		move_speed;
+// 	t_coord_d	new_pos;
 
-	move_speed = -10;
-	new_pos.x = data->player.dir.x * move_speed;
-	new_pos.y = data->player.dir.y * move_speed;
+// 	move_speed = -10;
+// 	new_pos.x = data->player.dir.x * move_speed;
+// 	new_pos.y = data->player.dir.y * move_speed;
 
-	data->player.pos.x += new_pos.x;
-	data->player.pos.y += new_pos.y;
-	create_rays(data, data->player.dir);
-}
+// 	data->player.pos.x += new_pos.x;
+// 	data->player.pos.y += new_pos.y;
+// 	create_rays(data, data->player.dir);
+// }
