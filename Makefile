@@ -1,6 +1,6 @@
 # --- VARIABLES --- #
 
-CC = cc -g3 -O3#-fsanitize=address
+CC = cc -g3 -O3 #-fsanitize=address
 CFLAGS = -Wall -Wextra -Werror
 SRCS = close.c \
 		collision.c \
