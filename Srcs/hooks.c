@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 10:00:24 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 12:57:14 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ static int	key_pressed(int keycode, t_data *data)
 		change_board(data, keycode);
 	else if (keycode == A || keycode == D)
 		rotate(data, keycode);
+	else if (keycode == W)
+		move_forward(data);
+	else if (keycode == S)
+		move_backward(data);
 	return (0);
 }
 
@@ -26,7 +30,8 @@ int	mouse_moved(int x, int y, t_data *data)
 	t_coord_f	dest;
 
 	dest.x = (float)x;
-	dest.y = (float)y;(void)data;
+	dest.y = (float)y;
+	(void)data;
 	create_rays(data, dest);
 	return (0);
 }

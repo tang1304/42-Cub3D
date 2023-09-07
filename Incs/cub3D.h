@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/07 09:08:46 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 10:35:10 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,8 @@ void		hooks(t_data *data);
 /*	hooks_changes.c	*/
 void		change_board(t_data *data, int keycode);
 void		rotate(t_data *data, int keycode);
+void		move_forward(t_data *data);
+void		move_backward(t_data *data);
 
 /*	init_data_struct.c	*/
 void		init_data_values(t_data *data);
