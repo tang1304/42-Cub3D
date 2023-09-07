@@ -6,13 +6,13 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 13:21:33 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 13:24:49 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-static float	vector_d_len_sq(t_coord_d center, t_coord_d map)
+static double	vector_d_len_sq(t_coord_d center, t_coord_d map)
 {
 	float	value_sq;
 
@@ -49,7 +49,7 @@ static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 	miss.x = -1;
 	miss.y = -1;
 	ray->side_hit = 0;
-	data->ray_len_sq = vector_d_len_sq(data->col.center, data->col.map);
+	data->ray_len_sq = vector_d_len_sq(data->player.pos, data->col.map);
 	while (data->ray_len_sq < data->square_view_d * data->square_view_d)
 	{
 		if (data->col.side_d.x < data->col.side_d.y)
@@ -64,7 +64,7 @@ static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 			data->col.map.y += data->col.step.y;
 			data->col.side_touched = 1;
 		}
-		data->ray_len_sq = vector_d_len_sq(data->col.center, data->col.map);
+		data->ray_len_sq = vector_d_len_sq(data->player.pos, data->col.map);
 		ray->cell.x = data->col.map.x / data->square_size;
 		ray->cell.y = data->col.map.y / data->square_size;
 		if (ray->cell.x < 0 || ray->cell.x >= data->mini.width)
@@ -89,9 +89,9 @@ t_coord_f	init_data_collision(t_data *data, t_ray *ray)
 
 	ray->hit_p.x = ray->dest.x;
 	ray->hit_p.y = ray->dest.y;
-	data->col.map = data->col.center;
-	data->col.dir.x = (ray->hit_p.x - data->col.center.x);
-	data->col.dir.y = (ray->hit_p.y - data->col.center.y);
+	data->col.map = data->player.pos;
+	data->col.dir.x = (ray->hit_p.x - data->player.pos.x);
+	data->col.dir.y = (ray->hit_p.y - data->player.pos.y);
 	if (data->col.dir.x == 0)
 		data->col.delta_d.x = (float)INT_MAX;
 	else
@@ -103,25 +103,25 @@ t_coord_f	init_data_collision(t_data *data, t_ray *ray)
 	if (data->col.dir.x < 0)
 	{
 		data->col.step.x = -1;
-		data->col.side_d.x = (data->col.center.x - data->col.map.x) * \
+		data->col.side_d.x = (data->player.pos.x - data->col.map.x) * \
 								data->col.delta_d.x;
 	}
 	else
 	{
 		data->col.step.x = 1;
-		data->col.side_d.x = (data->col.map.x + 1.0f - data->col.center.x) * \
+		data->col.side_d.x = (data->col.map.x + 1.0f - data->player.pos.x) * \
 								data->col.delta_d.x;
 	}
 	if (data->col.dir.y < 0)
 	{
 		data->col.step.y = -1;
-		data->col.side_d.y = (data->col.center.y - data->col.map.y) * \
+		data->col.side_d.y = (data->player.pos.y - data->col.map.y) * \
 								data->col.delta_d.y;
 	}
 	else
 	{
 		data->col.step.y = 1;
-		data->col.side_d.y = (data->col.map.y + 1.0f - data->col.center.y) * \
+		data->col.side_d.y = (data->col.map.y + 1.0f - data->player.pos.y) * \
 								data->col.delta_d.y;
 	}
 	miss = wall_detection(data, ray);

@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/07 10:35:10 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 13:24:25 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef struct s_coord_f
 
 typedef struct s_player
 {
-	t_coord_f	pos;
+	t_coord_d	pos;
 	t_coord_d	view_dist_pos;
 	t_coord_f	dir;
 }				t_player;
@@ -148,7 +148,6 @@ typedef struct s_map
 
 typedef struct s_col
 {
-	t_coord_d	center;
 	t_coord_d	map;
 	t_coord_f	dir;
 	t_coord_f	dest;

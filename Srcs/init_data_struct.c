@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 11:31:11 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 13:29:21 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	bressenham_init(t_data *data)
 void	init_data_values(t_data *data)
 {
 	t_ray		*ray;
-	t_col		coord;
 	t_player	player;
 
 	data->win_w = WIN_WIDTH;
@@ -33,17 +32,14 @@ void	init_data_values(t_data *data)
 	data->fov = FOV * M_PI / 180;
 	data->mini.height = data->square_size * data->map.height;
 	data->mini.width = data->square_size * data->map.width;
-	coord.center.x = data->mini.width / 2;
-	coord.center.y = data->mini.height / 2;
+	player.pos.x = data->mini.width / 2;
+	player.pos.y = data->mini.height / 2;
 	player.dir.x = 1;
 	player.dir.y = 1;
-	player.pos.x = coord.center.x;
-	player.pos.y = coord.center.y;
 	ray = (t_ray *)ft_calloc(data->win_w, sizeof(*ray));
 	if (ray == NULL)
 		exit (1);//free all
 	data->ray = ray;
-	data->col = coord;
 	data->player = player;
 	bressenham_init(data);
 	create_cpy_map_arr(data);
