@@ -1,6 +1,6 @@
 #include "../Incs/cub3D.h"
 
-static t_coord_d	compare(t_data *data, t_coord_d dest)
+static t_coord_d	compare(t_data *data, t_coord_f dest)
 {
 	t_coord_d	comp;
 
@@ -11,7 +11,7 @@ static t_coord_d	compare(t_data *data, t_coord_d dest)
 	return (comp);
 }
 
-double	get_straight_angle(t_data *data, t_coord_d dest)
+double	get_straight_angle(t_data *data, t_coord_f dest)
 {
 	t_coord_d	comp;
 	double	angle;
@@ -76,7 +76,7 @@ void	create_cone_multi_rays(t_data *data, double angle)
 	}
 }
 
-void	create_rays(t_data *data, t_coord_d dest)
+void	create_rays(t_data *data, t_coord_f dest)
 {
 	double		angle;
 
