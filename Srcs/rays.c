@@ -11,8 +11,9 @@ static t_coord_d	compare(t_data *data, t_coord_f dest)
 	return (comp);
 }
 
-static double	get_straight_angle(t_data *data, t_coord_d dest)
-{
+double	get_straight_angle(t_data *data, t_coord_f dest)
+{printf("dirX: %f\n", dest.x);
+printf("dirY: %f\n", dest.y);
 	t_coord_d	comp;
 	double	angle;
 	double	d1_sq;
@@ -36,6 +37,7 @@ static double	get_straight_angle(t_data *data, t_coord_d dest)
 		angle = M_PI + acos(d1_sq/d2_sq);
 	else
 		angle = 3 * M_PI_2 + acos(d3_sq/d2_sq);
+printf("angle: %f\n", angle *180 / M_PI);
 	return (angle);
 }
 
