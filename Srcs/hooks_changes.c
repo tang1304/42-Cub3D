@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 09:50:21 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 10:07:52 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ void	rotate(t_data *data, int keycode)
 	t_coord_f	dest;
 printf("playerbefX: %f\n", data->player.dir.x);
 printf("playerbefY: %f\n", data->player.dir.y);
-printf("\n");
+printf("angbef: %f\n", get_straight_angle(data, data->player.dir)*180 / M_PI);
 	dest = calculate_dest_coord(data);
+	// return ;
 	old_dir_x = data->player.dir.x;
 	if (keycode == A)
 		rot_speed = 1.5f;

@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 09:41:27 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 10:09:37 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	init_data_values(t_data *data)
 	t_col		coord;
 	t_player	player;
 
-	player.dir.x = 1;
-	player.dir.y = 1;
 	player.pos.x = data->col.center.x;
 	player.pos.y = data->col.center.y;
 	data->win_w = WIN_WIDTH;
 	data->win_h = WIN_LEN;
 	data->square_size = SQUARE_SIZE;
 	data->square_view_d = VIEW_DIST * VIEW_DIST;
+	player.dir.x = 1 * data->square_view_d;
+	player.dir.y = 1 * data->square_view_d;
 	data->fov = FOV * M_PI / 180;
 	data->mini.height = data->square_size * data->map.height;
 	data->mini.width = data->square_size * data->map.width;
