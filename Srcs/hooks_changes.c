@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 13:28:08 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 15:36:12 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static t_coord_f	calculate_dest_coord(t_data *data)
 
 	angle = get_straight_angle(data, data->player.dir);
 	dest.x = data->square_view_d * \
-			cos(-angle) + data->player.pos.x;
+			cos(-angle) + data->player.dir.x;
 	dest.y = data->square_view_d * \
-			sin(-angle) + data->player.pos.y;
+			sin(-angle) + data->player.dir.y;
 	return (dest);
 }
 
@@ -51,13 +51,13 @@ void	rotate(t_data *data, int keycode)
 printf("playerbefX: %f\n", data->player.dir.x);
 printf("playerbefY: %f\n", data->player.dir.y);
 printf("angbef: %f\n", get_straight_angle(data, data->player.dir)*180 / M_PI);
-	dest = calculate_dest_coord(data);
 	// return ;
+	dest = calculate_dest_coord(data);
 	old_dir_x = data->player.dir.x;
 	if (keycode == A)
-		rot_speed = 1.5f;
+		rot_speed = M_PI_4;
 	else
-		rot_speed = -1.5f;
+		rot_speed = M_PI_4;
 	data->player.dir.x = data->player.dir.x * cos(rot_speed) - \
 						data->player.dir.y * sin(rot_speed);
 printf("playerX: %f\n", data->player.dir.x);
@@ -74,8 +74,6 @@ void	move_forward(t_data *data)
 	double		move_speed;
 	t_coord_f	new_pos;
 
-printf("playerX:%d\n", data->player.pos.x);
-printf("playerY:%d\n", data->player.pos.y);
 	move_speed = 10;
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;
@@ -90,8 +88,6 @@ void	move_backward(t_data *data)
 	double		move_speed;
 	t_coord_f	new_pos;
 
-printf("playerX:%d\n", data->player.pos.x);
-printf("playerY:%d\n", data->player.pos.y);
 	move_speed = -10;
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;
