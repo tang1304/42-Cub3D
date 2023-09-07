@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 12:41:05 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 13:01:29 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	init_data_values(t_data *data)
 
 	player.dir.x = 0;
 	player.dir.y = -1;
+	player.pos.x = data->col.center.x;
+	player.pos.y = data->col.center.y;
 	data->win_w = WIN_WIDTH;
 	data->win_h = WIN_LEN;
 	data->square_size = SQUARE_SIZE;

@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 12:55:30 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/05 14:56:58 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	change_board(t_data *data, int keycode)
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
 
+// static void	calculate_dest_coord(t_data *data)
+// {
+// 	data.
+// }
+
 void	rotate(t_data *data, int keycode)
 {
 	double	rot_speed;
@@ -40,5 +45,10 @@ void	rotate(t_data *data, int keycode)
 		rot_speed = 1.5f;
 	else
 		rot_speed = -1.5f;
-	// data->player
+	data->player.dir.x = data->player.dir.x * cos(rot_speed) - \
+						data->player.dir.y * sin(rot_speed);
+	data->player.dir.y = old_dir_x * sin(rot_speed) + data->player.dir.y * \
+						cos(rot_speed);
+	// calculate_dest_coord(data);
+	create_rays(data, data->player.dir);
 }
