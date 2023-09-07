@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/05 13:08:49 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 08:44:58 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <fcntl.h>
 # include <math.h>
 
+# define M_PI 3.14159265358979323846
+# define M_PI_2 1.57079632679489661923
 // Keycodes
 # define ESC 65307
 # define W 119
@@ -41,7 +43,7 @@
 
 // data info
 # define VIEW_DIST 15
-# define SQUARE_SIZE 40
+# define SQUARE_SIZE 20
 # define WIN_WIDTH 1920
 # define WIN_LEN 1080
 # define FOV 60
@@ -171,7 +173,7 @@ typedef struct s_data
 	int			win_w;
 	double		fov;
 	float		square_view_d;
-	float		ray_len;
+	float		ray_len_sq;
 	int			**arr;
 	int			square_size;
 	t_ray		*ray;
@@ -179,6 +181,7 @@ typedef struct s_data
 	t_map		map;
 	t_col		col;
 	t_img		img;
+	t_img		start;
 	t_bresenham	bre;
 	t_mini		mini;
 }			t_data;
@@ -191,7 +194,6 @@ int			ft_close(t_data *data);
 
 /*	collision.c	*/
 t_coord_f	init_data_collision(t_data *data, t_ray *ray);
-t_coord_f	wall_detection(t_data *data, t_ray *ray);
 
 /*	draw.c	*/
 void		draw_point(t_data *data, double tX, double tY, int color);
@@ -253,8 +255,7 @@ int			count_lines(int fd);
 void		define_map_width(t_map *map);
 
 /*	rays.c	*/
-double		get_straight_angle(t_data *data, t_coord_f dest);
-void		create_rays(t_data *data, t_coord_f dest);
+void		create_rays(t_data *data, t_coord_d dest);
 
 /*	utils.c	*/
 int			new_str_start(char *str, int k);
