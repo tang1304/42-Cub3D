@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 14:56:58 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 09:50:21 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,28 @@ void	change_board(t_data *data, int keycode)
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
 
-// static void	calculate_dest_coord(t_data *data)
-// {
-// 	data.
-// }
+static t_coord_f	calculate_dest_coord(t_data *data)
+{
+	t_coord_f	dest;
+	double		angle;
+
+	angle = get_straight_angle(data, data->player.dir);
+	dest.x = data->square_view_d * \
+			cos(-angle) + data->col.center.x;
+	dest.y = data->square_view_d * \
+			sin(-angle) + data->col.center.y;
+	return (dest);
+}
 
 void	rotate(t_data *data, int keycode)
 {
-	double	rot_speed;
-	double	old_dir_x;
-
+	double		rot_speed;
+	double		old_dir_x;
+	t_coord_f	dest;
+printf("playerbefX: %f\n", data->player.dir.x);
+printf("playerbefY: %f\n", data->player.dir.y);
+printf("\n");
+	dest = calculate_dest_coord(data);
 	old_dir_x = data->player.dir.x;
 	if (keycode == A)
 		rot_speed = 1.5f;
@@ -47,8 +59,11 @@ void	rotate(t_data *data, int keycode)
 		rot_speed = -1.5f;
 	data->player.dir.x = data->player.dir.x * cos(rot_speed) - \
 						data->player.dir.y * sin(rot_speed);
+printf("playerX: %f\n", data->player.dir.x);
 	data->player.dir.y = old_dir_x * sin(rot_speed) + data->player.dir.y * \
 						cos(rot_speed);
-	// calculate_dest_coord(data);
-	create_rays(data, data->player.dir);
+printf("playerY: %f\n", data->player.dir.y);
+printf("X: %f\n", dest.x);
+printf("y: %f\n", dest.y);
+	create_rays(data, dest);
 }
