@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frees.c                                            :+:      :+:    :+:   */
+/*   init_array_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/15 10:48:45 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/07 08:43:09 by tgellon          ###   ########lyon.fr   */
+/*   Created: 2023/08/16 11:34:53 by rrebois           #+#    #+#             */
+/*   Updated: 2023/09/05 13:12:05 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-void	t_texture_cleaning(t_texture *text)
+void	create_cpy_map_arr(t_data *data)
 {
-	if (text->addr != NULL)
-	{
-		free(text->addr);
-		text->addr = NULL;
-	}
-	text = NULL;
-}
+	int	i;
+	int	j;
 
-void	t_map_cleaning(t_map *map)
-{
-	t_texture_cleaning(&map->no);
-	t_texture_cleaning(&map->so);
-	t_texture_cleaning(&map->ea);
-	t_texture_cleaning(&map->we);
-	if (map->map)
-		ft_free_pp(map->map);
-	if (map->tmp)
-		ft_free_pp(map->tmp);
+	i = -1;
+	data->arr = malloc(sizeof(int *) * (data->map.height));
+	if (data->arr == NULL)
+		exit(1);//
+	while (++i < data->map.height)
+	{
+		data->arr[i] = malloc(sizeof(int) * (ft_strlen(data->map.map[i])));
+		if (data->arr[i] == NULL)
+			exit(1);
+	}
+	i = -1;
+	while (++i < data->map.height)
+	{
+		j = -1;
+		while (data->map.map[i][++j])
+			data->arr[i][j] = data->map.map[i][j];
+	}
 }

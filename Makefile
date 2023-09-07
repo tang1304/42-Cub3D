@@ -1,19 +1,28 @@
 # --- VARIABLES --- #
 
-CC = cc -g3
-CFLAGS = -Wall -Wextra -Werror# -fsanitize=address
-SRCS =	close.c \
+CC = cc -g3 -O3 #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
+SRCS = close.c \
+		collision.c \
 		errors.c \
 		frees.c \
 		get_map.c \
-		key_hook.c \
+		hooks.c \
+		hooks_changes.c \
+		init_array_map.c \
+		init_data_struct.c \
+		line.c \
+		line_utils.c \
+		draw.c \
+		rays.c \
 		main.c \
 		map_char_checks.c \
 		map_init.c \
 		map_parsing.c \
 		map_utils.c \
 		textures.c \
-		utils.c
+		utils.c \
+		window.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
 OBJ_DIR = objs/
@@ -63,4 +72,4 @@ fclean :
 
 re : 	fclean all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re FORCE bonus

@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 11:11:35 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/23 10:14:28 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 14:05:13 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,5 @@ void	parse_map(t_map *map)
 	}
 	if (!map->direction)
 		map_error(map, LESS_DIRECTION);
+	define_map_width(map);
 }
