@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/07 16:28:43 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 16:55:37 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,7 @@ void		define_map_width(t_map *map);
 
 /*	rays.c	*/
 double		get_straight_angle(t_data *data, t_coord_d dest);
-void		create_rays(t_data *data, t_coord_d dest);
+void		create_rays(t_data *data, t_coord_d dest, double angle);
 
 /*	utils.c	*/
 int			new_str_start(char *str, int k);

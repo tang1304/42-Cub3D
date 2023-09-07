@@ -79,13 +79,13 @@ static void	create_cone_multi_rays(t_data *data, double angle)
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
 
-void	create_rays(t_data *data, t_coord_d dest)
-{
-	double		angle;
+void	create_rays(t_data *data, t_coord_d dest, double angle)
+{(void)dest;
+	// double		angle;
 
 	// data->img.img = mlx_new_image(data->mlx, data->win_w, data->win_h);
 	// data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp, &data->img.line_l, &data->img.endian);
 	create_board_img(data);
-	angle = get_straight_angle(data, dest);
+	// angle = get_straight_angle(data, dest);
 	create_cone_multi_rays(data, angle);
 }
