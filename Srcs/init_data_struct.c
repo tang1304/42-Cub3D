@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 13:29:21 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 16:08:41 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	init_data_values(t_data *data)
 	player.pos.y = data->mini.height / 2;
 	player.dir.x = 1;
 	player.dir.y = 1;
+	player.view_dst_pos.x = INT_MAX;
+	player.view_dst_pos.y = INT_MAX;
 	ray = (t_ray *)ft_calloc(data->win_w, sizeof(*ray));
 	if (ray == NULL)
 		exit (1);//free all

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/07 13:24:25 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 16:28:43 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,9 @@ typedef struct s_coord_f
 typedef struct s_player
 {
 	t_coord_d	pos;
-	t_coord_d	view_dist_pos;
+	t_coord_d	view_dst_pos;
 	t_coord_f	dir;
+	double		angle;
 }				t_player;
 
 typedef struct s_bresenham
@@ -256,8 +257,8 @@ int			count_lines(int fd);
 void		define_map_width(t_map *map);
 
 /*	rays.c	*/
-double		get_straight_angle(t_data *data, t_coord_f dest);
-void		create_rays(t_data *data, t_coord_f dest);
+double		get_straight_angle(t_data *data, t_coord_d dest);
+void		create_rays(t_data *data, t_coord_d dest);
 
 /*	utils.c	*/
 int			new_str_start(char *str, int k);
