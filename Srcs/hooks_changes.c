@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 10:07:52 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 11:07:10 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,25 @@ void	change_board(t_data *data, int keycode)
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
 
-static t_coord_f	calculate_dest_coord(t_data *data)
+static void	calculate_new_view_pos(t_data *data)
 {
-	t_coord_f	dest;
-	double		angle;
+	double	angle;
 
-	angle = get_straight_angle(data, data->player.dir);
-	dest.x = data->square_view_d * \
-			cos(-angle) + data->col.center.x;
-	dest.y = data->square_view_d * \
-			sin(-angle) + data->col.center.y;
-	return (dest);
+	angle = get_straight_angle(data, data->player.view_dist_pos);
+	data->player.view_dist_pos.x = data->square_view_d * \
+		cos(-(angle)) + data->col.center.x;
+	data->player.view_dist_pos.y = data->square_view_d * \
+		sin(-(angle)) + data->col.center.y;
 }
 
 void	rotate(t_data *data, int keycode)
-{
+{(void)keycode;
 	double		rot_speed;
 	double		old_dir_x;
-	t_coord_f	dest;
-printf("playerbefX: %f\n", data->player.dir.x);
-printf("playerbefY: %f\n", data->player.dir.y);
-printf("angbef: %f\n", get_straight_angle(data, data->player.dir)*180 / M_PI);
-	dest = calculate_dest_coord(data);
+
+// printf("playerbefX: %f\n", data->player.dir.x);
+// printf("playerbefY: %f\n", data->player.dir.y);
+// printf("angbef: %f\n", get_straight_angle(data, data->player.view_dist_pos)*180 / M_PI);
 	// return ;
 	old_dir_x = data->player.dir.x;
 	if (keycode == A)
@@ -60,11 +57,12 @@ printf("angbef: %f\n", get_straight_angle(data, data->player.dir)*180 / M_PI);
 		rot_speed = -1.5f;
 	data->player.dir.x = data->player.dir.x * cos(rot_speed) - \
 						data->player.dir.y * sin(rot_speed);
-printf("playerX: %f\n", data->player.dir.x);
+// printf("playerX: %f\n", data->player.dir.x);
 	data->player.dir.y = old_dir_x * sin(rot_speed) + data->player.dir.y * \
 						cos(rot_speed);
-printf("playerY: %f\n", data->player.dir.y);
-printf("X: %f\n", dest.x);
-printf("y: %f\n", dest.y);
-	create_rays(data, dest);
+// printf("playerY: %f\n", data->player.dir.y);
+// printf("X: %f\n", dest.x);
+// printf("y: %f\n", dest.y);
+	calculate_new_view_pos(data);
+	create_rays(data, data->player.view_dist_pos);
 }

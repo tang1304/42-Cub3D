@@ -1,6 +1,6 @@
 #include "../Incs/cub3D.h"
 
-static t_coord_d	compare(t_data *data, t_coord_f dest)
+static t_coord_d	compare(t_data *data, t_coord_d dest)
 {
 	t_coord_d	comp;
 
@@ -11,9 +11,8 @@ static t_coord_d	compare(t_data *data, t_coord_f dest)
 	return (comp);
 }
 
-double	get_straight_angle(t_data *data, t_coord_f dest)
-{printf("dirX: %f\n", dest.x);
-printf("dirY: %f\n", dest.y);
+double	get_straight_angle(t_data *data, t_coord_d dest)
+{
 	t_coord_d	comp;
 	double	angle;
 	double	d1_sq;
@@ -21,14 +20,14 @@ printf("dirY: %f\n", dest.y);
 	double	d3_sq;
 
 	comp = compare(data, dest);
-	d2_sq = (((double)dest.y - data->col.center.y) * \
-				((double)dest.y - data->col.center.y)) + \
-			((double)dest.x - data->col.center.x) * \
-				((double)dest.x - data->col.center.x);
-	d1_sq = ((double)dest.x - data->col.center.x) * \
-				((double)dest.x - data->col.center.x);
-	d3_sq = ((double)dest.y - data->col.center.y) * \
-				((double)dest.y - data->col.center.y);
+	d2_sq = ((dest.y - data->col.center.y) * \
+				(dest.y - data->col.center.y)) + \
+			(dest.x - data->col.center.x) * \
+				(dest.x - data->col.center.x);
+	d1_sq = (dest.x - data->col.center.x) * \
+				(dest.x - data->col.center.x);
+	d3_sq = (dest.y - data->col.center.y) * \
+				(dest.y - data->col.center.y);
 	if (comp.x >= 0 && comp.y < 0) // right top
 		angle = acos(d1_sq/d2_sq);
 	else if (comp.x < 0 && comp.y <= 0)
@@ -81,7 +80,7 @@ static void	create_cone_multi_rays(t_data *data, double angle)
 	// mlx_destroy_image(data->mlx, data->img.img);
 }
 
-void	create_rays(t_data *data, t_coord_f dest)
+void	create_rays(t_data *data, t_coord_d dest)
 {
 	double		angle;
 
