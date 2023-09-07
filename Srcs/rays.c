@@ -21,14 +21,14 @@ printf("dirY: %f\n", dest.y);
 	double	d3_sq;
 
 	comp = compare(data, dest);
-	d2_sq = (((double)dest.y - data->col.center.y) * \
-				((double)dest.y - data->col.center.y)) + \
-			((double)dest.x - data->col.center.x) * \
-				((double)dest.x - data->col.center.x);
-	d1_sq = ((double)dest.x - data->col.center.x) * \
-				((double)dest.x - data->col.center.x);
-	d3_sq = ((double)dest.y - data->col.center.y) * \
-				((double)dest.y - data->col.center.y);
+	d2_sq = (((double)dest.y - data->player.pos.y) * \
+				((double)dest.y - data->player.pos.y)) + \
+			((double)dest.x - data->player.pos.x) * \
+				((double)dest.x - data->player.pos.x);
+	d1_sq = ((double)dest.x - data->player.pos.x) * \
+				((double)dest.x - data->player.pos.x);
+	d3_sq = ((double)dest.y - data->player.pos.y) * \
+				((double)dest.y - data->player.pos.y);
 	if (comp.x >= 0 && comp.y < 0) // right top
 		angle = acos(d1_sq/d2_sq);
 	else if (comp.x < 0 && comp.y <= 0)
@@ -63,9 +63,9 @@ static void	create_cone_multi_rays(t_data *data, double angle)
 	while (++i < WIN_WIDTH)
 	{
 		data->ray[i].dest.x = data->square_view_d * \
-			cos(-min_ang - (data->fov / WIN_WIDTH) * i) + data->col.center.x;
+			cos(-min_ang - (data->fov / WIN_WIDTH) * i) + data->player.pos.x;
 		data->ray[i].dest.y = data->square_view_d * \
-			sin(-min_ang - (data->fov / WIN_WIDTH) * i) + data->col.center.y;
+			sin(-min_ang - (data->fov / WIN_WIDTH) * i) + data->player.pos.y;
 		miss = init_data_collision(data, &data->ray[i]);
 		if (miss.x != -1 && miss.y != -1)
 		{
@@ -78,7 +78,6 @@ static void	create_cone_multi_rays(t_data *data, double angle)
 		draw_coll(data, data->col.map.x, data->col.map.y, &data->ray[i]);
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-	// mlx_destroy_image(data->mlx, data->img.img);
 }
 
 void	create_rays(t_data *data, t_coord_f dest)

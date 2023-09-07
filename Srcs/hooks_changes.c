@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_changes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 10:07:52 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 11:42:49 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,36 @@ printf("playerY: %f\n", data->player.dir.y);
 printf("X: %f\n", dest.x);
 printf("y: %f\n", dest.y);
 	create_rays(data, dest);
+}
+
+void	move_forward(t_data *data)
+{
+	double		move_speed;
+	t_coord_f	new_pos;
+
+printf("playerX:%f\n", data->player.pos.x);
+printf("playerY:%f\n", data->player.pos.y);
+	move_speed = 10;
+	new_pos.x = data->player.dir.x * move_speed;
+	new_pos.y = data->player.dir.y * move_speed;
+
+	data->player.pos.x += new_pos.x;
+	data->player.pos.y += new_pos.y;
+	create_rays(data, data->player.dir);
+}
+
+void	move_backward(t_data *data)
+{
+	double		move_speed;
+	t_coord_f	new_pos;
+
+printf("playerX:%f\n", data->player.pos.x);
+printf("playerY:%f\n", data->player.pos.y);
+	move_speed = -10;
+	new_pos.x = data->player.dir.x * move_speed;
+	new_pos.y = data->player.dir.y * move_speed;
+
+	data->player.pos.x += new_pos.x;
+	data->player.pos.y += new_pos.y;
+	create_rays(data, data->player.dir);
 }
