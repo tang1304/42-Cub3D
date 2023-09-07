@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 11:42:49 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 13:28:08 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static t_coord_f	calculate_dest_coord(t_data *data)
 
 	angle = get_straight_angle(data, data->player.dir);
 	dest.x = data->square_view_d * \
-			cos(-angle) + data->col.center.x;
+			cos(-angle) + data->player.pos.x;
 	dest.y = data->square_view_d * \
-			sin(-angle) + data->col.center.y;
+			sin(-angle) + data->player.pos.y;
 	return (dest);
 }
 
@@ -74,8 +74,8 @@ void	move_forward(t_data *data)
 	double		move_speed;
 	t_coord_f	new_pos;
 
-printf("playerX:%f\n", data->player.pos.x);
-printf("playerY:%f\n", data->player.pos.y);
+printf("playerX:%d\n", data->player.pos.x);
+printf("playerY:%d\n", data->player.pos.y);
 	move_speed = 10;
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;
@@ -90,8 +90,8 @@ void	move_backward(t_data *data)
 	double		move_speed;
 	t_coord_f	new_pos;
 
-printf("playerX:%f\n", data->player.pos.x);
-printf("playerY:%f\n", data->player.pos.y);
+printf("playerX:%d\n", data->player.pos.x);
+printf("playerY:%d\n", data->player.pos.y);
 	move_speed = -10;
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;

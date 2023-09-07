@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:00 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 13:11:04 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 13:29:37 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ void	create_line(t_data *data, t_coord_f dest)
 {
 	if (dest.x > data->win_w || dest.y > data->win_h)
 		return ;
-	data->bre.dx = dest.x - data->col.center.x;
-	data->bre.dy = dest.y - data->col.center.y;
+	data->bre.dx = dest.x - data->player.pos.x;
+	data->bre.dy = dest.y - data->player.pos.y;
 	data->bre.inc_x = get_inc_value(data->bre.dx);
 	data->bre.inc_y = get_inc_value(data->bre.dy);
 	data->bre.dx = abs(data->bre.dx);
 	data->bre.dy = abs(data->bre.dy);
-	data->bre.x = data->col.center.x;
-	data->bre.y = data->col.center.y;
+	data->bre.x = data->player.pos.x;
+	data->bre.y = data->player.pos.y;
 	bresenham_algo(data, dest);
 }
 

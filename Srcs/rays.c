@@ -4,8 +4,8 @@ static t_coord_d	compare(t_data *data, t_coord_f dest)
 {
 	t_coord_d	comp;
 
-	comp.x = dest.x - data->col.center.x;
-	comp.y = dest.y - data->col.center.y;
+	comp.x = dest.x - data->player.pos.x;
+	comp.y = dest.y - data->player.pos.y;
 // printf("x = %d\n", comp.x);
 // printf("y = %d\n", comp.y);
 	return (comp);
@@ -45,8 +45,8 @@ static double	calculate_len_vector(t_data *data, t_coord_f hit)
 {
 	double	len;
 
-	len = (hit.x - data->col.center.x) * (hit.x - data->col.center.x) + \
-				(hit.y - data->col.center.y) * (hit.y - data->col.center.y);
+	len = (hit.x - data->player.pos.x) * (hit.x - data->player.pos.x) + \
+				(hit.y - data->player.pos.y) * (hit.y - data->player.pos.y);
 	return (len);
 }
 
