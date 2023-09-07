@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/24 14:16:14 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 08:43:51 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,8 @@ void	data_init(t_data *data)
 	// t_map	map;
 
 	ft_bzero(data, sizeof(t_data));
-	// data->img = img;
-	// ft_bzero(&data->img, sizeof(t_img));
-	// data->map = map;
-	// ft_bzero(&data->map, sizeof(t_map));
 	data->map.c[0] = -1;
 	data->map.f[0] = -1;
-	data->map.data = data;
-	// data->map.map = NULL;
-	// data->map.tmp = NULL;
 	// texture_init(data);
 }
 
@@ -53,21 +46,16 @@ int	main(int argc, char **argv)
 
 	data_init(&data);
 	map_init(&data, argc, argv);
+	// data.mlx = mlx_init();
+	// if (!data.mlx)
+	// 	return (printf("Error\nMlx error\n"), 0);
+	// data.win = mlx_new_window(data.mlx, (data.map.width * 64), 
+	// ft_bzero(&data, sizeof(t_data));
 	data.mlx = mlx_init();
-	if (!data.mlx)
-		map_error(&data.map, "Error\nMlx_init problem\n");
-	open_textures(&data);
-	printf("OK\n");
-	close_all(&data);
-	// data.win = mlx_new_window(data.mlx, (data.map.width * 64), \
-	// 		(data.map.height * 64), "Cub3D");
-	// if (!data.win)
-	// 	ft_close_win_error(&data);
-	// if (!put_map(&data))
-	// 	ft_close(&data);
+	init_data_values(&data);
+	create_window(&data);
+	t_map_cleaning(&data.map);
 	// mlx_key_hook(data.win, keyhook, &data);
 	// mlx_hook(data.win, 2, 1L<<0, keyhook, &data);
-	// mlx_hook(data.win, 17, 0, ft_close, &data);
-	// mlx_loop(data.mlx);
 	return (0);
 }

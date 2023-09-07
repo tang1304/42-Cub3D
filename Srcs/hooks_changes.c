@@ -1,0 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks_changes.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
+/*   Updated: 2023/09/05 12:55:30 by rrebois          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../Incs/cub3D.h"
+
+void	change_board(t_data *data, int keycode)
+{
+	int	x;
+	int	y;
+
+	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
+	x /= data->square_size;
+	y /= data->square_size;
+	if (x < 0 || y < 0 || x > data->mini.width || y > data->mini.height)
+		return ;
+	if (keycode == Z)
+		data->arr[y][x] = '0';
+	else if (keycode == X)
+		data->arr[y][x] = '1';
+	create_board_img(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+}
+
+void	rotate(t_data *data, int keycode)
+{
+	double	rot_speed;
+	double	old_dir_x;
+
+	old_dir_x = data->player.dir.x;
+	if (keycode == A)
+		rot_speed = 1.5f;
+	else
+		rot_speed = -1.5f;
+	// data->player
+}
