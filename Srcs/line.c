@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:00 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 13:29:37 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 09:18:39 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 
 void	create_line(t_data *data, t_coord_f dest)
 {
-	if (dest.x > data->win_w || dest.y > data->win_h)
+	if (dest.x > WIN_WIDTH || dest.y > WIN_LEN)
 		return ;
 	data->bre.dx = dest.x - data->player.pos.x;
 	data->bre.dy = dest.y - data->player.pos.y;
