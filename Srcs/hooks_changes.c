@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 10:39:20 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 11:33:17 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,6 @@ static void	player_dst_pos(t_data *data, int keycode)
 	data->player.angle -= 2 * M_PI;
 	else if (data->player.angle < -(2 * M_PI))
 		data->player.angle += 2 * M_PI;
-	// data->player.view_dst_pos.x = data->square_view_d * \
-	// 		cos(-data->player.angle) + data->player.pos.x;
-	// data->player.view_dst_pos.y = data->square_view_d * \
-	// 		sin(-data->player.angle) + data->player.pos.y;
 }
 
 void	rotate(t_data *data, int keycode)
@@ -67,11 +63,20 @@ void	rotate(t_data *data, int keycode)
 	create_rays(data, data->player.view_dst_pos, data->player.angle);
 }
 
-// void	move_sideways(t_data *data, int keycode)
-// {
-// 	double		move_speed;
-// 	t_coord_d	new_pos;
-// }
+void	move_sideways(t_data *data, int keycode)
+{
+	double		move_speed;
+	t_coord_d	new_pos;
+
+	move_speed = 10;
+	new_pos.x = data->player.dir.x * move_speed;
+	new_pos.y = data->player.dir.y * move_speed;
+	data->player.pos.x += new_pos.x;
+	data->player.pos.y += new_pos.y;
+	create_board_img(data);
+	create_cone_multi_rays(data, data->player.angle);
+	// create_rays(data, data->player.view_dst_pos, data->player.angle);
+}
 
 void	move_forward(t_data *data)
 {
