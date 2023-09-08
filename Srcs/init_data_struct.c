@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 10:40:38 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 10:44:27 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	init_player_data(t_data *data)
 				}
 				else
 				{
-					player.angle = 0;cc
+					player.angle = 0;
 					player.dir.x = 1;
 					player.dir.y = 0;
 				}
@@ -83,5 +83,3 @@ void	init_data_values(t_data *data)
 	bressenham_init(data);
 	create_cpy_map_arr(data);
 }
-
-

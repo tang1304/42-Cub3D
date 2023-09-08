@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/08 10:33:55 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 11:07:07 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@
 # define A 97
 # define S 115
 # define D 100
-# define Z 122
-# define X 120
 # define LEFT 65361
 # define RIGHT 65363
+# define Z 122
+# define X 120
 # define RED_CROSS 33
 
 // Colors
@@ -102,7 +102,7 @@ typedef struct s_player
 {
 	t_coord_d	pos;
 	t_coord_d	view_dst_pos;
-	t_coord_d	dir;
+	t_coord_f	dir;
 	double		angle;
 }				t_player;
 
@@ -192,6 +192,7 @@ int			ft_close(t_data *data);
 
 /*	collision.c	*/
 t_coord_f	init_data_collision(t_data *data, t_ray *ray);
+int			is_colliding_cell(t_data *data, float x, float y);
 
 /*	draw.c	*/
 void		draw_point(t_data *data, double tX, double tY, int color);
