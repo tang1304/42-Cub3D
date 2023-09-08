@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 16:55:11 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 09:30:57 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	change_board(t_data *data, int keycode)
 	int	y;
 
 	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
-	x /= data->square_size;
-	y /= data->square_size;
+	x /= SQUARE_SIZE;
+	y /= SQUARE_SIZE;
 	if (x < 0 || y < 0 || x > data->mini.width || y > data->mini.height)
 		return ;
 	if (keycode == Z)
@@ -32,20 +32,21 @@ void	change_board(t_data *data, int keycode)
 
 static void	player_dst_pos(t_data *data, int keycode)
 {
-	if (data->player.view_dst_pos.x == INT_MAX && \
-		data->player.view_dst_pos.y == INT_MAX)
-		data->player.angle = 0;
-	else if (keycode == A)
+// printf("angle initial: %f\n", data->player.angle * 180 / M_PI);
+	if (keycode == A)
 		data->player.angle += M_PI_4;
 	else if (keycode == D)
 		data->player.angle -= M_PI_4;
-printf("angle initial: %f\n", data->player.angle * 180 / M_PI);
+	if (data->player.angle > 2 * M_PI)
+	data->player.angle -= 2 * M_PI;
+	else if (data->player.angle < -(2 * M_PI))
+		data->player.angle += 2 * M_PI;
 	data->player.view_dst_pos.x = data->square_view_d * \
 			cos(-data->player.angle) + data->player.pos.x;
 	data->player.view_dst_pos.y = data->square_view_d * \
 			sin(-data->player.angle) + data->player.pos.y;
-printf("x: %d\n", data->player.view_dst_pos.x);
-printf("y: %d\n", data->player.view_dst_pos.y);
+// printf("x: %d\n", data->player.view_dst_pos.x);
+// printf("y: %d\n", data->player.view_dst_pos.y);
 }
 
 void	rotate(t_data *data, int keycode)
