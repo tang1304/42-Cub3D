@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 13:24:49 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 09:21:22 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 			data->col.side_touched = 1;
 		}
 		data->ray_len_sq = vector_d_len_sq(data->player.pos, data->col.map);
-		ray->cell.x = data->col.map.x / data->square_size;
-		ray->cell.y = data->col.map.y / data->square_size;
+		ray->cell.x = data->col.map.x / SQUARE_SIZE;
+		ray->cell.y = data->col.map.y / SQUARE_SIZE;
 		if (ray->cell.x < 0 || ray->cell.x >= data->mini.width)
 			continue ;
 		if (ray->cell.y < 0 || ray->cell.y >= data->mini.height)

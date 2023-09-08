@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_array_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:34:53 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 13:12:05 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 10:28:06 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	create_cpy_map_arr(t_data *data)
 		while (data->map.map[i][++j])
 			data->arr[i][j] = data->map.map[i][j];
 	}
+	init_player_data(data);
 }
