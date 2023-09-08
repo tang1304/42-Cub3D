@@ -74,7 +74,7 @@ void	create_cone_multi_rays(t_data *data, double angle)
 		else
 			data->ray[i].len = -1;
 		create_line(data, data->ray[i].hit_p);
-		draw_coll(data, data->col.map.x, data->col.map.y, &data->ray[i]);
+		// draw_coll(data, data->col.map.x, data->col.map.y, &data->ray[i]);
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 11:37:58 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 13:25:23 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static int	key_pressed(int keycode, t_data *data)
 {
 	if (keycode == Z || keycode == X)
 		change_board(data, keycode);
-	else if (keycode == LEFT || keycode == RIGHT)
+	if (keycode == LEFT || keycode == RIGHT)
 		rotate(data, keycode);
-	else if (keycode == W)
+	if (keycode == W)
 		move_forward(data);
 	else if (keycode == S)
 		move_backward(data);

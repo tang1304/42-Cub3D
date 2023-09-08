@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 11:38:34 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 13:48:46 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,22 @@ static void	player_dst_pos(t_data *data, int keycode)
 	old_dir_x = data->player.dir.x;
 	if (keycode == LEFT)
 	{
-		data->player.angle += M_PI_4;
-		data->player.dir.x = old_dir_x * cos(-M_PI_4) - \
-							data->player.dir.y * sin(-M_PI_4);
-		data->player.dir.y = old_dir_x * sin(-M_PI_4) + \
-							data->player.dir.y * cos(-M_PI_4);
+		data->player.angle += 0.1;
+		data->player.dir.x = old_dir_x * cos(-0.1) - \
+							data->player.dir.y * sin(-0.1);
+		data->player.dir.y = old_dir_x * sin(-0.1) + \
+							data->player.dir.y * cos(-0.1);
 	}
 	else if (keycode == RIGHT)
 	{
-		data->player.angle -= M_PI_4;
-		data->player.dir.x = old_dir_x * cos(M_PI_4) - \
-							data->player.dir.y * sin(M_PI_4);
-		data->player.dir.y = old_dir_x * sin(M_PI_4) + \
-							data->player.dir.y * cos(M_PI_4);
+		data->player.angle -= 0.1;
+		data->player.dir.x = old_dir_x * cos(0.1) - \
+							data->player.dir.y * sin(0.1);
+		data->player.dir.y = old_dir_x * sin(0.1) + \
+							data->player.dir.y * cos(0.1);
 	}
 	if (data->player.angle > 2 * M_PI)
-	data->player.angle -= 2 * M_PI;
+		data->player.angle -= 2 * M_PI;
 	else if (data->player.angle < -(2 * M_PI))
 		data->player.angle += 2 * M_PI;
 }
@@ -70,17 +70,21 @@ void	move_sideways(t_data *data, int keycode)
 	t_coord_f	new_dir;
 
 	if (keycode == A)
-		move_speed = 10;
+		move_speed = 5;
 	else
-		move_speed = -10;
+		move_speed = -5;
 	new_dir.x = data->player.dir.x * cos(-M_PI_2) - \
 				data->player.dir.y * sin(-M_PI_2);
 	new_dir.y = data->player.dir.x * sin(-M_PI_2) + \
 				data->player.dir.y * cos(-M_PI_2);
 	new_pos.x = new_dir.x * move_speed;
 	new_pos.y = new_dir.y * move_speed;
-	data->player.pos.x += new_pos.x;
-	data->player.pos.y += new_pos.y;
+	if (data->map.map[data->player.pos.y / SQUARE_SIZE][(data->player.pos.x + \
+		new_pos.x) / SQUARE_SIZE] != '1')
+		data->player.pos.x += new_pos.x;
+	if (data->map.map[(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
+		[data->player.pos.x / SQUARE_SIZE] != '1')
+		data->player.pos.y += new_pos.y;
 	create_board_img(data);
 	create_cone_multi_rays(data, data->player.angle);
 }
@@ -90,11 +94,15 @@ void	move_forward(t_data *data)
 	double		move_speed;
 	t_coord_d	new_pos;
 
-	move_speed = 10;
+	move_speed = 5;
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;
-	data->player.pos.x += new_pos.x;
-	data->player.pos.y += new_pos.y;
+	if (data->map.map[data->player.pos.y / SQUARE_SIZE][(data->player.pos.x + \
+		new_pos.x) / SQUARE_SIZE] != '1')
+		data->player.pos.x += new_pos.x;
+	if (data->map.map[(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
+		[data->player.pos.x / SQUARE_SIZE] != '1')
+		data->player.pos.y += new_pos.y;
 	create_board_img(data);
 	create_cone_multi_rays(data, data->player.angle);
 }
@@ -104,11 +112,15 @@ void	move_backward(t_data *data)
 	double		move_speed;
 	t_coord_d	new_pos;
 
-	move_speed = -10;
+	move_speed = -5;
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;
-	data->player.pos.x += new_pos.x;
-	data->player.pos.y += new_pos.y;
+	if (data->map.map[data->player.pos.y / SQUARE_SIZE][(data->player.pos.x + \
+		new_pos.x) / SQUARE_SIZE] != '1')
+		data->player.pos.x += new_pos.x;
+	if (data->map.map[(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
+		[data->player.pos.x / SQUARE_SIZE] != '1')
+		data->player.pos.y += new_pos.y;
 	create_board_img(data);
 	create_cone_multi_rays(data, data->player.angle);
 }
