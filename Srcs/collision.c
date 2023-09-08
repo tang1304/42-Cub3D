@@ -6,11 +6,23 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 09:21:22 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 13:16:12 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
+
+int	check_walls(t_data *data, t_coord_d *new_pos)
+{
+	int	x;
+	int	y;
+
+	x = (data->player.pos.x + new_pos->x) / SQUARE_SIZE;
+	y = (data->player.pos.y + new_pos->y) / SQUARE_SIZE;
+	if (data->arr[y][x] == '1')
+		return (1);
+	return (0);
+}
 
 static double	vector_d_len_sq(t_coord_d center, t_coord_d map)
 {

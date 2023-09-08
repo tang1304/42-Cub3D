@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 11:00:56 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 13:41:15 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,17 @@ void	move_sideways(t_data *data, int keycode)
 	t_coord_f	new_dir;
 
 	if (keycode == A)
-		move_speed = 10;
+		move_speed = 5;
 	else
-		move_speed = -10;
+		move_speed = -5;
 	new_dir.x = data->player.dir.x * cos(-M_PI_2) - \
 				data->player.dir.y * sin(-M_PI_2);
 	new_dir.y = data->player.dir.x * sin(-M_PI_2) + \
 				data->player.dir.y * cos(-M_PI_2);
 	new_pos.x = new_dir.x * move_speed;
 	new_pos.y = new_dir.y * move_speed;
+	if (check_walls(data, &new_pos))
+		return ;
 	data->player.pos.x += new_pos.x;
 	data->player.pos.y += new_pos.y;
 	create_board_img(data);
@@ -97,6 +99,8 @@ void	move_forward(t_data *data)
 	move_speed = 10;
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;
+	if (check_walls(data, &new_pos))
+		return ;
 	data->player.pos.x += new_pos.x;
 	data->player.pos.y += new_pos.y;
 	create_board_img(data);
@@ -112,6 +116,8 @@ void	move_backward(t_data *data)
 	move_speed = -10;
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;
+	if (check_walls(data, &new_pos))
+		return ;
 	data->player.pos.x += new_pos.x;
 	data->player.pos.y += new_pos.y;
 	create_board_img(data);

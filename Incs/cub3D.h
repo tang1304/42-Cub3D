@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/08 10:51:08 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 13:07:21 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ void		close_map_error(t_data *data);
 int			ft_close(t_data *data);
 
 /*	collision.c	*/
+int			check_walls(t_data *data, t_coord_d *new_pos);
 t_coord_f	init_data_collision(t_data *data, t_ray *ray);
 
 /*	draw.c	*/
