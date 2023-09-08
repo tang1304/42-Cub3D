@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/08 11:38:57 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 15:26:51 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define WIN_WIDTH 1920
 # define WIN_LEN 1080
 # define FOV 60
+# define MOVE_SPEED 5
 
 // strings
 # define COLOR_CHAR "Error\nWrong char in array (%s), must be only digits\n"
@@ -217,8 +218,7 @@ void		hooks(t_data *data);
 void		change_board(t_data *data, int keycode);
 void		rotate(t_data *data, int keycode);
 void		move_sideways(t_data *data, int keycode);
-void		move_forward(t_data *data);
-void		move_backward(t_data *data);
+void		move_fward_bward(t_data *data, int keycode);
 
 /*	init_data_struct.c	*/
 void		init_player_data(t_data *data);
