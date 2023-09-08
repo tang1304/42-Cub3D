@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 13:48:46 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 14:05:56 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,10 @@ static void	player_dst_pos(t_data *data, int keycode)
 
 void	rotate(t_data *data, int keycode)
 {
+	if (keycode != LEFT && keycode != RIGHT)
+		return ;
 	player_dst_pos(data, keycode);
-	create_rays(data, data->player.view_dst_pos, data->player.angle);
+	// create_rays(data, data->player.view_dst_pos, data->player.angle);
 }
 
 void	move_sideways(t_data *data, int keycode)
@@ -69,6 +71,8 @@ void	move_sideways(t_data *data, int keycode)
 	t_coord_d	new_pos;
 	t_coord_f	new_dir;
 
+	if (keycode != A && keycode != D)
+		return ;
 	if (keycode == A)
 		move_speed = 5;
 	else
@@ -85,16 +89,21 @@ void	move_sideways(t_data *data, int keycode)
 	if (data->map.map[(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
 		[data->player.pos.x / SQUARE_SIZE] != '1')
 		data->player.pos.y += new_pos.y;
-	create_board_img(data);
-	create_cone_multi_rays(data, data->player.angle);
+	// create_board_img(data);
+	// create_cone_multi_rays(data, data->player.angle);
 }
 
-void	move_forward(t_data *data)
+void	move_fward_bward(t_data *data, int keycode)
 {
 	double		move_speed;
 	t_coord_d	new_pos;
 
-	move_speed = 5;
+	if (keycode != W && keycode != S)
+		return ;
+	if (keycode == W)
+		move_speed = MOVE_SPEED;
+	else
+		move_speed = -MOVE_SPEED;
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;
 	if (data->map.map[data->player.pos.y / SQUARE_SIZE][(data->player.pos.x + \
@@ -103,24 +112,6 @@ void	move_forward(t_data *data)
 	if (data->map.map[(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
 		[data->player.pos.x / SQUARE_SIZE] != '1')
 		data->player.pos.y += new_pos.y;
-	create_board_img(data);
-	create_cone_multi_rays(data, data->player.angle);
-}
-
-void	move_backward(t_data *data)
-{
-	double		move_speed;
-	t_coord_d	new_pos;
-
-	move_speed = -5;
-	new_pos.x = data->player.dir.x * move_speed;
-	new_pos.y = data->player.dir.y * move_speed;
-	if (data->map.map[data->player.pos.y / SQUARE_SIZE][(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != '1')
-		data->player.pos.x += new_pos.x;
-	if (data->map.map[(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
-		[data->player.pos.x / SQUARE_SIZE] != '1')
-		data->player.pos.y += new_pos.y;
-	create_board_img(data);
-	create_cone_multi_rays(data, data->player.angle);
+	// create_board_img(data);
+	// create_cone_multi_rays(data, data->player.angle);
 }
