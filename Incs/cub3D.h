@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/07 16:55:37 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 09:34:46 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 # define A 97
 # define S 115
 # define D 100
-# define LEFT 68
-# define RIGHT 67
 # define Z 122
 # define X 120
+# define LEFT 65361
+# define RIGHT 65363
 # define RED_CROSS 33
 
 // Colors
@@ -101,7 +101,7 @@ typedef struct s_player
 {
 	t_coord_d	pos;
 	t_coord_d	view_dst_pos;
-	t_coord_f	dir;
+	t_coord_d	dir;
 	double		angle;
 }				t_player;
 
