@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 10:01:58 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 12:50:41 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ void	init_player_data(t_data *data)
 		j = -1;
 		while (data->map.map[i][++j])
 		{
-			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'O' || \
+			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'W' || \
 				data->map.map[i][j] == 'S' || data->map.map[i][j] == 'E')
 			{
 				if (data->map.map[i][j] == 'N')
 				{
 					player.angle = M_PI_2;
 					player.dir.x = 0;
-					player.dir.y = 1;
+					player.dir.y = -1;
 				}
-				else if (data->map.map[i][j] == 'O')
+				else if (data->map.map[i][j] == 'W')
 				{
 					player.angle = M_PI;
 					player.dir.x = -1;
@@ -52,7 +52,7 @@ void	init_player_data(t_data *data)
 				{
 					player.angle = 3 * M_PI_2;
 					player.dir.x = 0;
-					player.dir.y = -1;
+					player.dir.y = 1;
 				}
 				else
 				{
