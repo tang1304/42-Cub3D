@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 11:20:09 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 11:38:49 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,26 +126,4 @@ t_coord_f	init_data_collision(t_data *data, t_ray *ray)
 	}
 	miss = wall_detection(data, ray);
 	return (miss);
-}
-
-int	is_colliding_cell(t_data *data, float x, float y)
-{
-  t_coord_d cell = {
-    x / SQUARE_SIZE,
-    y / SQUARE_SIZE
-  };
-printf("x_pxl:%f\n", x);
-printf("y_pxl:%f\n", y);
-  // Check out of map coordinates
-  if (cell.x < 0 || cell.x > data->map.width - 1)
-    return (0);
-  if (cell.y < 0 || cell.y > data->map.height - 1)
-    return (0);
-printf("x:%d\n", cell.x);
-printf("y:%d\n", cell.y);
-  // Check cell value
-  if (data->map.map[cell.y][cell.x] == 1) // Is a wall
-    return (1);
-
-  return (0);
 }

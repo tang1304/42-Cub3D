@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/08 11:07:07 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 11:38:57 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,6 @@ int			ft_close(t_data *data);
 
 /*	collision.c	*/
 t_coord_f	init_data_collision(t_data *data, t_ray *ray);
-int			is_colliding_cell(t_data *data, float x, float y);
 
 /*	draw.c	*/
 void		draw_point(t_data *data, double tX, double tY, int color);
@@ -217,6 +216,7 @@ void		hooks(t_data *data);
 /*	hooks_changes.c	*/
 void		change_board(t_data *data, int keycode);
 void		rotate(t_data *data, int keycode);
+void		move_sideways(t_data *data, int keycode);
 void		move_forward(t_data *data);
 void		move_backward(t_data *data);
 
