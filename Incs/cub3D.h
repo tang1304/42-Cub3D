@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/08 10:16:05 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 10:28:34 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@
 
 # define M_PI 3.14159265358979323846
 # define M_PI_2 1.57079632679489661923
+
 // Keycodes
 # define ESC 65307
 # define W 119
 # define A 97
 # define S 115
 # define D 100
-# define LEFT 68
-# define RIGHT 67
+# define LEFT 65361
+# define RIGHT 65363
 # define Z 122
 # define X 120
 # define RED_CROSS 33
