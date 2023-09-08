@@ -49,7 +49,7 @@ static double	calculate_len_vector(t_data *data, t_coord_f hit)
 	return (len);
 }
 
-static void	create_cone_multi_rays(t_data *data, double angle)
+void	create_cone_multi_rays(t_data *data, double angle)
 {
 	double		min_ang;
 	double		max_ang;

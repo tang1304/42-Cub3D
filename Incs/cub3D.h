@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/08 09:34:46 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 10:33:55 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 # define M_PI 3.14159265358979323846
 # define M_PI_2 1.57079632679489661923
+
 // Keycodes
 # define ESC 65307
 # define W 119
@@ -169,13 +170,10 @@ typedef struct s_data
 {
 	void		*mlx; //mlx pointer
 	void		*win; //window pointer
-	int			win_h;
-	int			win_w;
 	double		fov;
 	float		square_view_d;
 	float		ray_len_sq;
 	int			**arr;
-	int			square_size;
 	t_ray		*ray;
 	t_player	player;
 	t_map		map;
@@ -222,6 +220,7 @@ void		move_forward(t_data *data);
 void		move_backward(t_data *data);
 
 /*	init_data_struct.c	*/
+void		init_player_data(t_data *data);
 void		init_data_values(t_data *data);
 
 /*	init_array_map.c	*/
@@ -258,6 +257,7 @@ void		define_map_width(t_map *map);
 
 /*	rays.c	*/
 double		get_straight_angle(t_data *data, t_coord_d dest);
+void		create_cone_multi_rays(t_data *data, double angle);
 void		create_rays(t_data *data, t_coord_d dest, double angle);
 
 /*	utils.c	*/

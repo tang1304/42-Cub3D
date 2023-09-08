@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/07 08:46:21 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 09:48:23 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	create_window(t_data *data)
 {
 	t_img	img;
 
-	data->win = mlx_new_window(data->mlx, data->win_w, data->win_h, "cub3D");
-	img.img = mlx_new_image(data->mlx, data->win_w, data->win_h);
+	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_LEN, "cub3D");
+	img.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_LEN);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_l, &img.endian);
 	data->img = img;
 	img_loop(data);
@@ -25,12 +25,8 @@ void	create_window(t_data *data)
 
 void	img_loop(t_data *data)
 {
-	// int	x;
-	// int	y;
-
-	// x = (data->win_l / 2) - (data->mini.width / 2);
-	// y = (data->win_h / 2) - (data->mini.height / 2);
 	create_board_img(data);
+	create_cone_multi_rays(data, data->player.angle);
 	hooks(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	mlx_hook(data->win, 17, 0, ft_close, &data);//segfault sur croix
@@ -43,7 +39,7 @@ static void	add_squares(int x, int y, t_data *data, int num)
 	int	j;
 	int	s;
 
-	s = data->square_size;
+	s = SQUARE_SIZE;
 	i = x * s;
 	while (i < (x * s) + s)
 	{
