@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/08 15:26:51 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/18 13:31:50 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define WIN_WIDTH 1920
 # define WIN_LEN 1080
 # define FOV 60
-# define MOVE_SPEED 5
+# define MOVE_SPEED 2
 
 // strings
 # define COLOR_CHAR "Error\nWrong char in array (%s), must be only digits\n"
@@ -105,6 +105,12 @@ typedef struct s_player
 	t_coord_d	view_dst_pos;
 	t_coord_f	dir;
 	double		angle;
+	int			w;
+	int			a;
+	int			s;
+	int			d;
+	int			left;
+	int			right;
 }				t_player;
 
 typedef struct s_bresenham
@@ -212,13 +218,22 @@ void		get_floor_color(t_map *map, char *str, char *elem, int i);
 void		get_map(t_map *map, int i);
 
 /*	hooks.c	*/
-void		hooks(t_data *data);
+int			key_pressed(int keycode, t_data *data);
+int			key_released(int keycode, t_data *data);
+int			actions(t_data *data);
+// void		hooks(t_data *data);
 
 /*	hooks_changes.c	*/
 void		change_board(t_data *data, int keycode);
-void		rotate(t_data *data, int keycode);
-void		move_sideways(t_data *data, int keycode);
-void		move_fward_bward(t_data *data, int keycode);
+// void		rotate(t_data *data, int keycode);
+// void		move_sideways(t_data *data, int keycode);
+// void		move_fward_bward(t_data *data, int keycode);
+void		rotate_left(t_data *data);
+void		rotate_right(t_data *data);
+void		move_left(t_data *data);
+void		move_right(t_data *data);
+void		move_forward(t_data *data);
+void		move_backward(t_data *data);
 
 /*	init_data_struct.c	*/
 void		init_player_data(t_data *data);
