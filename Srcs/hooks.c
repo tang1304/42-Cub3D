@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/18 13:24:16 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/18 14:50:23 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 int	actions(t_data *data)
 {
-	// if (keycode == Z || keycode == X)
-	// 	change_board(data, keycode);
-	// if (keycode == LEFT || keycode == RIGHT)
-	if (data->player.left)
-		rotate_left(data);
-	if (data->player.right)
-		rotate_right(data);
 	if (data->player.w)
 		move_forward(data);
 	if (data->player.s)
@@ -29,6 +22,10 @@ int	actions(t_data *data)
 		move_left(data);
 	if (data->player.d)
 		move_right(data);
+	if (data->player.left)
+		rotate_left(data);
+	if (data->player.right)
+		rotate_right(data);
 	create_board_img(data);
 	create_cone_multi_rays(data, data->player.angle);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
@@ -78,15 +75,4 @@ int	mouse_moved(int x, int y, t_data *data)
 	(void)data;
 	create_rays(data, dest, 0);
 	return (0);
-}
-
-void	hooks(t_data *data)
-{
-	// Adding/removing walls + mvment
-	mlx_hook(data->win, 2, 1L << 0, key_pressed, data);
-	mlx_hook(data->win, 3, 1L << 1, key_released, data);
-	mlx_loop_hook(data->mlx, actions, data);
-	// mlx_hook(data->win, 3, 1L << 0, key_released, data);
-	// When mouse moves over window
-	// mlx_hook(data->win, 6, 1L << 6, mouse_moved, data);
 }

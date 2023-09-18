@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/18 13:31:50 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/18 14:36:22 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define WIN_LEN 1080
 # define FOV 60
 # define MOVE_SPEED 2
+# define ANGLE_MOVE 0.01
 
 // strings
 # define COLOR_CHAR "Error\nWrong char in array (%s), must be only digits\n"

@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/18 13:26:48 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/18 14:21:50 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	create_window(t_data *data)
 	img.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_LEN);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_l, &img.endian);
 	data->img = img;
+	create_board_img(data);
+	create_cone_multi_rays(data, data->player.angle);
 	img_loop(data);
 }
 
 void	img_loop(t_data *data)
 {
-	create_board_img(data);
-	create_cone_multi_rays(data, data->player.angle);
 	mlx_hook(data->win, 2, 1L << 0, key_pressed, data);
 	mlx_hook(data->win, 3, 1L << 1, key_released, data);
 	mlx_hook(data->win, 17, 0, ft_close, &data);//segfault sur croix
