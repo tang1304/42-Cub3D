@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:00 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 09:18:39 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/19 09:55:29 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	create_line(t_data *data, t_coord_f dest)
 	data->bre.dy = dest.y - data->player.pos.y;
 	data->bre.inc_x = get_inc_value(data->bre.dx);
 	data->bre.inc_y = get_inc_value(data->bre.dy);
-	data->bre.dx = abs(data->bre.dx);
-	data->bre.dy = abs(data->bre.dy);
+	data->bre.dx = fabs(data->bre.dx);
+	data->bre.dy = fabs(data->bre.dy);
 	data->bre.x = data->player.pos.x;
 	data->bre.y = data->player.pos.y;
 	bresenham_algo(data, dest);
