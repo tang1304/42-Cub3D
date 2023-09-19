@@ -6,13 +6,23 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 11:38:49 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/19 10:53:14 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-static double	vector_d_len_sq(t_coord_d center, t_coord_d map)
+// static double	vector_d_len_sq(t_coord_d center, t_coord_d map)
+// {
+// 	float	value_sq;
+
+// 	value_sq = (center.x - map.x) * (center.x - map.x) + \
+// 			(center.y - map.y) * (center.y - map.y);
+// 	return (value_sq);
+
+// }
+
+static float	vector_f_len_sq(t_coord_f center, t_coord_f map)
 {
 	float	value_sq;
 
@@ -49,7 +59,7 @@ static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 	miss.x = -1;
 	miss.y = -1;
 	ray->side_hit = 0;
-	data->ray_len_sq = vector_d_len_sq(data->player.pos, data->col.map);
+	data->ray_len_sq = vector_f_len_sq(data->player.pos, data->col.map);
 	while (data->ray_len_sq < data->square_view_d * data->square_view_d)
 	{
 		if (data->col.side_d.x < data->col.side_d.y)
@@ -64,7 +74,7 @@ static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 			data->col.map.y += data->col.step.y;
 			data->col.side_touched = 1;
 		}
-		data->ray_len_sq = vector_d_len_sq(data->player.pos, data->col.map);
+		data->ray_len_sq = vector_f_len_sq(data->player.pos, data->col.map);
 		ray->cell.x = data->col.map.x / SQUARE_SIZE;
 		ray->cell.y = data->col.map.y / SQUARE_SIZE;
 		if (ray->cell.x < 0 || ray->cell.x >= data->mini.width)

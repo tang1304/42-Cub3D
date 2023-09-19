@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/18 14:36:22 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/19 10:52:18 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@
 // data info
 # define VIEW_DIST 15
 # define SQUARE_SIZE 20
-# define WIN_WIDTH 1920
-# define WIN_LEN 1080
+# define WIN_WIDTH 1280
+# define WIN_LEN 720
 # define FOV 60
-# define MOVE_SPEED 2
+# define MOVE_SPEED 0.1
 # define ANGLE_MOVE 0.01
 
 // strings
@@ -90,8 +90,8 @@ typedef struct s_texture
 
 typedef struct s_coord_d
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 }				t_coord_d;
 
 typedef struct s_coord_f
@@ -102,8 +102,8 @@ typedef struct s_coord_f
 
 typedef struct s_player
 {
-	t_coord_d	pos;
-	t_coord_d	view_dst_pos;
+	t_coord_f	pos;
+	t_coord_f	view_dst_pos;
 	t_coord_f	dir;
 	double		angle;
 	int			w;
@@ -116,15 +116,15 @@ typedef struct s_player
 
 typedef struct s_bresenham
 {
-	int	x;
-	int	y;
-	int	dx;
-	int	dy;
-	int	inc_x;
-	int	inc_y;
-	int	slope;
-	int	error;
-	int	error_inc;
+	float	x;
+	float	y;
+	float	dx;
+	float	dy;
+	float	inc_x;
+	float	inc_y;
+	float	slope;
+	float	error;
+	float	error_inc;
 }				t_bresenham;
 
 typedef struct s_ray
@@ -158,7 +158,7 @@ typedef struct s_map
 
 typedef struct s_col
 {
-	t_coord_d	map;
+	t_coord_f	map;
 	t_coord_f	dir;
 	t_coord_f	dest;
 	t_coord_f	step;
