@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/19 10:52:18 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/19 14:28:56 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define WIN_WIDTH 1280
 # define WIN_LEN 720
 # define FOV 60
-# define MOVE_SPEED 0.1
+# define MOVE_SPEED 2
 # define ANGLE_MOVE 0.01
 
 // strings
@@ -90,8 +90,8 @@ typedef struct s_texture
 
 typedef struct s_coord_d
 {
-	double	x;
-	double	y;
+	int	x;
+	int	y;
 }				t_coord_d;
 
 typedef struct s_coord_f
