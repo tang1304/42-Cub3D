@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/19 10:52:18 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 11:37:35 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,17 @@
 # define GREEN 0x0000FF00
 # define RED 0x00FF0000
 # define BLUE 0x000000FF
+# define BLACK 0x00000000
+# define PURPLE 0x00890089
 
 // data info
 # define VIEW_DIST 15
 # define SQUARE_SIZE 20
-# define WIN_WIDTH 1280
+# define WIN_WIDTH 1440
 # define WIN_LEN 720
 # define FOV 60
-# define MOVE_SPEED 0.1
+# define RAY_NUMBER 360
+# define MOVE_SPEED 2
 # define ANGLE_MOVE 0.01
 
 // strings
@@ -90,8 +93,8 @@ typedef struct s_texture
 
 typedef struct s_coord_d
 {
-	double	x;
-	double	y;
+	int	x;
+	int	y;
 }				t_coord_d;
 
 typedef struct s_coord_f
@@ -277,6 +280,10 @@ double		get_straight_angle(t_data *data, t_coord_d dest);
 void		create_cone_multi_rays(t_data *data, double angle);
 void		create_rays(t_data *data, t_coord_d dest, double angle);
 
+/*	render.c	*/
+void		render_walls(t_data *data, int i, float slice_height, int slice_width);
+void		rays_render(t_data *data);
+
 /*	utils.c	*/
 int			new_str_start(char *str, int k);
 char		*double_strtrim(char *str, char *s1, char *s2);
@@ -289,5 +296,9 @@ void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void		create_window(t_data *data);
 void		img_loop(t_data *data);
 void		create_board_img(t_data *data);
+
+/*	math.c	*/
+double		vector_d_len_sq(t_coord_d center, t_coord_d map);
+float		calculate_len_vector(t_data *data, t_coord_f hit);
 
 #endif

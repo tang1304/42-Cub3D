@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   collision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/19 10:53:14 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 10:51:38 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
-
-// static double	vector_d_len_sq(t_coord_d center, t_coord_d map)
-// {
-// 	float	value_sq;
-
-// 	value_sq = (center.x - map.x) * (center.x - map.x) + \
-// 			(center.y - map.y) * (center.y - map.y);
-// 	return (value_sq);
-
-// }
 
 static float	vector_f_len_sq(t_coord_f center, t_coord_f map)
 {

@@ -40,15 +40,6 @@ printf("angle: %f\n", angle *180 / M_PI);
 	return (angle);
 }
 
-static double	calculate_len_vector(t_data *data, t_coord_f hit)
-{
-	double	len;
-
-	len = (hit.x - data->player.pos.x) * (hit.x - data->player.pos.x) + \
-				(hit.y - data->player.pos.y) * (hit.y - data->player.pos.y);
-	return (len);
-}
-
 void	create_cone_multi_rays(t_data *data, double angle)
 {
 	double		min_ang;
@@ -75,6 +66,7 @@ void	create_cone_multi_rays(t_data *data, double angle)
 			data->ray[i].len = -1;
 		create_line(data, data->ray[i].hit_p);
 	}
+	rays_render(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
 
@@ -84,7 +76,7 @@ void	create_rays(t_data *data, t_coord_d dest, double angle)
 
 	// data->img.img = mlx_new_image(data->mlx, data->win_w, data->win_h);
 	// data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp, &data->img.line_l, &data->img.endian);
-	create_board_img(data);
+	// create_board_img(data);
 	// angle = get_straight_angle(data, dest);
 	create_cone_multi_rays(data, angle);
 }
