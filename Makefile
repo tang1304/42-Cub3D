@@ -15,13 +15,15 @@ SRCS = close.c \
 		line_utils.c \
 		draw.c \
 		rays.c \
+		render.c \
 		main.c \
 		map_char_checks.c \
 		map_init.c \
 		map_parsing.c \
 		map_utils.c \
 		utils.c \
-		window.c
+		window.c \
+		math.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
 OBJ_DIR = objs/
