@@ -41,7 +41,7 @@ void	draw_coll(t_data *data, int x, int y, t_ray *ray)
 			else if (ray->side_hit == 2)
 				my_mlx_pixel_put(&data->img, start.x, start.y, GREEN);
 			else if (ray->side_hit == 1)
-				my_mlx_pixel_put(&data->img, start.x, start.y, RED);
+				my_mlx_pixel_put(&data->img, start.x, start.y, PURPLE);
 			// else
 			// 	my_mlx_pixel_put(&data->img, start.x, start.y, 0x00FFFF00);
 			start.y = start.y + 1;

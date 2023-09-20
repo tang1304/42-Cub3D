@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/20 11:24:33 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 12:51:06 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,7 @@ int	actions(t_data *data)
 	if (data->player.w || data->player.s || data->player.a || data->player.d \
 		|| data->player.left || data->player.right)
 	{
-		int x = 0;
-		int y = 0;
-		while (x < WIN_WIDTH)
-	{
-		y = 0;
-		while (y < WIN_LEN)
-		{
-			my_mlx_pixel_put(&data->img, x, y, BLACK);
-			y++;
-		}
-		x++;
-	}
+		init_black_img(data);
 		create_board_img(data);
 		create_cone_multi_rays(data, data->player.angle);
 		// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);

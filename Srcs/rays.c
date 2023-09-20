@@ -50,20 +50,19 @@ void	create_cone_multi_rays(t_data *data, double angle)
 	i = -1;
 	min_ang = angle - data->fov / 2;
 	max_ang = angle + data->fov / 2;
-	while (++i < WIN_WIDTH)
+	while (++i < RAY_NUMBER)
 	{
+		data->ray[i].len = -1;
 		data->ray[i].dest.x = data->square_view_d * \
-			cos(-min_ang - (data->fov / WIN_WIDTH) * i) + data->player.pos.x;
+			cos(-min_ang + (data->fov / RAY_NUMBER) * i) + data->player.pos.x;
 		data->ray[i].dest.y = data->square_view_d * \
-			sin(-min_ang - (data->fov / WIN_WIDTH) * i) + data->player.pos.y;
+			sin(-min_ang + (data->fov / RAY_NUMBER) * i) + data->player.pos.y;
 		miss = init_data_collision(data, &data->ray[i]);
 		if (miss.x != -1 && miss.y != -1)
 		{
 			data->ray[i].hit_p = miss;
 			data->ray[i].len = calculate_len_vector(data, miss);
 		}
-		else
-			data->ray[i].len = -1;
 		create_line(data, data->ray[i].hit_p);
 	}
 	rays_render(data);

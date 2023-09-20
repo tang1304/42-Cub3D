@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/20 10:51:38 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 13:51:54 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1')
 		{
 			detection_wall_touched(data, ray);
+			draw_coll(data, data->col.map.x, data->col.map.y, ray);
 			miss.x = (float)data->col.map.x;
 			miss.y = (float)data->col.map.y;
 			return (miss);
