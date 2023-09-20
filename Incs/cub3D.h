@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/20 15:35:00 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 16:10:14 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_coord_f
 typedef struct s_player
 {
 	t_coord_f	pos;
-	t_coord_f	view_dst_pos;
+	t_coord_f	view_dst_pos;//inutilisee
 	t_coord_f	dir;
 	double		angle;
 	int			w;
