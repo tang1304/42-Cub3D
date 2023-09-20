@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 11:58:33 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 13:27:07 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,24 @@ static void	bressenham_init(t_data *data)
 
 	ft_bzero(&bre, sizeof(t_bresenham));
 	data->bre = bre;
+}
+
+void	init_black_img(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WIN_WIDTH)
+	{
+		y = 0;
+		while (y < WIN_LEN)
+		{
+			my_mlx_pixel_put(&data->img, x, y, BLACK);
+			y++;
+		}
+		x++;
+	}
 }
 
 void	init_player_data(t_data *data)
@@ -76,7 +94,7 @@ void	init_data_values(t_data *data)
 	data->fov = FOV * M_PI / 180;
 	data->mini.height = SQUARE_SIZE * data->map.height;
 	data->mini.width = SQUARE_SIZE * data->map.width;
-	ray = (t_ray *)ft_calloc(WIN_WIDTH, sizeof(*ray));
+	ray = (t_ray *)ft_calloc(RAY_NUMBER, sizeof(*ray));
 	if (ray == NULL)
 		exit (1);//free all
 	data->ray = ray;

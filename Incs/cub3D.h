@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/20 11:37:35 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 15:35:00 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 # define WIN_WIDTH 1440
 # define WIN_LEN 720
 # define FOV 60
-# define RAY_NUMBER 360
+# define RAY_NUMBER 180
 # define MOVE_SPEED 2
 # define ANGLE_MOVE 0.01
 
@@ -240,6 +240,7 @@ void		move_forward(t_data *data);
 void		move_backward(t_data *data);
 
 /*	init_data_struct.c	*/
+void		init_black_img(t_data *data);
 void		init_player_data(t_data *data);
 void		init_data_values(t_data *data);
 
