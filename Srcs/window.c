@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 09:48:23 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 10:12:22 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	create_window(t_data *data)
 
 void	img_loop(t_data *data)
 {
-	create_board_img(data);
+	// create_board_img(data);
 	create_cone_multi_rays(data, data->player.angle);
 	hooks(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);

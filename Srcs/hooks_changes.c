@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 13:41:15 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 10:42:19 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	player_dst_pos(t_data *data, int keycode)
 							data->player.dir.y * cos(M_PI_4);
 	}
 	if (data->player.angle > 2 * M_PI)
-	data->player.angle -= 2 * M_PI;
+		data->player.angle -= 2 * M_PI;
 	else if (data->player.angle < -(2 * M_PI))
 		data->player.angle += 2 * M_PI;
 	// data->player.view_dst_pos.x = data->square_view_d * \
@@ -105,7 +105,6 @@ void	move_forward(t_data *data)
 	data->player.pos.y += new_pos.y;
 	create_board_img(data);
 	create_cone_multi_rays(data, data->player.angle);
-	// create_rays(data, data->player.view_dst_pos, data->player.angle);
 }
 
 void	move_backward(t_data *data)
@@ -122,5 +121,4 @@ void	move_backward(t_data *data)
 	data->player.pos.y += new_pos.y;
 	create_board_img(data);
 	create_cone_multi_rays(data, data->player.angle);
-	// create_rays(data, data->player.view_dst_pos, data->player.angle);
 }

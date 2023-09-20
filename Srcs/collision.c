@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 13:16:12 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 09:22:09 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,6 @@ int	check_walls(t_data *data, t_coord_d *new_pos)
 	return (0);
 }
 
-static double	vector_d_len_sq(t_coord_d center, t_coord_d map)
-{
-	float	value_sq;
-
-	value_sq = (center.x - map.x) * (center.x - map.x) + \
-			(center.y - map.y) * (center.y - map.y);
-	return (value_sq);
-
-}
 
 static void	detection_wall_touched(t_data *data, t_ray *ray)
 {

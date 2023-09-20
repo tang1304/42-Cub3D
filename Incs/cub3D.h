@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/08 13:07:21 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 09:45:05 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@
 // data info
 # define VIEW_DIST 15
 # define SQUARE_SIZE 20
-# define WIN_WIDTH 1920
-# define WIN_LEN 1080
+# define WIN_WIDTH 1440
+# define WIN_LEN 720
 # define FOV 60
+# define RAY_NUMBER 360
 
 // strings
 # define COLOR_CHAR "Error\nWrong char in array (%s), must be only digits\n"
@@ -103,6 +104,12 @@ typedef struct s_player
 	t_coord_d	pos;
 	t_coord_d	view_dst_pos;
 	t_coord_f	dir;
+	int			w;
+	int			a;
+	int			s;
+	int			d;
+	int			left;
+	int			right;
 	double		angle;
 }				t_player;
 
@@ -262,6 +269,9 @@ double		get_straight_angle(t_data *data, t_coord_d dest);
 void		create_cone_multi_rays(t_data *data, double angle);
 void		create_rays(t_data *data, t_coord_d dest, double angle);
 
+/*	render.c	*/
+void		rays_render(t_data *data);
+
 /*	utils.c	*/
 int			new_str_start(char *str, int k);
 char		*double_strtrim(char *str, char *s1, char *s2);
@@ -274,5 +284,9 @@ void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void		create_window(t_data *data);
 void		img_loop(t_data *data);
 void		create_board_img(t_data *data);
+
+/*	math.c	*/
+double		vector_d_len_sq(t_coord_d center, t_coord_d map);
+float		calculate_len_vector(t_data *data, t_coord_f hit);
 
 #endif
