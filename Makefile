@@ -20,6 +20,7 @@ SRCS = close.c \
 		map_init.c \
 		map_parsing.c \
 		map_utils.c \
+		render.c \
 		utils.c \
 		window.c
 SRCS_DIR = ./Srcs/

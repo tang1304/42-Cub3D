@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/18 14:21:50 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 10:06:16 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,21 @@
 
 void	create_window(t_data *data)
 {
-	t_img	img;
+	t_img	map;
+	t_img	game;
 
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_LEN, "cub3D");
-	img.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_LEN);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_l, &img.endian);
-	data->img = img;
+	game.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_LEN);
+	game.addr = mlx_get_data_addr(game.img, &game.bpp, &game.line_l, \
+				&game.endian);
+	map.img = mlx_new_image(data->mlx, data->mini.width, data->mini.height);
+	map.addr = mlx_get_data_addr(map.img, &map.bpp, &map.line_l, &map.endian);
+	data->map_img = map;
+	data->game_img = game;
 	create_board_img(data);
 	create_cone_multi_rays(data, data->player.angle);
+	create_game_rays(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->game_img.img, 0, 0);
 	img_loop(data);
 }
 
@@ -48,12 +55,12 @@ static void	add_squares(int x, int y, t_data *data, int num)
 		while (j < (y * s) + s)
 		{
 			if (num == 1)
-				my_mlx_pixel_put(&data->img, i, j, 0x00C4C4C4); // wall
+				my_mlx_pixel_put(&data->map_img, i, j, 0x80C4C4C4); // wall
 			else if (num == 0 || num == 69 || num == 78 || num == 83 \
 					|| num == 87)
-				my_mlx_pixel_put(&data->img, i, j, 0x00FFFFFF); // floor
+				my_mlx_pixel_put(&data->map_img, i, j, 0x80FFFFFF); // floor
 			else if (num == 32)
-				my_mlx_pixel_put(&data->img, i, j, 0x00000000); // empty space
+				my_mlx_pixel_put(&data->map_img, i, j, 0x80000000); // empty space
 			j++;
 		}
 		i++;

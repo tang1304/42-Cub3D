@@ -66,6 +66,11 @@ void	create_cone_multi_rays(t_data *data, double angle)
 		data->ray[i].dest.y = data->square_view_d * \
 			sin(-min_ang - (data->fov / WIN_WIDTH) * i) + data->player.pos.y;
 		miss = init_data_collision(data, &data->ray[i]);
+		if (i < RAY_NBR / 2)
+			data->ray[i].angle = (data->fov / 2) - ((i + 1) * data->fov / (RAY_NBR));
+		if (i >= RAY_NBR / 2)
+			data->ray[i].angle = (data->fov / 2) - ((i + 1) * data->fov / (RAY_NBR));
+printf("angle: %f\n", data->ray[i].angle / (M_PI / 180));
 		if (miss.x != -1 && miss.y != -1)
 		{
 			data->ray[i].hit_p = miss;
@@ -75,7 +80,8 @@ void	create_cone_multi_rays(t_data *data, double angle)
 			data->ray[i].len = -1;
 		create_line(data, data->ray[i].hit_p);
 	}
-	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	create_game_rays(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->map_img.img, 0, 0);
 }
 
 void	create_rays(t_data *data, t_coord_d dest, double angle)

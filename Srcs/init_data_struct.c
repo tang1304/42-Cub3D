@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 11:58:33 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 13:04:08 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	init_data_values(t_data *data)
 	data->fov = FOV * M_PI / 180;
 	data->mini.height = SQUARE_SIZE * data->map.height;
 	data->mini.width = SQUARE_SIZE * data->map.width;
-	ray = (t_ray *)ft_calloc(WIN_WIDTH, sizeof(*ray));
+	ray = (t_ray *)ft_calloc(RAY_NBR, sizeof(*ray));
 	if (ray == NULL)
 		exit (1);//free all
 	data->ray = ray;

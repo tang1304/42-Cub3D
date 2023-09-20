@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/19 14:28:56 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/20 15:43:43 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,16 @@
 # define GREEN 0x0000FF00
 # define RED 0x00FF0000
 # define BLUE 0x000000FF
+# define YELLOW 0x00FFFF00
 
 // data info
 # define VIEW_DIST 15
-# define SQUARE_SIZE 20
+# define SQUARE_SIZE 15
 # define WIN_WIDTH 1280
 # define WIN_LEN 720
+# define RAY_NBR 1280
 # define FOV 60
-# define MOVE_SPEED 2
+# define MOVE_SPEED 10
 # define ANGLE_MOVE 0.01
 
 // strings
@@ -90,8 +92,8 @@ typedef struct s_texture
 
 typedef struct s_coord_d
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 }				t_coord_d;
 
 typedef struct s_coord_f
@@ -132,8 +134,13 @@ typedef struct s_ray
 	t_coord_f	hit_p;
 	t_coord_d	cell;
 	t_coord_d	dest;
+	t_coord_d	top;
+	t_coord_d	bottom;
 	double		len;
+	double		correction;
 	int			side_hit;
+	int			color;
+	float		angle;
 }				t_ray;
 
 typedef struct s_map
@@ -186,7 +193,8 @@ typedef struct s_data
 	t_player	player;
 	t_map		map;
 	t_col		col;
-	t_img		img;
+	t_img		map_img;
+	t_img		game_img;
 	t_img		start;
 	t_bresenham	bre;
 	t_mini		mini;
@@ -276,6 +284,9 @@ void		define_map_width(t_map *map);
 double		get_straight_angle(t_data *data, t_coord_d dest);
 void		create_cone_multi_rays(t_data *data, double angle);
 void		create_rays(t_data *data, t_coord_d dest, double angle);
+
+/*	render.c	*/
+void		create_game_rays(t_data *data);
 
 /*	utils.c	*/
 int			new_str_start(char *str, int k);
