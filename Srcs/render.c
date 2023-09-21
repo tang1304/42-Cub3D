@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:37:51 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/20 16:20:34 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/21 11:43:10 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,17 @@ void	create_game_rays(t_data *data)
 // printf("i: %d\n", i);
 		if (data->ray[i].len == -1)
 			continue ;
-		if (i < RAY_NBR / 2)
-			wall_height = (1 / (data->ray[i].len * cos(data->ray[i].angle)) * WIN_LEN);
-		else
-			wall_height = (1 / (data->ray[i].len * cos(data->ray[i].angle)) * WIN_LEN);
+// printf("correc: %f\n", data->ray[i].correction);
+// printf("len: %f\n", data->ray[i].len);
+		wall_height = (1 / (data->ray[i].correction) * WIN_LEN);
+		// if (i < RAY_NBR / 2)
+		// 	wall_height = (1 / ((data->ray[i].len) * cos(data->ray[i].angle)) * WIN_LEN);
+		// else
+		// 	wall_height = (1 / ((data->ray[i].len) * cos(data->ray[i].angle)) * WIN_LEN);
+// printf("wall_h: %f\n", wall_height);
 // printf("ray_len: %f\n", data->ray[i].len);
 // printf("wall: %f\n", wall_height);
-		wall_height *= 1000;
+		// wall_height *= 40;
 		if (data->ray[i].side_hit == 1)
 			data->ray[i].color = RED;
 		else if (data->ray[i].side_hit == 2)

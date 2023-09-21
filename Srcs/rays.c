@@ -36,7 +36,7 @@ double	get_straight_angle(t_data *data, t_coord_d dest)
 		angle = M_PI + acos(d1_sq/d2_sq);
 	else
 		angle = 3 * M_PI_2 + acos(d3_sq/d2_sq);
-printf("angle: %f\n", angle *180 / M_PI);
+// printf("angle: %f\n", angle *180 / M_PI);
 	return (angle);
 }
 
@@ -70,7 +70,7 @@ void	create_cone_multi_rays(t_data *data, double angle)
 			data->ray[i].angle = (data->fov / 2) - ((i + 1) * data->fov / (RAY_NBR));
 		if (i >= RAY_NBR / 2)
 			data->ray[i].angle = (data->fov / 2) - ((i + 1) * data->fov / (RAY_NBR));
-printf("angle: %f\n", data->ray[i].angle / (M_PI / 180));
+// printf("angle: %f\n", data->ray[i].angle / (M_PI / 180));
 		if (miss.x != -1 && miss.y != -1)
 		{
 			data->ray[i].hit_p = miss;

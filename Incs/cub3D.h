@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/20 15:43:43 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/21 11:11:07 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@
 # define WIN_LEN 720
 # define RAY_NBR 1280
 # define FOV 60
-# define MOVE_SPEED 10
-# define ANGLE_MOVE 0.01
+# define MOVE_SPEED 2
+# define ANGLE_MOVE 0.02
 
 // strings
 # define COLOR_CHAR "Error\nWrong char in array (%s), must be only digits\n"
@@ -146,7 +146,6 @@ typedef struct s_ray
 typedef struct s_map
 {
 	int			p;
-	double		angle;
 	int			p_x;//player position on x
 	int			p_y;//player position on y
 	char		direction;//player orientation
