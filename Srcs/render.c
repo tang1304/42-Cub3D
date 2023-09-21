@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:37:51 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/21 11:43:10 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/21 13:31:35 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,17 @@ static void	draw_ray(t_data *data, t_ray *ray)
 void	create_game_rays(t_data *data)
 {
 	int		i;
+	int		j;
 	double	wall_height;
 	double	wall_width;
 
 	i = -1;
 	wall_width = WIN_WIDTH / RAY_NBR;
+	j = RAY_NBR;
 	while (++i < RAY_NBR)
 	{
 // printf("i: %d\n", i);
+		j--;
 		if (data->ray[i].len == -1)
 			continue ;
 // printf("correc: %f\n", data->ray[i].correction);
@@ -82,7 +85,7 @@ void	create_game_rays(t_data *data)
 			data->ray[i].color = GREEN;
 		else if (data->ray[i].side_hit == 4)
 			data->ray[i].color = YELLOW;
-		top_bottom_wall_pxl(&data->ray[i], i, wall_height, wall_width);
+		top_bottom_wall_pxl(&data->ray[i], j, wall_height, wall_width);
 		draw_ray(data, &data->ray[i]);
 	}
 }
