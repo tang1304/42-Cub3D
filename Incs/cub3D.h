@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/21 10:10:06 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/21 11:21:05 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 # define WIN_WIDTH 1440
 # define WIN_LEN 720
 # define FOV 60
-# define RAY_NUMBER 180
+# define RAY_NUMBER 360
 # define MOVE_SPEED 0.05
 # define ANGLE_MOVE 0.01
 
@@ -248,14 +248,14 @@ void		init_data_values(t_data *data);
 void		create_cpy_map_arr(t_data *data);
 
 /*	line.c	*/
-void		create_line(t_data *data, t_coord_f dest);
-void		bresenham_algo(t_data *data, t_coord_f dest);
+void		create_line(t_data *data, t_ray *ray);
+void		bresenham_algo(t_data *data, t_ray *ray);
 
 /*	line_utils.c	*/
 int			get_inc_value(int i);
-void		draw_hor_ver_line(t_data *data, t_coord_f dest);
-void		draw_x_line(t_data *data, t_coord_f dest);
-void		draw_y_line(t_data *data, t_coord_f dest);
+void		draw_hor_ver_line(t_data *data, t_ray *ray);
+void		draw_x_line(t_data *data, t_ray *ray);
+void		draw_y_line(t_data *data, t_ray *ray);
 
 /*	map_char_checks.c	*/
 void		direction_check(t_map *map, char c, int i, int j);

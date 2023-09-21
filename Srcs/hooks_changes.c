@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/21 10:25:54 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/21 11:34:37 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	rotate_left(t_data *data)
 						data->player.dir.y * sin(-ANGLE_MOVE);
 	data->player.dir.y = old_dir_x * sin(-ANGLE_MOVE) + \
 						data->player.dir.y * cos(-ANGLE_MOVE);
-	if (data->player.angle > 2 * M_PI)
-		data->player.angle -= 2 * M_PI;
-	else if (data->player.angle < -(2 * M_PI))
-		data->player.angle += 2 * M_PI;
+	// if (data->player.angle > 2 * M_PI)
+	// 	data->player.angle -= 2 * M_PI;
+	// else if (data->player.angle < -(2 * M_PI))
+	// 	data->player.angle += 2 * M_PI;
 }
 
 void	rotate_right(t_data *data)
@@ -56,10 +56,10 @@ void	rotate_right(t_data *data)
 						data->player.dir.y * sin(ANGLE_MOVE);
 	data->player.dir.y = old_dir_x * sin(ANGLE_MOVE) + \
 						data->player.dir.y * cos(ANGLE_MOVE);
-	if (data->player.angle > 2 * M_PI)
-		data->player.angle -= 2 * M_PI;
-	else if (data->player.angle < -(2 * M_PI))
-		data->player.angle += 2 * M_PI;
+	// if (data->player.angle > 2 * M_PI)
+	// 	data->player.angle -= 2 * M_PI;
+	// else if (data->player.angle < -(2 * M_PI))
+	// 	data->player.angle += 2 * M_PI;
 }
 
 void	move_left(t_data *data)
