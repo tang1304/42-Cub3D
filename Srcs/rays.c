@@ -42,21 +42,21 @@ printf("angle: %f\n", angle *180 / M_PI);
 
 void	create_cone_multi_rays(t_data *data, double angle)
 {
-	double		min_ang;
+	// double		min_ang;
 	double		max_ang;
 	t_coord_f	miss;
 	int			i;
 
 	i = -1;
-	min_ang = angle - data->fov / 2;
+	// min_ang = angle - data->fov / 2;
 	max_ang = angle + data->fov / 2;
 	while (++i < RAY_NUMBER)
 	{
 		data->ray[i].len = -1;
 		data->ray[i].dest.x = data->square_view_d * \
-			cos(-min_ang + (data->fov / RAY_NUMBER) * i) + data->player.pos.x;
+			cos(-max_ang + (data->fov / RAY_NUMBER) * i) + data->player.pos.x;
 		data->ray[i].dest.y = data->square_view_d * \
-			sin(-min_ang + (data->fov / RAY_NUMBER) * i) + data->player.pos.y;
+			sin(-max_ang + (data->fov / RAY_NUMBER) * i) + data->player.pos.y;
 		miss = init_data_collision(data, &data->ray[i]);
 		if (miss.x != -1 && miss.y != -1)
 		{
