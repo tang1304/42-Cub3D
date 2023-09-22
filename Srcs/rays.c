@@ -1,71 +1,68 @@
 #include "../Incs/cub3D.h"
 
-static t_coord_d	compare(t_data *data, t_coord_d dest)
-{
-	t_coord_d	comp;
+// static t_coord_d	compare(t_data *data, t_coord_d dest)
+// {
+// 	t_coord_d	comp;
 
-	comp.x = dest.x - data->player.pos.x;
-	comp.y = dest.y - data->player.pos.y;
-// printf("x = %d\n", comp.x);
-// printf("y = %d\n", comp.y);
-	return (comp);
-}
+// 	comp.x = dest.x - data->player.pos.x;
+// 	comp.y = dest.y - data->player.pos.y;
+// // printf("x = %d\n", comp.x);
+// // printf("y = %d\n", comp.y);
+// 	return (comp);
+// }
 
-double	get_straight_angle(t_data *data, t_coord_d dest)
-{
-	t_coord_d	comp;
-	double	angle;
-	double	d1_sq;
-	double	d2_sq;
-	double	d3_sq;
+// double	get_straight_angle(t_data *data, t_coord_d dest) NOT USED
+// {
+// 	t_coord_d	comp;
+// 	double	angle;
+// 	double	d1_sq;
+// 	double	d2_sq;
+// 	double	d3_sq;
 
-	comp = compare(data, dest);
-	d2_sq = ((dest.y - data->player.pos.y) * \
-				(dest.y - data->player.pos.y)) + \
-			(dest.x - data->player.pos.x) * \
-				(dest.x - data->player.pos.x);
-	d1_sq = (dest.x - data->player.pos.x) * \
-				(dest.x - data->player.pos.x);
-	d3_sq = (dest.y - data->player.pos.y) * \
-				(dest.y - data->player.pos.y);
-	if (comp.x >= 0 && comp.y < 0) // right top
-		angle = acos(d1_sq/d2_sq);
-	else if (comp.x < 0 && comp.y <= 0)
-		angle = M_PI_2 + acos(d3_sq/d2_sq);
-	else if (comp.x < 0 && comp.y > 0)
-		angle = M_PI + acos(d1_sq/d2_sq);
-	else
-		angle = 3 * M_PI_2 + acos(d3_sq/d2_sq);
-printf("angle: %f\n", angle *180 / M_PI);
-	return (angle);
-}
+// 	comp = compare(data, dest);
+// 	d2_sq = ((dest.y - data->player.pos.y) * sla
+// 				(dest.y - data->player.pos.y)) + sla
+// 			(dest.x - data->player.pos.x) * sla
+// 				(dest.x - data->player.pos.x);
+// 	d1_sq = (dest.x - data->player.pos.x) * sla
+// 				(dest.x - data->player.pos.x);
+// 	d3_sq = (dest.y - data->player.pos.y) * sla
+// 				(dest.y - data->player.pos.y);
+// 	if (comp.x >= 0 && comp.y < 0) // right top
+// 		angle = acos(d1_sq/d2_sq);
+// 	else if (comp.x < 0 && comp.y <= 0)
+// 		angle = M_PI_2 + acos(d3_sq/d2_sq);
+// 	else if (comp.x < 0 && comp.y > 0)
+// 		angle = M_PI + acos(d1_sq/d2_sq);
+// 	else
+// 		angle = 3 * M_PI_2 + acos(d3_sq/d2_sq);
+// printf("angle: %f\n", angle *180 / M_PI);
+// 	return (angle);
+// }
 
 void	create_cone_multi_rays(t_data *data, double angle)
 {
-	// double		min_ang;
-	double		max_ang;
-	t_coord_f	miss;
+	t_coord_f	miss;miss.x=0;miss.y=0;
 	int			i;
 
 	i = -1;
-	// min_ang = angle - data->fov / 2;
-	max_ang = angle + data->fov / 2;
+	angle += data->fov / 2;
 	while (++i < RAY_NUMBER)
 	{
 		data->ray[i].len = -1;
 		data->ray[i].dest.x = data->square_view_d * \
-			cos(-max_ang + (data->fov / RAY_NUMBER) * i) + data->player.pos.x;
+			cos(-angle + (data->fov / RAY_NUMBER) * i) + data->player.pos.x;
 		data->ray[i].dest.y = data->square_view_d * \
-			sin(-max_ang + (data->fov / RAY_NUMBER) * i) + data->player.pos.y;
-		miss = init_data_collision(data, &data->ray[i]);
+			sin(-angle + (data->fov / RAY_NUMBER) * i) + data->player.pos.y;
+		// miss = init_data_collision(data, &data->ray[i]);
 		if (miss.x != -1 && miss.y != -1)
 		{
 			data->ray[i].hit_p = miss;
 			data->ray[i].len = calculate_len_vector(data, miss);
 		}
-		create_line(data, &data->ray[i]);
+		// create_line(data, &data->ray[i]);
 	}
-	rays_render(data);
+	// rays_render(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
 

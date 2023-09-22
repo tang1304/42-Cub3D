@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/21 11:21:05 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/22 16:22:16 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define PURPLE 0x00890089
 
 // data info
-# define VIEW_DIST 15
+# define VIEW_DIST 100
 # define SQUARE_SIZE 20
 # define WIN_WIDTH 1440
 # define WIN_LEN 720
@@ -93,8 +93,8 @@ typedef struct s_texture
 
 typedef struct s_coord_d
 {
-	double	x;
-	double	y;
+	int	x;
+	int	y;
 }				t_coord_d;
 
 typedef struct s_coord_f
@@ -161,14 +161,14 @@ typedef struct s_map
 
 typedef struct s_col
 {
-	t_coord_f	map;
+	t_coord_d	map;
 	t_coord_f	dir;
 	t_coord_f	dest;
 	t_coord_f	step;
 	t_coord_f	side_d;
 	int			side_touched;
 	t_coord_f	delta_d;
-	// t_coord_d	cell; not used
+	// t_coord_d	cell; not used anymore
 }			t_col;
 
 typedef struct s_mini

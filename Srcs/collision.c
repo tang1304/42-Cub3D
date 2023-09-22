@@ -6,18 +6,18 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/21 11:00:51 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/22 16:30:43 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-static float	vector_f_len_sq(t_coord_f center, t_coord_f map)
+static float	vector_f_len_sq(t_coord_f center, t_coord_d map)
 {
 	float	value_sq;
 
-	value_sq = (center.x - map.x) * (center.x - map.x) + \
-			(center.y - map.y) * (center.y - map.y);
+	value_sq = (center.x - (float)map.x) * (center.x - (float)map.x) + \
+			(center.y - (float)map.y) * (center.y - (float)map.y);
 	return (value_sq);
 
 }
@@ -71,7 +71,7 @@ static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 			continue ;
 		if (ray->cell.y < 0 || ray->cell.y >= data->mini.height)
 			continue ;
-		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1')
+		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == 1)
 		{
 			detection_wall_touched(data, ray);
 			// draw_coll(data, data->col.map.x, data->col.map.y, ray);
@@ -91,7 +91,8 @@ t_coord_f	init_data_collision(t_data *data, t_ray *ray)
 
 	ray->hit_p.x = ray->dest.x;
 	ray->hit_p.y = ray->dest.y;
-	data->col.map = data->player.pos;
+	data->col.map.x = data->player.pos.x;
+	data->col.map.y = data->player.pos.y;
 	data->col.dir.x = (ray->hit_p.x - data->player.pos.x);
 	data->col.dir.y = (ray->hit_p.y - data->player.pos.y);
 	if (data->col.dir.x == 0)
