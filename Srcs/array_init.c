@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:34:53 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/21 13:51:34 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/22 10:18:49 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	create_arr(t_data *data)
 
 	i = -1;
 	ft_bzero(&map, sizeof(t_map));
-	data->win_l = 1920;
-	data->win_h = 1080;
+	data->win_l = WIN_WIDTH;
+	data->win_h = WIN_HEIGHT;
 	data->square_size = 40;
 	coord.center.x = data->win_l / 2;
 	coord.center.y = data->win_h / 2;
@@ -81,7 +81,7 @@ void	init_array_data(t_data *data)
 		j = -1;
 		while (++j < data->map.width)
 		{
-			if (i == 0 || i == 26 || j == 0 || j == 47)
+			if (i == 0 || i == data->map.height - 1 || j == 0 || j == data->map.width - 1)
 				data->map.map[i][j] = 1;
 			else
 				data->map.map[i][j] = 0;

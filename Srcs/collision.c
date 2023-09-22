@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/21 16:10:53 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/22 12:45:54 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,22 @@ void	draw_coll(t_data *data)
 	}
 }
 
-void	init_data_collision(t_data *data)
+static float	vector_f_len_sq(t_coord_d center, t_coord_d map)
+{
+	float	value_sq;
+// printf("center.x: %f .y: %f\n", center.x, center.y);
+// printf("map.x: %f .y: %f\n", map.x, map.y);
+	value_sq = (center.x - map.x) * (center.x - map.x) + \
+			(center.y - map.y) * (center.y - map.y);
+// printf("ray_len: %f\n", value_sq);
+	return (value_sq);
+}
+
+t_coord_f	init_data_collision(t_data *data)
 {
 	int	i;
 	int	j;
+	t_coord_f	hit;
 
 	mlx_mouse_get_pos(data->mlx, data->win, &i, &j);
 	data->col.dest.x = (double)i;
@@ -77,13 +89,17 @@ void	init_data_collision(t_data *data)
 		data->col.side_d.y = (data->col.map.y + 1.0f - data->col.center.y) * \
 								data->col.delta_d.y;
 	}
-	wall_detection(data);
-	draw_coll(data);
+	hit = wall_detection(data);
+// printf("hit.x: %f\n", hit.x);
+	// draw_coll(data);
+	return (hit);
 }
 
-void	wall_detection(t_data *data)
+t_coord_f	wall_detection(t_data *data)
 {
-	while (1)
+	t_coord_f	hit;
+	float ray_len = vector_f_len_sq(data->col.center, data->col.map);
+	while (ray_len < VIEW_DIST * VIEW_DIST)
 	{
 		if (data->col.side_d.x < data->col.side_d.y)
 		{
@@ -97,7 +113,22 @@ void	wall_detection(t_data *data)
 		}
 		data->col.cell.x = data->col.map.x / data->square_size;
 		data->col.cell.y = data->col.map.y / data->square_size;
+// printf("square.x: %d .y: %d val:%d\n", (int)data->col.cell.x, (int)data->col.cell.y,data->arr[(int)data->col.cell.y][(int)data->col.cell.x]);
+		ray_len = vector_f_len_sq(data->col.center, data->col.map);
+// printf("ray len: %f\n", ray_len);
+		if (data->col.cell.x < 0 || data->col.cell.x >= WIN_WIDTH)
+			continue;
+		if (data->col.cell.y < 0 || data->col.cell.y >= WIN_HEIGHT)
+			continue;
 		if (data->arr[(int)data->col.cell.y][(int)data->col.cell.x] == 1)
-			return ;
+		{
+			hit.x = data->col.map.x;
+			hit.y = data->col.map.y;
+// printf("square.x: %d .y: %d\n", (int)data->col.cell.x, (int)data->col.cell.y);
+			return (hit);
+		}
 	}
+	hit.x = -1;
+	hit.y = -1;
+	return (hit);
 }

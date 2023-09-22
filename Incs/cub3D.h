@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/21 14:51:39 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/22 12:49:34 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@
 # define Z 122
 # define X 120
 # define RED_CROSS 33
+# define WIN_WIDTH 1440
+# define WIN_HEIGHT 720
+
+# define VIEW_DIST 800
+
+// Colors
+# define GREEN 0x0000FF00
+# define RED 0x00FF0000
+# define BLUE 0x000000FF
 
 typedef struct s_img
 {
@@ -49,6 +58,28 @@ typedef struct s_coord_f
 	float	x;
 	float	y;
 }				t_coord_f;
+
+typedef struct s_ray
+{
+	t_coord_f	hit_p;
+	t_coord_d	cell;
+	// t_coord_d	dest;
+	double		len;
+	int			side_hit;
+}				t_ray;
+
+typedef struct s_bresenham
+{
+	float	x;
+	float	y;
+	float	dx;
+	float	dy;
+	float	inc_x;
+	float	inc_y;
+	float	slope;
+	float	error;
+	float	error_inc;
+}				t_bresenham;
 
 typedef struct s_map
 {
@@ -78,6 +109,8 @@ typedef struct s_data
 	void	*win; //window pointer
 	int		win_h;
 	int		win_l;
+
+	t_bresenham	bre;
 	t_map	map;
 	t_col	col;
 	t_img	img;
@@ -106,11 +139,16 @@ void	hooks(t_data *data);
 void	change_board(t_data *data, int keycode);
 
 /*	line.c	*/
-void	create_line(t_data *data);
+int	get_inc_value(int i);
+void	draw_hor_ver_line(t_data *data, t_coord_f dest);
+void	draw_x_line(t_data *data, t_coord_f dest);
+void	draw_y_line(t_data *data, t_coord_f dest);
+void	create_line(t_data *data, t_coord_f dest);
+void	bresenham_algo(t_data *data, t_coord_f dest);
 
 /*	collision.c	*/
 void	draw_coll(t_data *data);
-void	init_data_collision(t_data *data);
-void	wall_detection(t_data *data);
+t_coord_f	init_data_collision(t_data *data);
+t_coord_f	wall_detection(t_data *data);
 
 #endif
