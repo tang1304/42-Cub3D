@@ -20,7 +20,7 @@ void	draw_hor_ver_line(t_data *data, t_coord_f dest)
 	{
 		while (x != dest.x + data->bre.inc_x)
 		{
-			my_mlx_pixel_put(&data->img, x, \
+			my_mlx_pixel_put(&data->img, (int)x, \
 						(int)data->player.pos.y, RED);
 			x += data->bre.inc_x;
 		}
@@ -48,7 +48,7 @@ void	draw_x_line(t_data *data, t_coord_f dest)
 	data->bre.error_inc = -2 * data->bre.dx;
 	while (x != dest.x + data->bre.inc_x)
 	{
-		my_mlx_pixel_put(&data->img, x, y, RED);
+		my_mlx_pixel_put(&data->img, (int)x, (int)y, RED);
 		data->bre.error += data->bre.slope;
 		if (data->bre.error >= 0)
 		{
@@ -71,7 +71,7 @@ void	draw_y_line(t_data *data, t_coord_f dest)
 	data->bre.error_inc = -2 * data->bre.dy;
 	while (y != dest.y + data->bre.inc_y)
 	{
-		my_mlx_pixel_put(&data->img, x, y, RED);
+		my_mlx_pixel_put(&data->img, (int)x, (int)y, RED);
 		data->bre.error += data->bre.slope;
 
 		if (data->bre.error >= 0)

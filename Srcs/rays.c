@@ -43,48 +43,30 @@
 // 	return (angle);
 // }
 
-void	create_cone_multi_rays(t_data *data, double angle)
+void	create_cone_multi_rays(t_data *data, t_coord_d left, t_coord_d right)
 {
-	t_coord_f	miss;
+	double		inc;
 	int			i;
 
-	i = -1;
-	angle -= data->fov / 2;
-	while (++i < RAY_NUMBER)
+	inc = 1.0f / (RAY_NUMBER - 1.0f);
+	i = 0;
+	while (i < RAY_NUMBER)
 	{
-		data->ray[i].len = -1;
-		data->ray[i].hit_p.x = data->square_view_d * \
-			cos(-angle - (data->fov / RAY_NUMBER) * (RAY_NUMBER - 1 - i)) + data->player.pos.x;
-		data->ray[i].hit_p.y = data->square_view_d * \
-			sin(-angle - (data->fov / RAY_NUMBER) * (RAY_NUMBER - 1 - i)) + data->player.pos.y;
-// if (i == 90)
-// {
-// // printf("px: %f py:%f\n", data->player.pos.x, data->player.pos.y);
-// 	printf("x: %f y:%f\n", data->ray[i].hit_p.x, data->ray[i].hit_p.y);
-// }
-		miss = init_data_collision(data, &data->ray[i]);
-		if (miss.x != -1 && miss.y != -1)
-		{
-			data->ray[i].hit_p = miss;
-// 			if (i == 90)
-// {
-// printf("px: %f py:%f\n", data->player.pos.x, data->player.pos.y);
-// 	printf("x: %f y:%f\n", data->ray[i].hit_p.x, data->ray[i].hit_p.y);
-// }
-			data->ray[i].len = calculate_len_vector(data, miss);
-		}
+		data->ray[i].hit_p.x = fabs(left.x - right.x) / RAY_NUMBER;
+		data->ray[i].hit_p.y = fabs(left.y - right.y) / RAY_NUMBER;
 		create_line(data, &data->ray[i]);
+		i++;
 	}
-	rays_render(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	// rays_render(data);
+	// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
 
-static t_coord_d	determine_dst_coord(t_player player)
+static t_coord_d	determine_dst_coord(t_coord_f pos, double angle, int dist)
 {
 	t_coord_d	dest;
 
-	dest.x = VIEW_DIST * VIEW_DIST * cos(-player.angle) + player.pos.x;
-	dest.y = VIEW_DIST * VIEW_DIST * sin(-player.angle) + player.pos.y;
+	dest.x = dist * cos(-angle) + pos.x;
+	dest.y = dist * sin(-angle) + pos.y;
 	if (dest.x < SQUARE_SIZE)
 		dest.x = SQUARE_SIZE;
 	if (dest.x >= WIN_WIDTH)
@@ -99,15 +81,25 @@ static t_coord_d	determine_dst_coord(t_player player)
 
 void	create_rays(t_data *data)
 {
-	// double		angle;
+	int	opp_len;
+	t_coord_d	left;
+	t_coord_d	right;
+	t_coord_f	position;
 
-	// data->img.img = mlx_new_image(data->mlx, data->win_w, data->win_h);
-	// data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp, &data->img.line_l, &data->img.endian);
-	// create_board_img(data);
-	// angle = get_straight_angle(data, data->player.dir);
-printf("angle: %f\n", data->player.angle);// *180 / M_PI);
-	data->player.view_dst_pos = determine_dst_coord(data->player);
-draw_point(data, data->player.view_dst_pos.x, data->player.view_dst_pos.y, GREEN);
+	data->player.view_dst_pos = determine_dst_coord(data->player.pos, data->player.angle, VIEW_DIST);
+	opp_len = tan(data->fov / 2) * VIEW_DIST;
+	position.x = data->player.view_dst_pos.x;
+	position.y = data->player.view_dst_pos.y;
+	left = determine_dst_coord(position, data->player.angle + M_PI / 2, opp_len);
+	right = determine_dst_coord(position, data->player.angle - M_PI / 2, opp_len);
+draw_point(data, data->player.view_dst_pos.x, data->player.view_dst_pos.y, RED);
+draw_point(data, left.x, left.y, GREEN);
+draw_point(data, right.x, right.y, BLUE);
 mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-	// create_cone_multi_rays(data, angle);
+
+/*test*/
+// data->ray[0].hit_p.x = data->player.view_dst_pos.x;
+// 		data->ray[0].hit_p.y = data->player.view_dst_pos.y;
+// create_line(data, &data->ray[0]);
+	create_cone_multi_rays(data, right, left);
 }
