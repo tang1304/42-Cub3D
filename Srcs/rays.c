@@ -93,7 +93,7 @@ static t_coord_d	determine_dst_coord(t_player player)
 		dest.y = SQUARE_SIZE;
 	if (dest.y >= WIN_LEN)
 		dest.y = WIN_LEN - SQUARE_SIZE;
-printf("x: %d y:%d\n", dest.x, dest.y);
+// printf("x: %d y:%d\n", dest.x, dest.y);
 	return (dest);
 }
 
@@ -105,7 +105,7 @@ void	create_rays(t_data *data)
 	// data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp, &data->img.line_l, &data->img.endian);
 	// create_board_img(data);
 	// angle = get_straight_angle(data, data->player.dir);
-printf("angle: %f\n", data->player.angle *180 / M_PI);
+printf("angle: %f\n", data->player.angle);// *180 / M_PI);
 	data->player.view_dst_pos = determine_dst_coord(data->player);
 draw_point(data, data->player.view_dst_pos.x, data->player.view_dst_pos.y, GREEN);
 mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);

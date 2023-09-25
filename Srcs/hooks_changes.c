@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/20 13:35:41 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 11:21:36 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	rotate_left(t_data *data)
 		data->player.angle -= 2 * M_PI;
 	else if (data->player.angle < -(2 * M_PI))
 		data->player.angle += 2 * M_PI;
+	if (data->player.angle < 0)
+		data->player.angle = fabs(data->player.angle) + 2 * M_PI;
 }
 
 void	rotate_right(t_data *data)
@@ -60,6 +62,8 @@ void	rotate_right(t_data *data)
 		data->player.angle -= 2 * M_PI;
 	else if (data->player.angle < -(2 * M_PI))
 		data->player.angle += 2 * M_PI;
+	if (data->player.angle < 0)
+		data->player.angle = fabs(data->player.angle) + 2 * M_PI;
 }
 
 void	move_left(t_data *data)
