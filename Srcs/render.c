@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:37:51 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/21 15:01:02 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 14:47:30 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ static int	get_rgb(int *color)
 	return (1 | color[0] << 16 | color[1] << 8 | color[2]);
 }
 
-static void	draw_ray(t_data *data, t_ray *ray)
+static void	draw_ray(t_data *data, t_ray *ray, float wall_h)
 {
-	int	j;
-	int	color;
+	int		j;
+	int		color;
+	double	ratio;
 
+	ratio = data->map.text[ray->side_hit - 1].height / wall_h;
 	j = 0;
 	while (j < ray->top.y)
 	{
@@ -39,7 +41,9 @@ static void	draw_ray(t_data *data, t_ray *ray)
 	}
 	while (j < ray->bottom.y)
 	{
-		my_mlx_pixel_put(&data->game_img, ray->top.x, j, ray->color);
+		color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], \
+				ray->top.x, j, ratio);
+		my_mlx_pixel_put(&data->game_img, ray->top.x, j, color);
 		j++;
 	}
 	while (j < WIN_LEN)
@@ -77,15 +81,15 @@ void	create_game_rays(t_data *data)
 // printf("ray_len: %f\n", data->ray[i].len);
 // printf("wall: %f\n", wall_height);
 		// wall_height *= 1000;
-		if (data->ray[i].side_hit == 1)
-			data->ray[i].color = RED;
-		else if (data->ray[i].side_hit == 2)
-			data->ray[i].color = BLUE;
-		else if (data->ray[i].side_hit == 3)
-			data->ray[i].color = GREEN;
-		else if (data->ray[i].side_hit == 4)
-			data->ray[i].color = YELLOW;
+		// if (data->ray[i].side_hit == 1)//EA
+		// 	data->ray[i].color = RED;
+		// else if (data->ray[i].side_hit == 2//WE
+		// 	data->ray[i].color = BLUE;
+		// else if (data->ray[i].side_hit == 3)//SO
+		// 	data->ray[i].color = GREEN;
+		// else if (data->ray[i].side_hit == 4)//NO
+		// 	data->ray[i].color = YELLOW;
 		top_bottom_wall_pxl(&data->ray[i], j, wall_height, wall_width);
-		draw_ray(data, &data->ray[i]);
+		draw_ray(data, &data->ray[i], wall_height);
 	}
 }

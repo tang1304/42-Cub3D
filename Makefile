@@ -21,6 +21,7 @@ SRCS = close.c \
 		map_parsing.c \
 		map_utils.c \
 		render.c \
+		textures.c \
 		utils.c \
 		window.c
 SRCS_DIR = ./Srcs/

@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:07 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/31 17:28:34 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 13:30:13 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	check_if_map(t_map *map)
 
 void	check_enough_datas(t_map *map)
 {
-	if (!map->no.addr || !map->so.addr || !map->ea.addr || !map->we.addr \
-		|| map->c[0] == -1 || map->f[0] == -1)
+	if (!map->text[0].path || !map->text[1].path || !map->text[2].path \
+		|| !map->text[3].path || map->c[0] == -1 || map->f[0] == -1)
 		map_error(map, LESS_ELEM);
 }
 

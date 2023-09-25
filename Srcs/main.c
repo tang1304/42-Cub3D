@@ -6,13 +6,13 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/25 10:01:56 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 14:17:54 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-void	texture_init(t_data *data)
+static void	texture_init(t_data *data)
 {
 	t_texture	no;
 	t_texture	so;
@@ -20,13 +20,13 @@ void	texture_init(t_data *data)
 	t_texture	we;
 
 	ft_bzero(&no, sizeof(t_texture));
-	data->map.no = no;
+	data->map.text[3] = no;
 	ft_bzero(&so, sizeof(t_texture));
-	data->map.so = so;
-	ft_bzero(&ea, sizeof(t_texture));
-	data->map.ea = ea;
+	data->map.text[2] = so;
 	ft_bzero(&we, sizeof(t_texture));
-	data->map.we = we;
+	data->map.text[1] = we;
+	ft_bzero(&ea, sizeof(t_texture));
+	data->map.text[0] = ea;
 }
 
 void	data_init(t_data *data)
@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 	// data.win = mlx_new_window(data.mlx, (data.map.width * 64), 
 	// ft_bzero(&data, sizeof(t_data));
 	data.mlx = mlx_init();
+	load_textures(&data, &data.map);
 	init_data_values(&data);
 	create_window(&data);
 	t_map_cleaning(&data.map);
