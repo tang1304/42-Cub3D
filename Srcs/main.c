@@ -6,38 +6,35 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/18 14:20:11 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 10:01:56 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-// void	texture_init(t_data *data)
-// {
-// 	t_texture	no;
-// 	t_texture	so;
-// 	t_texture	ea;
-// 	t_texture	we;
+void	texture_init(t_data *data)
+{
+	t_texture	no;
+	t_texture	so;
+	t_texture	ea;
+	t_texture	we;
 
-// 	data->map.no = &no;
-// 	ft_bzero(data->map.no, sizeof(t_texture));
-// 	data->map.so = &so;
-// 	ft_bzero(data->map.so, sizeof(t_texture));
-// 	data->map.ea = &ea;
-// 	ft_bzero(data->map.ea, sizeof(t_texture));
-// 	data->map.we = &we;
-// 	ft_bzero(data->map.we, sizeof(t_texture));
-// }
+	ft_bzero(&no, sizeof(t_texture));
+	data->map.no = no;
+	ft_bzero(&so, sizeof(t_texture));
+	data->map.so = so;
+	ft_bzero(&ea, sizeof(t_texture));
+	data->map.ea = ea;
+	ft_bzero(&we, sizeof(t_texture));
+	data->map.we = we;
+}
 
 void	data_init(t_data *data)
 {
-	// t_img	img;
-	// t_map	map;
-
 	ft_bzero(data, sizeof(t_data));
 	data->map.c[0] = -1;
 	data->map.f[0] = -1;
-	// texture_init(data);
+	texture_init(data);
 }
 
 int	main(int argc, char **argv)

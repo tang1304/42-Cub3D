@@ -1,12 +1,11 @@
- 	NO ./sprites/wall_x0_y0.xpm
-	SO ./sprites/obstacle.xpm
- EA ./sprites/player_front_still.xpm
-WE ./sprites/ennemy_still.xpm
+ 	NO ./textures/Cloudy_Mountains.xpm
+	SO ./textures/Glowing_Sea.xpm
+ EA ./textures/Misty_Rocks.xpm
+WE ./textures/Starry_Peaks.xpm
 
 F 0,128, 128
 
 C	 192 ,  192 ,	192
-
 
 
         1111111111111111111111111

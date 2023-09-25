@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:37:51 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/21 13:31:35 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/21 15:01:02 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	create_game_rays(t_data *data)
 // printf("wall_h: %f\n", wall_height);
 // printf("ray_len: %f\n", data->ray[i].len);
 // printf("wall: %f\n", wall_height);
-		// wall_height *= 40;
+		// wall_height *= 1000;
 		if (data->ray[i].side_hit == 1)
 			data->ray[i].color = RED;
 		else if (data->ray[i].side_hit == 2)

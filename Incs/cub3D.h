@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/21 11:11:07 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 09:38:06 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 # define WIN_LEN 720
 # define RAY_NBR 1280
 # define FOV 60
-# define MOVE_SPEED 2
+# define MOVE_SPEED 0.1
 # define ANGLE_MOVE 0.02
 
 // strings
@@ -83,6 +83,7 @@ typedef struct s_texture
 {
 	void	*text;
 	char	*addr;//img address
+	char	*path;//img address
 	int		bpp;//bits per pixel
 	int		endian;//the way bytes are stored
 	int		line_l;//line length

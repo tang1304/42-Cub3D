@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/22 15:22:59 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 09:38:19 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ static int	get_textures(t_map *map)
 		while (ft_is_space(map->tmp[i][j]))
 			j++;
 		if (ft_strstr(map->tmp[i], "NO"))
-			map->no.addr = get_texture_path(map, map->tmp[i], "NO", 2);
+			map->no.path = get_texture_path(map, map->tmp[i], "NO", 2);
 		else if (ft_strstr(map->tmp[i], "SO"))
-			map->so.addr = get_texture_path(map, map->tmp[i], "SO", 2);
+			map->so.path = get_texture_path(map, map->tmp[i], "SO", 2);
 		else if (ft_strstr(map->tmp[i], "EA"))
-			map->ea.addr = get_texture_path(map, map->tmp[i], "EA", 2);
+			map->ea.path = get_texture_path(map, map->tmp[i], "EA", 2);
 		else if (ft_strstr(map->tmp[i], "WE"))
-			map->we.addr = get_texture_path(map, map->tmp[i], "WE", 2);
+			map->we.path = get_texture_path(map, map->tmp[i], "WE", 2);
 		else if (ft_strstr(map->tmp[i], "F"))
 			get_floor_color(map, map->tmp[i], "F", 1);
 		else if (ft_strstr(map->tmp[i], "C"))
