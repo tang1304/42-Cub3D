@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/20 16:10:14 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 11:06:32 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define PURPLE 0x00890089
 
 // data info
-# define VIEW_DIST 15
+# define VIEW_DIST 8
 # define SQUARE_SIZE 20
 # define WIN_WIDTH 1440
 # define WIN_LEN 720
@@ -106,7 +106,7 @@ typedef struct s_coord_f
 typedef struct s_player
 {
 	t_coord_f	pos;
-	t_coord_f	view_dst_pos;//inutilisee
+	t_coord_d	view_dst_pos;//inutilisee so far
 	t_coord_f	dir;
 	double		angle;
 	int			w;
@@ -134,9 +134,10 @@ typedef struct s_ray
 {
 	t_coord_f	hit_p;
 	t_coord_d	cell;
-	t_coord_d	dest;
+	// t_coord_d	dest;
 	double		len;
 	int			side_hit;
+	double		angle;
 }				t_ray;
 
 typedef struct s_map
@@ -161,10 +162,10 @@ typedef struct s_map
 
 typedef struct s_col
 {
-	t_coord_f	map;
+	t_coord_d	map;
 	t_coord_f	dir;
 	t_coord_f	dest;
-	t_coord_f	step;
+	t_coord_d	step;
 	t_coord_f	side_d;
 	int			side_touched;
 	t_coord_f	delta_d;
@@ -205,7 +206,7 @@ int			ft_close(t_data *data);
 t_coord_f	init_data_collision(t_data *data, t_ray *ray);
 
 /*	draw.c	*/
-void		draw_point(t_data *data, double tX, double tY, int color);
+void		draw_point(t_data *data, int tX, int tY, int color);
 void		draw_coll(t_data *data, int x, int y, t_ray *ray);
 
 /*	errors.c	*/
@@ -277,9 +278,9 @@ int			count_lines(int fd);
 void		define_map_width(t_map *map);
 
 /*	rays.c	*/
-double		get_straight_angle(t_data *data, t_coord_d dest);
+double		get_straight_angle(t_data *data, t_coord_f dest);
 void		create_cone_multi_rays(t_data *data, double angle);
-void		create_rays(t_data *data, t_coord_d dest, double angle);
+void		create_rays(t_data *data);
 
 /*	render.c	*/
 void		render_walls(t_data *data, int i, float slice_height, int slice_width);

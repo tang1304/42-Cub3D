@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/20 16:06:56 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 10:25:03 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,15 @@ int	actions(t_data *data)
 		rotate_left(data);
 	if (data->player.right)
 		rotate_right(data);
-		
+
 	if (data->player.w || data->player.s || data->player.a || data->player.d \
 		|| data->player.left || data->player.right)
 	{
 		init_black_img(data);
 		create_board_img(data);
-		create_cone_multi_rays(data, data->player.angle);
-		// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+		create_rays(data);
+		// create_cone_multi_rays(data, data->player.angle);
+		mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	}
 	return (0);
 }
@@ -79,6 +80,6 @@ int	mouse_moved(int x, int y, t_data *data)
 	dest.x = x;
 	dest.y = y;
 	(void)data;
-	create_rays(data, dest, 0);
+	create_rays(data);
 	return (0);
 }

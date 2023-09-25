@@ -1,6 +1,6 @@
 #include "../Incs/cub3D.h"
 
-void	draw_point(t_data *data, double tX, double tY, int color)
+void	draw_point(t_data *data, int tX, int tY, int color)
 {
 	t_coord_d	start;
 	t_coord_d	end;

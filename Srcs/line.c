@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:00 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/20 15:36:31 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 10:57:18 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ void	bresenham_algo(t_data *data, t_coord_f dest)
 		draw_hor_ver_line(data, dest);
 	else if (data->bre.dx >= data->bre.dy)
 		draw_x_line(data, dest);
-	else
-		draw_y_line(data, dest);
+	// else
+	// 	draw_y_line(data, dest);
 }
