@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/25 14:41:39 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 15:20:31 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,8 @@ typedef struct s_ray
 	t_coord_d	bottom;
 	double		len;
 	double		correction;
+	int			x_text;
+	float		y_text;
 	int			side_hit;
 	int			color;
 	float		angle;

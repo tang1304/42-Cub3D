@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:37:51 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/25 14:47:30 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 15:24:55 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	create_game_rays(t_data *data)
 		// 	data->ray[i].color = GREEN;
 		// else if (data->ray[i].side_hit == 4)//NO
 		// 	data->ray[i].color = YELLOW;
+		data->ray[i].x_text = get_texture_x(data, data->ray[i]);
 		top_bottom_wall_pxl(&data->ray[i], j, wall_height, wall_width);
 		draw_ray(data, &data->ray[i], wall_height);
 	}
