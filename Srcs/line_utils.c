@@ -9,7 +9,7 @@ int	get_inc_value(int i)
 	return (0);
 }
 
-static int	draw_hor_ver_line(t_data *data, t_coord_f dest)
+void	draw_hor_ver_line(t_data *data, t_coord_f dest)
 {
 	int	x;
 	int	y;
@@ -50,7 +50,6 @@ void	draw_x_line(t_data *data, t_coord_f dest)
 	{
 		my_mlx_pixel_put(&data->img, x, y, RED);
 		data->bre.error += data->bre.slope;
-
 		if (data->bre.error >= 0)
 		{
 			y += data->bre.inc_y;
@@ -70,7 +69,7 @@ void	draw_y_line(t_data *data, t_coord_f dest)
 	data->bre.slope = 2 * data->bre.dx;
 	data->bre.error = -data->bre.dy;
 	data->bre.error_inc = -2 * data->bre.dy;
-	while (data->bre.y != dest.y + data->bre.inc_y)
+	while (y != dest.y + data->bre.inc_y)
 	{
 		my_mlx_pixel_put(&data->img, x, y, RED);
 		data->bre.error += data->bre.slope;

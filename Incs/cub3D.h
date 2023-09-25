@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/25 12:25:19 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 12:42:19 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define PURPLE 0x00890089
 
 // data info
-# define VIEW_DIST 5
+# define VIEW_DIST 3
 # define SQUARE_SIZE 20
 # define WIN_WIDTH 1440
 # define WIN_LEN 720
