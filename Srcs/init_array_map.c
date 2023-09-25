@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:34:53 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/08 10:28:06 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 15:25:32 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	create_cpy_map_arr(t_data *data)
 	{
 		data->arr[i] = malloc(sizeof(int) * (ft_strlen(data->map.map[i])));
 		if (data->arr[i] == NULL)
-			exit(1);
+			exit(1);// penser a free tous les data->arr[0 a i -1] si data->arr[i] == NULL
 	}
 	i = -1;
 	while (++i < data->map.height)
