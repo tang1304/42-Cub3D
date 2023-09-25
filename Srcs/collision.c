@@ -6,18 +6,21 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/20 13:51:54 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 08:22:59 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-static float	vector_f_len_sq(t_coord_f center, t_coord_f map)
+static float	vector_f_len_sq(t_coord_f position, t_coord_d map)
 {
-	float	value_sq;
+	float		value_sq;
+	t_coord_f	map_bis;
 
-	value_sq = (center.x - map.x) * (center.x - map.x) + \
-			(center.y - map.y) * (center.y - map.y);
+	map_bis.x = map.x;
+	map_bis.y = map.y;
+	value_sq = (position.x - map_bis.x) * (position.x - map_bis.x) + \
+			(position.y - map_bis.y) * (position.y - map_bis.y);
 	return (value_sq);
 
 }
@@ -88,9 +91,10 @@ t_coord_f	init_data_collision(t_data *data, t_ray *ray)
 {
 	t_coord_f	miss;
 
-	ray->hit_p.x = ray->dest.x;
-	ray->hit_p.y = ray->dest.y;
-	data->col.map = data->player.pos;
+	// ray->hit_p.x = ray->dest.x;
+	// ray->hit_p.y = ray->dest.y;
+	data->col.map.x = data->player.pos.x;
+	data->col.map.y = data->player.pos.y;
 	data->col.dir.x = (ray->hit_p.x - data->player.pos.x);
 	data->col.dir.y = (ray->hit_p.y - data->player.pos.y);
 	if (data->col.dir.x == 0)
