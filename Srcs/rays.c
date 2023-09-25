@@ -73,7 +73,7 @@ void	create_cone_multi_rays(t_data *data, double angle)
 // }
 			data->ray[i].len = calculate_len_vector(data, miss);
 		}
-		create_line(data, data->ray[i].hit_p);
+		create_line(data, &data->ray[i]);
 	}
 	rays_render(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
