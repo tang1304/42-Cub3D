@@ -9,7 +9,7 @@ int	get_inc_value(int i)
 	return (0);
 }
 
-void	draw_hor_ver_line(t_data *data, t_coord_f dest)
+static int	draw_hor_ver_line(t_data *data, t_coord_f dest)
 {
 	int	x;
 	int	y;

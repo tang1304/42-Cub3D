@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/25 11:08:22 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 12:25:19 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@
 # define WIN_WIDTH 1440
 # define WIN_LEN 720
 # define FOV 60
-# define RAY_NUMBER 180
-# define MOVE_SPEED 2
+# define RAY_NUMBER 360
+# define MOVE_SPEED 0.05
 # define ANGLE_MOVE 0.01
 
 // strings
@@ -93,8 +93,8 @@ typedef struct s_texture
 
 typedef struct s_coord_d
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 }				t_coord_d;
 
 typedef struct s_coord_f
@@ -169,7 +169,7 @@ typedef struct s_col
 	t_coord_f	side_d;
 	int			side_touched;
 	t_coord_f	delta_d;
-	t_coord_d	cell;
+	// t_coord_d	cell; not used
 }			t_col;
 
 typedef struct s_mini
@@ -249,7 +249,7 @@ void		init_data_values(t_data *data);
 void		create_cpy_map_arr(t_data *data);
 
 /*	line.c	*/
-void		create_line(t_data *data, t_coord_f dest);
+void		create_line(t_data *data, t_ray *ray);
 void		bresenham_algo(t_data *data, t_coord_f dest);
 
 /*	line_utils.c	*/
