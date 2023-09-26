@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/25 15:44:19 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/26 16:48:54 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,15 +119,15 @@ typedef struct s_player
 
 typedef struct s_bresenham
 {
-	float	x;
-	float	y;
-	float	dx;
-	float	dy;
-	float	inc_x;
-	float	inc_y;
-	float	slope;
-	float	error;
-	float	error_inc;
+	int	x;
+	int	y;
+	int	dx;
+	int	dy;
+	int	inc_x;
+	int	inc_y;
+	int	slope;
+	int	error;
+	int	error_inc;
 }				t_bresenham;
 
 typedef struct s_ray
@@ -249,14 +249,13 @@ void		init_data_values(t_data *data);
 void		create_cpy_map_arr(t_data *data);
 
 /*	line.c	*/
-void		create_line(t_data *data, t_ray *ray);
+void	create_line(t_data *data, t_coord_f dest);
+// void		create_line(t_data *data, t_ray *ray);
 void		bresenham_algo(t_data *data, t_coord_f dest);
 
 /*	line_utils.c	*/
-int			get_inc_value(int i);
-void		draw_hor_ver_line(t_data *data, t_coord_f dest);
-void		draw_x_line(t_data *data, t_coord_f dest);
-void		draw_y_line(t_data *data, t_coord_f dest);
+void	draw_line_vert(t_data *data, t_coord_f start, t_coord_f end);
+void	draw_line_hor(t_data *data, t_coord_f start, t_coord_f end);
 
 /*	map_char_checks.c	*/
 void		direction_check(t_map *map, char c, int i, int j);
