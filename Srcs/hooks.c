@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/20 11:10:20 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/26 13:41:55 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,14 @@ int	actions(t_data *data)
 	if (data->player.w || data->player.s || data->player.a || data->player.d \
 		|| data->player.left || data->player.right)
 	{
+		data->player.view_dst_pos.x = data->player.dir.x * VIEW_DIST + data->player.pos.x;
+	printf("view_x:%f\n", data->player.view_dst_pos.x);
+		data->player.view_dst_pos.y = data->player.dir.y * VIEW_DIST + data->player.pos.y;
+	printf("view_y:%f\n", data->player.view_dst_pos.y);
 		create_board_img(data);
 		create_cone_multi_rays(data, data->player.angle);
 		create_game_rays(data);
+my_mlx_pixel_put(&data->map_img, data->player.view_dst_pos.x, data->player.view_dst_pos.y, BLUE);
 		mlx_put_image_to_window(data->mlx, data->win, data->game_img.img, 0, 0);
 		mlx_put_image_to_window(data->mlx, data->win, data->map_img.img, 0, 0);
 	}

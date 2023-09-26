@@ -23,6 +23,7 @@ SRCS = close.c \
 		render.c \
 		textures.c \
 		utils.c \
+		vectors_utils.c \
 		window.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)

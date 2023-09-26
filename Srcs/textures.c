@@ -6,13 +6,13 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:25:07 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/25 16:03:05 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/26 15:25:14 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-static double	get_angle(t_coord_f start, t_coord_f dest)
+double	get_angle(t_coord_f start, t_coord_f dest)
 {
 	double	delta_x;
 	double	delta_y;
@@ -31,10 +31,28 @@ static double	get_angle(t_coord_f start, t_coord_f dest)
 
 int	get_texture_x(t_data *data, t_ray *ray)
 {
-	double	p_angle;
-	double	hit_len;
+	double		p_angle;
+	double		hit_len;
+	int			x_texture;
+	t_coord_f	wall_hit;
+	float		square_pos;
 
-	p_angle = M_PI_2 - ray->angle + get_angle(data->player.pos, data->player.);
+	p_angle = M_PI_2 - ray->angle + get_angle(data->player.pos, \
+			data->player.view_dst_pos);
+// printf("ray_angle:%f\n", ray->angle / (M_PI/180));
+// printf("p_angle:%f\n", p_angle / (M_PI/180));
+	hit_len = ray->correction * 0.5f * SQUARE_SIZE / sin(p_angle);
+	wall_hit = calculate_vector(data->player.pos, ray->angle, hit_len);
+	if (ray->side_hit == 1 || ray->side_hit == 2)
+		square_pos = wall_hit.x - (wall_hit.y / SQUARE_SIZE) * SQUARE_SIZE;
+	else
+		square_pos = wall_hit.y - (wall_hit.x / SQUARE_SIZE) * SQUARE_SIZE;
+	if (ray->side_hit == 1 || ray->side_hit == 3)
+		square_pos /= SQUARE_SIZE;
+	else
+		square_pos = 1.0f - square_pos / SQUARE_SIZE;
+	x_texture = square_pos * data->map.text[ray->side_hit - 1].width;
+	return (x_texture);
 }
 
 int	get_pixel_from_texture(t_texture *text, int x, int y, double ratio)
@@ -52,7 +70,6 @@ int	get_pixel_from_texture(t_texture *text, int x, int y, double ratio)
 
 void	load_textures(t_data *data, t_map *map)
 {
-printf("path:%s\n", map->text[3].path);
 	map->text[3].text = mlx_xpm_file_to_image(data->mlx, map->text[3].path, \
 						&map->text[3].width, &map->text[3].height);
 	map->text[3].addr = mlx_get_data_addr(map->text[3].text, &map->text[3].bpp \

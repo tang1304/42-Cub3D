@@ -6,8 +6,6 @@ static t_coord_d	compare(t_data *data, t_coord_d dest)
 
 	comp.x = dest.x - data->player.pos.x;
 	comp.y = dest.y - data->player.pos.y;
-// printf("x = %d\n", comp.x);
-// printf("y = %d\n", comp.y);
 	return (comp);
 }
 
@@ -65,11 +63,12 @@ void	create_cone_multi_rays(t_data *data, double angle)
 		data->ray[i].dest.y = data->square_view_d * \
 			sin(-min_ang - (data->fov / WIN_WIDTH) * i) + data->player.pos.y;
 		miss = init_data_collision(data, &data->ray[i]);
-		if (i < RAY_NBR / 2)
-			data->ray[i].angle = (data->fov / 2) - ((i + 1) * data->fov / (RAY_NBR));
-		if (i >= RAY_NBR / 2)
-			data->ray[i].angle = (data->fov / 2) - ((i + 1) * data->fov / (RAY_NBR));
-printf("angle: %f\n", data->ray[i].angle / (M_PI / 180));
+		data->ray[i].angle = get_angle(data->player.pos, vector_d_to_f(data->ray[i].dest));
+		// if (i < RAY_NBR / 2)
+			// data->ray[i].angle = (data->fov / 2) - ((i + 1) * data->fov / (RAY_NBR));
+		// if (i >= RAY_NBR / 2)
+			// data->ray[i].angle = (data->fov / 2) - ((i + 1) * data->fov / (RAY_NBR));
+// printf("angle: %f\n", data->ray[i].angle / (M_PI / 180));
 		if (miss.x != -1 && miss.y != -1)
 		{
 			data->ray[i].hit_p = miss;

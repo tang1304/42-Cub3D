@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/25 15:20:31 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/26 14:34:04 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 # define WIN_LEN 720
 # define RAY_NBR 1280
 # define FOV 60
-# define MOVE_SPEED 0.1
+# define MOVE_SPEED 0.5
 # define ANGLE_MOVE 0.02
 
 // strings
@@ -288,6 +288,8 @@ void		create_rays(t_data *data, t_coord_d dest, double angle);
 void		create_game_rays(t_data *data);
 
 /*	textures.c	*/
+double		get_angle(t_coord_f start, t_coord_f dest);
+int			get_texture_x(t_data *data, t_ray *ray);
 int			get_pixel_from_texture(t_texture *text, int x, int y, double ratio);
 void		load_textures(t_data *data, t_map *map);
 
@@ -298,6 +300,10 @@ char		*double_strtrim_free(char *str, char *s1, char *s2);
 char		*triple_strtrim_free(char *str, char *s1, char *s2, char *s3);
 int			correct_map_char(char c);
 void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
+
+/*	vector_utils.c	*/
+t_coord_f	calculate_vector(t_coord_f start, double angle, double len);
+t_coord_f	vector_d_to_f(t_coord_d vector);
 
 /*	window.c	*/
 void		create_window(t_data *data);
