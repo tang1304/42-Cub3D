@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/25 13:08:33 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/26 14:14:06 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	key_released(int keycode, t_data *data)
 int	mouse_moved(int x, int y, t_data *data)
 {
 	t_coord_d	dest;
-
+(void)dest;
 	dest.x = x;
 	dest.y = y;
 	(void)data;

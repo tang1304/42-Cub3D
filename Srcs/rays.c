@@ -1,60 +1,21 @@
 #include "../Incs/cub3D.h"
 
-// static t_coord_d	compare(t_data *data, t_coord_f dest)
-// {
-// 	t_coord_d	comp;
-
-// 	comp.x = dest.x - data->player.pos.x;
-// 	comp.y = dest.y - data->player.pos.y;
-// // printf("x = %d\n", comp.x);
-// // printf("y = %d\n", comp.y);
-// 	return (comp);
-// }
-
-// double	get_straight_angle(t_data *data, t_coord_f dir)
-// {
-// 	// t_coord_d	comp;
-// 	double		angle;
-// 	t_coord_f	dest;
-// 	// double	d1_sq;
-// 	// double	d2_sq;
-// 	// double	d3_sq;
-
-// 	// comp = compare(data, dest);
-// 	// d2_sq = ((dest.y - data->player.pos.y) * \
-// 	// 			(dest.y - data->player.pos.y)) + \
-// 	// 		(dest.x - data->player.pos.x) * \
-// 	// 			(dest.x - data->player.pos.x);
-// 	// d1_sq = (dest.x - data->player.pos.x) * \
-// 	// 			(dest.x - data->player.pos.x);
-// 	// d3_sq = (dest.y - data->player.pos.y) * \
-// 	// 			(dest.y - data->player.pos.y);
-// 	// if (comp.x >= 0 && comp.y < 0) // right top
-// 	// 	angle = acos(d1_sq/d2_sq);
-// 	// else if (comp.x < 0 && comp.y <= 0)
-// 	// 	angle = M_PI_2 + acos(d3_sq/d2_sq);
-// 	// else if (comp.x < 0 && comp.y > 0)
-// 	// 	angle = M_PI + acos(d1_sq/d2_sq);
-// 	// else
-// 	// 	angle = 3 * M_PI_2 + acos(d3_sq/d2_sq);
-
-// 	dest.x = data->player.pos.x + dir.x * VIEW_DIST;
-// printf("angle: %f\n", angle *180 / M_PI);
-// 	return (angle);
-// }
-
 void	create_cone_multi_rays(t_data *data, t_coord_d left, t_coord_d right)
 {
-	double		inc;
+	double		inc;(void)inc;
 	int			i;
 
 	inc = 1.0f / (RAY_NUMBER - 1.0f);
 	i = 0;
 	while (i < RAY_NUMBER)
 	{
-		data->ray[i].hit_p.x = fabs(left.x - right.x) / RAY_NUMBER;
-		data->ray[i].hit_p.y = fabs(left.y - right.y) / RAY_NUMBER;
-		create_line(data, &data->ray[i]);
+		data->ray[i].hit_p.x = left.x - i * fabs(left.x - right.x) / RAY_NUMBER;
+		data->ray[i].hit_p.y = left.x - i * fabs(left.y - right.y) / RAY_NUMBER;
+
+		t_coord_f	test;
+		test.x = data->ray[i].hit_p.x;
+		test.y = data->ray[i].hit_p.y;
+		create_line(data, test);
 		i++;
 	}
 	// rays_render(data);
@@ -102,4 +63,19 @@ mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 // 		data->ray[0].hit_p.y = data->player.view_dst_pos.y;
 // create_line(data, &data->ray[0]);
 	create_cone_multi_rays(data, right, left);
+
+
+//test
+// t_coord_f	test;
+// test = init_data_collision(data, &data->ray[0]);
+// // test.x = data->player.view_dst_pos.x;
+// // test.y = data->player.view_dst_pos.y;
+// 	create_line(data, test);//, &data->ray[i]);
+// test.x = left.x;
+// test.y = left.y;
+// 	create_line(data, test);
+// test.x = right.x;
+// test.y = right.y;
+// create_line(data, test);
+
 }
