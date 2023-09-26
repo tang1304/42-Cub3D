@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/22 16:22:16 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/26 10:45:21 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ typedef struct s_texture
 
 typedef struct s_coord_d
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 }				t_coord_d;
 
 typedef struct s_coord_f
