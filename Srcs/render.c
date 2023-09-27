@@ -47,7 +47,7 @@ void	rays_render(t_data *data)
 	{
 		if (data->ray[i].len == -1)
 			continue ;
-		slice_height = WIN_LEN / data->ray[i].correction;
+		slice_height = (1.0f / ((data->ray[i].correction) * cos(data->ray[i].angle)) * WIN_LEN);
 		render_walls(data, i, slice_height, slice_width);
 	}
 }

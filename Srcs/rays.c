@@ -54,7 +54,7 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 		create_line(data, data->ray[i].hit_p);
 	}
 	rays_render(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->game.img, 0, 0);
+	// mlx_put_image_to_window(data->mlx, data->win, data->map_img.img, 0, 0);
 }
 
 void	create_rays(t_data *data)
