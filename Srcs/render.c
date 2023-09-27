@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:37:51 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/26 15:16:42 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 10:30:21 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void	draw_ray(t_data *data, t_ray *ray, float wall_h)
 	int		color;
 	double	ratio;
 
-	ratio = data->map.text[ray->side_hit - 1].height / wall_h;
+	ratio = wall_h / data->map.text[ray->side_hit - 1].height;
+// printf("ratio:%f\n", ratio);
 	j = 0;
 	while (j < ray->top.y)
 	{
@@ -41,11 +42,10 @@ static void	draw_ray(t_data *data, t_ray *ray, float wall_h)
 	}
 	while (j < ray->bottom.y)
 	{
-printf("x_text:%d\n", ray->x_text);
-printf("y_text:%f\n", ray->y_text);
 		ray->y_text += ratio;
+// printf("y_text:%f\n", ray->y_text);
 		color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], \
-				ray->x_text, ray->y_text, ratio);
+				ray->x_text, ray->y_text);
 		my_mlx_pixel_put(&data->game_img, ray->top.x, j, color);
 		j++;
 	}
@@ -92,6 +92,7 @@ void	create_game_rays(t_data *data)
 		// else if (data->ray[i].side_hit == 4)//NO
 		// 	data->ray[i].color = YELLOW;
 		data->ray[i].x_text = get_texture_x(data, &data->ray[i]);
+// printf("x_text:%d\n", data->ray[i].x_text);
 		top_bottom_wall_pxl(&data->ray[i], j, wall_height, wall_width);
 		draw_ray(data, &data->ray[i], wall_height);
 	}

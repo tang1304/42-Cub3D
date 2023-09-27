@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:25:07 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/26 15:25:14 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 10:32:34 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,28 +43,31 @@ int	get_texture_x(t_data *data, t_ray *ray)
 // printf("p_angle:%f\n", p_angle / (M_PI/180));
 	hit_len = ray->correction * 0.5f * SQUARE_SIZE / sin(p_angle);
 	wall_hit = calculate_vector(data->player.pos, ray->angle, hit_len);
+printf("wall_hit_x: %f\n", wall_hit.x);
+printf("wall_hit_y: %f\n", wall_hit.y);
 	if (ray->side_hit == 1 || ray->side_hit == 2)
-		square_pos = wall_hit.x - (wall_hit.y / SQUARE_SIZE) * SQUARE_SIZE;
+		square_pos = wall_hit.x - (int)(wall_hit.y / SQUARE_SIZE) * SQUARE_SIZE;
 	else
-		square_pos = wall_hit.y - (wall_hit.x / SQUARE_SIZE) * SQUARE_SIZE;
-	if (ray->side_hit == 1 || ray->side_hit == 3)
-		square_pos /= SQUARE_SIZE;
-	else
-		square_pos = 1.0f - square_pos / SQUARE_SIZE;
+		square_pos = wall_hit.y - (int)(wall_hit.x / SQUARE_SIZE) * SQUARE_SIZE;
+	// if (ray->side_hit == 1 || ray->side_hit == 3)
+	// 	square_pos /= SQUARE_SIZE;
+	// else
+	// 	square_pos = 1.0f - square_pos / SQUARE_SIZE;
+// printf("cell_pos:%f\n", square_pos);
 	x_texture = square_pos * data->map.text[ray->side_hit - 1].width;
 	return (x_texture);
 }
 
-int	get_pixel_from_texture(t_texture *text, int x, int y, double ratio)
+int	get_pixel_from_texture(t_texture *text, int x, int y)
 {
 	int		color;
-	(void)ratio;
 
 	if (x < 0 || x >= text->width)
 		return (0);
 	if (y < 0 || y >= text->height)
 		return (0);
 	color = (*(int *)text->addr + (y * text->line_l) + (x * text->bpp / 8));
+// printf("color:%d\n", color);
 	return (color);
 }
 
