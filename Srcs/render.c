@@ -36,8 +36,8 @@ void	render_walls(t_data *data, int i, float slice_height, int slice_width)
 void	rays_render(t_data *data)
 {
 	float	slice_height;
-	int		i;
 	int		slice_width;
+	int		i;
 
 	i = -1;
 	slice_width = WIN_WIDTH / RAY_NUMBER;
@@ -46,7 +46,7 @@ void	rays_render(t_data *data)
 		if (data->ray[i].len == -1)
 			continue ;
 		slice_height = 1.0f / data->ray[i].len;
-		slice_height *= WIN_LEN * 1000;
+		slice_height *= WIN_LEN * 2;
 		render_walls(data, i, slice_height, slice_width);
 	}
 }
