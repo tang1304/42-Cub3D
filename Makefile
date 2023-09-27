@@ -23,6 +23,7 @@ SRCS = close.c \
 		map_utils.c \
 		textures.c \
 		utils.c \
+		vector_utils.c \
 		window.c \
 		math.c
 SRCS_DIR = ./Srcs/

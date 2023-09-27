@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 15:47:33 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 16:08:23 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,8 @@ typedef struct s_ray
 	t_coord_d	cell;
 	t_coord_d	w_top;
 	t_coord_d	w_bottom;
+	int			x_text;
+	float		y_text;
 	double		len;
 	double		correction;
 	int			side_hit;
@@ -289,6 +291,7 @@ void		create_game_rays(t_data *data);
 
 /*	textures.c	*/
 void		load_textures(t_data *data, t_map *map);
+int			get_pixel_from_texture(t_texture *text, int x, int y);
 
 /*	utils.c	*/
 int			new_str_start(char *str, int k);
@@ -297,6 +300,10 @@ char		*double_strtrim_free(char *str, char *s1, char *s2);
 char		*triple_strtrim_free(char *str, char *s1, char *s2, char *s3);
 int			correct_map_char(char c);
 void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
+
+/*	vector_utils.c	*/
+t_coord_f	calculate_vector(t_coord_f start, double angle, double len);
+t_coord_f	vector_d_to_f(t_coord_d vector);
 
 /*	window.c	*/
 void		create_window(t_data *data);
