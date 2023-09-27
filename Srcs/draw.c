@@ -1,16 +1,28 @@
 #include "../Incs/cub3D.h"
 
-void	draw_point(t_data *data, int tX, int tY, int color)
+void	draw_point(t_data *data, int tx, int ty, int color)
 {
 	t_coord_d	start;
 	t_coord_d	end;
 
-	start.x = tX - 5;
-	end.x = tX + 5;
-	end.y = tY + 5;
+	if (tx - 3 > 0)
+		start.x = tx - 3;
+	else
+		start.x = 0;
+	if (tx + 3 < WIN_LEN)
+		end.x = tx + 3;
+	else
+		end.x = WIN_LEN - 1;
+	if (ty + 3 < WIN_WIDTH)
+		end.y = ty + 3;
+	else
+		end.y = WIN_WIDTH - 1;
 	while (start.x <= end.x)
 	{
-		start.y = tY - 5;
+		if (ty - 3 > 0)
+			start.y = ty - 3;
+		else
+			start.y = 0;
 		while (start.y <= end.y)
 		{
 			my_mlx_pixel_put(&data->img, start.x, start.y, color);
