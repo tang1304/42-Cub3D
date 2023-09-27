@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 11:43:18 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 13:41:08 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@
 # define ORANGE  0x00FFA500
 
 // data info
-# define VIEW_DIST 200
+# define VIEW_DIST 500
 # define SQUARE_SIZE 20
 # define WIN_WIDTH 1440
 # define WIN_LEN 720
 # define FOV 60
-# define RAY_NUMBER 100
+# define RAY_NUMBER 1440
 # define MOVE_SPEED 0.2
 # define ANGLE_MOVE 0.02
 
@@ -137,6 +137,7 @@ typedef struct s_ray
 	t_coord_d	cell;
 	// t_coord_d	dest;
 	double		len;
+	double		correction;
 	int			side_hit;
 	double		angle;
 }				t_ray;
@@ -191,8 +192,8 @@ typedef struct s_data
 	t_player	player;
 	t_map		map;
 	t_col		col;
-	t_img		img;
-	t_img		start;
+	t_img		map_img;
+	t_img		game;
 	t_bresenham	bre;
 	t_mini		mini;
 }			t_data;

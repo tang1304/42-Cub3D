@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/27 13:04:25 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 13:54:04 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	actions(t_data *data)
 		create_rays(data);
 		data->player.view_dst_pos.x = data->player.dir.x * VIEW_DIST + data->player.pos.x;
 		data->player.view_dst_pos.y = data->player.dir.y * VIEW_DIST + data->player.pos.y;
-		mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+		mlx_put_image_to_window(data->mlx, data->win, data->game.img, 0, 0);
+		mlx_put_image_to_window(data->mlx, data->win, data->map_img.img, 0, 0);
 	}
 	return (0);
 }
