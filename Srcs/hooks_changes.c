@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/27 13:32:11 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 14:21:59 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	rotate_right(t_data *data)
 void	move_left(t_data *data)
 {
 	double		move_speed;
-	t_coord_d	new_pos;
+	t_coord_f	new_pos;
 	t_coord_f	new_dir;
 
 	move_speed = MOVE_SPEED;
@@ -90,7 +90,7 @@ void	move_left(t_data *data)
 void	move_right(t_data *data)
 {
 	double		move_speed;
-	t_coord_d	new_pos;
+	t_coord_f	new_pos;
 	t_coord_f	new_dir;
 
 	move_speed = -MOVE_SPEED;
@@ -111,7 +111,7 @@ void	move_right(t_data *data)
 void	move_forward(t_data *data)
 {
 	double		move_speed;
-	t_coord_d	new_pos;
+	t_coord_f	new_pos;
 
 	move_speed = MOVE_SPEED;
 	new_pos.x = data->player.dir.x * move_speed;
@@ -133,7 +133,7 @@ void	move_forward(t_data *data)
 void	move_backward(t_data *data)
 {
 	double		move_speed;
-	t_coord_d	new_pos;
+	t_coord_f	new_pos;
 
 	move_speed = -MOVE_SPEED;
 	new_pos.x = data->player.dir.x * move_speed;

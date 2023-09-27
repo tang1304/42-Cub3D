@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/27 13:27:38 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 14:10:45 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	detection_wall_touched(t_data *data, t_ray *ray)
 	// right and left side
 	if (data->col.side_touched == 0)
 	{
-ray->correction = (data->col.side_d.x - data->col.delta_d.x) * SQUARE_SIZE;
+		ray->correction = (data->col.side_d.x - data->col.delta_d.x) \
+							* SQUARE_SIZE;
 		if (data->col.step.x == 1)
 			ray->side_hit = 1;
 		else
@@ -39,7 +40,8 @@ ray->correction = (data->col.side_d.x - data->col.delta_d.x) * SQUARE_SIZE;
 	// top and bottom side
 	else
 	{
-ray->correction = (data->col.side_d.y - data->col.delta_d.y) * SQUARE_SIZE;
+		ray->correction = (data->col.side_d.y - data->col.delta_d.y) \
+							* SQUARE_SIZE;
 		if (data->col.step.y == 1)
 			ray->side_hit = 3;
 		else

@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 13:41:08 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 14:21:38 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_texture
 {
 	void	*text;
 	char	*addr;//img address
+	char	*path;
 	int		bpp;//bits per pixel
 	int		endian;//the way bytes are stored
 	int		line_l;//line length
@@ -94,8 +95,8 @@ typedef struct s_texture
 
 typedef struct s_coord_d
 {
-	double	x;
-	double	y;
+	int	x;
+	int	y;
 }				t_coord_d;
 
 typedef struct s_coord_f
@@ -151,10 +152,7 @@ typedef struct s_map
 	char		direction;//player orientation
 	char		**tmp;//content of .cub file
 	char		**map;//only the map
-	t_texture	no;
-	t_texture	so;
-	t_texture	ea;
-	t_texture	we;
+	t_texture	text[4];
 	int			f[3];//floor color
 	int			c[3];//ceiling color
 	int			elems;
@@ -286,6 +284,9 @@ void		create_rays(t_data *data);
 /*	render.c	*/
 void		render_walls(t_data *data, int i, float slice_height, int slice_width);
 void		rays_render(t_data *data);
+
+/*	textures.c	*/
+void		load_textures(t_data *data, t_map *map);
 
 /*	utils.c	*/
 int			new_str_start(char *str, int k);
