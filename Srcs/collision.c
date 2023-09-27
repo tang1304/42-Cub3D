@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/25 12:17:10 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 09:01:00 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 	miss.y = -1;
 	ray->side_hit = 0;
 	data->ray_len_sq = vector_f_len_sq(data->player.pos, data->col.map);
-	while (data->ray_len_sq < data->square_view_d * data->square_view_d)
+	while (data->ray_len_sq < data->square_view_d)
 	{
 		if (data->col.side_d.x < data->col.side_d.y)
 		{
@@ -80,7 +80,6 @@ static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 			// draw_coll(data, data->col.map.x, data->col.map.y, ray);
 			miss.x = (float)data->col.map.x;
 			miss.y = (float)data->col.map.y;
-printf("hit.y: %f\n", miss.y);
 			return (miss);
 		}
 	}

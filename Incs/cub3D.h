@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/26 16:48:54 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 09:38:55 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@
 # define PURPLE 0x00890089
 
 // data info
-# define VIEW_DIST 50
+# define VIEW_DIST 70
 # define SQUARE_SIZE 20
 # define WIN_WIDTH 1440
 # define WIN_LEN 720
 # define FOV 60
-# define RAY_NUMBER 5
+# define RAY_NUMBER 100
 # define MOVE_SPEED 0.05
 # define ANGLE_MOVE 0.01
 
@@ -278,7 +278,7 @@ void		define_map_width(t_map *map);
 
 /*	rays.c	*/
 double		get_straight_angle(t_data *data, t_coord_f dest);
-void		create_cone_multi_rays(t_data *data, t_coord_d left, t_coord_d right);
+void		create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right);
 void		create_rays(t_data *data);
 
 /*	render.c	*/
