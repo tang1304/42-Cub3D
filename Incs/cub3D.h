@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 09:38:55 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 10:24:36 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@
 # define WIN_LEN 720
 # define FOV 60
 # define RAY_NUMBER 100
-# define MOVE_SPEED 0.05
-# define ANGLE_MOVE 0.01
+# define MOVE_SPEED 0.2
+# define ANGLE_MOVE 0.02
 
 // strings
 # define COLOR_CHAR "Error\nWrong char in array (%s), must be only digits\n"
@@ -106,7 +106,7 @@ typedef struct s_coord_f
 typedef struct s_player
 {
 	t_coord_f	pos;
-	t_coord_d	view_dst_pos;//inutilisee so far
+	t_coord_d	view_dst_pos;
 	t_coord_f	dir;
 	double		angle;
 	int			w;
