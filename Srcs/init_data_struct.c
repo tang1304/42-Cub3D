@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/27 13:32:58 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 14:04:29 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_black_img(t_data *data)
 		y = 0;
 		while (y < WIN_LEN)
 		{
-			my_mlx_pixel_put(&data->map_img, x, y, BLACK);
+			my_mlx_pixel_put(&data->game, x, y, BLACK);
 			y++;
 		}
 		x++;
