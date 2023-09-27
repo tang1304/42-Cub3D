@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/27 14:04:29 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 15:50:03 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_black_img(t_data *data)
 	while (x < WIN_WIDTH)
 	{
 		y = 0;
-		while (y < WIN_LEN)
+		while (y < WIN_HEIGHT)
 		{
 			my_mlx_pixel_put(&data->game, x, y, BLACK);
 			y++;

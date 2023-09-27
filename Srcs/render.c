@@ -11,12 +11,12 @@ void	render_walls(t_data *data, int i, float slice_height, int slice_width)
 	end.x = (RAY_NUMBER - 1 - i) * slice_width + slice_width;
 	if (end.x > WIN_WIDTH)
 		end.x = WIN_WIDTH;
-	end.y = WIN_LEN / 2 + slice_height / 2;
-	if (end.y > WIN_LEN)
-		end.y = WIN_LEN;
+	end.y = WIN_HEIGHT / 2 + slice_height / 2;
+	if (end.y > WIN_HEIGHT)
+		end.y = WIN_HEIGHT;
 	while (start.x < end.x)
 	{
-		start.y = WIN_LEN / 2 - slice_height / 2;
+		start.y = WIN_HEIGHT / 2 - slice_height / 2;
 		if (start.y < 0)
 			start.y = 0;
 		while (start.y < end.y)
@@ -47,7 +47,7 @@ void	rays_render(t_data *data)
 	{
 		if (data->ray[i].len == -1)
 			continue ;
-		slice_height = (1.0f / ((data->ray[i].correction) * cos(data->ray[i].angle)) * WIN_LEN);
+		slice_height = (1.0f / ((data->ray[i].correction) * cos(data->ray[i].angle)) * WIN_HEIGHT * 0.5);
 		render_walls(data, i, slice_height, slice_width);
 	}
 }

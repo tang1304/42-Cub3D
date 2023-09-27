@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 14:21:38 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 15:49:40 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@
 # define VIEW_DIST 500
 # define SQUARE_SIZE 20
 # define WIN_WIDTH 1440
-# define WIN_LEN 720
+# define WIN_HEIGHT 720
 # define FOV 60
-# define RAY_NUMBER 1440
+# define RAY_NUMBER 720
 # define MOVE_SPEED 0.2
 # define ANGLE_MOVE 0.02
 

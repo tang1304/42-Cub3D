@@ -21,8 +21,8 @@ static t_coord_f	get_dst_coord(t_coord_f pos, double angle, int dist)
 	// 	dest.x = WIN_WIDTH - 1;
 	// if (dest.y < 0)
 	// 	dest.y = 0;
-	// if (dest.y >= WIN_LEN - SQUARE_SIZE)
-	// 	dest.y = WIN_LEN - 1;
+	// if (dest.y >= WIN_HEIGHT - SQUARE_SIZE)
+	// 	dest.y = WIN_HEIGHT - 1;
 	return (dest);
 }
 
@@ -71,9 +71,9 @@ void	create_rays(t_data *data)
 	left = get_dst_coord(position, data->player.angle + M_PI / 2, opp_len);
 	right = get_dst_coord(position, data->player.angle - M_PI / 2, opp_len);
 
-draw_point(data, data->player.view_dst_pos.x, data->player.view_dst_pos.y, RED);
-draw_point(data, left.x, left.y, GREEN);
-draw_point(data, right.x, right.y, BLUE);
+// draw_point(data, data->player.view_dst_pos.x, data->player.view_dst_pos.y, RED);
+// draw_point(data, left.x, left.y, GREEN);
+// draw_point(data, right.x, right.y, BLUE);
 
 	create_cone_multi_rays(data, left, right);
 }
