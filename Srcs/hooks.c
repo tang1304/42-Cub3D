@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/26 14:14:06 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 10:29:08 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	actions(t_data *data)
 		init_black_img(data);
 		create_board_img(data);
 		create_rays(data);
-		// create_cone_multi_rays(data, data->player.angle);
+		data->player.view_dst_pos.x = data->player.dir.x * VIEW_DIST + data->player.pos.x;
+		data->player.view_dst_pos.y = data->player.dir.y * VIEW_DIST + data->player.pos.y;
 		mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	}
 	return (0);
