@@ -54,7 +54,7 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 		create_line(data, data->ray[i].hit_p);
 	}
 	rays_render(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->game.img, 0, 0);
 }
 
 void	create_rays(t_data *data)
@@ -74,7 +74,6 @@ void	create_rays(t_data *data)
 draw_point(data, data->player.view_dst_pos.x, data->player.view_dst_pos.y, RED);
 draw_point(data, left.x, left.y, GREEN);
 draw_point(data, right.x, right.y, BLUE);
-mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 
 	create_cone_multi_rays(data, left, right);
 }

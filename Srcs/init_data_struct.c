@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/25 15:26:36 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 13:32:58 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_black_img(t_data *data)
 		y = 0;
 		while (y < WIN_LEN)
 		{
-			my_mlx_pixel_put(&data->img, x, y, BLACK);
+			my_mlx_pixel_put(&data->map_img, x, y, BLACK);
 			y++;
 		}
 		x++;
