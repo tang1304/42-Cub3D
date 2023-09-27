@@ -34,8 +34,8 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 	int			i;
 
 	inc = 1.0f / (RAY_NUMBER - 1.0f);
-	i = 0;(void)left;
-	while (i < RAY_NUMBER)
+	i = -1;
+	while (++i < RAY_NUMBER)
 	{
 		data->ray[i].hit_p.x = left.x * inc * i + (1 - (inc * i)) * right.x;
 		data->ray[i].hit_p.y = left.y * inc * i + (1 - (inc * i)) * right.y;
@@ -52,7 +52,6 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 			data->ray[i].hit_p = get_dst_coord(data->player.pos, ang, VIEW_DIST);
 		}
 		create_line(data, data->ray[i].hit_p);
-		i++;
 	}
 	rays_render(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);

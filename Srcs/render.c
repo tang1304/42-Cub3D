@@ -5,18 +5,20 @@ void	render_walls(t_data *data, int i, float slice_height, int slice_width)
 	t_coord_d	start;
 	t_coord_d	end;
 
-	start.x = i * slice_width;
-	start.y = WIN_LEN / 2 - slice_height / 2;
-	end.x = i * slice_width + slice_width;
+	start.x = (RAY_NUMBER - 1 - i) * slice_width;
+	if (start.x < 0)
+		start.x = 0;
+	end.x = (RAY_NUMBER - 1 - i) * slice_width + slice_width;
+	if (end.x > WIN_WIDTH)
+		end.x = WIN_WIDTH;
 	end.y = WIN_LEN / 2 + slice_height / 2;
-
-// // // my_mlx_pixel_put(&data->img, start.x, start.y, RED);
-// printf("start.x: %d start.y: %d\n", start.x, start.y);
-// printf("end.x: %d end.y: %d\n", end.x, end.y);
-// printf("side.hit: %d\n", data->ray[i].side_hit);
+	if (end.y > WIN_LEN)
+		end.y = WIN_LEN;
 	while (start.x < end.x)
 	{
 		start.y = WIN_LEN / 2 - slice_height / 2;
+		if (start.y < 0)
+			start.y = 0;
 		while (start.y < end.y)
 		{
 			if (data->ray[i].side_hit == 1)
@@ -25,8 +27,8 @@ void	render_walls(t_data *data, int i, float slice_height, int slice_width)
 				my_mlx_pixel_put(&data->img, start.x, start.y, GREEN);
 			else if (data->ray[i].side_hit == 3)
 				my_mlx_pixel_put(&data->img, start.x, start.y, BLUE);
-			else
-				my_mlx_pixel_put(&data->img, start.x, start.y, 0x002C5577);
+			else if (data->ray[i].side_hit == 4)
+				my_mlx_pixel_put(&data->img, start.x, start.y, ORANGE);
 			start.y++;
 		}
 		start.x++;
@@ -46,7 +48,7 @@ void	rays_render(t_data *data)
 		if (data->ray[i].len == -1)
 			continue ;
 		slice_height = 1.0f / data->ray[i].len;
-		slice_height *= WIN_LEN * 2;
+		slice_height *= WIN_LEN * 500;
 		render_walls(data, i, slice_height, slice_width);
 	}
 }
