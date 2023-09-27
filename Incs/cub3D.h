@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 14:21:38 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/27 15:47:33 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@
 # define ORANGE  0x00FFA500
 
 // data info
-# define VIEW_DIST 500
-# define SQUARE_SIZE 20
+# define VIEW_DIST 400
+# define SQUARE_SIZE 16
 # define WIN_WIDTH 1440
 # define WIN_LEN 720
 # define FOV 60
 # define RAY_NUMBER 1440
-# define MOVE_SPEED 0.2
+# define MOVE_SPEED 0.5
 # define ANGLE_MOVE 0.02
 
 // strings
@@ -136,7 +136,8 @@ typedef struct s_ray
 {
 	t_coord_f	hit_p;
 	t_coord_d	cell;
-	// t_coord_d	dest;
+	t_coord_d	w_top;
+	t_coord_d	w_bottom;
 	double		len;
 	double		correction;
 	int			side_hit;
@@ -278,12 +279,13 @@ void		define_map_width(t_map *map);
 
 /*	rays.c	*/
 double		get_straight_angle(t_data *data, t_coord_f dest);
-void		create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right);
+void		create_cone_multi_rays(t_data *data, t_coord_f left, \
+									t_coord_f right);
 void		create_rays(t_data *data);
 
 /*	render.c	*/
-void		render_walls(t_data *data, int i, float slice_height, int slice_width);
-void		rays_render(t_data *data);
+void		render_walls(t_data *data, t_ray *ray, float slice_height);
+void		create_game_rays(t_data *data);
 
 /*	textures.c	*/
 void		load_textures(t_data *data, t_map *map);
