@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 14:18:47 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 12:38:08 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ typedef struct s_img
 	int		bpp;//bits per pixel
 	int		endian;//the way bytes are stored
 	int		line_l;//line length
+	int		w;
+	int		h;
 }			t_img;
 
 typedef struct s_texture
@@ -191,6 +193,7 @@ typedef struct s_data
 	t_player	player;
 	t_map		map;
 	t_col		col;
+	t_img		main;
 	t_img		img;
 	t_img		start;
 	t_bresenham	bre;
@@ -302,5 +305,10 @@ void		create_board_img(t_data *data);
 /*	math.c	*/
 double		vector_d_len_sq(t_coord_d center, t_coord_d map);
 float		calculate_len_vector(t_data *data, t_coord_f hit);
+
+/*	image.c	*/
+unsigned int	get_pixel_img(t_img img, int x, int y);
+void	put_img_to_img(t_img dst, t_img src, int x, int y);
+void	put_pixel_img(t_img img, int x, int y, int color);
 
 #endif
