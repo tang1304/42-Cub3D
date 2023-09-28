@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 14:48:15 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 14:53:19 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int	map_init(t_data *data, int argc, char **argv)
 
 	if (argc != 2)
 		exit_error("Error\nWrong argument, must be './cub3D xxx.cub' only\n");
+	data->map.data = data;
 	map_format(argv[1]);
 	fd = open(argv[1], O_RDONLY);
 	tmp = open(argv[1], O_RDONLY);

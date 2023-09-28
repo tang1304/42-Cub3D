@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 11:04:15 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 14:10:41 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,10 @@ int	main(int argc, char **argv)
 
 	data_init(&data);
 	map_init(&data, argc, argv);
-	// data.mlx = mlx_init();
-	// if (!data.mlx)
-	// 	return (printf("Error\nMlx error\n"), 0);
-	// data.win = mlx_new_window(data.mlx, (data.map.width * 64), 
-	// ft_bzero(&data, sizeof(t_data));
 	data.mlx = mlx_init();
 	load_textures(&data, &data.map);// a proteger !
 	init_data_values(&data);
 	create_window(&data);
 	t_map_cleaning(&data.map);
-	// mlx_key_hook(data.win, keyhook, &data);
-	// mlx_hook(data.win, 2, 1L<<0, keyhook, &data);
 	return (0);
 }

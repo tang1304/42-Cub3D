@@ -6,13 +6,13 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 11:10:20 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 14:05:44 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-static void	top_bottom_wall_pxl(t_ray *ray, int i, float wall_h, float wall_w)
+static void	top_bottom_wall_pxl(t_ray *ray, int i, float wall_h, int wall_w)
 {
 	ray->w_top.x = (i * wall_w);
 	if (ray->w_top.x < 0)
@@ -36,41 +36,44 @@ static int	get_rgb(int *color)
 void	render_walls(t_data *data, t_ray *ray, float slice_h)
 {
 	int		j;
+	int		k;
 	int		color;
 	double	ratio;
 
 	ratio = data->map.text[ray->side_hit - 1].height / slice_h;
 // printf("ratio:%f\n", ratio);
-	j = 0;
-	while (j < ray->w_top.y)
+	k = ray->w_top.x - 1;
+	while (++k < ray->w_bottom.x)
 	{
-		color = get_rgb(data->map.c);
-		my_mlx_pixel_put(&data->game, ray->w_top.x, j, color);
-		j++;
-	}
-	while (j < ray->w_bottom.y)
-	{
-		// if (ray->side_hit == 1)
-		// 	my_mlx_pixel_put(&data->game, ray->w_top.x, j, PURPLE);
-		// else if (ray->side_hit == 2)
-		// 	my_mlx_pixel_put(&data->game, ray->w_top.x, j, GREEN);
-		// else if (ray->side_hit == 3)
-		// 	my_mlx_pixel_put(&data->game, ray->w_top.x, j, BLUE);
-		// else if (ray->side_hit == 4)
-		// 	my_mlx_pixel_put(&data->game, ray->w_top.x, j, ORANGE);
-		ray->y_text += ratio;
-// printf("y_text:%f\n", ray->y_text);
-		color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], \
-				ray->x_text, ray->y_text);
-// printf("color:%d\n", color);
-		my_mlx_pixel_put(&data->game, ray->w_top.x, j, color);
-		j++;
-	}
-	while (j < WIN_LEN)
-	{
-		color = get_rgb(data->map.f);
-		my_mlx_pixel_put(&data->game, ray->w_top.x, j, color);
-		j++;
+		j = 0;
+		while (j < ray->w_top.y)
+		{
+			color = get_rgb(data->map.c);
+			my_mlx_pixel_put(&data->game, k, j, color);
+			j++;
+		}
+		while (j < ray->w_bottom.y)
+		{
+			if (ray->side_hit == 1)
+				my_mlx_pixel_put(&data->game, k, j, PURPLE);
+			else if (ray->side_hit == 2)
+				my_mlx_pixel_put(&data->game, k, j, GREEN);
+			else if (ray->side_hit == 3)
+				my_mlx_pixel_put(&data->game, k, j, BLUE);
+			else if (ray->side_hit == 4)
+				my_mlx_pixel_put(&data->game, k, j, ORANGE);
+			// ray->y_text += ratio;
+			// color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], \
+			// 		ray->x_text, (int)ray->y_text);
+			// my_mlx_pixel_put(&data->game, k, j, color);
+			j++;
+		}
+		while (j < WIN_LEN)
+		{
+			color = get_rgb(data->map.f);
+			my_mlx_pixel_put(&data->game, k, j, color);
+			j++;
+		}
 	}
 }
 
@@ -128,7 +131,7 @@ void	create_game_rays(t_data *data)
 			continue ;
 		slice_h = (1.0f / ((data->ray[i].correction)) * WIN_LEN);
 		data->ray[i].x_text = get_texture_x(data, &data->ray[i]);
-printf("ray->x: %d\n", data->ray[i].x_text);
+// printf("ray->x: %d\n", data->ray[i].x_text);
 		top_bottom_wall_pxl(&data->ray[i], j, slice_h, slice_w);
 		render_walls(data, &data->ray[i], slice_h);
 	}

@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 11:11:18 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 14:01:20 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ int	get_texture_x(t_data *data, t_ray *ray)
 		square_pos = wall_hit.y - (int)(wall_hit.y / SQUARE_SIZE) * SQUARE_SIZE;
 	else
 		square_pos = wall_hit.x - (int)(wall_hit.x / SQUARE_SIZE) * SQUARE_SIZE;
-	if (ray->side_hit == 1 || ray->side_hit == 3)
+	if (ray->side_hit == 1 || ray->side_hit == 4)
 		square_pos /= SQUARE_SIZE;
 	else
 		square_pos = 1.0f - square_pos / SQUARE_SIZE;
-// printf("cell_pos:%f\n", square_pos);
 	x_texture = square_pos * data->map.text[ray->side_hit - 1].width;
 	return (x_texture);
 }
@@ -45,9 +44,9 @@ int	get_pixel_from_texture(t_texture *text, int x, int y)
 {
 	int		color;
 
-	if (x < 0 || x >= text->width)
+	if (x < 0 || x > text->width)
 		return (0);
-	// if (y < 0 || y >= text->height)
+	// if (y < 0 || y > text->height)
 	// 	return (0);
 	color = (*(int *)text->addr + (y * text->line_l) + (x * text->bpp / 8));
 	return (color);
@@ -55,20 +54,18 @@ int	get_pixel_from_texture(t_texture *text, int x, int y)
 
 void	load_textures(t_data *data, t_map *map)
 {
-	map->text[3].text = mlx_xpm_file_to_image(data->mlx, map->text[3].path, \
-						&map->text[3].width, &map->text[3].height);
-	map->text[3].addr = mlx_get_data_addr(map->text[3].text, &map->text[3].bpp \
-						, &map->text[3].line_l, &map->text[3].endian);
-	map->text[2].text = mlx_xpm_file_to_image(data->mlx, map->text[2].path, \
-						&map->text[2].width, &map->text[2].height);
-	map->text[2].addr = mlx_get_data_addr(map->text[2].text, &map->text[2].bpp \
-						, &map->text[2].line_l, &map->text[2].endian);
-	map->text[1].text = mlx_xpm_file_to_image(data->mlx, map->text[1].path, \
-						&map->text[1].width, &map->text[1].height);
-	map->text[1].addr = mlx_get_data_addr(map->text[1].text, &map->text[1].bpp \
-						, &map->text[1].line_l, &map->text[1].endian);
-	map->text[0].text = mlx_xpm_file_to_image(data->mlx, map->text[0].path, \
-						&map->text[0].width, &map->text[0].height);
-	map->text[0].addr = mlx_get_data_addr(map->text[0].text, &map->text[0].bpp \
-						, &map->text[0].line_l, &map->text[0].endian);
+	int	i;
+
+	i = -1;
+	while (++i < 4)
+	{
+		map->text[i].text = mlx_xpm_file_to_image(data->mlx, map->text[i].path, \
+				&map->text[i].width, &map->text[i].height);
+		if (!map->text[i].text)
+			;
+		map->text[i].addr = mlx_get_data_addr(map->text[i].text, \
+				&map->text[i].bpp, &map->text[i].line_l, &map->text[i].endian);
+		if (!map->text[i].addr)
+			;
+	}
 }
