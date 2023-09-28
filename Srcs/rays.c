@@ -21,8 +21,8 @@ static t_coord_f	get_dst_coord(t_coord_f pos, double angle, int dist)
 	// 	dest.x = WIN_WIDTH - 1;
 	// if (dest.y < 0)
 	// 	dest.y = 0;
-	// if (dest.y >= WIN_LEN - SQUARE_SIZE)
-	// 	dest.y = WIN_LEN - 1;
+	// if (dest.y >= WIN_HEIGHT - SQUARE_SIZE)
+	// 	dest.y = WIN_HEIGHT - 1;
 	return (dest);
 }
 

@@ -9,10 +9,10 @@ void	draw_point(t_data *data, int tx, int ty, int color)
 		start.x = tx - 3;
 	else
 		start.x = 0;
-	if (tx + 3 < WIN_LEN)
+	if (tx + 3 < WIN_HEIGHT)
 		end.x = tx + 3;
 	else
-		end.x = WIN_LEN - 1;
+		end.x = WIN_HEIGHT - 1;
 	if (ty + 3 < WIN_WIDTH)
 		end.y = ty + 3;
 	else

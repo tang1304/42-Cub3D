@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/25 15:26:36 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 12:42:58 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_black_img(t_data *data)
 	while (x < WIN_WIDTH)
 	{
 		y = 0;
-		while (y < WIN_LEN)
+		while (y < WIN_HEIGHT)
 		{
 			my_mlx_pixel_put(&data->img, x, y, BLACK);
 			y++;

@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/27 14:19:12 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 12:42:53 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	rotate_right(t_data *data)
 // 	pos.y = y / SQUARE_SIZE;
 // 	if (pos.x < 0 || pos.x > WIN_WIDTH - 1)
 // 		return (0);
-// 	if (pos.y <0 || pos.y > WIN_LEN - 1)
+// 	if (pos.y <0 || pos.y > WIN_HEIGHT - 1)
 // 		return (0);
 // 	if (data->map.map[pos.y][pos.x] != '1')
 // 		return (1);

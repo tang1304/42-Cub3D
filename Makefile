@@ -23,7 +23,8 @@ SRCS = close.c \
 		map_utils.c \
 		utils.c \
 		window.c \
-		math.c
+		math.c \
+		image.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
 OBJ_DIR = objs/
