@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 14:53:19 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 15:20:19 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static char	**get_file_lines(int fd, int n)
 	return (tab);
 }
 
-static int	get_datas(t_data *data, int fd, int fd_2)
+static void	get_datas(t_data *data, int fd, int fd_2)
 {
 	int		i;
 	int		n;
@@ -107,10 +107,9 @@ static int	get_datas(t_data *data, int fd, int fd_2)
 	check_enough_datas(&data->map);
 	get_map(&data->map, i);
 	parse_map(&data->map);
-	return (1);
 }
 
-int	map_init(t_data *data, int argc, char **argv)
+void	map_init(t_data *data, int argc, char **argv)
 {
 	int	fd;
 	int	tmp;
@@ -123,10 +122,5 @@ int	map_init(t_data *data, int argc, char **argv)
 	tmp = open(argv[1], O_RDONLY);
 	if (fd == -1 || tmp == -1)
 		exit_error("Error\nCouldn't open the .cub file\n");
-	if (!get_datas(data, fd, tmp))
-	{
-		ft_printf("Error\nGet_map crashed\n");
-		return (close(fd), 0);
-	}
-	return (1);
+	get_datas(data, fd, tmp);
 }

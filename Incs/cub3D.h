@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 14:58:31 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 15:20:38 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,7 +267,7 @@ int			len_line_up(t_map *map, int i);
 int			len_line_down(t_map *map, int i);
 
 /*	map_init.c	*/
-int			map_init(t_data *data, int argc, char **argv);
+void		map_init(t_data *data, int argc, char **argv);
 
 /*	map_parsing.c	*/
 int			neighbour_ok(char c);
