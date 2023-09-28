@@ -6,28 +6,11 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 16:08:42 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 11:11:18 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
-
-double	get_angle(t_coord_f start, t_coord_f dest)
-{
-	double	delta_x;
-	double	delta_y;
-
-	delta_x = (double)(dest.x - start.x);
-	delta_y = (double)(dest.y - start.y);
-	if (delta_x < 0 && delta_y < 0)
-		return (atan(delta_x / delta_y) + M_PI / 2);
-	else if (delta_x < 0 && delta_y > 0)
-		return (atan(-delta_y / delta_x) + M_PI);
-	else if (delta_x >= 0 && delta_y < 0)
-		return (atan(-delta_y / delta_x));
-	else
-		return (atan (delta_x / delta_y) + M_PI + M_PI_2);
-}
 
 int	get_texture_x(t_data *data, t_ray *ray)
 {
@@ -43,16 +26,16 @@ int	get_texture_x(t_data *data, t_ray *ray)
 // printf("p_angle:%f\n", p_angle / (M_PI/180));
 	hit_len = ray->correction * 0.5f * SQUARE_SIZE / sin(p_angle);
 	wall_hit = calculate_vector(data->player.pos, ray->angle, hit_len);
-printf("wall_hit_x: %f\n", wall_hit.x);
-printf("wall_hit_y: %f\n", wall_hit.y);
+// printf("wall_hit_x: %f\n", wall_hit.x);
+// printf("wall_hit_y: %f\n", wall_hit.y);
 	if (ray->side_hit == 1 || ray->side_hit == 2)
-		square_pos = wall_hit.x - (int)(wall_hit.y / SQUARE_SIZE) * SQUARE_SIZE;
+		square_pos = wall_hit.y - (int)(wall_hit.y / SQUARE_SIZE) * SQUARE_SIZE;
 	else
-		square_pos = wall_hit.y - (int)(wall_hit.x / SQUARE_SIZE) * SQUARE_SIZE;
-	// if (ray->side_hit == 1 || ray->side_hit == 3)
-	// 	square_pos /= SQUARE_SIZE;
-	// else
-	// 	square_pos = 1.0f - square_pos / SQUARE_SIZE;
+		square_pos = wall_hit.x - (int)(wall_hit.x / SQUARE_SIZE) * SQUARE_SIZE;
+	if (ray->side_hit == 1 || ray->side_hit == 3)
+		square_pos /= SQUARE_SIZE;
+	else
+		square_pos = 1.0f - square_pos / SQUARE_SIZE;
 // printf("cell_pos:%f\n", square_pos);
 	x_texture = square_pos * data->map.text[ray->side_hit - 1].width;
 	return (x_texture);
@@ -64,10 +47,9 @@ int	get_pixel_from_texture(t_texture *text, int x, int y)
 
 	if (x < 0 || x >= text->width)
 		return (0);
-	if (y < 0 || y >= text->height)
-		return (0);
+	// if (y < 0 || y >= text->height)
+	// 	return (0);
 	color = (*(int *)text->addr + (y * text->line_l) + (x * text->bpp / 8));
-// printf("color:%d\n", color);
 	return (color);
 }
 
