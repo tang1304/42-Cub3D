@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 10:15:07 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 14:58:31 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 # define WIN_WIDTH 1440
 # define WIN_LEN 720
 # define FOV 60
-# define RAY_NUMBER 1440
+# define RAY_NUMBER 720
 # define MOVE_SPEED 0.5
 # define ANGLE_MOVE 0.02
 
@@ -148,19 +148,20 @@ typedef struct s_ray
 
 typedef struct s_map
 {
-	int			p;
-	double		angle;
-	int			p_x;//player position on x
-	int			p_y;//player position on y
-	char		direction;//player orientation
-	char		**tmp;//content of .cub file
-	char		**map;//only the map
-	t_texture	text[4];
-	int			f[3];//floor color
-	int			c[3];//ceiling color
-	int			elems;
-	int			width;
-	int			height;
+	int				p;
+	double			angle;
+	int				p_x;//player position on x
+	int				p_y;//player position on y
+	char			direction;//player orientation
+	char			**tmp;//content of .cub file
+	char			**map;//only the map
+	t_texture		text[4];
+	int				f[3];//floor color
+	int				c[3];//ceiling color
+	int				elems;
+	int				width;
+	int				height;
+	struct s_data	*data;
 }				t_map;
 
 typedef struct s_col
@@ -217,7 +218,7 @@ void		exit_error(char *str);
 void		map_error(t_map *map, char *str);
 
 /*	frees.c	*/
-void		t_texture_cleaning(t_texture *text);
+void		t_texture_cleaning(t_texture *text, t_data *data);
 void		t_map_cleaning(t_map *map);
 
 /*	get_map.c	*/
