@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 14:10:41 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 15:22:10 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	data_init(&data);
-	map_init(&data, argc, argv);
+	map_init(&data, argc, argv);//leaks OK jusque la
 	data.mlx = mlx_init();
 	load_textures(&data, &data.map);// a proteger !
 	init_data_values(&data);
