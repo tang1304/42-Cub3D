@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 16:04:21 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 11:10:20 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	render_walls(t_data *data, t_ray *ray, float slice_h)
 	int		color;
 	double	ratio;
 
-	ratio = slice_h / data->map.text[ray->side_hit - 1].height;
+	ratio = data->map.text[ray->side_hit - 1].height / slice_h;
 // printf("ratio:%f\n", ratio);
 	j = 0;
 	while (j < ray->w_top.y)
@@ -62,6 +62,7 @@ void	render_walls(t_data *data, t_ray *ray, float slice_h)
 // printf("y_text:%f\n", ray->y_text);
 		color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], \
 				ray->x_text, ray->y_text);
+// printf("color:%d\n", color);
 		my_mlx_pixel_put(&data->game, ray->w_top.x, j, color);
 		j++;
 	}
@@ -110,21 +111,25 @@ void	render_walls(t_data *data, t_ray *ray, float slice_h)
 
 void	create_game_rays(t_data *data)
 {
-	float	slice_height;
-	int		slice_width;
+	float	slice_h;
+	int		slice_w;
 	int		i;
 	int		j;
 
 	i = -1;
 	j = RAY_NUMBER;
-	slice_width = WIN_WIDTH / RAY_NUMBER;
+	slice_w = WIN_WIDTH / RAY_NUMBER;
+// printf("text_w: %d\n", data->map.text[3].width);
+// printf("text_h: %d\n", data->map.text[3].height);
 	while (++i < RAY_NUMBER)
 	{
 		j--;
 		if (data->ray[i].len == -1)
 			continue ;
-		slice_height = (1.0f / ((data->ray[i].correction) * cos(data->ray[i].angle)) * WIN_LEN);
-		top_bottom_wall_pxl(&data->ray[i], j, slice_height, slice_width);
-		render_walls(data, &data->ray[i], slice_height);
+		slice_h = (1.0f / ((data->ray[i].correction)) * WIN_LEN);
+		data->ray[i].x_text = get_texture_x(data, &data->ray[i]);
+printf("ray->x: %d\n", data->ray[i].x_text);
+		top_bottom_wall_pxl(&data->ray[i], j, slice_h, slice_w);
+		render_walls(data, &data->ray[i], slice_h);
 	}
 }

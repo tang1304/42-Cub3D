@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 16:08:23 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 10:15:07 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,13 +252,13 @@ void		init_data_values(t_data *data);
 void		create_cpy_map_arr(t_data *data);
 
 /*	line.c	*/
-void	create_line(t_data *data, t_coord_f dest);
+void		create_line(t_data *data, t_coord_f dest);
 // void		create_line(t_data *data, t_ray *ray);
 void		bresenham_algo(t_data *data, t_coord_f dest);
 
 /*	line_utils.c	*/
-void	draw_line_vert(t_data *data, t_coord_f start, t_coord_f end);
-void	draw_line_hor(t_data *data, t_coord_f start, t_coord_f end);
+void		draw_line_vert(t_data *data, t_coord_f start, t_coord_f end);
+void		draw_line_hor(t_data *data, t_coord_f start, t_coord_f end);
 
 /*	map_char_checks.c	*/
 void		direction_check(t_map *map, char c, int i, int j);
@@ -291,6 +291,7 @@ void		create_game_rays(t_data *data);
 
 /*	textures.c	*/
 void		load_textures(t_data *data, t_map *map);
+int			get_texture_x(t_data *data, t_ray *ray);
 int			get_pixel_from_texture(t_texture *text, int x, int y);
 
 /*	utils.c	*/
@@ -304,6 +305,7 @@ void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 /*	vector_utils.c	*/
 t_coord_f	calculate_vector(t_coord_f start, double angle, double len);
 t_coord_f	vector_d_to_f(t_coord_d vector);
+float		get_angle(t_coord_f start, t_coord_f dest);
 
 /*	window.c	*/
 void		create_window(t_data *data);
