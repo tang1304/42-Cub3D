@@ -1,7 +1,7 @@
  	WE ./textures/Cloudy_Mountains.xpm
 	NO ./textures/Glowing_Sea.xpm
  EA ./textures/Misty_Rocks.xpm
-SO ./textures/Starry_Peaks.xpm
+SO ./textures/Starry_Peak.xpm
 
 F 0,128, 128
 
