@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:48:45 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 16:00:20 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 09:42:47 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	t_texture_cleaning(t_texture *text, t_data *data)
 {
 	(void)data;
-	// if (text->text)
-	// 	mlx_destroy_image(&data->mlx, text->text);
-	if (text->addr != NULL)
-	{
-		free(text->addr);
-		text->addr = NULL;
-	}
+	if (text->text)
+		mlx_destroy_image(&data->mlx, text->text);
+	// if (text->addr != NULL)
+	// {
+	// 	free(text->addr);
+	// 	text->addr = NULL;
+	// }
 	if (text->path != NULL)
 	{
 		free(text->path);
