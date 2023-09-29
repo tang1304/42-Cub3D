@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 14:32:08 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 11:15:48 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int	main(int argc, char **argv)
 	// data.mlx = mlx_init();
 	// if (!data.mlx)
 	// 	return (printf("Error\nMlx error\n"), 0);
-	// data.win = mlx_new_window(data.mlx, (data.map.width * 64), 
+	// data.win = mlx_new_window(data.mlx, (data.map.width * 64),
 	// ft_bzero(&data, sizeof(t_data));
 	data.mlx = mlx_init();
-	load_textures(&data, &data.map);// a proteger !
+	// load_textures(&data, &data.map);// a proteger !
 	init_data_values(&data);
 	create_window(&data);
 	t_map_cleaning(&data.map);

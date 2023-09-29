@@ -25,7 +25,8 @@ SRCS = close.c \
 		utils.c \
 		vector_utils.c \
 		window.c \
-		math.c
+		math.c \
+		image.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
 OBJ_DIR = objs/

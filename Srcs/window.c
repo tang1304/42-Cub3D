@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/27 14:01:53 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 11:20:17 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,15 @@ void	create_window(t_data *data)
 	t_img	map_img;
 	t_img	game;
 
-	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_LEN, "cub3D");
-	game.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_LEN);
+	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
+	game.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	game.w = WIN_WIDTH;
+	game.h = WIN_HEIGHT;
 	game.addr = mlx_get_data_addr(game.img, &game.bpp, &game.line_l, \
 				&game.endian);
 	map_img.img = mlx_new_image(data->mlx, data->mini.width, data->mini.height);
+	map_img.w = data->mini.width;
+	map_img.h = data->mini.height;
 	map_img.addr = mlx_get_data_addr(map_img.img, &map_img.bpp, \
 					&map_img.line_l, &map_img.endian);
 	data->game = game;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 16:08:23 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 11:18:31 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@
 # define ORANGE  0x00FFA500
 
 // data info
-# define VIEW_DIST 400
-# define SQUARE_SIZE 16
+# define VIEW_DIST 200
+# define SQUARE_SIZE 20
 # define WIN_WIDTH 1440
-# define WIN_LEN 720
+# define WIN_HEIGHT 720
 # define FOV 60
-# define RAY_NUMBER 1440
-# define MOVE_SPEED 0.5
+# define RAY_NUMBER 720
+# define MOVE_SPEED 0.2
 # define ANGLE_MOVE 0.02
 
 // strings
@@ -79,13 +79,15 @@ typedef struct s_img
 	int		bpp;//bits per pixel
 	int		endian;//the way bytes are stored
 	int		line_l;//line length
+	int		w;
+	int		h;
 }			t_img;
 
 typedef struct s_texture
 {
 	void	*text;
-	char	*addr;//img address
 	char	*path;
+	char	*addr;//img address
 	int		bpp;//bits per pixel
 	int		endian;//the way bytes are stored
 	int		line_l;//line length
@@ -136,10 +138,7 @@ typedef struct s_ray
 {
 	t_coord_f	hit_p;
 	t_coord_d	cell;
-	t_coord_d	w_top;
-	t_coord_d	w_bottom;
-	int			x_text;
-	float		y_text;
+	// t_coord_d	dest;
 	double		len;
 	double		correction;
 	int			side_hit;
@@ -155,6 +154,10 @@ typedef struct s_map
 	char		direction;//player orientation
 	char		**tmp;//content of .cub file
 	char		**map;//only the map
+	t_texture	no;
+	t_texture	so;
+	t_texture	ea;
+	t_texture	we;
 	t_texture	text[4];
 	int			f[3];//floor color
 	int			c[3];//ceiling color
@@ -193,8 +196,10 @@ typedef struct s_data
 	t_player	player;
 	t_map		map;
 	t_col		col;
+	t_img		main;
 	t_img		map_img;
 	t_img		game;
+	t_img		start;
 	t_bresenham	bre;
 	t_mini		mini;
 }			t_data;
@@ -281,17 +286,12 @@ void		define_map_width(t_map *map);
 
 /*	rays.c	*/
 double		get_straight_angle(t_data *data, t_coord_f dest);
-void		create_cone_multi_rays(t_data *data, t_coord_f left, \
-									t_coord_f right);
+void		create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right);
 void		create_rays(t_data *data);
 
 /*	render.c	*/
-void		render_walls(t_data *data, t_ray *ray, float slice_height);
-void		create_game_rays(t_data *data);
-
-/*	textures.c	*/
-void		load_textures(t_data *data, t_map *map);
-int			get_pixel_from_texture(t_texture *text, int x, int y);
+void		render_walls(t_data *data, int i, float slice_height, int slice_width);
+void		rays_render(t_data *data);
 
 /*	utils.c	*/
 int			new_str_start(char *str, int k);
@@ -301,7 +301,7 @@ char		*triple_strtrim_free(char *str, char *s1, char *s2, char *s3);
 int			correct_map_char(char c);
 void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
-/*	vector_utils.c	*/
+/*	vectors_utils.c	*/
 t_coord_f	calculate_vector(t_coord_f start, double angle, double len);
 t_coord_f	vector_d_to_f(t_coord_d vector);
 
@@ -313,5 +313,10 @@ void		create_board_img(t_data *data);
 /*	math.c	*/
 double		vector_d_len_sq(t_coord_d center, t_coord_d map);
 float		calculate_len_vector(t_data *data, t_coord_f hit);
+
+/*	image.c	*/
+unsigned int	get_pixel_img(t_img img, int x, int y);
+void	put_img_to_img(t_img dst, t_img src, int x, int y);
+void	put_pixel_img(t_img img, int x, int y, int color);
 
 #endif
