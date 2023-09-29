@@ -22,13 +22,13 @@ void	render_walls(t_data *data, int i, float slice_height, int slice_width)
 		while (start.y < end.y)
 		{
 			if (data->ray[i].side_hit == 1)
-				my_mlx_pixel_put(&data->img, start.x, start.y, PURPLE);
+				my_mlx_pixel_put(&data->game, start.x, start.y, PURPLE);
 			else if (data->ray[i].side_hit == 2)
-				my_mlx_pixel_put(&data->img, start.x, start.y, GREEN);
+				my_mlx_pixel_put(&data->game, start.x, start.y, GREEN);
 			else if (data->ray[i].side_hit == 3)
-				my_mlx_pixel_put(&data->img, start.x, start.y, BLUE);
+				my_mlx_pixel_put(&data->game, start.x, start.y, BLUE);
 			else if (data->ray[i].side_hit == 4)
-				my_mlx_pixel_put(&data->img, start.x, start.y, ORANGE);
+				my_mlx_pixel_put(&data->game, start.x, start.y, ORANGE);
 			start.y++;
 		}
 		start.x++;
