@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/28 12:43:34 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 15:58:18 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,29 @@
 
 void	create_window(t_data *data)
 {
-	t_img	img;
+	t_img	game;
+	t_img	minimap;
+	t_img	main;
 
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
-	img.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
-	img.w = WIN_WIDTH;
-	img.h = WIN_HEIGHT;
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_l, &img.endian);
-	data->img = img;
-	create_board_img(data);
-	create_rays(data);
-	// create_cone_multi_rays(data, data->player.angle);
+	game.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	game.w = WIN_WIDTH;
+	game.h = WIN_HEIGHT;
+	game.addr = mlx_get_data_addr(game.img, &game.bpp, &game.line_l, &game.endian);
+	data->game = game;
+	minimap.img = mlx_new_image(data->mlx, data->mini.width, data->mini.height);
+	minimap.w = data->mini.width;
+	minimap.h = data->mini.height;
+	minimap.addr = mlx_get_data_addr(minimap.img, &minimap.bpp, \
+					&minimap.line_l, &minimap.endian);
+	data->minimap = minimap;
+	main.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	main.w = WIN_WIDTH;
+	main.h = WIN_HEIGHT;
+	main.addr = mlx_get_data_addr(main.img, &main.bpp, &main.line_l, &main.endian);
+	data->main = main;
+	create_board_img(data); // Create minimap
+	create_rays(data); // Add rays to minimap + adding walls to game img
 	img_loop(data);
 }
 
@@ -51,12 +63,14 @@ static void	add_squares(int x, int y, t_data *data, int num)
 		while (j < (y * s) + s)
 		{
 			if (num == 1)
-				my_mlx_pixel_put(&data->img, i, j, 0x00C4C4C4); // wall
+				my_mlx_pixel_put(&data->minimap, i, j, 0x00C4C4C4); // wall
 			else if (num == 0 || num == 69 || num == 78 || num == 83 \
 					|| num == 87)
-				my_mlx_pixel_put(&data->img, i, j, 0x00FFFFFF); // floor
+				my_mlx_pixel_put(&data->minimap, i, j, 0x00FFFFFF); // floor
 			else if (num == 32)
-				my_mlx_pixel_put(&data->img, i, j, 0x00000000); // empty space
+				my_mlx_pixel_put(&data->minimap, i, j, 0xFF000000); // empty space
+			// else
+			// 	my_mlx_pixel_put(&data->minimap, i, j, 0xFF000000);
 			j++;
 		}
 		i++;

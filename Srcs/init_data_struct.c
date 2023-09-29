@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/28 12:42:58 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 15:48:12 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,6 @@ static void	bressenham_init(t_data *data)
 
 	ft_bzero(&bre, sizeof(t_bresenham));
 	data->bre = bre;
-}
-
-void	init_black_img(t_data *data)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < WIN_WIDTH)
-	{
-		y = 0;
-		while (y < WIN_HEIGHT)
-		{
-			my_mlx_pixel_put(&data->img, x, y, BLACK);
-			y++;
-		}
-		x++;
-	}
 }
 
 void	init_player_data(t_data *data)
@@ -92,8 +74,9 @@ void	init_data_values(t_data *data)
 
 	data->square_view_d = VIEW_DIST * VIEW_DIST;
 	data->fov = FOV * M_PI / 180;
-	data->mini.height = SQUARE_SIZE * data->map.height;
-	data->mini.width = SQUARE_SIZE * data->map.width;
+	data->mini.height = 560;// SQUARE_SIZE * data->map.height; //280
+	data->mini.width = 1320;//SQUARE_SIZE * data->map.width; //660
+printf("w: %d h: %d\n", data->map.width, data->map.height);
 	ray = ft_calloc(RAY_NUMBER, sizeof(t_ray));
 	if (ray == NULL)
 		exit (1);//free all

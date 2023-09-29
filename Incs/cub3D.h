@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 12:38:08 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 16:05:44 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,15 @@
 # define RED 0x00FF0000
 # define BLUE 0x000000FF
 # define BLACK 0x00000000
+# define TRANS 0xFF000000
 # define PURPLE 0x00890089
 # define ORANGE  0x00FFA500
 
 // data info
-# define VIEW_DIST 200
+# define VIEW_DIST 50
 # define SQUARE_SIZE 20
 # define WIN_WIDTH 1440
-# define WIN_LEN 720
+# define WIN_HEIGHT 720
 # define FOV 60
 # define RAY_NUMBER 720
 # define MOVE_SPEED 0.2
@@ -194,7 +195,8 @@ typedef struct s_data
 	t_map		map;
 	t_col		col;
 	t_img		main;
-	t_img		img;
+	t_img		game;
+	t_img		minimap;
 	t_img		start;
 	t_bresenham	bre;
 	t_mini		mini;
@@ -245,7 +247,6 @@ void		move_forward(t_data *data);
 void		move_backward(t_data *data);
 
 /*	init_data_struct.c	*/
-void		init_black_img(t_data *data);
 void		init_player_data(t_data *data);
 void		init_data_values(t_data *data);
 
@@ -307,8 +308,10 @@ double		vector_d_len_sq(t_coord_d center, t_coord_d map);
 float		calculate_len_vector(t_data *data, t_coord_f hit);
 
 /*	image.c	*/
+void			init_black_img(t_data *data);
+void			create_main_image(t_data *data);
 unsigned int	get_pixel_img(t_img img, int x, int y);
-void	put_img_to_img(t_img dst, t_img src, int x, int y);
-void	put_pixel_img(t_img img, int x, int y, int color);
+void			put_img_to_img(t_img dst, t_img src, int x, int y);
+void			put_pixel_img(t_img img, int x, int y, int color);
 
 #endif

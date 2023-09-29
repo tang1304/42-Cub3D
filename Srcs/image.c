@@ -1,9 +1,41 @@
 #include "../Incs/cub3D.h"
 
+void	init_black_img(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WIN_WIDTH)
+	{
+		y = 0;
+		if (x < data->minimap.w && y < data->minimap.h)
+		{
+			while (y < data->minimap.h)
+			{
+				my_mlx_pixel_put(&data->minimap, x, y, TRANS);
+				y++;
+			}
+		}
+		while (y < WIN_HEIGHT)
+		{
+			my_mlx_pixel_put(&data->game, x, y, BLACK);
+			y++;
+		}
+		x++;
+	}
+}
+
+void	create_main_image(t_data *data)
+{
+	put_img_to_img(data->main, data->game, 0, 0);
+	put_img_to_img(data->main, data->minimap, 0, 0);
+}
+
 unsigned int	get_pixel_img(t_img img, int x, int y)
 {
 	return (*(unsigned int *)((img.addr \
-			+ (y * img.line_len) + (x * img.bpp / 8))));
+			+ (y * img.line_l) + (x * img.bpp / 8))));
 }
 
 void	put_img_to_img(t_img dst, t_img src, int x, int y)

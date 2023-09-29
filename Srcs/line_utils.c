@@ -30,7 +30,7 @@ void	draw_line_vert(t_data *data, t_coord_f start, t_coord_f end)
 	data->bre.slope = 2 * data->bre.dx;
 	while (data->bre.y < e.y)
 	{
-		my_mlx_pixel_put(&data->img, data->bre.x, data->bre.y, RED);
+		my_mlx_pixel_put(&data->minimap, data->bre.x, data->bre.y, RED);
 		if (data->bre.error > 0)
 		{
 			data->bre.x += data->bre.inc_x;
@@ -72,7 +72,7 @@ void	draw_line_hor(t_data *data, t_coord_f start, t_coord_f end)
 	data->bre.slope = 2 * data->bre.dy;
 	while (data->bre.x < e.x)
 	{
-		my_mlx_pixel_put(&data->img, data->bre.x, data->bre.y, RED);
+		my_mlx_pixel_put(&data->minimap, data->bre.x, data->bre.y, RED);
 		if (data->bre.error > 0)
 		{
 			data->bre.y += data->bre.inc_y;

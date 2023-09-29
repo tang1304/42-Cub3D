@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/28 12:42:53 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 11:49:19 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	change_board(t_data *data, int keycode)
 	else if (keycode == X)
 		data->arr[y][x] = '1';
 	create_board_img(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
 
 void	rotate_left(t_data *data)
