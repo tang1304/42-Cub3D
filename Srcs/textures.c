@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 15:33:46 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 09:52:04 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	get_pixel_from_texture(t_texture *text, int x, int y)
 
 	if (x < 0 || x > text->width)
 		return (0);
-	// if (y < 0 || y > text->height)
+	// if (y < 0 || y > text->height)// always return here
 	// 	return (0);
 	color = (*(int *)text->addr + (y * text->line_l) + (x * text->bpp / 8));
 	return (color);
@@ -62,10 +62,10 @@ void	load_textures(t_data *data, t_map *map)
 		map->text[i].text = mlx_xpm_file_to_image(data->mlx, map->text[i].path, \
 				&map->text[i].width, &map->text[i].height);
 		if (!map->text[i].text)
-			textures_error(data);
+			textures_error(data, "Error\nProblem changing xpm file to image\n");
 		map->text[i].addr = mlx_get_data_addr(map->text[i].text, \
 				&map->text[i].bpp, &map->text[i].line_l, &map->text[i].endian);
 		if (!map->text[i].addr)
-			textures_error(data);
+			textures_error(data, "Error\nProblem saving image address\n");
 	}
 }
