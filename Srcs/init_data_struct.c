@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/29 15:48:12 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 16:57:08 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	init_data_values(t_data *data)
 
 	data->square_view_d = VIEW_DIST * VIEW_DIST;
 	data->fov = FOV * M_PI / 180;
-	data->mini.height = 560;// SQUARE_SIZE * data->map.height; //280
-	data->mini.width = 1320;//SQUARE_SIZE * data->map.width; //660
+	data->mini.height = SQUARE_SIZE * data->map.height; //280
+	data->mini.width = SQUARE_SIZE * data->map.width; //660
 printf("w: %d h: %d\n", data->map.width, data->map.height);
 	ray = ft_calloc(RAY_NUMBER, sizeof(t_ray));
 	if (ray == NULL)
