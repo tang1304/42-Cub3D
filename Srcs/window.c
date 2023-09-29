@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/29 15:58:18 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 17:06:17 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ static void	add_squares(int x, int y, t_data *data, int num)
 		while (j < (y * s) + s)
 		{
 			if (num == 1)
-				my_mlx_pixel_put(&data->minimap, i, j, 0x00C4C4C4); // wall
+				my_mlx_pixel_put(&data->minimap, i, j, 0xFFC4C4C4); // wall
 			else if (num == 0 || num == 69 || num == 78 || num == 83 \
 					|| num == 87)
-				my_mlx_pixel_put(&data->minimap, i, j, 0x00FFFFFF); // floor
+				my_mlx_pixel_put(&data->minimap, i, j, 0xFFFFFFFF); // floor
 			else if (num == 32)
 				my_mlx_pixel_put(&data->minimap, i, j, 0xFF000000); // empty space
 			// else

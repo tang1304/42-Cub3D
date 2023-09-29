@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/29 16:05:44 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 16:59:04 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define ORANGE  0x00FFA500
 
 // data info
-# define VIEW_DIST 50
+# define VIEW_DIST 200
 # define SQUARE_SIZE 20
 # define WIN_WIDTH 1440
 # define WIN_HEIGHT 720
