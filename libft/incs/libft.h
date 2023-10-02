@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:11:10 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/21 13:02:18 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 11:06:43 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ char		**ft_split(char const *s, char c);
 char		*ft_itoa(int c);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void		ft_free_pp(char **ptr);
+void		ft_free_pp_int(int **ptr, size_t len_ptr);
 t_list		*ft_lstnew(void *content);
 t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
