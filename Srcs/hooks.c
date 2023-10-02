@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/29 15:21:53 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 15:29:44 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	actions(t_data *data)
 		|| data->player.left || data->player.right)
 	{
 		init_black_img(data);
-		create_board_img(data);
+		create_minimap_img(data);
 		create_rays(data);
 	}
 	return (0);
