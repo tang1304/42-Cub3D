@@ -18,12 +18,27 @@ void	crop_big_image(t_data *data, t_coord_d start, t_coord_d end)
 	int	j;
 
 	i = 0;
+	while (i < data->mini.width - 10)
+	{
+		j = 0;
+		while (j < data->mini.height - 10)
+		{
+			put_pixel_img(data->minimap, 10 + i, 10 + j, get_pixel_img(data->bigmap, start.x + i, start.y + j));
+			j++;
+		}
+		while (j < data->mini.height)
+		{
+			put_pixel_img(data->minimap, 10 + i, 10 + j, 0xFF000000);
+			j++;
+		}
+		i++;
+	}
 	while (i < data->mini.width)
 	{
 		j = 0;
 		while (j < data->mini.height)
 		{
-			put_pixel_img(data->minimap, 0 + i, 0 + j, get_pixel_img(data->bigmap, start.x + i, start.y + j));
+			put_pixel_img(data->minimap, 10 + i, 10 + j, 0xFF000000);
 			j++;
 		}
 		i++;

@@ -28,9 +28,17 @@ void	init_black_img(t_data *data)
 
 void	create_main_image(t_data *data)
 {
-	put_img_to_img(data->main, data->game, 0, 0);
-	create_mini_from_big(data);
-	put_img_to_img(data->main, data->minimap, 0, 0);
+	if (!data->player.map)
+	{
+		put_img_to_img(data->main, data->game, 0, 0);
+		create_mini_from_big(data);
+		put_img_to_img(data->main, data->minimap, 0, 0);
+	}
+	else
+	{
+		put_img_to_img(data->main, data->game, 0, 0);
+		put_img_to_img(data->main, data->bigmap, 400, 250);
+	}
 }
 
 unsigned int	get_pixel_img(t_img img, int x, int y)
