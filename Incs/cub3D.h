@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/29 09:49:02 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 10:15:56 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,10 +217,12 @@ void		draw_coll(t_data *data, int x, int y, t_ray *ray);
 void		exit_error(char *str);
 void		map_error(t_map *map, char *str);
 void		textures_error(t_data *data, char *str);
+void		ray_error(t_data *data, char *str);
 
 /*	frees.c	*/
 void		t_texture_cleaning(t_texture *text, t_data *data);
 void		t_map_cleaning(t_map *map);
+int			exit_cub(t_data *data);
 
 /*	get_map.c	*/
 void		get_ceiling_color(t_map *map, char *str, char *elem, int i);

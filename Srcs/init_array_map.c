@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_array_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:34:53 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/25 15:25:32 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 09:57:58 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	create_cpy_map_arr(t_data *data)
 	i = -1;
 	data->arr = malloc(sizeof(int *) * (data->map.height));
 	if (data->arr == NULL)
-		exit(1);//
+		ray_error(data, "Error\nMalloc failed\n");
 	while (++i < data->map.height)
 	{
 		data->arr[i] = malloc(sizeof(int) * (ft_strlen(data->map.map[i])));

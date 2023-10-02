@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 14:05:44 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 09:58:26 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	render_walls(t_data *data, t_ray *ray, float slice_h)
 	int		j;
 	int		k;
 	int		color;
+	(void)slice_h;
 	double	ratio;
 
 	ratio = data->map.text[ray->side_hit - 1].height / slice_h;
@@ -54,18 +55,18 @@ void	render_walls(t_data *data, t_ray *ray, float slice_h)
 		}
 		while (j < ray->w_bottom.y)
 		{
-			if (ray->side_hit == 1)
-				my_mlx_pixel_put(&data->game, k, j, PURPLE);
-			else if (ray->side_hit == 2)
-				my_mlx_pixel_put(&data->game, k, j, GREEN);
-			else if (ray->side_hit == 3)
-				my_mlx_pixel_put(&data->game, k, j, BLUE);
-			else if (ray->side_hit == 4)
-				my_mlx_pixel_put(&data->game, k, j, ORANGE);
-			// ray->y_text += ratio;
-			// color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], \
-			// 		ray->x_text, (int)ray->y_text);
-			// my_mlx_pixel_put(&data->game, k, j, color);
+			// if (ray->side_hit == 1)
+			// 	my_mlx_pixel_put(&data->game, k, j, PURPLE);
+			// else if (ray->side_hit == 2)
+			// 	my_mlx_pixel_put(&data->game, k, j, GREEN);
+			// else if (ray->side_hit == 3)
+			// 	my_mlx_pixel_put(&data->game, k, j, BLUE);
+			// else if (ray->side_hit == 4)
+			// 	my_mlx_pixel_put(&data->game, k, j, ORANGE);
+			ray->y_text += ratio;
+			color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], 
+					ray->x_text, (int)ray->y_text);
+			my_mlx_pixel_put(&data->game, k, j, color);
 			j++;
 		}
 		while (j < WIN_LEN)
