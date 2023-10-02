@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/29 16:59:04 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 15:29:32 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 // data info
 # define VIEW_DIST 200
 # define SQUARE_SIZE 20
+# define MINI_SQ_SIZE 10
 # define WIN_WIDTH 1440
 # define WIN_HEIGHT 720
 # define FOV 60
@@ -190,6 +191,7 @@ typedef struct s_data
 	float		square_view_d;
 	float		ray_len_sq;
 	int			**arr;
+	int			**mini_arr;
 	t_ray		*ray;
 	t_player	player;
 	t_map		map;
@@ -301,7 +303,7 @@ void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 /*	window.c	*/
 void		create_window(t_data *data);
 void		img_loop(t_data *data);
-void		create_board_img(t_data *data);
+void		create_minimap_img(t_data *data);
 
 /*	math.c	*/
 double		vector_d_len_sq(t_coord_d center, t_coord_d map);

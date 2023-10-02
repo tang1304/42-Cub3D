@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/29 17:06:17 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 15:39:28 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	create_window(t_data *data)
 	main.h = WIN_HEIGHT;
 	main.addr = mlx_get_data_addr(main.img, &main.bpp, &main.line_l, &main.endian);
 	data->main = main;
-	create_board_img(data); // Create minimap
+	create_minimap_img(data); // Create minimap
 	create_rays(data); // Add rays to minimap + adding walls to game img
 	img_loop(data);
 }
@@ -49,59 +49,99 @@ void	img_loop(t_data *data)
 	mlx_loop(data->mlx);
 }
 
-static void	add_squares(int x, int y, t_data *data, int num)
+static void	add_squares(t_coord_d p, t_data *data, int num)
 {
-	int	i;
-	int	j;
-	int	s;
+	int		i;
+	int		j;
+	int		s;
 
-	s = SQUARE_SIZE;
-	i = x * s;
-	while (i < (x * s) + s)
+	s = MINI_SQ_SIZE;
+	p.x = p.x * s;
+	p.y = p.y * s;
+	i = 0;
+	while (i < s)
 	{
-		j = y * s;
-		while (j < (y * s) + s)
+		j = 0;
+		while (j < s)
 		{
 			if (num == 1)
-				my_mlx_pixel_put(&data->minimap, i, j, 0xFFC4C4C4); // wall
+			{
+				data->mini_arr[p.x][p.y] = 1;
+				my_mlx_pixel_put(&data->minimap, p.x + i, p.y + j, 0xFFC4C4C4); // wall
+			}
 			else if (num == 0 || num == 69 || num == 78 || num == 83 \
 					|| num == 87)
-				my_mlx_pixel_put(&data->minimap, i, j, 0xFFFFFFFF); // floor
+				my_mlx_pixel_put(&data->minimap, p.x + i, p.y + j, 0xFFFFFFFF); // floor
 			else if (num == 32)
-				my_mlx_pixel_put(&data->minimap, i, j, 0xFF000000); // empty space
-			// else
-			// 	my_mlx_pixel_put(&data->minimap, i, j, 0xFF000000);
+				my_mlx_pixel_put(&data->minimap, p.x + i, p.y + j, 0xFF000000); // empty space
+			else if (num == -1)
+				my_mlx_pixel_put(&data->minimap, p.x + i, p.y + j, 0xFF000000); // test
 			j++;
 		}
 		i++;
 	}
+	if (num == 69 || num == 78 || num == 83 || num == 87 || num == 0 || num == 32)
+		data->mini_arr[p.x][p.y] = 0;
+	else if (num == -1)
+		data->mini_arr[p.x][p.y] = -1;
 }
 
-void	create_board_img(t_data *data)
+void	create_minimap_img(t_data *data)
 {
-	int	x;
-	int	y;
+	t_coord_d	start;
+	t_coord_d	end;
+	t_coord_d	p;
+	int			**mini_arr;
 
-	x = -1;
-	while (++x < data->map.height)
+/*check norm below*/
+	mini_arr = malloc(sizeof(int *) * data->minimap.h);
+	if (mini_arr == NULL)
+		exit (1);// needs free
+	int	i = -1;
+	while (++i < data->minimap.h)
 	{
-		y = -1;
-		while (data->map.map[x][++y])
+		mini_arr[i] = malloc(sizeof(int) * data->minimap.w);
+		if (mini_arr[i] == NULL)
+			exit (1);//free all previous ones
+	}
+	data->mini_arr = mini_arr;
+
+
+	p.x = 0;
+// printf("p.x: %d p.y: %d\n", (int)data->player.pos.y / SQUARE_SIZE, (int)data->player.pos.x / SQUARE_SIZE);
+	start.x = data->player.pos.x / SQUARE_SIZE - 5;
+start.y = data->player.pos.y / SQUARE_SIZE - 5;
+// printf("x: %d y %d\n", start.y, start.x);
+	end.x = data->player.pos.x / SQUARE_SIZE + 5;
+	end.y = data->player.pos.y / SQUARE_SIZE + 5;
+// printf("x: %d y %d\n", end.y, end.x);
+	while (start.x <= end.x)
+	{
+		start.y = data->player.pos.y / SQUARE_SIZE - 5;
+		p.y = 0;
+		while (start.y <= end.y)
 		{
-			if (data->arr[x][y] == '1')
-				add_squares(y, x, data, 1);
-			else if (data->arr[x][y] == '0')
-				add_squares(y, x, data, 0);
-			else if (data->arr[x][y] == 69)
-				add_squares(y, x, data, 69);
-			else if (data->arr[x][y] == 78)
-				add_squares(y, x, data, 78);
-			else if (data->arr[x][y] == 83)
-				add_squares(y, x, data, 83);
-			else if (data->arr[x][y] == 87)
-				add_squares(y, x, data, 87);
-			else if (data->arr[x][y] == 32)
-				add_squares(y, x, data, 32);
+			if (start.x < 0 || start.y < 0 || \
+			end.x >= data->mini.height || end.y >= data->mini.width)
+				add_squares(p, data, -1);
+			else if (data->arr[start.y][start.x] == '1')
+				add_squares(p, data, 1);
+			else if (data->arr[start.y][start.x] == '0')
+				add_squares(p, data, 0);
+			else if (data->arr[start.y][start.x] == 69)
+				add_squares(p, data, 69);
+			else if (data->arr[start.y][start.x] == 78)
+				add_squares(p, data, 78);
+			else if (data->arr[start.y][start.x] == 83)
+				add_squares(p, data, 83);
+			else if (data->arr[start.y][start.x] == 87)
+				add_squares(p, data, 87);
+			else if (data->arr[start.y][start.x] == 32)
+				add_squares(p, data, 32);
+			start.y++;
+			p.y++;
 		}
+		start.x++;
+		p.x++;
 	}
 }
