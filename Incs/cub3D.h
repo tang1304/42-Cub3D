@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/02 16:43:17 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 17:47:29 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define A 97
 # define S 115
 # define D 100
+# define M 109
 # define LEFT 65361
 # define RIGHT 65363
 # define Z 122
@@ -49,7 +50,6 @@
 // data info
 # define VIEW_DIST 200
 # define SQUARE_SIZE 20
-# define MINI_SQ_SIZE 10//useless
 # define SQ_NUM 12
 # define WIN_WIDTH 1440
 # define WIN_HEIGHT 720
@@ -115,6 +115,7 @@ typedef struct s_player
 	t_coord_d	view_dst_pos;
 	t_coord_f	dir;
 	double		angle;
+	int			map;
 	int			w;
 	int			a;
 	int			s;

@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/02 16:05:30 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 17:52:25 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ int	actions(t_data *data)
 	if (data->player.w || data->player.s || data->player.a || data->player.d \
 		|| data->player.left || data->player.right)
 	{
-		init_black_img(data);
-		create_bigmap_img(data);
-		create_rays(data);
+			init_black_img(data);
+			create_bigmap_img(data);
+			create_rays(data);
 	}
 	return (0);
 }
 
 int	key_pressed(int keycode, t_data *data)
-{
+{printf("keycode: %d\n", keycode);
 	if (keycode == W)
 		data->player.w = 1;
 	if (keycode == S)
@@ -52,6 +52,16 @@ int	key_pressed(int keycode, t_data *data)
 		data->player.left = 1;
 	if (keycode == RIGHT)
 		data->player.right = 1;
+	if (keycode == M)
+	{
+		if (data->player.map == 1)
+			data->player.map = 0;
+		else
+			data->player.map = 1;
+		init_black_img(data);
+		create_bigmap_img(data);
+		create_rays(data);
+	}
 	return (1);
 }
 
