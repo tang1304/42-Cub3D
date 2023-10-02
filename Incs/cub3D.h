@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/02 15:29:32 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 16:43:17 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@
 // data info
 # define VIEW_DIST 200
 # define SQUARE_SIZE 20
-# define MINI_SQ_SIZE 10
+# define MINI_SQ_SIZE 10//useless
+# define SQ_NUM 12
 # define WIN_WIDTH 1440
 # define WIN_HEIGHT 720
 # define FOV 60
@@ -199,6 +200,7 @@ typedef struct s_data
 	t_img		main;
 	t_img		game;
 	t_img		minimap;
+	t_img		bigmap;
 	t_img		start;
 	t_bresenham	bre;
 	t_mini		mini;
@@ -303,7 +305,10 @@ void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 /*	window.c	*/
 void		create_window(t_data *data);
 void		img_loop(t_data *data);
-void		create_minimap_img(t_data *data);
+// void		create_minimap_img(t_data *data);
+
+/*	window_utils.c	*/
+void	create_bigmap_img(t_data *data);
 
 /*	math.c	*/
 double		vector_d_len_sq(t_coord_d center, t_coord_d map);
@@ -315,5 +320,9 @@ void			create_main_image(t_data *data);
 unsigned int	get_pixel_img(t_img img, int x, int y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
 void			put_pixel_img(t_img img, int x, int y, int color);
+
+/*	image_utils.c	*/
+void	create_mini_from_big(t_data *data);
+void	crop_big_image(t_data *data, t_coord_d start, t_coord_d end);
 
 #endif

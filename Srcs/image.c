@@ -29,6 +29,7 @@ void	init_black_img(t_data *data)
 void	create_main_image(t_data *data)
 {
 	put_img_to_img(data->main, data->game, 0, 0);
+	create_mini_from_big(data);
 	put_img_to_img(data->main, data->minimap, 0, 0);
 }
 
@@ -44,9 +45,11 @@ void	put_img_to_img(t_img dst, t_img src, int x, int y)
 	int j;
 
 	i = 0;
-	while(i < src.w) {
+	while(i < src.w)
+	{
 		j = 0;
-		while (j < src.h) {
+		while (j < src.h)
+		{
 			put_pixel_img(dst, x + i, y + j, get_pixel_img(src, i, j));
 			j++;
 		}
@@ -60,7 +63,8 @@ void	put_pixel_img(t_img img, int x, int y, int color)
 
 	if (color == (int)0xFF000000)
 		return ;
-	if (x >= 0 && y >= 0 && x < img.w && y < img.h) {
+	if (x >= 0 && y >= 0 && x < img.w && y < img.h)
+	{
 		dst = img.addr + (y * img.line_l + x * (img.bpp / 8));
 		*(unsigned int *) dst = color;
 	}
