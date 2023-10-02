@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/02 09:58:26 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 14:54:39 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,14 @@ static int	get_rgb(int *color)
 	return (1 | color[0] << 16 | color[1] << 8 | color[2]);
 }
 
-void	render_walls(t_data *data, t_ray *ray, float slice_h)
+static void	render_walls(t_data *data, t_ray *ray, float slice_h)
 {
 	int		j;
 	int		k;
 	int		color;
-	(void)slice_h;
 	double	ratio;
 
 	ratio = data->map.text[ray->side_hit - 1].height / slice_h;
-// printf("ratio:%f\n", ratio);
 	k = ray->w_top.x - 1;
 	while (++k < ray->w_bottom.x)
 	{
@@ -53,6 +51,7 @@ void	render_walls(t_data *data, t_ray *ray, float slice_h)
 			my_mlx_pixel_put(&data->game, k, j, color);
 			j++;
 		}
+		ray->y_text = 0;
 		while (j < ray->w_bottom.y)
 		{
 			// if (ray->side_hit == 1)
@@ -63,9 +62,9 @@ void	render_walls(t_data *data, t_ray *ray, float slice_h)
 			// 	my_mlx_pixel_put(&data->game, k, j, BLUE);
 			// else if (ray->side_hit == 4)
 			// 	my_mlx_pixel_put(&data->game, k, j, ORANGE);
-			ray->y_text += ratio;
 			color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], 
-					ray->x_text, (int)ray->y_text);
+					ray->x_text, ray->y_text);
+			ray->y_text += ratio;
 			my_mlx_pixel_put(&data->game, k, j, color);
 			j++;
 		}
@@ -78,41 +77,6 @@ void	render_walls(t_data *data, t_ray *ray, float slice_h)
 	}
 }
 
-// void	render_walls(t_data *data, int i, float slice_height, int slice_width)
-// {
-// 	t_coord_d	start;
-// 	t_coord_d	end;
-
-// 	start.x = (RAY_NUMBER - 1 - i) * slice_width;
-// 	if (start.x < 0)
-// 		start.x = 0;
-// 	end.x = (RAY_NUMBER - 1 - i) * slice_width + slice_width;
-// 	if (end.x > WIN_WIDTH)
-// 		end.x = WIN_WIDTH;
-// 	end.y = WIN_LEN / 2 + slice_height / 2;
-// 	if (end.y > WIN_LEN)
-// 		end.y = WIN_LEN;
-// 	while (start.x < end.x)
-// 	{
-// 		start.y = WIN_LEN / 2 - slice_height / 2;
-// 		if (start.y < 0)
-// 			start.y = 0;
-// 		while (start.y < end.y)
-// 		{
-// 			if (data->ray[i].side_hit == 1)
-// 				my_mlx_pixel_put(&data->game, start.x, start.y, PURPLE);
-// 			else if (data->ray[i].side_hit == 2)
-// 				my_mlx_pixel_put(&data->game, start.x, start.y, GREEN);
-// 			else if (data->ray[i].side_hit == 3)
-// 				my_mlx_pixel_put(&data->game, start.x, start.y, BLUE);
-// 			else if (data->ray[i].side_hit == 4)
-// 				my_mlx_pixel_put(&data->game, start.x, start.y, ORANGE);
-// 			start.y++;
-// 		}
-// 		start.x++;
-// 	}
-// }
-
 void	create_game_rays(t_data *data)
 {
 	float	slice_h;
@@ -123,8 +87,6 @@ void	create_game_rays(t_data *data)
 	i = -1;
 	j = RAY_NUMBER;
 	slice_w = WIN_WIDTH / RAY_NUMBER;
-// printf("text_w: %d\n", data->map.text[3].width);
-// printf("text_h: %d\n", data->map.text[3].height);
 	while (++i < RAY_NUMBER)
 	{
 		j--;
@@ -132,7 +94,6 @@ void	create_game_rays(t_data *data)
 			continue ;
 		slice_h = (1.0f / ((data->ray[i].correction)) * WIN_LEN);
 		data->ray[i].x_text = get_texture_x(data, &data->ray[i]);
-// printf("ray->x: %d\n", data->ray[i].x_text);
 		top_bottom_wall_pxl(&data->ray[i], j, slice_h, slice_w);
 		render_walls(data, &data->ray[i], slice_h);
 	}

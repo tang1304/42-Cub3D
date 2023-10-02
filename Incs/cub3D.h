@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/02 11:25:57 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 13:28:19 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,7 +290,6 @@ void		create_cone_multi_rays(t_data *data, t_coord_f left, \
 void		create_rays(t_data *data);
 
 /*	render.c	*/
-void		render_walls(t_data *data, t_ray *ray, float slice_height);
 void		create_game_rays(t_data *data);
 
 /*	textures.c	*/

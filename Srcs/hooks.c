@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/29 13:16:38 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 14:59:03 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	actions(t_data *data)
 
 int	key_pressed(int keycode, t_data *data)
 {
+	if (keycode == ESC)
+		exit_cub(data);
 	if (keycode == W)
 		data->player.w = 1;
 	if (keycode == S)

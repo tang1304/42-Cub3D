@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/02 11:17:51 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 14:58:09 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	img_loop(t_data *data)
 {
 	mlx_hook(data->win, 2, 1L << 0, key_pressed, data);
 	mlx_hook(data->win, 3, 1L << 1, key_released, data);
-	mlx_hook(data->win, 17, 0, exit_cub, data);//segfault sur croix
+	mlx_hook(data->win, 17, 0, exit_cub, data);
 	mlx_loop_hook(data->mlx, actions, data);
 	mlx_loop(data->mlx);
 }
