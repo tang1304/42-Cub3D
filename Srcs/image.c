@@ -35,8 +35,11 @@ void	create_main_image(t_data *data)
 
 unsigned int	get_pixel_img(t_img img, int x, int y)
 {
-	return (*(unsigned int *)((img.addr \
+	if (x >= 0 && y >= 0 && x < img.w && y < img.h)
+		return (*(unsigned int *)((img.addr \
 			+ (y * img.line_l) + (x * img.bpp / 8))));
+	else
+		return ((unsigned int)0xFF000000);
 }
 
 void	put_img_to_img(t_img dst, t_img src, int x, int y)
