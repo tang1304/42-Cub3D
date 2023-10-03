@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/02 17:47:29 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/03 16:26:44 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@
 # define BLACK 0x00000000
 # define TRANS 0xFF000000
 # define PURPLE 0x00890089
-# define ORANGE  0x00FFA500
+# define ORANGE 0x00FFA500
+# define BROWN 0x000F4A460
 
 // data info
 # define VIEW_DIST 200
 # define SQUARE_SIZE 20
 # define SQ_NUM 12
-# define WIN_WIDTH 1440
-# define WIN_HEIGHT 720
+# define WIN_WIDTH 1440 //720 660->240 diff 480
+# define WIN_HEIGHT 720 // 360 280->180   180
 # define FOV 60
 # define RAY_NUMBER 720
 # define MOVE_SPEED 0.2
@@ -309,6 +310,7 @@ void		img_loop(t_data *data);
 // void		create_minimap_img(t_data *data);
 
 /*	window_utils.c	*/
+void	add_border(int w, int h, t_img *img);
 void	create_bigmap_img(t_data *data);
 
 /*	math.c	*/
@@ -316,7 +318,7 @@ double		vector_d_len_sq(t_coord_d center, t_coord_d map);
 float		calculate_len_vector(t_data *data, t_coord_f hit);
 
 /*	image.c	*/
-void			init_black_img(t_data *data);
+void			init_black_img(t_data *data, int value);
 void			create_main_image(t_data *data);
 unsigned int	get_pixel_img(t_img img, int x, int y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
@@ -324,6 +326,6 @@ void			put_pixel_img(t_img img, int x, int y, int color);
 
 /*	image_utils.c	*/
 void	create_mini_from_big(t_data *data);
-void	crop_big_image(t_data *data, t_coord_d start, t_coord_d end);
+void	crop_big_image(t_data *data, t_coord_d start);
 
 #endif

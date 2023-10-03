@@ -1,6 +1,6 @@
 #include "../Incs/cub3D.h"
 
-void	init_black_img(t_data *data)
+void	init_black_img(t_data *data, int value)
 {
 	int	x;
 	int	y;
@@ -9,7 +9,7 @@ void	init_black_img(t_data *data)
 	while (x < WIN_WIDTH)
 	{
 		y = 0;
-		if (x < data->minimap.w && y < data->minimap.h)
+		if (x < data->minimap.w && y < data->minimap.h && value == 1)
 		{
 			while (y < data->minimap.h)
 			{
@@ -28,6 +28,15 @@ void	init_black_img(t_data *data)
 
 void	create_main_image(t_data *data)
 {
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	if (WIN_WIDTH > data->mini.width)
+		x = WIN_WIDTH * 0.5 - data->mini.width * 0.5;
+	if (WIN_HEIGHT > data->mini.height)
+		y = WIN_HEIGHT * 0.5 - data->mini.height * 0.5;
 	if (!data->player.map)
 	{
 		put_img_to_img(data->main, data->game, 0, 0);
@@ -37,7 +46,7 @@ void	create_main_image(t_data *data)
 	else
 	{
 		put_img_to_img(data->main, data->game, 0, 0);
-		put_img_to_img(data->main, data->bigmap, 400, 250);
+		put_img_to_img(data->main, data->bigmap, x, y);
 	}
 }
 

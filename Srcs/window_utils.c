@@ -26,12 +26,54 @@ static void	add_squares(int x, int y, t_data *data, int num)
 	}
 }
 
+static void	transparency_bigmap(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < data->mini.width)
+	{
+		y = 0;
+		while (y < data->mini.height)
+		{
+			my_mlx_pixel_put(&data->bigmap, x, y, TRANS);
+			y++;
+		}
+		x++;
+	}
+}
+
+void	add_border(int w, int h, t_img *img)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < w)
+	{
+		y = 0;
+		while (y < h)
+		{
+			if (x == 0 || x == 4 || x == w - 1 || x == w - 5 ||
+				y == 0 || y == 4 || y == h - 1 || y == h - 5)
+				my_mlx_pixel_put(img, x, y, BLACK);
+			if ((x > 0 && x < 4) || (x < w - 1 && x > w - 5) ||
+				(y > 0 && y < 4) || (y < h - 1 && y > h - 5))
+				my_mlx_pixel_put(img, x, y, BROWN);
+			y++;
+		}
+		x++;
+	}
+}
+
 void	create_bigmap_img(t_data *data)
 {
 	int	x;
 	int	y;
 
 	x = -1;
+	transparency_bigmap(data);
 	while (++x < data->map.height)
 	{
 		y = -1;
@@ -53,4 +95,5 @@ void	create_bigmap_img(t_data *data)
 				add_squares(y, x, data, 32);
 		}
 	}
+	add_border(data->mini.width, data->mini.height, &data->bigmap);
 }
