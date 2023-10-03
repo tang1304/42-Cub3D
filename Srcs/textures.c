@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/03 13:20:26 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/03 15:10:11 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ int	get_texture_x(t_data *data, t_ray *ray, float text_ratio, int n)
 		square_pos /= SQUARE_SIZE;
 	else
 		square_pos = 1.0f - (square_pos / SQUARE_SIZE);
+// if (n == RAY_NUMBER / 2){
+// printf("square: %f\n", square_pos);
+// printf("wall_hit_x: %f\n", wall_hit.x);
+// printf("wall_hit_y: %f\n\n", wall_hit.y);}
 	x_texture = square_pos * data->map.text[ray->side_hit - 1].width;
 	return (x_texture);
 }
@@ -43,10 +47,10 @@ int	get_pixel_from_texture(t_texture *text, int x, int y)
 {
 	int		color;
 
-	// if (x < 0 || x >= text->width)
-	// 	return (0);
-	// if (y < 0 || y >= text->height)// always return here
-	// 	return (0);
+	if (x < 0 || x >= text->width)
+		return (0);
+	if (y < 0 || y >= text->height)// always return here
+		return (0);
 	color = (*(int *)(text->addr + (x * text->bpp / 8) + (y * text->line_l)));
 	return (color);
 }
