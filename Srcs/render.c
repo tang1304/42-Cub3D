@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/03 11:27:52 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/03 11:34:57 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void	render_walls(t_data *data, t_ray *ray, float slice_h, int n)
 		while (++j < ray->w_top.y)
 			my_mlx_pixel_put(&data->game, k, j, get_rgb(data->map.c));
 		ray->y_text = 0;
-// if (n == RAY_NUMBER / 2){
-// printf("text_x: %d\n", ray->x_text);}
+if (n == RAY_NUMBER / 2){
+printf("text_x: %d\n", ray->x_text);}
 		while (j < ray->w_bottom.y)
 		{
 			color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], \
