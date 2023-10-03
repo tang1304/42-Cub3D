@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/03 11:25:33 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/03 13:03:53 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	get_texture_x(t_data *data, t_ray *ray, float text_ratio, int n)
 		square_pos = wall_hit.y - ((int)wall_hit.y / SQUARE_SIZE) * SQUARE_SIZE;
 	else
 		square_pos = wall_hit.x - ((int)wall_hit.x / SQUARE_SIZE) * SQUARE_SIZE;
-	if (ray->side_hit == 1 || ray->side_hit == 4)
+	if (ray->side_hit == 2 || ray->side_hit == 4)
 		square_pos /= SQUARE_SIZE;
 	else
 		square_pos = 1.0f - (square_pos / SQUARE_SIZE);
