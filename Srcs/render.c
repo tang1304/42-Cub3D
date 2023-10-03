@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/03 11:17:05 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/03 11:27:52 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,20 @@ void	create_game_rays(t_data *data)
 	int		slice_w;
 	int		i;
 	int		j;
+	float	text_ratio;
 
 	i = -1;
 	j = RAY_NUMBER;
 	slice_w = WIN_WIDTH / RAY_NUMBER;
 	while (++i < RAY_NUMBER)
 	{
+		text_ratio = (float)data->map.text[data->ray->side_hit - 1].width \
+					/ (float)data->map.text[data->ray->side_hit - 1].height;
 		j--;
 		if (data->ray[i].len == -1)
 			continue ;
 		slice_h = (1.0f / ((float)(data->ray[i].correction)) * (float)WIN_LEN);
-		data->ray[i].x_text = get_texture_x(data, &data->ray[i], i);
+		data->ray[i].x_text = get_texture_x(data, &data->ray[i], text_ratio, i);
 		top_bottom_wall_pxl(&data->ray[i], j, slice_h, slice_w);
 		render_walls(data, &data->ray[i], slice_h, i);
 	}
