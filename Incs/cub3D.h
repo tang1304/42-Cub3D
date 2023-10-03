@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/03 10:32:27 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/03 11:26:14 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,7 +291,7 @@ void		create_game_rays(t_data *data);
 
 /*	textures.c	*/
 void		load_textures(t_data *data, t_map *map);
-int			get_texture_x(t_data *data, t_ray *ray, int n);
+int			get_texture_x(t_data *data, t_ray *ray, float text_ratio, int n);
 int			get_pixel_from_texture(t_texture *text, int x, int y);
 
 /*	utils.c	*/
