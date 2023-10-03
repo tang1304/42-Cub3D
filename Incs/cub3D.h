@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/02 13:28:19 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/03 10:32:27 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@
 # include <stdint.h>
 # include <fcntl.h>
 # include <math.h>
-
-# define M_PI 3.14159265358979323846
-# define M_PI_2 1.57079632679489661923
 
 // Keycodes
 # define ESC 65307
@@ -47,13 +44,13 @@
 
 // data info
 # define VIEW_DIST 400
-# define SQUARE_SIZE 16
+# define SQUARE_SIZE 15
 # define WIN_WIDTH 1440
 # define WIN_LEN 720
 # define FOV 60
-# define RAY_NUMBER 720
-# define MOVE_SPEED 0.5
-# define ANGLE_MOVE 0.02
+# define RAY_NUMBER 1440
+# define MOVE_SPEED 0.3
+# define ANGLE_MOVE 0.01
 
 // strings
 # define COLOR_CHAR "Error\nWrong char in array (%s), must be only digits\n"
@@ -294,7 +291,7 @@ void		create_game_rays(t_data *data);
 
 /*	textures.c	*/
 void		load_textures(t_data *data, t_map *map);
-int			get_texture_x(t_data *data, t_ray *ray);
+int			get_texture_x(t_data *data, t_ray *ray, int n);
 int			get_pixel_from_texture(t_texture *text, int x, int y);
 
 /*	utils.c	*/

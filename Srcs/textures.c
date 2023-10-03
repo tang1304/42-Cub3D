@@ -6,14 +6,14 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/02 14:53:43 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/03 11:17:18 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-int	get_texture_x(t_data *data, t_ray *ray)
-{
+int	get_texture_x(t_data *data, t_ray *ray, int n)
+{(void)n;
 	double		p_angle;
 	double		hit_len;
 	int			x_texture;
@@ -22,12 +22,10 @@ int	get_texture_x(t_data *data, t_ray *ray)
 
 	p_angle = M_PI_2 - ray->angle + get_angle(data->player.pos, \
 			vector_d_to_f(data->player.view_dst_pos));
-// printf("ray_angle:%f\n", ray->angle / (M_PI/180));
-// printf("p_angle:%f\n", p_angle / (M_PI/180));
-	hit_len = ray->correction * 0.5f * SQUARE_SIZE / sin(p_angle);
+	hit_len = ray->correction * (data->map.text[ray->side_hit - 1].width \
+		/ data->map.text[ray->side_hit - 1].height) \
+		* (SQUARE_SIZE / sin(p_angle));
 	wall_hit = calculate_vector(data->player.pos, ray->angle, hit_len);
-// printf("wall_hit_x: %f\n", wall_hit.x);
-// printf("wall_hit_y: %f\n", wall_hit.y);
 	if (ray->side_hit == 1 || ray->side_hit == 2)
 		square_pos = wall_hit.y - ((int)wall_hit.y / SQUARE_SIZE) * SQUARE_SIZE;
 	else
@@ -36,6 +34,9 @@ int	get_texture_x(t_data *data, t_ray *ray)
 		square_pos /= SQUARE_SIZE;
 	else
 		square_pos = 1.0f - square_pos / SQUARE_SIZE;
+// if (n == RAY_NUMBER / 2){
+// printf("wall_x:%f\n", wall_hit.x);
+// printf("square_pos:%f\n", square_pos);}
 	x_texture = square_pos * data->map.text[ray->side_hit - 1].width;
 	return (x_texture);
 }
@@ -44,10 +45,10 @@ int	get_pixel_from_texture(t_texture *text, int x, int y)
 {
 	int		color;
 
-	if (x < 0 || x >= text->width)
-		return (0);
-	if (y < 0 || y >= text->height)// always return here
-		return (0);
+	// if (x < 0 || x >= text->width)
+	// 	return (0);
+	// if (y < 0 || y >= text->height)// always return here
+	// 	return (0);
 	color = (*(int *)(text->addr + (y * text->line_l) + (x * text->bpp / 8)));
 	return (color);
 }
