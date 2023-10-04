@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/03 14:09:03 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 09:05:07 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define A 97
 # define S 115
 # define D 100
+# define M 109
 # define LEFT 65361
 # define RIGHT 65363
 # define Z 122
@@ -39,21 +40,24 @@
 # define RED 0x00FF0000
 # define BLUE 0x000000FF
 # define BLACK 0x00000000
+# define TRANS 0xFF000000
 # define PURPLE 0x00890089
-# define ORANGE  0x00FFA500
+# define ORANGE 0x00FFA500
+# define BROWN 0x000F4A460
 
 // data info
 # define VIEW_DIST 400
 # define SQUARE_SIZE 15
+# define SQ_NUM 12
 # define WIN_WIDTH 1440
-# define WIN_LEN 720
+# define WIN_HEIGHT 720
 # define FOV 60
 # define RAY_NUMBER 1440
 # define MOVE_SPEED 0.3
 # define ANGLE_MOVE 0.01
 
 // strings
-# define COLOR_CHAR "Error\nWrong char in array (%s), must be only digits\n"
+# define COLOR_CHAR "ErrorWrong char in array (%c b), must be only digits\n"
 # define COLOR_NBR "Error\nWrong color numbers, must be 3 colors x,y,z\n"
 # define COLOR_VAL "Error\nWrong color value (%d), must be between 0 and 255 \
 included\n"
@@ -76,6 +80,8 @@ typedef struct s_img
 	int		bpp;//bits per pixel
 	int		endian;//the way bytes are stored
 	int		line_l;//line length
+	int		w;
+	int		h;
 }			t_img;
 
 typedef struct s_texture
@@ -108,6 +114,7 @@ typedef struct s_player
 	t_coord_d	view_dst_pos;
 	t_coord_f	dir;
 	double		angle;
+	int			map;
 	int			w;
 	int			a;
 	int			s;
@@ -187,12 +194,16 @@ typedef struct s_data
 	float		square_view_d;
 	float		ray_len_sq;
 	int			**arr;
+	int			**mini_arr;
 	t_ray		*ray;
 	t_player	player;
 	t_map		map;
 	t_col		col;
-	t_img		map_img;
+	t_img		main;
 	t_img		game;
+	t_img		minimap;
+	t_img		bigmap;
+	t_img		start;
 	t_bresenham	bre;
 	t_mini		mini;
 }			t_data;
@@ -245,7 +256,6 @@ void		move_forward(t_data *data);
 void		move_backward(t_data *data);
 
 /*	init_data_struct.c	*/
-void		init_black_img(t_data *data);
 void		init_player_data(t_data *data);
 void		init_data_values(t_data *data);
 
@@ -310,10 +320,25 @@ float		get_angle(t_coord_f start, t_coord_f dest);
 /*	window.c	*/
 void		create_window(t_data *data);
 void		img_loop(t_data *data);
-void		create_board_img(t_data *data);
+// void		create_minimap_img(t_data *data);
+
+/*	window_utils.c	*/
+void	add_border(int w, int h, t_img *img);
+void	create_bigmap_img(t_data *data);
 
 /*	math.c	*/
 double		vector_d_len_sq(t_coord_d center, t_coord_d map);
 float		calculate_len_vector(t_data *data, t_coord_f hit);
+
+/*	image.c	*/
+void			init_black_img(t_data *data, int value);
+void			create_main_image(t_data *data);
+unsigned int	get_pixel_img(t_img img, int x, int y);
+void			put_img_to_img(t_img dst, t_img src, int x, int y);
+void			put_pixel_img(t_img img, int x, int y, int color);
+
+/*	image_utils.c	*/
+void	create_mini_from_big(t_data *data);
+void	crop_big_image(t_data *data, t_coord_d start);
 
 #endif

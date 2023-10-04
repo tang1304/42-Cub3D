@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:38:32 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 15:11:25 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 09:05:40 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	get_rgb(t_map *map, int *color, char **tab)
 		while (tab[i][++j] && tab[i][j] != '\n')
 		{
 			if (!ft_isdigit(tab[i][j]))
-				return (printf(COLOR_CHAR, tab[i]), ft_free_pp(tab), 0);
+				return (printf(COLOR_VAL, tab[i][j]), ft_free_pp(tab), 0);
 		}
 	}
 	if (i != 3)

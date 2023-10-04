@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/03 14:56:33 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 08:48:21 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,6 @@ static void	bressenham_init(t_data *data)
 
 	ft_bzero(&bre, sizeof(t_bresenham));
 	data->bre = bre;
-}
-
-void	init_black_img(t_data *data)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < WIN_WIDTH)
-	{
-		y = 0;
-		while (y < WIN_LEN)
-		{
-			my_mlx_pixel_put(&data->game, x, y, BLACK);
-			y++;
-		}
-		x++;
-	}
 }
 
 void	init_player_data(t_data *data)
@@ -92,8 +74,8 @@ void	init_data_values(t_data *data)
 
 	data->square_view_d = VIEW_DIST * VIEW_DIST;
 	data->fov = FOV * M_PI / 180;
-	data->mini.height = SQUARE_SIZE * data->map.height;
-	data->mini.width = SQUARE_SIZE * data->map.width;
+	data->mini.height = SQUARE_SIZE * data->map.height; //280
+	data->mini.width = SQUARE_SIZE * data->map.width; //660
 	ray = ft_calloc(RAY_NUMBER, sizeof(t_ray));
 	if (ray == NULL)
 		textures_error(data, "Error\nMalloc failed\n");
