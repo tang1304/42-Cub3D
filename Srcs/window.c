@@ -6,12 +6,15 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/04 17:33:42 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 17:39:56 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
-
+// create full image first
+// 2) add rays in full image
+// 3) if full size > bigimage size => crop full image
+// 4) keep player always mid map and update map?
 static void	init_minimap_img(t_data *data)
 {
 	t_coord_d	size;
