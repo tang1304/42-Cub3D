@@ -15,11 +15,11 @@ void	create_mini_from_big(t_data *data)
 	// if (end_cell.y > data->bigmap.h - 1)
 	// 	end_cell.y = data->bigmap.h - 1;
 	// collect_pixel(data, start_cell, end_cell);
-	crop_big_image(data, start_cell);
+	crop_full_image(data, start_cell);
 	add_border(data->minimap.w, data->minimap.h, &data->minimap);
 }
 
-void	crop_big_image(t_data *data, t_coord_d start)
+void	crop_full_image(t_data *data, t_coord_d start)
 {
 	int			i;
 	int			j;
@@ -34,7 +34,7 @@ void	crop_big_image(t_data *data, t_coord_d start)
 			coord.x = i;
 			coord.y = j;
 			put_pixel_img(data->minimap, coord, \
-				get_pixel_img(data->bigmap, start.x + i, start.y + j), 0);
+				get_pixel_img(data->full, start.x + i, start.y + j), 0);
 			j++;
 		}
 		i++;

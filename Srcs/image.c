@@ -1,23 +1,5 @@
 #include "../Incs/cub3D.h"
 
-// void	init_black_img(t_data *data, int value)
-// {
-// 	int	x;(void)value;
-// 	int	y;
-
-// 	x = 0;
-// 	while (x < WIN_WIDTH)
-// 	{
-// 		y = 0;
-// 		while (y < WIN_HEIGHT)
-// 		{
-// 			my_mlx_pixel_put(&data->game, x, y, BLUE);
-// 			y++;
-// 		}
-// 		x++;
-// 	}
-// }
-
 void	create_main_image(t_data *data)
 {
 	int	x;
@@ -25,19 +7,20 @@ void	create_main_image(t_data *data)
 
 	x = 0;
 	y = 0;
-	if (WIN_WIDTH > data->bigmap.w)
-		x = WIN_WIDTH * 0.5 - data->bigmap.w * 0.5;
-	if (WIN_HEIGHT > data->bigmap.h)
-		y = WIN_HEIGHT * 0.5 - data->bigmap.h * 0.5;
+	init_bigmap_img(data);
+	x = WIN_WIDTH * 0.5 - data->bigmap.w * 0.5;
+	y = WIN_HEIGHT * 0.5 - data->bigmap.h * 0.5;
 	if (!data->player.map)
 	{
 		put_img_to_img(data->main, data->game, 0, 0);
+		create_big_from_full(data);
 		create_mini_from_big(data);
 		put_img_to_img(data->main, data->minimap, 0, 0);
 	}
 	else
 	{
 		put_img_to_img(data->main, data->game, 0, 0);
+		create_big_from_full(data);
 		put_img_to_img(data->main, data->bigmap, x, y);
 	}
 }
