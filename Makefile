@@ -15,6 +15,7 @@ SRCS = close.c \
 		line_utils.c \
 		draw.c \
 		rays.c \
+		render.c \
 		main.c \
 		map_char_checks.c \
 		map_init.c \
@@ -22,7 +23,12 @@ SRCS = close.c \
 		map_utils.c \
 		textures.c \
 		utils.c \
-		window.c
+		vector_utils.c \
+		window.c \
+		window_utils.c \
+		math.c \
+		image.c \
+		image_utils.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
 OBJ_DIR = objs/

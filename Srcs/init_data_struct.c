@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/05 13:12:40 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 08:48:21 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,66 @@ static void	bressenham_init(t_data *data)
 	data->bre = bre;
 }
 
-void	init_data_values(t_data *data)
+void	init_player_data(t_data *data)
 {
-	t_ray		*ray;
-	t_col		coord;
+	int			i;
+	int			j;
 	t_player	player;
 
-	player.dir.x = 0;
-	player.dir.y = -1;
-	data->win_w = WIN_WIDTH;
-	data->win_h = WIN_LEN;
-	data->square_size = SQUARE_SIZE;
+	i = -1;
+	ft_bzero(&player, sizeof(t_player));
+	while (++i < data->map.height)
+	{
+		j = -1;
+		while (data->map.map[i][++j])
+		{
+			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'W' || \
+				data->map.map[i][j] == 'S' || data->map.map[i][j] == 'E')
+			{
+				if (data->map.map[i][j] == 'N')
+				{
+					player.angle = M_PI_2;
+					player.dir.x = 0;
+					player.dir.y = -1;
+				}
+				else if (data->map.map[i][j] == 'W')
+				{
+					player.angle = M_PI;
+					player.dir.x = -1;
+					player.dir.y = 0;
+				}
+				else if (data->map.map[i][j] == 'S')
+				{
+					player.angle = 3 * M_PI_2;
+					player.dir.x = 0;
+					player.dir.y = 1;
+				}
+				else
+				{
+					player.angle = 0;
+					player.dir.x = 1;
+					player.dir.y = 0;
+				}
+				player.pos.y = i * SQUARE_SIZE + SQUARE_SIZE * 0.5;
+				player.pos.x = j * SQUARE_SIZE + SQUARE_SIZE * 0.5;
+			}
+		}
+	}
+	data->player = player;
+}
+
+void	init_data_values(t_data *data)
+{
+	t_ray	*ray;
+
 	data->square_view_d = VIEW_DIST * VIEW_DIST;
 	data->fov = FOV * M_PI / 180;
-	data->mini.height = data->square_size * data->map.height;
-	data->mini.width = data->square_size * data->map.width;
-	coord.center.x = data->mini.width / 2;
-	coord.center.y = data->mini.height / 2;
-	ray = (t_ray *)ft_calloc(data->win_w, sizeof(*ray));
+	data->mini.height = SQUARE_SIZE * data->map.height; //280
+	data->mini.width = SQUARE_SIZE * data->map.width; //660
+	ray = ft_calloc(RAY_NUMBER, sizeof(t_ray));
 	if (ray == NULL)
-		exit (1);//free all
+		textures_error(data, "Error\nMalloc failed\n");
 	data->ray = ray;
-	data->col = coord;
-	data->player = player;
 	bressenham_init(data);
 	create_cpy_map_arr(data);
 }
-
-
