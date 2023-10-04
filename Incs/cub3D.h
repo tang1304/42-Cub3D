@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/04 12:49:32 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 16:45:41 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ typedef struct s_data
 	t_img		game;
 	t_img		minimap;
 	t_img		bigmap;
+	t_img		full;
 	t_img		start;
 	t_bresenham	bre;
 	t_mini		mini;
@@ -323,10 +324,6 @@ void		create_window(t_data *data);
 void		img_loop(t_data *data);
 // void		create_minimap_img(t_data *data);
 
-/*	window_utils.c	*/
-void	add_border(int w, int h, t_img *img);
-void	create_bigmap_img(t_data *data);
-
 /*	math.c	*/
 double		vector_d_len_sq(t_coord_d center, t_coord_d map);
 float		calculate_len_vector(t_data *data, t_coord_f hit);
@@ -338,8 +335,18 @@ unsigned int	get_pixel_img(t_img img, int x, int y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
 void			put_pixel_img(t_img img, t_coord_d coord, int color, int i);
 
-/*	image_utils.c	*/
+/*	image_minimap.c	*/
 void	create_mini_from_big(t_data *data);
-void	crop_big_image(t_data *data, t_coord_d start, t_coord_d end);
+void	crop_big_image(t_data *data, t_coord_d start);
 
+/*	image_bigmap.c	*/
+void	add_border(int w, int h, t_img *img);
+void	create_bigmap_img(t_data *data);
+
+/*	image_full.c	*/
+void	create_full_img(t_data *data);
+void	create_big_from_full(t_data *data);
+
+/*	image_utils.c	*/
+void	add_squares(t_coord_d coord, int num, t_img *img);
 #endif

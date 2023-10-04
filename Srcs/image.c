@@ -25,10 +25,10 @@ void	create_main_image(t_data *data)
 
 	x = 0;
 	y = 0;
-	if (WIN_WIDTH > data->mini.width)
-		x = WIN_WIDTH * 0.5 - data->mini.width * 0.5;
-	if (WIN_HEIGHT > data->mini.height)
-		y = WIN_HEIGHT * 0.5 - data->mini.height * 0.5;
+	if (WIN_WIDTH > data->bigmap.w)
+		x = WIN_WIDTH * 0.5 - data->bigmap.w * 0.5;
+	if (WIN_HEIGHT > data->bigmap.h)
+		y = WIN_HEIGHT * 0.5 - data->bigmap.h * 0.5;
 	if (!data->player.map)
 	{
 		put_img_to_img(data->main, data->game, 0, 0);
