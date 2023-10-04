@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/04 09:22:15 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 10:51:45 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,9 +246,6 @@ int			actions(t_data *data);
 
 /*	hooks_changes.c	*/
 void		change_board(t_data *data, int keycode);
-// void		rotate(t_data *data, int keycode);
-// void		move_sideways(t_data *data, int keycode);
-// void		move_fward_bward(t_data *data, int keycode);
 void		rotate_left(t_data *data);
 void		rotate_right(t_data *data);
 void		move_left(t_data *data);
@@ -302,7 +299,7 @@ void		create_game_rays(t_data *data);
 
 /*	textures.c	*/
 void		load_textures(t_data *data, t_map *map);
-int			get_texture_x(t_data *data, t_ray *ray, float text_ratio, int n);
+int			get_texture_x(t_data *data, t_ray *ray, float text_ratio);
 int			get_pixel_from_texture(t_texture *text, int x, int y);
 
 /*	utils.c	*/
@@ -324,8 +321,8 @@ void		img_loop(t_data *data);
 // void		create_minimap_img(t_data *data);
 
 /*	window_utils.c	*/
-void	add_border(int w, int h, t_img *img);
-void	create_bigmap_img(t_data *data);
+void		add_border(int w, int h, t_img *img);
+void		create_bigmap_img(t_data *data);
 
 /*	math.c	*/
 double		vector_d_len_sq(t_coord_d center, t_coord_d map);
@@ -339,7 +336,7 @@ void			put_img_to_img(t_img dst, t_img src, int x, int y);
 void			put_pixel_img(t_img img, int x, int y, int color);
 
 /*	image_utils.c	*/
-void	create_mini_from_big(t_data *data);
-void	crop_big_image(t_data *data, t_coord_d start);
+void		create_mini_from_big(t_data *data);
+void		crop_big_image(t_data *data, t_coord_d start);
 
 #endif
