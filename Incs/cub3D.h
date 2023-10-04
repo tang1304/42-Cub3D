@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/04 09:22:15 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 12:49:32 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -336,10 +336,10 @@ void			init_black_img(t_data *data, int value);
 void			create_main_image(t_data *data);
 unsigned int	get_pixel_img(t_img img, int x, int y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
-void			put_pixel_img(t_img img, int x, int y, int color);
+void			put_pixel_img(t_img img, t_coord_d coord, int color, int i);
 
 /*	image_utils.c	*/
 void	create_mini_from_big(t_data *data);
-void	crop_big_image(t_data *data, t_coord_d start);
+void	crop_big_image(t_data *data, t_coord_d start, t_coord_d end);
 
 #endif

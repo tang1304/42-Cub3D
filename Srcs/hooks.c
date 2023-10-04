@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/04 08:50:04 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 12:41:38 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	actions(t_data *data)
 	if (data->player.w || data->player.s || data->player.a || data->player.d \
 		|| data->player.left || data->player.right)
 	{
-		init_black_img(data, 0);
+		// init_black_img(data, 0);
 		create_bigmap_img(data);
 		create_rays(data);
 	}
@@ -60,7 +60,7 @@ int	key_pressed(int keycode, t_data *data)
 			data->player.map = 0;
 		else
 			data->player.map = 1;
-		init_black_img(data, 1);
+		// init_black_img(data, 1);
 		create_bigmap_img(data);
 		create_rays(data);
 	}
