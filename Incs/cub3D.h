@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/04 16:45:41 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 22:04:00 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -337,9 +337,10 @@ void			put_pixel_img(t_img img, t_coord_d coord, int color, int i);
 
 /*	image_minimap.c	*/
 void	create_mini_from_big(t_data *data);
-void	crop_big_image(t_data *data, t_coord_d start);
+void	crop_full_image(t_data *data, t_coord_d start);
 
 /*	image_bigmap.c	*/
+void	init_bigmap_img(t_data *data);
 void	add_border(int w, int h, t_img *img);
 void	create_bigmap_img(t_data *data);
 

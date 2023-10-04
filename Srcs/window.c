@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/04 17:39:56 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 22:01:40 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 // 2) add rays in full image
 // 3) if full size > bigimage size => crop full image
 // 4) keep player always mid map and update map?
+// 1->3 working but not minimap. and bigmap not transparent
 static void	init_minimap_img(t_data *data)
 {
 	t_coord_d	size;
@@ -37,29 +38,15 @@ static void	init_minimap_img(t_data *data)
 	data->minimap = minimap;
 }
 
-static void	init_bigmap_img(t_data *data)
+static void	init_fullmap_img(t_data *data)
 {
-	t_img	big;
 	t_img	full;
-
-	if (data->mini.width > 520)
-		big.w = 520;
-	else
-		big.w = data->mini.width;
-	if (data->mini.height > 200)
-		big.h = 200;
-	else
-		big.h = data->mini.height;
 
 	full.img = mlx_new_image(data->mlx, data->mini.width, data->mini.height);
 	full.w = data->mini.width;
 	full.h = data->mini.height;
 	full.addr = mlx_get_data_addr(full.img, &full.bpp, \
 					&full.line_l, &full.endian);
-	big.img = mlx_new_image(data->mlx, big.w, big.h);
-	big.addr = mlx_get_data_addr(big.img, &big.bpp, \
-					&big.line_l, &big.endian);
-	data->bigmap = big;
 	data->full = full;
 }
 
@@ -77,7 +64,7 @@ void	create_window(t_data *data)
 	data->game = game;
 
 	// minimap complete
-	init_bigmap_img(data);
+	init_fullmap_img(data);
 
 	// portion of the minimap ( si trop petite marche pas bien)
 	//mettre condition, si trop petite alors tout affciher -> semble resolu
@@ -88,7 +75,8 @@ void	create_window(t_data *data)
 	main.h = WIN_HEIGHT;
 	main.addr = mlx_get_data_addr(main.img, &main.bpp, &main.line_l, &main.endian);
 	data->main = main;
-	create_bigmap_img(data);
+	create_full_img(data);
+	// create_bigmap_img(data);
 	create_rays(data);
 	img_loop(data);
 }
