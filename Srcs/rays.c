@@ -1,91 +1,81 @@
 #include "../Incs/cub3D.h"
 
-static t_coord_d	compare(t_data *data, t_coord_d dest)
-{
-	t_coord_d	comp;
-
-	comp.x = dest.x - data->col.center.x;
-	comp.y = dest.y - data->col.center.y;
-// printf("x = %d\n", comp.x);
-// printf("y = %d\n", comp.y);
-	return (comp);
-}
-
-static double	get_straight_angle(t_data *data, t_coord_d dest)
-{
-	t_coord_d	comp;
-	double	angle;
-	double	d1_sq;
-	double	d2_sq;
-	double	d3_sq;
-
-	comp = compare(data, dest);
-	d2_sq = (((double)dest.y - data->col.center.y) * \
-				((double)dest.y - data->col.center.y)) + \
-			((double)dest.x - data->col.center.x) * \
-				((double)dest.x - data->col.center.x);
-	d1_sq = ((double)dest.x - data->col.center.x) * \
-				((double)dest.x - data->col.center.x);
-	d3_sq = ((double)dest.y - data->col.center.y) * \
-				((double)dest.y - data->col.center.y);
-	if (comp.x >= 0 && comp.y < 0) // right top
-		angle = acos(d1_sq/d2_sq);
-	else if (comp.x < 0 && comp.y <= 0)
-		angle = M_PI_2 + acos(d3_sq/d2_sq);
-	else if (comp.x < 0 && comp.y > 0)
-		angle = M_PI + acos(d1_sq/d2_sq);
-	else
-		angle = 3 * M_PI_2 + acos(d3_sq/d2_sq);
-	return (angle);
-}
-
-static double	calculate_len_vector(t_data *data, t_coord_f hit)
+static double	calculate_len_sq_vector(t_data *data, t_coord_f hit)
 {
 	double	len;
 
-	len = (hit.x - data->col.center.x) * (hit.x - data->col.center.x) + \
-				(hit.y - data->col.center.y) * (hit.y - data->col.center.y);
+	len = (hit.x - data->player.pos.x) * (hit.x - data->player.pos.x) + \
+				(hit.y - data->player.pos.y) * (hit.y - data->player.pos.y);
 	return (len);
 }
 
-static void	create_cone_multi_rays(t_data *data, double angle)
+static t_coord_f	get_dst_coord(t_coord_f pos, double angle, int dist)
 {
-	double		min_ang;
-	double		max_ang;
-	t_coord_f	miss;
-	int			i;
+	t_coord_f	dest;
 
-	i = -1;
-	min_ang = angle - data->fov / 2;
-	max_ang = angle + data->fov / 2;
-	while (++i < WIN_WIDTH)
-	{
-		data->ray[i].dest.x = data->square_view_d * \
-			cos(-min_ang - (data->fov / WIN_WIDTH) * i) + data->col.center.x;
-		data->ray[i].dest.y = data->square_view_d * \
-			sin(-min_ang - (data->fov / WIN_WIDTH) * i) + data->col.center.y;
-		miss = init_data_collision(data, &data->ray[i]);
-		if (miss.x != -1 && miss.y != -1)
-		{
-			data->ray[i].hit_p = miss;
-			data->ray[i].len = calculate_len_vector(data, miss);
-		}
-		else
-			data->ray[i].len = -1;
-		create_line(data, data->ray[i].hit_p);
-		draw_coll(data, data->col.map.x, data->col.map.y, &data->ray[i]);
-	}
-	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-	// mlx_destroy_image(data->mlx, data->img.img);
+	dest.x = dist * cos(-angle) + pos.x;
+	dest.y = dist * sin(-angle) + pos.y;
+	// if (dest.x < 0)
+	// 	dest.x = 0;
+	// if (dest.x >= WIN_WIDTH - SQUARE_SIZE)
+	// 	dest.x = WIN_WIDTH - 1;
+	// if (dest.y < 0)
+	// 	dest.y = 0;
+	// if (dest.y >= WIN_HEIGHT - SQUARE_SIZE)
+	// 	dest.y = WIN_HEIGHT - 1;
+	return (dest);
 }
 
-void	create_rays(t_data *data, t_coord_d dest)
+void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 {
-	double		angle;
+	t_coord_f	hit;
+	double		inc;
+	double		ang;
+	int			i;
 
-	// data->img.img = mlx_new_image(data->mlx, data->win_w, data->win_h);
-	// data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp, &data->img.line_l, &data->img.endian);
-	create_board_img(data);
-	angle = get_straight_angle(data, dest);
-	create_cone_multi_rays(data, angle);
+	inc = 1.0f / (RAY_NUMBER - 1.0f);
+	i = -1;
+	while (++i < RAY_NUMBER)
+	{
+		data->ray[i].hit_p.x = left.x * inc * i + (1 - (inc * i)) * right.x;
+		data->ray[i].hit_p.y = left.y * inc * i + (1 - (inc * i)) * right.y;
+		hit = init_data_collision(data, &data->ray[i]);
+		data->ray[i].angle = get_angle(data->player.pos, data->ray[i].hit_p);
+		if (hit.x != -1 && hit.y != -1)
+		{
+			data->ray[i].hit_p = hit;
+			data->ray[i].len = calculate_len_sq_vector(data, hit);
+		}
+		else
+		{
+			data->ray[i].len = -1;
+			ang = data->player.angle - data->fov / 2 + (data->fov / RAY_NUMBER) * i;
+			data->ray[i].hit_p = get_dst_coord(data->player.pos, ang, VIEW_DIST);
+		}
+		create_line(data, data->ray[i].hit_p);
+	}
+	create_game_rays(data);
+	create_main_image(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);
+}
+
+void	create_rays(t_data *data)
+{
+	int	opp_len;
+	t_coord_f	left;
+	t_coord_f	right;
+	t_coord_f	position;
+
+	position = get_dst_coord(data->player.pos, data->player.angle, VIEW_DIST);
+	data->player.view_dst_pos.x = position.x;
+	data->player.view_dst_pos.y = position.y;
+	opp_len = tan(data->fov / 2) * VIEW_DIST;
+	left = get_dst_coord(position, data->player.angle + M_PI / 2, opp_len);
+	right = get_dst_coord(position, data->player.angle - M_PI / 2, opp_len);
+
+// draw_point(data, data->player.view_dst_pos.x, data->player.view_dst_pos.y, RED);
+// draw_point(data, left.x, left.y, GREEN);
+// draw_point(data, right.x, right.y, BLUE);
+// mlx_put_image_to_window(data->mlx, data->win, data->minimap.img, 0, 0);
+	create_cone_multi_rays(data, left, right);
 }

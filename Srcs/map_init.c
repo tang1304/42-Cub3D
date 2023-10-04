@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/24 13:35:52 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 09:23:03 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ static char	*get_texture_path(t_map *map, char *str, char *elem, int i)
 		map_error(map, "Error\nMalloc failed\n");
 	}
 	free(tmp);
+	new = ft_strtrim_free(new, "\n");
+	if (!new)
+		map_error(map, "Error\nMalloc failed\n");
 	map->elems++;
 	return (new);
 }
@@ -52,13 +55,13 @@ static int	get_textures(t_map *map)
 		while (ft_is_space(map->tmp[i][j]))
 			j++;
 		if (ft_strstr(map->tmp[i], "NO"))
-			map->no.addr = get_texture_path(map, map->tmp[i], "NO", 2);
+			map->text[2].path = get_texture_path(map, map->tmp[i], "NO", 2);
 		else if (ft_strstr(map->tmp[i], "SO"))
-			map->so.addr = get_texture_path(map, map->tmp[i], "SO", 2);
-		else if (ft_strstr(map->tmp[i], "EA"))
-			map->ea.addr = get_texture_path(map, map->tmp[i], "EA", 2);
+			map->text[3].path = get_texture_path(map, map->tmp[i], "SO", 2);
 		else if (ft_strstr(map->tmp[i], "WE"))
-			map->we.addr = get_texture_path(map, map->tmp[i], "WE", 2);
+			map->text[0].path = get_texture_path(map, map->tmp[i], "WE", 2);
+		else if (ft_strstr(map->tmp[i], "EA"))
+			map->text[1].path = get_texture_path(map, map->tmp[i], "EA", 2);
 		else if (ft_strstr(map->tmp[i], "F"))
 			get_floor_color(map, map->tmp[i], "F", 1);
 		else if (ft_strstr(map->tmp[i], "C"))
@@ -90,7 +93,7 @@ static char	**get_file_lines(int fd, int n)
 	return (tab);
 }
 
-static int	get_datas(t_data *data, int fd, int fd_2)
+static void	get_datas(t_data *data, int fd, int fd_2)
 {
 	int		i;
 	int		n;
@@ -106,25 +109,20 @@ static int	get_datas(t_data *data, int fd, int fd_2)
 	check_enough_datas(&data->map);
 	get_map(&data->map, i);
 	parse_map(&data->map);
-	return (1);
 }
 
-int	map_init(t_data *data, int argc, char **argv)
+void	map_init(t_data *data, int argc, char **argv)
 {
 	int	fd;
 	int	tmp;
 
 	if (argc != 2)
 		exit_error("Error\nWrong argument, must be './cub3D xxx.cub' only\n");
+	data->map.data = data;
 	map_format(argv[1]);
 	fd = open(argv[1], O_RDONLY);
 	tmp = open(argv[1], O_RDONLY);
 	if (fd == -1 || tmp == -1)
 		exit_error("Error\nCouldn't open the .cub file\n");
-	if (!get_datas(data, fd, tmp))
-	{
-		ft_printf("Error\nGet_map crashed\n");
-		return (close(fd), 0);
-	}
-	return (1);
+	get_datas(data, fd, tmp);
 }
