@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/27 14:21:59 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 08:43:56 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	change_board(t_data *data, int keycode)
 		data->arr[y][x] = '0';
 	else if (keycode == X)
 		data->arr[y][x] = '1';
-	create_board_img(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->map_img.img, 0, 0);
+	// create_minimap_img(data);
+	// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
 
 void	rotate_left(t_data *data)
@@ -65,6 +65,21 @@ void	rotate_right(t_data *data)
 	if (data->player.angle < 0)
 		data->player.angle = fabs(data->player.angle) + 2 * M_PI;
 }
+
+// static int	check_wall(t_data *data, float x, float y)
+// {
+// 	t_coord_d	pos;
+
+// 	pos.x = x / SQUARE_SIZE;
+// 	pos.y = y / SQUARE_SIZE;
+// 	if (pos.x < 0 || pos.x > WIN_WIDTH - 1)
+// 		return (0);
+// 	if (pos.y <0 || pos.y > WIN_HEIGHT - 1)
+// 		return (0);
+// 	if (data->map.map[pos.y][pos.x] != '1')
+// 		return (1);
+// 	return (0);
+// }
 
 void	move_left(t_data *data)
 {
@@ -116,18 +131,12 @@ void	move_forward(t_data *data)
 	move_speed = MOVE_SPEED;
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;
-// printf("new.x :%f\n", data->player.pos.x);
-// printf("new.y :%f\n", data->player.pos.y);
 	if (data->map.map[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
 		new_pos.x) / SQUARE_SIZE] != '1')
 		data->player.pos.x += new_pos.x;
 	if (data->map.map[(int)(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
 		[(int)data->player.pos.x / SQUARE_SIZE] != '1')
 		data->player.pos.y += new_pos.y;
-// printf("dir.x :%f\n", data->player.dir.x);
-// printf("dir.y :%f\n", data->player.dir.y);
-// printf("new.x :%f\n", data->player.pos.x);
-// printf("new.y :%f\n\n", data->player.pos.y);
 }
 
 void	move_backward(t_data *data)
