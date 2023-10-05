@@ -1,6 +1,6 @@
 WE ./textures/Cloudy_Mountains.xpm
-    NO ./textures/Glowing_Sea.xpm
- EA ./textures/Misty_Rocks.xpm
+    NO ./textures/door_garage.xpm
+ EA ./textures/high_res.xpm
 SO ./textures/Starry_Peaks.xpm
 
 F 120,86, 18
