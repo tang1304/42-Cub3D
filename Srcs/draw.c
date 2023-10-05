@@ -33,7 +33,7 @@ void	draw_point(t_data *data, int tx, int ty, int color)
 
 }
 
-void	draw_coll(t_data *data, int x, int y, t_ray *ray)
+void	draw_coll(t_data *data, int x, int y, t_ray *ray) //no need anymore
 {
 	t_coord_d	start;
 	t_coord_d	end;

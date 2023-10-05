@@ -14,14 +14,37 @@ void	add_squares(t_coord_d coord, int num, t_img *img)
 		while (j < (coord.x * s) + s)
 		{
 			if (num == '1')
-				my_mlx_pixel_put(img, i, j, 0x00C4C4C4); // wall
+				my_mlx_pixel_put(img, i, j, WALL);
 			else if (num == '0' || num == 69 || num == 78 || num == 83 \
 					|| num == 87)
-				my_mlx_pixel_put(img, i, j, 0x00FFFFFF); // floor
+				my_mlx_pixel_put(img, i, j, WHITE);
 			else if (num == 32)
-				my_mlx_pixel_put(img, i, j, 0xFF000000); // empty space
+				my_mlx_pixel_put(img, i, j, BLACK);
 			j++;
 		}
 		i++;
+	}
+}
+
+void	add_border(int w, int h, t_img *img)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < w)
+	{
+		y = 0;
+		while (y < h)
+		{
+			if (x == 0 || x == 4 || x == w - 1 || x == w - 5 || \
+				y == 0 || y == 4 || y == h - 1 || y == h - 5)
+				my_mlx_pixel_put(img, x, y, BLACK);
+			if ((x > 0 && x < 4) || (x < w - 1 && x > w - 5) || \
+				(y > 0 && y < 4) || (y < h - 1 && y > h - 5))
+				my_mlx_pixel_put(img, x, y, BROWN);
+			y++;
+		}
+		x++;
 	}
 }

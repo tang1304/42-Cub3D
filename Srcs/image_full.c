@@ -1,21 +1,21 @@
 #include "../Incs/cub3D.h"
 
-static void	crop_full_img(t_data *data, t_coord_d start)
+void	crop_full_img(t_data *data, t_coord_d start, t_coord_d size, t_img *img)
 {
 	int			i;
 	int			j;
 	t_coord_d	coord;
 
 	i = 0;
-	while (i < data->bigmap.w)
+	while (i < size.x)
 	{
 		j = 0;
-		while (j < data->bigmap.h)
+		while (j < size.y)
 		{
 			coord.x = i;
 			coord.y = j;
-			put_pixel_img(data->bigmap, coord, \
-				get_pixel_img(data->full, start.x + i, start.y + j), 0);
+			put_pixel_img(*img, coord, \
+				get_pixel_img(data->full, start.x + i, start.y + j));
 			j++;
 		}
 		i++;
@@ -38,6 +38,7 @@ void	create_full_img(t_data *data)
 void	create_big_from_full(t_data *data)
 {
 	t_coord_d	start;
+	t_coord_d	size;
 
 	if (data->player.pos.x > 260)
 		start.x = data->player.pos.x - 260;
@@ -47,5 +48,8 @@ void	create_big_from_full(t_data *data)
 		start.y = data->player.pos.y - 100;
 	else
 		start.y = 0;
-	crop_full_img(data, start);
+	size.x = data->bigmap.w;
+	size.y = data->bigmap.h;
+	crop_full_img(data, start, size, &data->bigmap);
+	add_border(size.x, size.y, &data->bigmap);
 }
