@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/05 13:21:23 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 14:47:19 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	get_rgb(int *color)
 	return (1 | color[0] << 16 | color[1] << 8 | color[2]);
 }
 
-int	get_texture_x(t_data *data, t_ray *ray, float text_ratio)
+int	get_texture_x(t_data *data, t_ray *ray, float scale)
 {
 	double		p_angle;
 	double		hit_len;
@@ -28,9 +28,9 @@ int	get_texture_x(t_data *data, t_ray *ray, float text_ratio)
 	p_angle = M_PI_2 - ray->angle + get_angle(data->player.pos, \
 			vector_d_to_f(data->player.view_dst_pos));
 	if (ray->side_hit == 1 || ray->side_hit == 2)
-		hit_len = ray->correction * -text_ratio * (SQUARE_SIZE / sin(p_angle));
+		hit_len = ray->correction * -scale * (SQUARE_SIZE / sin(p_angle));
 	else
-		hit_len = ray->correction * text_ratio * (SQUARE_SIZE / sin(p_angle));
+		hit_len = ray->correction * scale * (SQUARE_SIZE / sin(p_angle));
 	wall_hit = calculate_vector(data->player.pos, ray->angle, hit_len);
 	if (ray->side_hit == 1 || ray->side_hit == 2)
 		square_pos = wall_hit.y - ((int)wall_hit.y / SQUARE_SIZE) * SQUARE_SIZE;

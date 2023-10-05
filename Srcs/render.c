@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/05 13:21:26 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 14:47:12 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,11 +152,12 @@ void	create_game_rays(t_data *data)
 	int		slice_w;
 	int		i;
 	int		j;
-	float	text_ratio;
+	float	scale;
 
 	i = -1;
 	j = RAY_NUMBER;
 	slice_w = WIN_WIDTH / RAY_NUMBER;
+	scale = (float)VIEW_DIST / (float)(SQUARE_SIZE * SQUARE_SIZE);
 	while (++i < RAY_NUMBER)
 	{
 		j--;
@@ -167,12 +168,10 @@ void	create_game_rays(t_data *data)
 			// render_no_background(data, &data->ray[i]);
 			continue ;
 		}
-		text_ratio = (float)data->map.text[data->ray[i].side_hit - 1].width \
-					/ (float)data->map.text[data->ray[i].side_hit - 1].height;
 		slice_h = (1.0f / ((float)(data->ray[i].correction)) * \
 					(float)WIN_HEIGHT);
 		top_bottom_wall_pxl(&data->ray[i], j, slice_h, slice_w);
-		data->ray[i].x_text = get_texture_x(data, &data->ray[i], text_ratio);
+		data->ray[i].x_text = get_texture_x(data, &data->ray[i], scale);
 		render_walls(data, &data->ray[i], slice_h);
 	}
 }
