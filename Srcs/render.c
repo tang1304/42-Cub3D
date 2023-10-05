@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/04 08:50:42 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 14:46:00 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	get_rgb(int *color)
 // 			break ;
 // 		if (j >= 0 && j < WIN_HEIGHT)
 // 		{
-// 			color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], 
+// 			color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1],
 // 						ray->x_text, ray->y_text);
 // 			my_mlx_pixel_put(&data->game, k, j, color);
 // 			ray->y_text += ratio;
@@ -80,8 +80,8 @@ static void	render_walls(t_data *data, t_ray *ray, float slice_h, int n)
 		{
 // if (n == RAY_NUMBER / 2 && j == WIN_HEIGHT / 2){
 // printf("text_y: %f\n", ray->y_text);}
-			color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], 
-					ray->x_text, ray->y_text);
+			color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1],
+				ray->x_text, ray->y_text);
 			ray->y_text += ratio;
 			my_mlx_pixel_put(&data->game, k, j++, color);
 		}
@@ -112,7 +112,7 @@ static void	render_walls(t_data *data, t_ray *ray, float slice_h, int n)
 // 		ray->y_text = 0;
 // 		while (j < ray->w_bottom.y)
 // 		{
-// 			color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], 
+// 			color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1],
 // 					ray->x_text, ray->y_text);
 // 			ray->y_text += ratio;
 // 			my_mlx_pixel_put(&data->game, k, j++, color);
@@ -136,7 +136,7 @@ void	create_game_rays(t_data *data)
 	while (++i < RAY_NUMBER)
 	{
 		text_ratio = (float)data->map.text[data->ray->side_hit - 1].width \
-					/ (float)data->map.text[data->ray->side_hit - 1].height;
+				/ (float)data->map.text[data->ray->side_hit - 1].height;
 		j--;
 		if (data->ray[i].len == -1)
 			continue ;

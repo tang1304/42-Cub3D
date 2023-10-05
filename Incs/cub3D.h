@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/05 09:58:38 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 15:05:25 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ typedef struct s_map
 	char			direction;//player orientation
 	char			**tmp;//content of .cub file
 	char			**map;//only the map
-	t_texture		text[4];
+	t_texture		text[5];
 	int				f[3];//floor color
 	int				c[3];//ceiling color
 	int				elems;
@@ -312,6 +312,9 @@ void		create_game_rays(t_data *data);
 void		load_textures(t_data *data, t_map *map);
 int			get_texture_x(t_data *data, t_ray *ray, float text_ratio, int n);
 int			get_pixel_from_texture(t_texture *text, int x, int y);
+
+/*	textures_extra.c	*/
+void	load_extra_textures(t_data *data, t_map *map);
 
 /*	utils.c	*/
 int			new_str_start(char *str, int k);
