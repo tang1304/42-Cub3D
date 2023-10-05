@@ -1,33 +1,70 @@
 #include "../Incs/cub3D.h"
 
-void	create_mini_from_big(t_data *data)
+void	transparency_img(t_img *img, t_coord size)
 {
-	t_coord_d	start_cell;
+	int	x;
+	int	y;
 
-	start_cell.x = data->player.pos.x - SQUARE_SIZE * 5;
-	start_cell.y = data->player.pos.y - SQUARE_SIZE * 5;
-	if (start_cell.x < 0)
-		start_cell.x = 0;
-	if (start_cell.y < 0)
-		start_cell.y = 0;
-	crop_big_image(data, start_cell);
-	add_border(data->minimap.w, data->minimap.h, &data->minimap);
+	x = 0;
+	while (x < size.x)
+	{
+		y = 0;
+		while (y < size.y)
+		{
+			my_mlx_pixel_put(img, x, y, TRANS);
+			y++;
+		}
+		x++;
+	}
 }
 
-void	crop_big_image(t_data *data, t_coord_d start)
+void	add_squares(t_coord coord, int num, t_img *img)
 {
 	int	i;
 	int	j;
+	int	s;
 
-	i = 0;
-	while (i < data->mini.width)
+	s = SQUARE_SIZE;
+	i = coord.y * s;
+	while (i < (coord.y * s) + s)
 	{
-		j = 0;
-		while (j < data->mini.height)
+		j = coord.x * s;
+		while (j < (coord.x * s) + s)
 		{
-			put_pixel_img(data->minimap, 0 + i, 0 + j, get_pixel_img(data->bigmap, start.x + i, start.y + j));
+			if (num == '1')
+				my_mlx_pixel_put(img, i, j, WALL);
+			else if (num == '0' || num == 69 || num == 78 || num == 83 \
+					|| num == 87)
+				my_mlx_pixel_put(img, i, j, WHITE);
+			else if (num == 'D')
+				my_mlx_pixel_put(img, i, j, BROWN);
+			else if (num == 32)
+				my_mlx_pixel_put(img, i, j, BLACK);
 			j++;
 		}
 		i++;
+	}
+}
+
+void	add_border(int w, int h, t_img *img)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < w)
+	{
+		y = 0;
+		while (y < h)
+		{
+			if (x == 0 || x == 4 || x == w - 1 || x == w - 5 || \
+				y == 0 || y == 4 || y == h - 1 || y == h - 5)
+				my_mlx_pixel_put(img, x, y, BLACK);
+			if ((x > 0 && x < 4) || (x < w - 1 && x > w - 5) || \
+				(y > 0 && y < 4) || (y < h - 1 && y > h - 5))
+				my_mlx_pixel_put(img, x, y, BROWN);
+			y++;
+		}
+		x++;
 	}
 }

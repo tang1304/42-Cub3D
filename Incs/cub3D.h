@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/05 15:22:32 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 16:29:57 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@
 # define A 97
 # define S 115
 # define D 100
-# define M 109
+# define M 109 // no used
+# define PLUS 65451
+# define MINUS 65453
 # define LEFT 65361
 # define RIGHT 65363
 # define Z 122
@@ -40,6 +42,8 @@
 # define RED 0x00FF0000
 # define BLUE 0x000000FF
 # define BLACK 0x00000000
+# define WHITE 0x00FFFFFF
+# define WALL 0x00b2b2b2
 # define TRANS 0xFF000000
 # define PURPLE 0x00890089
 # define ORANGE 0x00FFA500
@@ -97,11 +101,11 @@ typedef struct s_texture
 	int		width;
 }			t_texture;
 
-typedef struct s_coord_d
+typedef struct s_coord
 {
 	int	x;
 	int	y;
-}				t_coord_d;
+}				t_coord;
 
 typedef struct s_coord_f
 {
@@ -112,10 +116,12 @@ typedef struct s_coord_f
 typedef struct s_player
 {
 	t_coord_f	pos;
-	t_coord_d	view_dst_pos;
+	t_coord	view_dst_pos;
 	t_coord_f	dir;
 	double		angle;
-	int			map;
+	int			map;// remove
+	int			zoom_in;
+	int			zoom_out;
 	int			w;
 	int			a;
 	int			s;
@@ -140,9 +146,9 @@ typedef struct s_bresenham
 typedef struct s_ray
 {
 	t_coord_f	hit_p;
-	t_coord_d	cell;
-	t_coord_d	w_top;
-	t_coord_d	w_bottom;
+	t_coord	cell;
+	t_coord	w_top;
+	t_coord	w_bottom;
 	int			top_bef;
 	int			bottom_bef;
 	int			x_text;
@@ -162,7 +168,7 @@ typedef struct s_map
 	char			direction;//player orientation
 	char			**tmp;//content of .cub file
 	char			**map;//only the map
-	t_texture		text[4];
+	t_texture		text[5];
 	int				f[3];//floor color
 	int				c[3];//ceiling color
 	int				elems;
@@ -173,14 +179,14 @@ typedef struct s_map
 
 typedef struct s_col
 {
-	t_coord_d	map;
+	t_coord	map;
 	t_coord_f	dir;
 	t_coord_f	dest;
-	t_coord_d	step;
+	t_coord	step;
 	t_coord_f	side_d;
 	int			side_touched;
 	t_coord_f	delta_d;
-	// t_coord_d	cell; not used
+	// t_coord	cell; not used
 }			t_col;
 
 typedef struct s_mini
@@ -207,6 +213,7 @@ typedef struct s_data
 	t_img		game;
 	t_img		minimap;
 	t_img		bigmap;
+	t_img		full;
 	t_img		start;
 	t_bresenham	bre;
 	t_mini		mini;
@@ -248,6 +255,7 @@ int			actions(t_data *data);
 // void		hooks(t_data *data);
 
 /*	hooks_changes.c	*/
+void	map_zoom(t_data *data, int keycode);
 void		change_board(t_data *data, int keycode);
 void		rotate_left(t_data *data);
 void		rotate_right(t_data *data);
@@ -306,6 +314,9 @@ void		load_textures(t_data *data, t_map *map);
 int			get_texture_x(t_data *data, t_ray *ray, float text_ratio);
 int			get_pixel_from_texture(t_texture *text, int x, int y);
 
+/*	textures_extra.c	*/
+void	load_extra_textures(t_data *data, t_map *map);
+
 /*	utils.c	*/
 int			new_str_start(char *str, int k);
 char		*double_strtrim(char *str, char *s1, char *s2);
@@ -316,7 +327,7 @@ void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 /*	vector_utils.c	*/
 t_coord_f	calculate_vector(t_coord_f start, double angle, double len);
-t_coord_f	vector_d_to_f(t_coord_d vector);
+t_coord_f	vector_d_to_f(t_coord vector);
 float		get_angle(t_coord_f start, t_coord_f dest);
 
 /*	window.c	*/
@@ -324,12 +335,8 @@ void		create_window(t_data *data);
 void		img_loop(t_data *data);
 // void		create_minimap_img(t_data *data);
 
-/*	window_utils.c	*/
-void		add_border(int w, int h, t_img *img);
-void		create_bigmap_img(t_data *data);
-
 /*	math.c	*/
-double		vector_d_len_sq(t_coord_d center, t_coord_d map);
+double		vector_d_len_sq(t_coord center, t_coord map);
 float		calculate_len_vector(t_data *data, t_coord_f hit);
 
 /*	image.c	*/
@@ -337,10 +344,22 @@ void			init_black_img(t_data *data, int value);
 void			create_main_image(t_data *data);
 unsigned int	get_pixel_img(t_img img, int x, int y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
-void			put_pixel_img(t_img img, int x, int y, int color);
+void			put_pixel_img(t_img img, t_coord coord, int color);
+
+/*	image_minimap.c	*/
+void	create_mini_from_big(t_data *data);
+void	crop_full_img(t_data *data, t_coord start, t_coord size, t_img *img);
+
+/*	image_bigmap.c	*/
+void	init_bigmap_img(t_data *data);
+
+/*	image_full.c	*/
+void	create_full_img(t_data *data);
+void	create_big_from_full(t_data *data);
 
 /*	image_utils.c	*/
-void		create_mini_from_big(t_data *data);
-void		crop_big_image(t_data *data, t_coord_d start);
+void	transparency_img(t_img *img, t_coord size);
+void	add_squares(t_coord coord, int num, t_img *img);
+void	add_border(int w, int h, t_img *img);
 
 #endif

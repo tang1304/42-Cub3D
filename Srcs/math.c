@@ -1,6 +1,6 @@
 #include "../Incs/cub3D.h"
 
-double	vector_d_len_sq(t_coord_d center, t_coord_d map)
+double	vector_d_len_sq(t_coord center, t_coord map)
 {
 	float	value_sq;
 

@@ -2,8 +2,8 @@
 
 void	draw_point(t_data *data, int tx, int ty, int color)
 {
-	t_coord_d	start;
-	t_coord_d	end;
+	t_coord	start;
+	t_coord	end;
 
 	if (tx - 3 > 0)
 		start.x = tx - 3;
@@ -33,10 +33,10 @@ void	draw_point(t_data *data, int tx, int ty, int color)
 
 }
 
-void	draw_coll(t_data *data, int x, int y, t_ray *ray)
+void	draw_coll(t_data *data, int x, int y, t_ray *ray) //no need anymore
 {
-	t_coord_d	start;
-	t_coord_d	end;
+	t_coord	start;
+	t_coord	end;
 
 	start.x = x - 5;
 	end.x = x + 5;

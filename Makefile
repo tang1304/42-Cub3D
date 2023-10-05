@@ -22,12 +22,15 @@ SRCS = close.c \
 		map_parsing.c \
 		map_utils.c \
 		textures.c \
+		textures_extra.c \
 		utils.c \
 		vector_utils.c \
 		window.c \
-		window_utils.c \
 		math.c \
 		image.c \
+		image_minimap.c \
+		image_bigmap.c \
+		image_full.c \
 		image_utils.c
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
