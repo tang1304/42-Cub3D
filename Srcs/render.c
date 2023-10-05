@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/05 10:12:09 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 13:21:26 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static void	only_wall(t_data *data, t_ray *ray, double ratio, int k)
 	int	color;
 	int	j;
 
-	j = WIN_HEIGHT / 2;
-	ray->y_text = (float)data->map.text[ray->side_hit - 1].height / 2;
+	j = WIN_HEIGHT * 0.5f;
+	ray->y_text = (float)data->map.text[ray->side_hit - 1].height * 0.5f;
 	while (++j < WIN_HEIGHT)
 	{
 		color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], \
@@ -61,8 +61,8 @@ static void	only_wall(t_data *data, t_ray *ray, double ratio, int k)
 		my_mlx_pixel_put(&data->game, k, j, color);
 		ray->y_text += ratio;
 	}
-	j = (WIN_HEIGHT / 2) + 1;
-	ray->y_text = (float)data->map.text[ray->side_hit - 1].height / 2;
+	j = (WIN_HEIGHT * 0.5f) + 1;
+	ray->y_text = (float)data->map.text[ray->side_hit - 1].height * 0.5f;
 	while (--j >= 0)
 	{
 		color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], \
@@ -128,7 +128,6 @@ static void	put_background(t_data *data, t_ray *ray)
 
 // 	(void)color;
 // 	k = ray->w_top.x - 1;
-// printf("k: %d\n", k);
 // 	while (++k < ray->w_bottom.x)
 // 	{
 // 		j = 0;
@@ -160,19 +159,19 @@ void	create_game_rays(t_data *data)
 	slice_w = WIN_WIDTH / RAY_NUMBER;
 	while (++i < RAY_NUMBER)
 	{
-		text_ratio = (float)data->map.text[data->ray->side_hit - 1].width \
-					/ (float)data->map.text[data->ray->side_hit - 1].height;
 		j--;
-		slice_h = (1.0f / ((float)(data->ray[i].correction)) * \
-					(float)WIN_HEIGHT);
 		put_background(data, &data->ray[i]);
-		top_bottom_wall_pxl(&data->ray[i], j, slice_h, slice_w);
 		if (data->ray[i].len == -1)
 		{
 			// top_bottom_wall_pxl_before(data->ray, i);
 			// render_no_background(data, &data->ray[i]);
 			continue ;
 		}
+		text_ratio = (float)data->map.text[data->ray[i].side_hit - 1].width \
+					/ (float)data->map.text[data->ray[i].side_hit - 1].height;
+		slice_h = (1.0f / ((float)(data->ray[i].correction)) * \
+					(float)WIN_HEIGHT);
+		top_bottom_wall_pxl(&data->ray[i], j, slice_h, slice_w);
 		data->ray[i].x_text = get_texture_x(data, &data->ray[i], text_ratio);
 		render_walls(data, &data->ray[i], slice_h);
 	}

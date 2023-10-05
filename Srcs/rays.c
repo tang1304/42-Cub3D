@@ -37,7 +37,7 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 	i = -1;
 	while (++i < RAY_NUMBER)
 	{
-		data->ray[i].correction = WIN_HEIGHT;
+		// data->ray[i].correction = 0;
 		data->ray[i].hit_p.x = left.x * inc * i + (1 - (inc * i)) * right.x;
 		data->ray[i].hit_p.y = left.y * inc * i + (1 - (inc * i)) * right.y;
 		hit = init_data_collision(data, &data->ray[i]);
@@ -50,7 +50,7 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 		else
 		{
 			data->ray[i].len = -1;
-			ang = data->player.angle - data->fov / 2 + (data->fov / RAY_NUMBER) * i;
+			ang = data->player.angle - (data->fov * 0.5f) + (data->fov / RAY_NUMBER) * i;
 			data->ray[i].hit_p = get_dst_coord(data->player.pos, ang, VIEW_DIST);
 		}
 		create_line(data, data->ray[i].hit_p);
@@ -70,9 +70,9 @@ void	create_rays(t_data *data)
 	position = get_dst_coord(data->player.pos, data->player.angle, VIEW_DIST);
 	data->player.view_dst_pos.x = position.x;
 	data->player.view_dst_pos.y = position.y;
-	opp_len = tan(data->fov / 2) * VIEW_DIST;
-	left = get_dst_coord(position, data->player.angle + M_PI / 2, opp_len);
-	right = get_dst_coord(position, data->player.angle - M_PI / 2, opp_len);
+	opp_len = tan(data->fov * 0.5f) * VIEW_DIST;
+	left = get_dst_coord(position, data->player.angle + M_PI_2, opp_len);
+	right = get_dst_coord(position, data->player.angle - M_PI_2, opp_len);
 
 // draw_point(data, data->player.view_dst_pos.x, data->player.view_dst_pos.y, RED);
 // draw_point(data, left.x, left.y, GREEN);
