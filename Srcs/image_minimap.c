@@ -2,8 +2,8 @@
 
 void	create_mini_from_big(t_data *data)
 {
-	t_coord_d	start_cell;
-	t_coord_d	size;
+	t_coord	start_cell;
+	t_coord	size;
 
 	start_cell.x = data->player.pos.x - SQUARE_SIZE * 5;
 	start_cell.y = data->player.pos.y - SQUARE_SIZE * 5;
@@ -13,15 +13,16 @@ void	create_mini_from_big(t_data *data)
 		start_cell.y = 0;
 	size.x = data->minimap.w;
 	size.y = data->minimap.h;
+	transparency_img(&data->minimap, size);
 	crop_full_img(data, start_cell, size, &data->minimap);
 	add_border(data->minimap.w, data->minimap.h, &data->minimap);
 }
 
-void	crop_full_image(t_data *data, t_coord_d start)
+void	crop_full_image(t_data *data, t_coord start)
 {
 	int			i;
 	int			j;
-	t_coord_d	coord;
+	t_coord	coord;
 
 	i = 0;
 	while (i < data->minimap.w)

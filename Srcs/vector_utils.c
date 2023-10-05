@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 09:33:31 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 09:55:21 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 09:52:42 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_coord_f	calculate_vector(t_coord_f start, double angle, double len)
 	return (new);
 }
 
-t_coord_f	vector_d_to_f(t_coord_d vector)
+t_coord_f	vector_d_to_f(t_coord vector)
 {
 	t_coord_f	new;
 

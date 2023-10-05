@@ -7,7 +7,7 @@ void	create_main_image(t_data *data)
 
 	// x = 0;
 	// y = 0;
-	init_bigmap_img(data);
+	// init_bigmap_img(data);
 	// x = WIN_WIDTH * 0.5 - data->bigmap.w * 0.5;
 	// y = WIN_HEIGHT * 0.5 - data->bigmap.h * 0.5;
 	if (!data->player.zoom_out)
@@ -39,7 +39,7 @@ void	put_img_to_img(t_img dst, t_img src, int x, int y)
 {
 	int 		i;
 	int 		j;
-	t_coord_d	coord;
+	t_coord	coord;
 
 	i = 0;
 	while(i < src.w)
@@ -56,7 +56,7 @@ void	put_img_to_img(t_img dst, t_img src, int x, int y)
 	}
 }
 
-void	put_pixel_img(t_img img, t_coord_d coord, int color)
+void	put_pixel_img(t_img img, t_coord coord, int color)
 {
 	char	*dst;
 
