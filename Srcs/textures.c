@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/04 09:23:52 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 14:49:53 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,5 @@ void	load_textures(t_data *data, t_map *map)
 			textures_error(data, "Error\nProblem saving image address\n");
 		// mlx_destroy_image(data->mlx, map->text[i].text);
 	}
+	load_extra_textures(data, map);
 }
