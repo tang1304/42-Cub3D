@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/05 08:19:17 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 09:52:42 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 // TODO add borders and transparency to bigmap
 static void	init_minimap_img(t_data *data)
 {
-	t_coord_d	size;
+	t_coord	size;
 	t_img		minimap;
 
 	if (SQUARE_SIZE * SQ_NUM < data->mini.width)
@@ -59,6 +59,7 @@ void	create_window(t_data *data)
 								&game.endian);
 	data->game = game;
 	init_fullmap_img(data);
+	init_bigmap_img(data);
 	init_minimap_img(data);
 	main.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	main.w = WIN_WIDTH;

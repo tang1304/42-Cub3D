@@ -2,8 +2,8 @@
 
 void	draw_line_vert(t_data *data, t_coord_f start, t_coord_f end)
 {
-	t_coord_d	s;
-	t_coord_d	e;
+	t_coord	s;
+	t_coord	e;
 
 	// int	slope;//cst2
 	// int	error; //d
@@ -44,8 +44,8 @@ void	draw_line_vert(t_data *data, t_coord_f start, t_coord_f end)
 
 void	draw_line_hor(t_data *data, t_coord_f start, t_coord_f end)
 {
-	t_coord_d	s;
-	t_coord_d	e;
+	t_coord	s;
+	t_coord	e;
 
 	// int	slope;//cst2
 	// int	error; //d

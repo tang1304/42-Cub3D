@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/05 09:03:25 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 09:52:42 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	rotate_right(t_data *data)
 
 // static int	check_wall(t_data *data, float x, float y)
 // {
-// 	t_coord_d	pos;
+// 	t_coord	pos;
 
 // 	pos.x = x / SQUARE_SIZE;
 // 	pos.y = y / SQUARE_SIZE;

@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/05 09:00:22 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 09:58:38 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,11 @@ typedef struct s_texture
 	int		width;
 }			t_texture;
 
-typedef struct s_coord_d
+typedef struct s_coord
 {
 	int	x;
 	int	y;
-}				t_coord_d;
+}				t_coord;
 
 typedef struct s_coord_f
 {
@@ -116,7 +116,7 @@ typedef struct s_coord_f
 typedef struct s_player
 {
 	t_coord_f	pos;
-	t_coord_d	view_dst_pos;
+	t_coord	view_dst_pos;
 	t_coord_f	dir;
 	double		angle;
 	int			map;// remove
@@ -146,9 +146,9 @@ typedef struct s_bresenham
 typedef struct s_ray
 {
 	t_coord_f	hit_p;
-	t_coord_d	cell;
-	t_coord_d	w_top;
-	t_coord_d	w_bottom;
+	t_coord	cell;
+	t_coord	w_top;
+	t_coord	w_bottom;
 	int			x_text;
 	float		y_text;
 	double		len;
@@ -177,14 +177,14 @@ typedef struct s_map
 
 typedef struct s_col
 {
-	t_coord_d	map;
+	t_coord	map;
 	t_coord_f	dir;
 	t_coord_f	dest;
-	t_coord_d	step;
+	t_coord	step;
 	t_coord_f	side_d;
 	int			side_touched;
 	t_coord_f	delta_d;
-	// t_coord_d	cell; not used
+	// t_coord	cell; not used
 }			t_col;
 
 typedef struct s_mini
@@ -323,7 +323,7 @@ void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 /*	vector_utils.c	*/
 t_coord_f	calculate_vector(t_coord_f start, double angle, double len);
-t_coord_f	vector_d_to_f(t_coord_d vector);
+t_coord_f	vector_d_to_f(t_coord vector);
 float		get_angle(t_coord_f start, t_coord_f dest);
 
 /*	window.c	*/
@@ -332,7 +332,7 @@ void		img_loop(t_data *data);
 // void		create_minimap_img(t_data *data);
 
 /*	math.c	*/
-double		vector_d_len_sq(t_coord_d center, t_coord_d map);
+double		vector_d_len_sq(t_coord center, t_coord map);
 float		calculate_len_vector(t_data *data, t_coord_f hit);
 
 /*	image.c	*/
@@ -340,11 +340,11 @@ void			init_black_img(t_data *data, int value);
 void			create_main_image(t_data *data);
 unsigned int	get_pixel_img(t_img img, int x, int y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
-void			put_pixel_img(t_img img, t_coord_d coord, int color);
+void			put_pixel_img(t_img img, t_coord coord, int color);
 
 /*	image_minimap.c	*/
 void	create_mini_from_big(t_data *data);
-void	crop_full_img(t_data *data, t_coord_d start, t_coord_d size, t_img *img);
+void	crop_full_img(t_data *data, t_coord start, t_coord size, t_img *img);
 
 /*	image_bigmap.c	*/
 void	init_bigmap_img(t_data *data);
@@ -354,7 +354,8 @@ void	create_full_img(t_data *data);
 void	create_big_from_full(t_data *data);
 
 /*	image_utils.c	*/
-void	add_squares(t_coord_d coord, int num, t_img *img);
+void	transparency_img(t_img *img, t_coord size);
+void	add_squares(t_coord coord, int num, t_img *img);
 void	add_border(int w, int h, t_img *img);
 
 #endif

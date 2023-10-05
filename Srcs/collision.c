@@ -6,13 +6,13 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/04 11:25:05 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 09:52:42 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-static float	vector_f_len_sq(t_coord_f position, t_coord_d map)
+static float	vector_f_len_sq(t_coord_f position, t_coord map)
 {
 	float		value_sq;
 	t_coord_f	map_bis;
