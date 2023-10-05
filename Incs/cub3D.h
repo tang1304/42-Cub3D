@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/04 22:04:00 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 09:00:22 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@
 # define A 97
 # define S 115
 # define D 100
-# define M 109
+# define M 109 // no used
+# define PLUS 65451
+# define MINUS 65453
 # define LEFT 65361
 # define RIGHT 65363
 # define Z 122
@@ -40,6 +42,8 @@
 # define RED 0x00FF0000
 # define BLUE 0x000000FF
 # define BLACK 0x00000000
+# define WHITE 0x00FFFFFF
+# define WALL 0x00b2b2b2
 # define TRANS 0xFF000000
 # define PURPLE 0x00890089
 # define ORANGE 0x00FFA500
@@ -115,7 +119,9 @@ typedef struct s_player
 	t_coord_d	view_dst_pos;
 	t_coord_f	dir;
 	double		angle;
-	int			map;
+	int			map;// remove
+	int			zoom_in;
+	int			zoom_out;
 	int			w;
 	int			a;
 	int			s;
@@ -246,6 +252,7 @@ int			actions(t_data *data);
 // void		hooks(t_data *data);
 
 /*	hooks_changes.c	*/
+void	map_zoom(t_data *data, int keycode);
 void		change_board(t_data *data, int keycode);
 // void		rotate(t_data *data, int keycode);
 // void		move_sideways(t_data *data, int keycode);
@@ -333,16 +340,14 @@ void			init_black_img(t_data *data, int value);
 void			create_main_image(t_data *data);
 unsigned int	get_pixel_img(t_img img, int x, int y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
-void			put_pixel_img(t_img img, t_coord_d coord, int color, int i);
+void			put_pixel_img(t_img img, t_coord_d coord, int color);
 
 /*	image_minimap.c	*/
 void	create_mini_from_big(t_data *data);
-void	crop_full_image(t_data *data, t_coord_d start);
+void	crop_full_img(t_data *data, t_coord_d start, t_coord_d size, t_img *img);
 
 /*	image_bigmap.c	*/
 void	init_bigmap_img(t_data *data);
-void	add_border(int w, int h, t_img *img);
-void	create_bigmap_img(t_data *data);
 
 /*	image_full.c	*/
 void	create_full_img(t_data *data);
@@ -350,4 +355,6 @@ void	create_big_from_full(t_data *data);
 
 /*	image_utils.c	*/
 void	add_squares(t_coord_d coord, int num, t_img *img);
+void	add_border(int w, int h, t_img *img);
+
 #endif

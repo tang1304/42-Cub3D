@@ -2,15 +2,15 @@
 
 void	create_main_image(t_data *data)
 {
-	int	x;
-	int	y;
+	// int	x;
+	// int	y;
 
-	x = 0;
-	y = 0;
+	// x = 0;
+	// y = 0;
 	init_bigmap_img(data);
-	x = WIN_WIDTH * 0.5 - data->bigmap.w * 0.5;
-	y = WIN_HEIGHT * 0.5 - data->bigmap.h * 0.5;
-	if (!data->player.map)
+	// x = WIN_WIDTH * 0.5 - data->bigmap.w * 0.5;
+	// y = WIN_HEIGHT * 0.5 - data->bigmap.h * 0.5;
+	if (!data->player.zoom_out)
 	{
 		put_img_to_img(data->main, data->game, 0, 0);
 		create_big_from_full(data);
@@ -21,7 +21,8 @@ void	create_main_image(t_data *data)
 	{
 		put_img_to_img(data->main, data->game, 0, 0);
 		create_big_from_full(data);
-		put_img_to_img(data->main, data->bigmap, x, y);
+		put_img_to_img(data->main, data->bigmap, 0, 0);
+		// put_img_to_img(data->main, data->bigmap, x, y);
 	}
 }
 
@@ -48,25 +49,18 @@ void	put_img_to_img(t_img dst, t_img src, int x, int y)
 		{
 			coord.x = x + i;
 			coord.y = y + j;
-			put_pixel_img(dst, coord, get_pixel_img(src, i, j), 1);
+			put_pixel_img(dst, coord, get_pixel_img(src, i, j));
 			j++;
 		}
 		i++;
 	}
 }
 
-void	put_pixel_img(t_img img, t_coord_d coord, int color, int i)
+void	put_pixel_img(t_img img, t_coord_d coord, int color)
 {
 	char	*dst;
 
-	if (color == (int)0xFF000000)
-	{
-		if (i == 0)
-			color = BLACK;
-		else
-			return ;
-	}
-	if (color == BROWN && i == 0)
+	if (color == BLACK || color == (int)TRANS)
 		return ;
 	if (coord.x >= 0 && coord.y >= 0 && coord.x < img.w && coord.y < img.h)
 	{

@@ -6,11 +6,27 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/04 11:24:53 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 09:03:25 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
+
+void	map_zoom(t_data *data, int keycode)
+{
+	if (keycode == PLUS && !data->player.zoom_in)
+	{
+		data->player.zoom_in = 1;
+		data->player.zoom_out = 0;
+	}
+	if (keycode == MINUS && !data->player.zoom_out)
+	{
+		data->player.zoom_in = 0;
+		data->player.zoom_out = 1;
+	}
+	create_full_img(data);
+	create_rays(data);
+}
 
 void	change_board(t_data *data, int keycode)
 {
