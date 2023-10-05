@@ -6,12 +6,12 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/05 09:52:42 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 10:22:25 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
-// TODO add borders and transparency to bigmap
+
 static void	init_minimap_img(t_data *data)
 {
 	t_coord	size;
