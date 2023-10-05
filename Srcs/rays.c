@@ -37,6 +37,7 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 	i = -1;
 	while (++i < RAY_NUMBER)
 	{
+		data->ray[i].correction = WIN_HEIGHT;
 		data->ray[i].hit_p.x = left.x * inc * i + (1 - (inc * i)) * right.x;
 		data->ray[i].hit_p.y = left.y * inc * i + (1 - (inc * i)) * right.y;
 		hit = init_data_collision(data, &data->ray[i]);
@@ -61,7 +62,7 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 
 void	create_rays(t_data *data)
 {
-	int	opp_len;
+	int			opp_len;
 	t_coord_f	left;
 	t_coord_f	right;
 	t_coord_f	position;
