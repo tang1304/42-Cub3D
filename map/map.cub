@@ -1,18 +1,19 @@
- 	NO ../sprites/
-	SO ../sprites/
- EA ../sprites/
-WE ../sprites/
+WE ./textures/Cloudy_Mountains.xpm
+    NO ./textures/Glowing_Sea.xpm
+ EA ./textures/Misty_Rocks.xpm
+SO ./textures/Starry_Peaks.xpm
 
-F 127,254, 56
+F 120,86, 18
 
-C	 42 ,  255 ,	149
+C     56 ,  158 ,    250
 
 
 
 11111
 10001
 10001
-10N01
+10E01
 10001
+11D11
 10001
 11111

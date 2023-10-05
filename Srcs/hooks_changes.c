@@ -6,11 +6,27 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/04 08:43:56 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 16:38:05 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
+
+void	map_zoom(t_data *data, int keycode)
+{
+	if (keycode == PLUS && !data->player.zoom_in)
+	{
+		data->player.zoom_in = 1;
+		data->player.zoom_out = 0;
+	}
+	if (keycode == MINUS && !data->player.zoom_out)
+	{
+		data->player.zoom_in = 0;
+		data->player.zoom_out = 1;
+	}
+	create_full_img(data);
+	create_rays(data);
+}
 
 void	change_board(t_data *data, int keycode)
 {
@@ -68,7 +84,7 @@ void	rotate_right(t_data *data)
 
 // static int	check_wall(t_data *data, float x, float y)
 // {
-// 	t_coord_d	pos;
+// 	t_coord	pos;
 
 // 	pos.x = x / SQUARE_SIZE;
 // 	pos.y = y / SQUARE_SIZE;
@@ -132,10 +148,12 @@ void	move_forward(t_data *data)
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;
 	if (data->map.map[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != '1')
+		new_pos.x) / SQUARE_SIZE] != '1' && data->map.map[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
+		new_pos.x) / SQUARE_SIZE] != 'D')
 		data->player.pos.x += new_pos.x;
 	if (data->map.map[(int)(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
-		[(int)data->player.pos.x / SQUARE_SIZE] != '1')
+		[(int)data->player.pos.x / SQUARE_SIZE] != '1' && data->map.map[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
+		new_pos.x) / SQUARE_SIZE] != 'D')
 		data->player.pos.y += new_pos.y;
 }
 

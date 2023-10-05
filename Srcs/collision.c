@@ -6,13 +6,13 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/04 16:15:56 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 16:27:30 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-static float	vector_f_len_sq(t_coord_f position, t_coord_d map)
+static float	vector_f_len_sq(t_coord_f position, t_coord map)
 {
 	float		value_sq;
 	t_coord_f	map_bis;
@@ -25,7 +25,7 @@ static float	vector_f_len_sq(t_coord_f position, t_coord_d map)
 
 }
 
-static void	detection_wall_touched(t_data *data, t_ray *ray)
+static void	detection_wall_touched(t_data *data, t_ray *ray, char c)
 {
 	// right and left side
 	if (data->col.side_touched == 0)
@@ -47,6 +47,8 @@ static void	detection_wall_touched(t_data *data, t_ray *ray)
 		else
 			ray->side_hit = 4;//N
 	}
+	if (c == 'D')
+		ray->side_hit = 5;
 	if (ray->correction > data->max_correct_len)
 		data->max_correct_len = ray->correction;
 }
@@ -80,9 +82,11 @@ static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 			continue ;
 		if (ray->cell.y < 0 || ray->cell.y >= data->mini.height)
 			continue ;
-		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1')
+		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1' || \
+			data->arr[(int)ray->cell.y][(int)ray->cell.x] == 'D')
 		{
-			detection_wall_touched(data, ray);
+			detection_wall_touched(data, ray, \
+					data->arr[(int)ray->cell.y][(int)ray->cell.x]);
 			// draw_coll(data, data->col.map.x, data->col.map.y, ray);
 			miss.x = (float)data->col.map.x;
 			miss.y = (float)data->col.map.y;

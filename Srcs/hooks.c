@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/04 08:50:04 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 09:52:42 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int	actions(t_data *data)
 	if (data->player.w || data->player.s || data->player.a || data->player.d \
 		|| data->player.left || data->player.right)
 	{
-		init_black_img(data, 0);
-		create_bigmap_img(data);
+		create_full_img(data);
 		create_rays(data);
 	}
 	return (0);
@@ -54,16 +53,8 @@ int	key_pressed(int keycode, t_data *data)
 		data->player.left = 1;
 	if (keycode == RIGHT)
 		data->player.right = 1;
-	if (keycode == M)
-	{
-		if (data->player.map == 1)
-			data->player.map = 0;
-		else
-			data->player.map = 1;
-		init_black_img(data, 1);
-		create_bigmap_img(data);
-		create_rays(data);
-	}
+	if (keycode == PLUS || keycode == MINUS)
+		map_zoom(data, keycode);
 	return (1);
 }
 
@@ -86,7 +77,7 @@ int	key_released(int keycode, t_data *data)
 
 int	mouse_moved(int x, int y, t_data *data)
 {
-	t_coord_d	dest;
+	t_coord	dest;
 (void)dest;
 	dest.x = x;
 	dest.y = y;
