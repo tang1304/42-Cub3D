@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/28 10:43:44 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 16:15:56 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void	detection_wall_touched(t_data *data, t_ray *ray)
 		else
 			ray->side_hit = 4;//N
 	}
+	if (ray->correction > data->max_correct_len)
+		data->max_correct_len = ray->correction;
 }
 
 static t_coord_f	wall_detection(t_data *data, t_ray *ray)

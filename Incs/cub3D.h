@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/04 10:51:45 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 10:02:46 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@
 # define WIN_HEIGHT 720
 # define FOV 60
 # define RAY_NUMBER 1440
-# define MOVE_SPEED 0.3
-# define ANGLE_MOVE 0.01
+# define MOVE_SPEED 0.4
+# define ANGLE_MOVE 0.02
 
 // strings
 # define COLOR_CHAR "ErrorWrong char in array (%c b), must be only digits\n"
@@ -143,6 +143,8 @@ typedef struct s_ray
 	t_coord_d	cell;
 	t_coord_d	w_top;
 	t_coord_d	w_bottom;
+	int			top_bef;
+	int			bottom_bef;
 	int			x_text;
 	float		y_text;
 	double		len;
@@ -192,6 +194,7 @@ typedef struct s_data
 	void		*mlx; //mlx pointer
 	void		*win; //window pointer
 	double		fov;
+	double		max_correct_len;
 	float		square_view_d;
 	float		ray_len_sq;
 	int			**arr;
@@ -298,6 +301,7 @@ void		create_rays(t_data *data);
 void		create_game_rays(t_data *data);
 
 /*	textures.c	*/
+int			get_rgb(int *color);
 void		load_textures(t_data *data, t_map *map);
 int			get_texture_x(t_data *data, t_ray *ray, float text_ratio);
 int			get_pixel_from_texture(t_texture *text, int x, int y);
