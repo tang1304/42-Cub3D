@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/05 16:29:57 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/06 15:24:34 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 # define PURPLE 0x00890089
 # define ORANGE 0x00FFA500
 # define BROWN 0x000F4A460
+# define GREYB 0x00373737
+# define GREYW 0x009c9c9c
 
 // data info
 # define VIEW_DIST 400
@@ -57,8 +59,8 @@
 # define WIN_HEIGHT 720
 # define FOV 60
 # define RAY_NUMBER WIN_WIDTH
-# define MOVE_SPEED 0.4
-# define ANGLE_MOVE 0.01
+# define MOVE_SPEED 0.8
+# define ANGLE_MOVE 0.03
 
 // strings
 # define COLOR_CHAR "ErrorWrong char in array (%c b), must be only digits\n"
