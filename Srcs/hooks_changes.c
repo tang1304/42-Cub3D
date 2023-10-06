@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_changes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/05 16:38:05 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/06 11:23:25 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,12 +148,10 @@ void	move_forward(t_data *data)
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;
 	if (data->map.map[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != '1' && data->map.map[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != 'D')
+		new_pos.x) / SQUARE_SIZE] != '1')
 		data->player.pos.x += new_pos.x;
 	if (data->map.map[(int)(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
-		[(int)data->player.pos.x / SQUARE_SIZE] != '1' && data->map.map[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != 'D')
+		[(int)data->player.pos.x / SQUARE_SIZE] != '1')
 		data->player.pos.y += new_pos.y;
 }
 

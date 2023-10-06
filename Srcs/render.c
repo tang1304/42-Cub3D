@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/05 16:29:17 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/06 11:50:05 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ static void	put_background(t_data *data, t_ray *ray)
 // 			my_mlx_pixel_put(&data->game, k, j++, get_rgb(data->map.c));
 // 		// while (j < ray->w_bottom.y)
 // 		// {
-// 		// 	color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], 
+// 		// 	color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1],
 // 		// 			ray->x_text, ray->y_text);
 // 		// 	ray->y_text += ratio;
 // 		// 	my_mlx_pixel_put(&data->game, k, j++, color);
