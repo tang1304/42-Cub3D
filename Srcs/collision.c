@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/05 16:27:30 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/06 11:18:01 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,23 @@ static float	vector_f_len_sq(t_coord_f position, t_coord map)
 
 }
 
-static void	detection_wall_touched(t_data *data, t_ray *ray, char c)
+static int	check_side_door(t_data *data, t_ray *ray, int x, int y)
+{
+
+	if (ray->side_hit == 1)
+		y--;
+	else if (ray->side_hit == 2)
+		y++;
+	else if (ray->side_hit == 3)
+		x--;
+	else if (ray->side_hit == 4)
+		x++;
+	if (data->arr[x][y] == 'D' && data->arr[x][y])
+		return (1);
+	return (0);
+}
+
+static void	detection_wall_touched(t_data *data, t_ray *ray, int x, int y)
 {
 	// right and left side
 	if (data->col.side_touched == 0)
@@ -33,9 +49,9 @@ static void	detection_wall_touched(t_data *data, t_ray *ray, char c)
 		ray->correction = (data->col.side_d.x - data->col.delta_d.x) \
 							* SQUARE_SIZE;
 		if (data->col.step.x == 1)
-			ray->side_hit = 1;//E
+			ray->side_hit = 1;//W
 		else
-			ray->side_hit = 2;//W
+			ray->side_hit = 2;//E
 	}
 	// top and bottom side
 	else
@@ -43,11 +59,11 @@ static void	detection_wall_touched(t_data *data, t_ray *ray, char c)
 		ray->correction = (data->col.side_d.y - data->col.delta_d.y) \
 							* SQUARE_SIZE;
 		if (data->col.step.y == 1)
-			ray->side_hit = 3;//S
+			ray->side_hit = 3;//N
 		else
-			ray->side_hit = 4;//N
+			ray->side_hit = 4;//S
 	}
-	if (c == 'D')
+	if (check_side_door(data, ray, x, y))
 		ray->side_hit = 5;
 	if (ray->correction > data->max_correct_len)
 		data->max_correct_len = ray->correction;
@@ -82,11 +98,11 @@ static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 			continue ;
 		if (ray->cell.y < 0 || ray->cell.y >= data->mini.height)
 			continue ;
-		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1' || \
-			data->arr[(int)ray->cell.y][(int)ray->cell.x] == 'D')
+		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1') //|| sla
+			//data->arr[(int)ray->cell.y][(int)ray->cell.x] == 'D')
 		{
 			detection_wall_touched(data, ray, \
-					data->arr[(int)ray->cell.y][(int)ray->cell.x]);
+					(int)ray->cell.y, (int)ray->cell.x);
 			// draw_coll(data, data->col.map.x, data->col.map.y, ray);
 			miss.x = (float)data->col.map.x;
 			miss.y = (float)data->col.map.y;
