@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/09 15:11:04 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 16:00:42 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ typedef struct s_coord_f
 typedef struct s_player
 {
 	t_coord_f	pos;
-	t_coord	view_dst_pos;
+	t_coord		view_dst_pos;
 	t_coord_f	dir;
 	double		angle;
 	int			map;// remove
@@ -181,14 +181,13 @@ typedef struct s_map
 
 typedef struct s_col
 {
-	t_coord	map;
+	t_coord		map;
 	t_coord_f	dir;
 	t_coord_f	dest;
-	t_coord	step;
+	t_coord		step;
 	t_coord_f	side_d;
 	int			side_touched;
 	t_coord_f	delta_d;
-	// t_coord	cell; not used
 }			t_col;
 
 typedef struct s_mini
@@ -199,8 +198,8 @@ typedef struct s_mini
 
 typedef struct s_data
 {
-	void		*mlx; //mlx pointer
-	void		*win; //window pointer
+	void		*mlx;
+	void		*win;
 	double		fov;
 	double		max_correct_len;
 	float		square_view_d;
@@ -259,7 +258,7 @@ int			actions(t_data *data);
 // void		hooks(t_data *data);
 
 /*	hooks_changes.c	*/
-void	map_zoom(t_data *data, int keycode);
+void		map_zoom(t_data *data, int keycode);
 void		change_board(t_data *data, int keycode);
 void		rotate_left(t_data *data);
 void		rotate_right(t_data *data);
@@ -333,15 +332,13 @@ void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 t_coord_f	calculate_vector(t_coord_f start, double angle, double len);
 t_coord_f	vector_d_to_f(t_coord vector);
 float		get_angle(t_coord_f start, t_coord_f dest);
+double		vector_d_len_sq(t_coord center, t_coord map);
+float		calculate_len_vector(t_data *data, t_coord_f hit);
 
 /*	window.c	*/
 void		create_window(t_data *data);
 void		img_loop(t_data *data);
 // void		create_minimap_img(t_data *data);
-
-/*	math.c	*/
-double		vector_d_len_sq(t_coord center, t_coord map);
-float		calculate_len_vector(t_data *data, t_coord_f hit);
 
 /*	image.c	*/
 void			init_black_img(t_data *data, int value);

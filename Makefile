@@ -9,6 +9,11 @@ SRCS = close.c \
 		get_map.c \
 		hooks.c \
 		hooks_changes.c \
+		image.c \
+		image_minimap.c \
+		image_bigmap.c \
+		image_full.c \
+		image_utils.c \
 		init_array_map.c \
 		init_data_struct.c \
 		line.c \
@@ -21,17 +26,13 @@ SRCS = close.c \
 		map_init.c \
 		map_parsing.c \
 		map_utils.c \
+		moves.c \
 		textures.c \
 		textures_extra.c \
 		utils.c \
 		vector_utils.c \
 		window.c \
-		math.c \
-		image.c \
-		image_minimap.c \
-		image_bigmap.c \
-		image_full.c \
-		image_utils.c
+		
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
 OBJ_DIR = objs/
