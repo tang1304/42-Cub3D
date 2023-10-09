@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/06 12:09:52 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 13:15:57 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ typedef struct s_img
 	int		h;
 }			t_img;
 
-typedef struct s_door
-{
-	int			opened;
-	t_coord_f	pos;
-}
+// typedef struct s_door
+// {
+// 	int			opened;
+// 	t_coord_f	pos;
+// }
 
 typedef struct s_texture
 {
@@ -101,6 +101,7 @@ typedef struct s_ray
 	t_coord	cell;
 	t_coord	w_top;
 	t_coord	w_bottom;
+	int			wall_door;
 	int			top_bef;
 	int			bottom_bef;
 	int			x_text;
@@ -120,7 +121,7 @@ typedef struct s_map
 	char			direction;//player orientation
 	char			**tmp;//content of .cub file
 	char			**map;//only the map
-	t_texture		text[5];
+	t_texture		text[6];
 	int				f[3];//floor color
 	int				c[3];//ceiling color
 	int				elems;
@@ -169,6 +170,7 @@ typedef struct s_data
 	t_img		start;
 	t_bresenham	bre;
 	t_mini		mini;
+	t_mini		max;
 }			t_data;
 
 /*	close.c	*/

@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/05 15:01:57 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 11:38:24 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ static char	**get_file_lines(int fd, int n)
 
 static void	get_datas(t_data *data, int fd, int fd_2)
 {
-	int		i;
-	int		n;
+	int	i;
+	int	n;
 
 	n = count_lines(fd_2);
 	if (n == -1)

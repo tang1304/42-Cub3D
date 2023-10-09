@@ -27,6 +27,7 @@
 # define PURPLE 0x00890089
 # define ORANGE 0x00FFA500
 # define BROWN 0x000F4A460
+# define LICORICE 0x001B1212
 
 // data info
 # define VIEW_DIST 400

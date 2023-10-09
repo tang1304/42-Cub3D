@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/05 14:50:10 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 14:11:30 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ void	texture_init(t_data *data)
 	t_texture	so;
 	t_texture	ea;
 	t_texture	we;
+	t_texture	wall_door;
 	t_texture	door;
 
 	ft_bzero(&door, sizeof(t_texture));
-	data->map.text[4] = door;
+	data->map.text[5] = door;
+	ft_bzero(&wall_door, sizeof(t_texture));
+	data->map.text[4] = wall_door;
 	ft_bzero(&no, sizeof(t_texture));
 	data->map.text[3] = no;
 	ft_bzero(&so, sizeof(t_texture));
