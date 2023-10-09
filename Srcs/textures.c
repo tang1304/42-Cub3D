@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/06 11:46:32 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 09:38:00 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,14 @@ int	get_texture_x(t_data *data, t_ray *ray, float scale)
 		square_pos = wall_hit.y - ((int)wall_hit.y / SQUARE_SIZE) * SQUARE_SIZE;
 	else
 		square_pos = wall_hit.x - ((int)wall_hit.x / SQUARE_SIZE) * SQUARE_SIZE;
-	if (ray->side_hit == 2 || ray->side_hit == 4)
+	if (ray->side_hit == 1 || ray->side_hit == 4)
 		square_pos /= SQUARE_SIZE;
 	else
 		square_pos = 1.0f - (square_pos / SQUARE_SIZE);
-	x_texture = square_pos * data->map.text[ray->side_hit - 1].width;
+	if (!ray->wall_door)
+		x_texture = square_pos * data->map.text[ray->side_hit - 1].width;
+	else
+		x_texture = square_pos * data->map.text[4].width;
 	return (x_texture);
 }
 
@@ -53,6 +56,8 @@ int	get_pixel_from_texture(t_texture *text, int x, int y)
 	if (y < 0 || y >= text->height)
 		return (0);
 	color = (*(int *)(text->addr + (x * text->bpp / 8) + (y * text->line_l)));
+	if (color == BLACK)
+		color = LICORICE;
 	return (color);
 }
 

@@ -34,10 +34,8 @@ void	add_squares(t_coord coord, int num, t_img *img)
 			if (num == '1')
 				my_mlx_pixel_put(img, i, j, WALL);
 			else if (num == '0' || num == 69 || num == 78 || num == 83 \
-					|| num == 87)
+					|| num == 87 || num == 'D')
 				my_mlx_pixel_put(img, i, j, WHITE);
-			else if (num == 'D')
-				my_mlx_pixel_put(img, i, j, BROWN);
 			else if (num == 32)
 				my_mlx_pixel_put(img, i, j, BLACK);
 			j++;

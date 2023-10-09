@@ -31,7 +31,7 @@ void	create_full_img(t_data *data)
 	{
 		coord.y = -1;
 		while (data->map.map[coord.x][++coord.y])
-			add_squares(coord, data->map.map[coord.x][coord.y], &data->full);
+				add_squares(coord, data->map.map[coord.x][coord.y], &data->full);
 	}
 }
 
