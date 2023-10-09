@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:34:53 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/09 14:23:40 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 16:03:11 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,44 @@ void	create_cpy_map_arr(t_data *data)
 // 		{
 // 			if (data->map.map[i][j] != 'D')
 // 				data->arr[i][j] = data->map.map[i][j];
-// 			else if (data->map.map[i][j] && data->map.map[i][j] == 'D')
+// 			else if (data->map.map[i][j] && data->map.map[i][j] == 'D' && \
+// 				data->map.map[i][j - 1] == '1' && data->map.map[i][j + 1] == '1')
 // 			{
 // 				data->arr[i][j] = -1;
 // 				data->arr[i][++j] = 'D';
 // 				data->arr[i][++j] = -1;
 // 			}
+// 			// else if (data->map.map[i][j] && data->map.map[i][j] == 'D' && \
+// 			// 	data->map.map[i - 1][j] == '1' && data->map.map[i + 1][j] == '1')
+// 			// {
+// 			// 	data->arr[i][j] = -1;
+// 			// 	data->arr[i + 1][j] = 'D';
+// 			// 	data->arr[i + 2][j] = -1;
+// 			// }
+// 		}
+// 	}
+// 	j = -1;
+// 	while (++j < data->map.width)
+// 	{
+// 		i = -1;
+// 		while (++i < data->map.height)
+// 		{
+// 			if (data->map.map[i][j] != 'D')
+// 				data->arr[i][j] = data->map.map[i][j];
+// 			else if (data->map.map[i][j] && data->map.map[i][j] == 'D' && \
+// 				data->map.map[i - 1][j] == '1' && data->map.map[i + 1][j] == '1')
+// 			{
+// 				data->arr[i][j] = -1;
+// 				data->arr[++i][j] = 'D';
+// 				data->arr[++i][j] = -1;
+// 			}
+// 			// else if (data->map.map[i][j] && data->map.map[i][j] == 'D' && \
+// 			// 	data->map.map[i - 1][j] == '1' && data->map.map[i + 1][j] == '1')
+// 			// {
+// 			// 	data->arr[i][j] = -1;
+// 			// 	data->arr[i + 1][j] = 'D';
+// 			// 	data->arr[i + 2][j] = -1;
+// 			// }
 // 		}
 // 	}
 // 	init_player_data(data);

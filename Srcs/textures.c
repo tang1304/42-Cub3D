@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/09 09:38:00 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 16:23:51 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	get_texture_x(t_data *data, t_ray *ray, float scale)
 {
 	double		p_angle;
 	double		hit_len;
-	int			x_texture;
+	int			x_texture = 0;
 	t_coord_f	wall_hit;
 	float		square_pos;
 
@@ -40,10 +40,12 @@ int	get_texture_x(t_data *data, t_ray *ray, float scale)
 		square_pos /= SQUARE_SIZE;
 	else
 		square_pos = 1.0f - (square_pos / SQUARE_SIZE);
-	if (!ray->wall_door)
+	if (!ray->wall_door && !ray->door)
 		x_texture = square_pos * data->map.text[ray->side_hit - 1].width;
-	else
+	else if (ray->wall_door)
 		x_texture = square_pos * data->map.text[4].width;
+	else if (ray->door)
+		x_texture = square_pos * data->map.text[5].width;
 	return (x_texture);
 }
 
