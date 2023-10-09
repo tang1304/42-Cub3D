@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/09 11:21:20 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 15:42:11 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,21 +80,6 @@ void	rotate_right(t_data *data)
 		data->player.angle = fabs(data->player.angle) + 2 * M_PI;
 }
 
-// static int	check_wall(t_data *data, float x, float y)
-// {
-// 	t_coord	pos;
-
-// 	pos.x = x / SQUARE_SIZE;
-// 	pos.y = y / SQUARE_SIZE;
-// 	if (pos.x < 0 || pos.x > WIN_WIDTH - 1)
-// 		return (0);
-// 	if (pos.y <0 || pos.y > WIN_HEIGHT - 1)
-// 		return (0);
-// 	if (data->map.map[pos.y][pos.x] != '1')
-// 		return (1);
-// 	return (0);
-// }
-
 void	move_left(t_data *data)
 {
 	double		move_speed;
@@ -108,8 +93,8 @@ void	move_left(t_data *data)
 				data->player.dir.y * cos(-M_PI_2);
 	new_pos.x = new_dir.x * move_speed;
 	new_pos.y = new_dir.y * move_speed;
-	if (data->map.map[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != '1')
+	if (data->map.map[(int)data->player.pos.y / SQUARE_SIZE] \
+		[(int)(data->player.pos.x + new_pos.x) / SQUARE_SIZE] != '1')
 		data->player.pos.x += new_pos.x;
 	if (data->map.map[(int)(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
 		[(int)data->player.pos.x / SQUARE_SIZE] != '1')
@@ -129,8 +114,8 @@ void	move_right(t_data *data)
 				data->player.dir.y * cos(-M_PI_2);
 	new_pos.x = new_dir.x * move_speed;
 	new_pos.y = new_dir.y * move_speed;
-	if (data->map.map[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != '1')
+	if (data->map.map[(int)data->player.pos.y / SQUARE_SIZE] \
+		[(int)(data->player.pos.x + new_pos.x) / SQUARE_SIZE] != '1')
 		data->player.pos.x += new_pos.x;
 	if (data->map.map[(int)(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
 		[(int)data->player.pos.x / SQUARE_SIZE] != '1')
@@ -145,13 +130,15 @@ void	move_forward(t_data *data)
 	move_speed = MOVE_SPEED;
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;
-	if (data->map.map[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != '1' && data->map.map[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != 'D')
+	if (data->map.map[(int)data->player.pos.y / SQUARE_SIZE] \
+		[(int)(data->player.pos.x + new_pos.x) / SQUARE_SIZE] != '1' && \
+		data->map.map[(int)data->player.pos.y / SQUARE_SIZE] \
+		[(int)(data->player.pos.x + new_pos.x) / SQUARE_SIZE] != 'D')
 		data->player.pos.x += new_pos.x;
 	if (data->map.map[(int)(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
-		[(int)data->player.pos.x / SQUARE_SIZE] != '1' && data->map.map[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != 'D')
+		[(int)data->player.pos.x / SQUARE_SIZE] != '1' && \
+		data->map.map[(int)data->player.pos.y / SQUARE_SIZE] \
+		[(int)(data->player.pos.x + new_pos.x) / SQUARE_SIZE] != 'D')
 		data->player.pos.y += new_pos.y;
 }
 
@@ -163,8 +150,8 @@ void	move_backward(t_data *data)
 	move_speed = -MOVE_SPEED;
 	new_pos.x = data->player.dir.x * move_speed;
 	new_pos.y = data->player.dir.y * move_speed;
-	if (data->map.map[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != '1')
+	if (data->map.map[(int)data->player.pos.y / SQUARE_SIZE] \
+	[(int)(data->player.pos.x + new_pos.x) / SQUARE_SIZE] != '1')
 		data->player.pos.x += new_pos.x;
 	if (data->map.map[(int)(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
 		[(int)data->player.pos.x / SQUARE_SIZE] != '1')
