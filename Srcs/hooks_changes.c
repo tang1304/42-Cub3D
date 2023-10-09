@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/05 16:38:05 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 11:21:20 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	change_board(t_data *data, int keycode)
 		data->arr[y][x] = '0';
 	else if (keycode == X)
 		data->arr[y][x] = '1';
-	// create_minimap_img(data);
-	// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
 
 void	rotate_left(t_data *data)
