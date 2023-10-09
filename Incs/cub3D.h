@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/06 15:24:34 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 09:56:39 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@
 # define WIN_HEIGHT 720
 # define FOV 60
 # define RAY_NUMBER WIN_WIDTH
-# define MOVE_SPEED 0.8
-# define ANGLE_MOVE 0.03
+# define MOVE_SPEED 0.2
+# define ANGLE_MOVE 0.01
 
 // strings
 # define COLOR_CHAR "ErrorWrong char in array (%c b), must be only digits\n"
@@ -148,9 +148,9 @@ typedef struct s_bresenham
 typedef struct s_ray
 {
 	t_coord_f	hit_p;
-	t_coord	cell;
-	t_coord	w_top;
-	t_coord	w_bottom;
+	t_coord		cell;
+	t_coord		w_top;
+	t_coord		w_bottom;
 	int			top_bef;
 	int			bottom_bef;
 	int			x_text;

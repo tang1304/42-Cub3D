@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/05 09:52:42 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 09:13:44 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int	actions(t_data *data)
 		rotate_left(data);
 	if (data->player.right)
 		rotate_right(data);
-	data->player.view_dst_pos.x = data->player.dir.x * VIEW_DIST + data->player.pos.x;
-	data->player.view_dst_pos.y = data->player.dir.y * VIEW_DIST + data->player.pos.y;
+	data->player.view_dst_pos.x = data->player.dir.x * VIEW_DIST + \
+									data->player.pos.x;
+	data->player.view_dst_pos.y = data->player.dir.y * VIEW_DIST + \
+									data->player.pos.y;
 	if (data->player.w || data->player.s || data->player.a || data->player.d \
 		|| data->player.left || data->player.right)
 	{

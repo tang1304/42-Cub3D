@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/05 10:22:25 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 10:55:42 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	init_minimap_img(t_data *data)
 {
 	t_coord	size;
-	t_img		minimap;
+	t_img	minimap;
 
 	if (SQUARE_SIZE * SQ_NUM < data->mini.width)
 		size.x = SQUARE_SIZE * SQ_NUM;

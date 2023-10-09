@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/05 16:29:25 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 10:29:29 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	load_textures(t_data *data, t_map *map)
 				&map->text[i].bpp, &map->text[i].line_l, &map->text[i].endian);
 		if (!map->text[i].addr)
 			textures_error(data, "Error\nProblem saving image address\n");
-		// mlx_destroy_image(data->mlx, map->text[i].text);
 	}
 	load_extra_textures(data, map);
 }
