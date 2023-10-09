@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/09 14:24:15 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 16:22:00 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,25 @@ static void	detection_wall_touched(t_data *data, t_ray *ray, int x, int y)
 			ray->side_hit = 4;//N
 	}
 	if (check_side_door(data, ray, x, y))
+	{
 		ray->wall_door = 1;
+		// ray->door = 0;
+	}
 	else
+	{
 		ray->wall_door = 0;
+		// ray->door = 1;
+	}
+	if (data->arr[ray->cell.y][ray->cell.x] == 'D')
+	{
+		// ray->wall_door = 0;
+		ray->door = 1;
+	}
+	else
+	{
+		// ray->wall_door = 1;
+		ray->door = 0;
+	}
 	if (ray->correction > data->max_correct_len)
 		data->max_correct_len = ray->correction;
 }
@@ -109,7 +125,8 @@ static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 			continue ;
 		if (ray->cell.y < 0 || ray->cell.y >= data->mini.height)
 			continue ;
-		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1')
+		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1' ||
+			data->arr[(int)ray->cell.y][(int)ray->cell.x] == 'D')
 		{
 			detection_wall_touched(data, ray, \
 					(int)ray->cell.y, (int)ray->cell.x);

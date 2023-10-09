@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/09 09:56:59 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 16:24:15 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,33 +53,43 @@ static void	only_wall(t_data *data, t_ray *ray, double ratio, int k)
 	int	j;
 
 	j = WIN_HEIGHT * 0.5f;
-	if (!ray->wall_door)
+	if (!ray->wall_door && !ray->door)
 		ray->y_text = (float)data->map.text[ray->side_hit - 1].height * 0.5f;
-	else
+	else if (ray->wall_door)
 		ray->y_text = (float)data->map.text[4].height * 0.5f;
+	else if (ray->door)
+		ray->y_text = (float)data->map.text[5].height * 0.5f;
 	while (++j < WIN_HEIGHT)
 	{
-		if (!ray->wall_door)
+		if (!ray->wall_door && !ray->door)
 			color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], \
 					ray->x_text, ray->y_text);
-		else
+		else if (ray->wall_door)
 			color = get_pixel_from_texture(&data->map.text[4], \
+					ray->x_text, ray->y_text);
+		else if (ray->door)
+			color = get_pixel_from_texture(&data->map.text[5], \
 					ray->x_text, ray->y_text);
 		my_mlx_pixel_put(&data->game, k, j, color);
 		ray->y_text += ratio;
 	}
 	j = (WIN_HEIGHT * 0.5f) + 1;
-	if (!ray->wall_door)
+	if (!ray->wall_door && !ray->door)
 		ray->y_text = (float)data->map.text[ray->side_hit - 1].height * 0.5f;
-	else
+	else if (ray->wall_door)
 		ray->y_text = (float)data->map.text[4].height * 0.5f;
+	else if (ray->door)
+		ray->y_text = (float)data->map.text[5].height * 0.5f;
 	while (--j >= 0)
 	{
-		if (!ray->wall_door)
+		if (!ray->wall_door && !ray->door)
 			color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], \
 					ray->x_text, ray->y_text);
-		else
+		else if (ray->wall_door)
 			color = get_pixel_from_texture(&data->map.text[4], \
+					ray->x_text, ray->y_text);
+		else if (ray->door)
+			color = get_pixel_from_texture(&data->map.text[5], \
 					ray->x_text, ray->y_text);
 		my_mlx_pixel_put(&data->game, k, j, color);
 		ray->y_text -= ratio;
@@ -93,10 +103,12 @@ static void	render_walls(t_data *data, t_ray *ray, float slice_h)
 	int		color;
 	double	ratio;
 
-	if (!ray->wall_door)
+	if (!ray->wall_door && !ray->door)
 		ratio = data->map.text[ray->side_hit - 1].height / slice_h;
-	else
+	else if (ray->wall_door)
 		ratio = data->map.text[4].height / slice_h;
+	else if (ray->door)
+		ratio = data->map.text[5].height / slice_h;
 	k = ray->w_top.x - 1;
 	while (++k < ray->w_bottom.x)
 	{
@@ -111,11 +123,14 @@ static void	render_walls(t_data *data, t_ray *ray, float slice_h)
 		ray->y_text = 0;
 		while (j < ray->w_bottom.y)
 		{
-			if (!ray->wall_door)
+			if (!ray->wall_door && !ray->door)
 				color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], \
 					ray->x_text, ray->y_text);
-			else
+			else if (ray->wall_door)
 				color = get_pixel_from_texture(&data->map.text[4], \
+					ray->x_text, ray->y_text);
+			else if (ray->door)
+				color = get_pixel_from_texture(&data->map.text[5], \
 					ray->x_text, ray->y_text);
 			ray->y_text += ratio;
 			my_mlx_pixel_put(&data->game, k, j++, color);

@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/09 13:15:57 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 16:11:39 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct s_ray
 	t_coord	w_top;
 	t_coord	w_bottom;
 	int			wall_door;
+	int			door;
 	int			top_bef;
 	int			bottom_bef;
 	int			x_text;
@@ -313,6 +314,7 @@ void	create_big_from_full(t_data *data);
 
 /*	image_utils.c	*/
 void	transparency_img(t_img *img, t_coord size);
+void	add_door(t_data *data, t_coord coord, t_img * img);
 void	add_squares(t_coord coord, int num, t_img *img);
 void	add_border(int w, int h, t_img *img);
 
