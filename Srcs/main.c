@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/09 09:47:06 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 11:40:35 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 	load_textures(&data, &data.map);//leaks OK jusque la
 	init_data_values(&data);
 	create_window(&data);
+	img_loop(&data);
 	// t_map_cleaning(&data.map);
 	return (0);
 }

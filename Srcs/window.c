@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/09 10:55:42 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 13:42:53 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	create_window(t_data *data)
 	data->main = main;
 	create_full_img(data);
 	create_rays(data);
-	img_loop(data);
 }
 
 void	img_loop(t_data *data)
