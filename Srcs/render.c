@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/09 11:32:26 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 11:38:57 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ void	create_game_rays(t_data *data)
 	while (++i < RAY_NUMBER)
 	{
 		j--;
-		// put_background(data, &data->ray[i]);
 		if (data->ray[i].len == -1)
 		{
 			render_no_background(data, &data->ray[i], slice_w, j);

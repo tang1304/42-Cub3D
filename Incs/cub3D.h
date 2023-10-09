@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/09 09:56:39 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 13:39:16 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,6 @@ typedef struct s_data
 	t_img		minimap;
 	t_img		bigmap;
 	t_img		full;
-	t_img		start;
 	t_bresenham	bre;
 	t_mini		mini;
 }			t_data;
