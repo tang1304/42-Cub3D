@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/09 16:00:42 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/10 09:16:56 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 # define SQ_NUM 12
 # define WIN_WIDTH 1440
 # define WIN_HEIGHT 720
-# define FOV 60
+# define FOV 100
 # define RAY_NUMBER WIN_WIDTH
 # define MOVE_SPEED 0.2
 # define ANGLE_MOVE 0.01
