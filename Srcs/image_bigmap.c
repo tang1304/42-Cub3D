@@ -13,6 +13,8 @@ void	init_bigmap_img(t_data *data)
 	else
 		big.h = data->mini.height;
 	big.img = mlx_new_image(data->mlx, big.w, big.h);
+	if (big.img == NULL)
+		exit_cub_error(data, "Error\nmlx_new_image problem\n");
 	big.addr = mlx_get_data_addr(big.img, &big.bpp, \
 					&big.line_l, &big.endian);
 	data->bigmap = big;
