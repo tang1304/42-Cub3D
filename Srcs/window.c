@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/09 15:24:04 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/10 11:20:59 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ static void	init_minimap_img(t_data *data)
 		size.y = data->mini.height;
 	minimap.img = mlx_new_image(data->mlx, size.x, size.y);
 	if (minimap.img == NULL)
-		exit_cub_error(data, "Error\nmlx_new_image problem\n");
+		exit_cub_error(data, "Problem changing xpm file to image\n");
 	minimap.w = size.x;
 	minimap.h = size.y;
 	minimap.addr = mlx_get_data_addr(minimap.img, &minimap.bpp, \
 					&minimap.line_l, &minimap.endian);
+	if (!minimap.addr)
+		exit_cub_error(data, "Error\nProblem saving image address\n");
 	data->minimap = minimap;
 }
 
@@ -41,11 +43,13 @@ static void	init_fullmap_img(t_data *data)
 
 	full.img = mlx_new_image(data->mlx, data->mini.width, data->mini.height);
 	if (full.img == NULL)
-		exit_cub_error(data, "Error\nmlx_new_image problem\n");
+		exit_cub_error(data, "Error\nProblem changing xpm file to image\n");
 	full.w = data->mini.width;
 	full.h = data->mini.height;
 	full.addr = mlx_get_data_addr(full.img, &full.bpp, \
 					&full.line_l, &full.endian);
+	if (!full.addr)
+		exit_cub_error(data, "Error\nProblem saving image address\n");
 	data->full = full;
 }
 
@@ -55,11 +59,13 @@ static void	init_game_img(t_data *data)
 
 	game.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (game.img == NULL)
-		exit_cub_error(data, "Error\nmlx_new_image problem\n");
+		exit_cub_error(data, "Error\nProblem changing xpm file to image\n");
 	game.w = WIN_WIDTH;
 	game.h = WIN_HEIGHT;
 	game.addr = mlx_get_data_addr(game.img, &game.bpp, &game.line_l, \
 								&game.endian);
+	if (!game.addr)
+		exit_cub_error(data, "Error\nProblem saving image address\n");
 	data->game = game;
 }
 
@@ -74,11 +80,13 @@ void	create_window(t_data *data)
 	init_minimap_img(data);
 	main.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (main.img == NULL)
-		exit_cub_error(data, "Error\nmlx_new_image problem\n");
+		exit_cub_error(data, "Error\nProblem changing xpm file to image\n");
 	main.w = WIN_WIDTH;
 	main.h = WIN_HEIGHT;
 	main.addr = mlx_get_data_addr(main.img, &main.bpp, &main.line_l, \
 								&main.endian);
+	if (!main.addr)
+		exit_cub_error(data, "Error\nProblem saving image address\n");
 	data->main = main;
 	create_full_img(data);
 	create_rays(data);

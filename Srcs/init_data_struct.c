@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/09 14:55:02 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/10 10:20:10 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,12 @@ void	init_data_values(t_data *data)
 	ft_bzero(&bre, sizeof(t_bresenham));
 	data->bre = bre;
 	create_cpy_map_arr(data);
+}
+
+void	data_init(t_data *data)
+{
+	ft_bzero(data, sizeof(t_data));
+	data->map.c[0] = -1;
+	data->map.f[0] = -1;
+	texture_init(data);
 }
