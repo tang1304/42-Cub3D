@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/11 15:05:10 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 15:58:09 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void			close_map_error(t_data *data);
 int				ft_close(t_data *data);
 
 /*	collision.c	*/
-t_coord_f		init_data_collision(t_data *data, t_ray *ray);
+t_coord_f		init_data_collision(t_data *data, t_ray *ray, int i);
 
 /*	draw.c	*/
 void			draw_point(t_data *data, int tX, int tY, int color);
@@ -286,6 +286,7 @@ void	check_valid_doors(t_map *map);
 
 /*	rays.c	*/
 double		get_straight_angle(t_data *data, t_coord_f dest);
+t_coord_f	get_dst_coord(t_coord_f pos, double angle, int dist);
 void		create_cone_multi_rays(t_data *data, t_coord_f left, \
 									t_coord_f right);
 void		create_rays(t_data *data);
