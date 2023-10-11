@@ -6,18 +6,38 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/05 16:27:38 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/10 10:20:10 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-static void	bressenham_init(t_data *data)
+static void	init_player_direction(t_data *data, int i, int j, t_player *player)
 {
-	t_bresenham	bre;
-
-	ft_bzero(&bre, sizeof(t_bresenham));
-	data->bre = bre;
+	if (data->map.map[i][j] == 'N')
+	{
+		player->angle = M_PI_2;
+		player->dir.x = 0;
+		player->dir.y = -1;
+	}
+	else if (data->map.map[i][j] == 'W')
+	{
+		player->angle = M_PI;
+		player->dir.x = -1;
+		player->dir.y = 0;
+	}
+	else if (data->map.map[i][j] == 'S')
+	{
+		player->angle = 3 * M_PI_2;
+		player->dir.x = 0;
+		player->dir.y = 1;
+	}
+	else
+	{
+		player->angle = 0;
+		player->dir.x = 1;
+		player->dir.y = 0;
+	}
 }
 
 void	init_player_data(t_data *data)
@@ -36,30 +56,7 @@ void	init_player_data(t_data *data)
 			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'W' || \
 				data->map.map[i][j] == 'S' || data->map.map[i][j] == 'E')
 			{
-				if (data->map.map[i][j] == 'N')
-				{
-					player.angle = M_PI_2;
-					player.dir.x = 0;
-					player.dir.y = -1;
-				}
-				else if (data->map.map[i][j] == 'W')
-				{
-					player.angle = M_PI;
-					player.dir.x = -1;
-					player.dir.y = 0;
-				}
-				else if (data->map.map[i][j] == 'S')
-				{
-					player.angle = 3 * M_PI_2;
-					player.dir.x = 0;
-					player.dir.y = 1;
-				}
-				else
-				{
-					player.angle = 0;
-					player.dir.x = 1;
-					player.dir.y = 0;
-				}
+				init_player_direction(data, i, j, &player);
 				player.pos.y = i * SQUARE_SIZE + SQUARE_SIZE * 0.5;
 				player.pos.x = j * SQUARE_SIZE + SQUARE_SIZE * 0.5;
 			}
@@ -70,16 +67,26 @@ void	init_player_data(t_data *data)
 
 void	init_data_values(t_data *data)
 {
-	t_ray	*ray;
+	t_ray		*ray;
+	t_bresenham	bre;
 
 	data->square_view_d = VIEW_DIST * VIEW_DIST;
 	data->fov = FOV * M_PI / 180;
-	data->mini.height = SQUARE_SIZE * data->map.height; //280
-	data->mini.width = SQUARE_SIZE * data->map.width; //660
+	data->mini.height = SQUARE_SIZE * data->map.height;
+	data->mini.width = SQUARE_SIZE * data->map.width;
 	ray = ft_calloc(RAY_NUMBER, sizeof(t_ray));
 	if (ray == NULL)
 		textures_error(data, "Error\nMalloc failed\n");
 	data->ray = ray;
-	bressenham_init(data);
+	ft_bzero(&bre, sizeof(t_bresenham));
+	data->bre = bre;
 	create_cpy_map_arr(data);
+}
+
+void	data_init(t_data *data)
+{
+	ft_bzero(data, sizeof(t_data));
+	data->map.c[0] = -1;
+	data->map.f[0] = -1;
+	texture_init(data);
 }

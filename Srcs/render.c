@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/09 16:24:15 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 10:19:05 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,6 @@ static void	top_bottom_wall_pxl(t_ray *ray, int i, float wall_h, int wall_w)
 	if (ray->w_bottom.y > WIN_HEIGHT)
 		ray->w_bottom.y = WIN_HEIGHT;
 }
-
-// static void	top_bottom_wall_pxl_before(t_ray *ray, int i)
-// {
-// 	if (i == 0)
-// 	{
-// 		ray[i].top_bef = ray[i].w_top.y;
-// 		ray[i].bottom_bef = ray[i].w_bottom.y;
-// 	}
-// 	else if (i == 1)
-// 	{
-// 		ray[i].top_bef = ray[i - 1].w_top.y;
-// 		ray[i].bottom_bef = ray[i - 1].w_bottom.y;
-// 	}
-// 	else
-// 	{
-// 		ray[i].top_bef = ray[i - 1].top_bef;
-// 		ray[i].bottom_bef = ray[i - 1].bottom_bef;
-// 	}
-// }
 
 static void	only_wall(t_data *data, t_ray *ray, double ratio, int k)
 {
@@ -140,47 +121,33 @@ static void	render_walls(t_data *data, t_ray *ray, float slice_h)
 	}
 }
 
-static void	put_background(t_data *data, t_ray *ray)
+static void	render_no_background(t_data *data, t_ray *ray, int slice_w, int i)
 {
 	int		j;
 	int		k;
+	int		color;
+	int		slice_h;
 
+	(void)color;
+	slice_h = (1.0f / ((float)(data->max_correct_len)) * (float)WIN_HEIGHT);
+	top_bottom_wall_pxl(ray, i, slice_h, slice_w);
 	k = ray->w_top.x - 1;
 	while (++k < ray->w_bottom.x)
 	{
 		j = 0;
-		while (j < WIN_HEIGHT * 0.5f)
+		while (j < ray->w_top.y)
 			my_mlx_pixel_put(&data->game, k, j++, get_rgb(data->map.c));
+		while (j < ray->w_bottom.y)
+		{
+			if (ft_is_odd(j))
+				my_mlx_pixel_put(&data->game, k, j++, GREYB);
+			else
+				my_mlx_pixel_put(&data->game, k, j++, GREYW);
+		}
 		while (j < WIN_HEIGHT)
 			my_mlx_pixel_put(&data->game, k, j++, get_rgb(data->map.f));
 	}
 }
-
-// static void	render_no_background(t_data *data, t_ray *ray)
-// {
-// 	int		j;
-// 	int		k;
-// 	int		color;
-
-// 	(void)color;
-// 	k = ray->w_top.x - 1;
-// 	while (++k < ray->w_bottom.x)
-// 	{
-// 		j = 0;
-// 		while (j < ray->top_bef)
-// 			my_mlx_pixel_put(&data->game, k, j++, get_rgb(data->map.c));
-// 		// while (j < ray->w_bottom.y)
-// 		// {
-// 		// 	color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1],
-// 		// 			ray->x_text, ray->y_text);
-// 		// 	ray->y_text += ratio;
-// 		// 	my_mlx_pixel_put(&data->game, k, j++, color);
-// 		// }
-// 		j = ray->bottom_bef;
-// 		while (j < WIN_HEIGHT)
-// 			my_mlx_pixel_put(&data->game, k, j++, get_rgb(data->map.f));
-// 	}
-// }
 
 void	create_game_rays(t_data *data)
 {
@@ -197,11 +164,9 @@ void	create_game_rays(t_data *data)
 	while (++i < RAY_NUMBER)
 	{
 		j--;
-		put_background(data, &data->ray[i]);
 		if (data->ray[i].len == -1)
 		{
-			// top_bottom_wall_pxl_before(data->ray, i);
-			// render_no_background(data, &data->ray[i]);
+			render_no_background(data, &data->ray[i], slice_w, j);
 			continue ;
 		}
 		slice_h = (1.0f / ((float)(data->ray[i].correction)) * \

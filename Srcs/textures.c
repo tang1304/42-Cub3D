@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/09 16:23:51 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 10:19:11 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,29 @@ void	load_textures(t_data *data, t_map *map)
 				&map->text[i].bpp, &map->text[i].line_l, &map->text[i].endian);
 		if (!map->text[i].addr)
 			textures_error(data, "Error\nProblem saving image address\n");
-		// mlx_destroy_image(data->mlx, map->text[i].text);
 	}
 	load_extra_textures(data, map);
+}
+
+void	texture_init(t_data *data)
+{
+	t_texture	no;
+	t_texture	so;
+	t_texture	ea;
+	t_texture	we;
+	t_texture	door;
+	t_texture	wall_door;
+
+	ft_bzero(&door, sizeof(t_texture));
+	data->map.text[5] = door;
+	ft_bzero(&wall_door, sizeof(t_texture));
+	data->map.text[4] = wall_door;
+	ft_bzero(&no, sizeof(t_texture));
+	data->map.text[3] = no;
+	ft_bzero(&so, sizeof(t_texture));
+	data->map.text[2] = so;
+	ft_bzero(&we, sizeof(t_texture));
+	data->map.text[1] = we;
+	ft_bzero(&ea, sizeof(t_texture));
+	data->map.text[0] = ea;
 }

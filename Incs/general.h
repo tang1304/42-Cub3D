@@ -28,6 +28,8 @@
 # define ORANGE 0x00FFA500
 # define BROWN 0x000F4A460
 # define LICORICE 0x001B1212
+# define GREYB 0x00373737
+# define GREYW 0x009c9c9c
 
 // data info
 # define VIEW_DIST 400
