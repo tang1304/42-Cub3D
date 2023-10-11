@@ -7,7 +7,7 @@
 # define A 97
 # define S 115
 # define D 100
-# define M 109 // no used
+# define E 101
 # define PLUS 65451
 # define MINUS 65453
 # define LEFT 65361

@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/09 16:11:39 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 08:51:21 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ typedef struct s_data
 	double		fov;
 	double		max_correct_len;
 	float		square_view_d;
-	float		ray_len_sq;
+	float		ray_len_sq;//used??
 	int			**arr;
 	int			**mini_arr;
 	t_ray		*ray;
@@ -165,6 +165,7 @@ typedef struct s_data
 	t_col		col;
 	t_img		main;
 	t_img		game;
+	t_img		text;//??
 	t_img		minimap;
 	t_img		bigmap;
 	t_img		full;
@@ -209,15 +210,18 @@ int			key_released(int keycode, t_data *data);
 int			actions(t_data *data);
 // void		hooks(t_data *data);
 
-/*	hooks_changes.c	*/
-void	map_zoom(t_data *data, int keycode);
-void		change_board(t_data *data, int keycode);
+/*	hooks_mouves.c	*/
 void		rotate_left(t_data *data);
 void		rotate_right(t_data *data);
 void		move_left(t_data *data);
 void		move_right(t_data *data);
 void		move_forward(t_data *data);
 void		move_backward(t_data *data);
+
+/*	hook_others.c	*/
+void		map_zoom(t_data *data, int keycode);
+void		change_board(t_data *data, int keycode);
+void		open_close_doors(t_data *data);
 
 /*	init_data_struct.c	*/
 void		init_player_data(t_data *data);

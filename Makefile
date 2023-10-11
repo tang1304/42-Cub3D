@@ -8,7 +8,8 @@ SRCS = close.c \
 		frees.c \
 		get_map.c \
 		hooks.c \
-		hooks_changes.c \
+		hook_mouves.c \
+		hook_others.c \
 		init_array_map.c \
 		init_data_struct.c \
 		line.c \

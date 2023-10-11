@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/05 09:52:42 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 08:33:44 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	key_pressed(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 		exit_cub(data);
+	if (keycode == E)
+		open_close_doors(data);
 	if (keycode == W)
 		data->player.w = 1;
 	if (keycode == S)
