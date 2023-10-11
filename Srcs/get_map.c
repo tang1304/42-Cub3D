@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:38:32 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/04 09:05:40 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/04 13:52:55 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_element(char *tmp, char *elem, int i)
 	return (1);
 }
 
-static int	get_rgb(t_map *map, int *color, char **tab)
+static int	get_rgb_map(t_map *map, int *color, char **tab)
 {
 	int	i;
 	int	j;
@@ -73,7 +73,7 @@ void	get_ceiling_color(t_map *map, char *str, char *elem, int i)
 		free(tmp);
 		map_error(map, "Error\nMalloc failed\n");
 	}
-	if (!get_rgb(map, map->c, new))
+	if (!get_rgb_map(map, map->c, new))
 	{
 		free(tmp);
 		map_error(map, "");
@@ -102,7 +102,7 @@ void	get_floor_color(t_map *map, char *str, char *elem, int i)
 		free(tmp);
 		map_error(map, "Error\nMalloc failed\n");
 	}
-	if (!get_rgb(map, map->f, new))
+	if (!get_rgb_map(map, map->f, new))
 	{
 		free(tmp);
 		map_error(map, "");

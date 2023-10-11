@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 09:33:31 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/28 09:55:21 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/09 15:59:39 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_coord_f	calculate_vector(t_coord_f start, double angle, double len)
 	return (new);
 }
 
-t_coord_f	vector_d_to_f(t_coord_d vector)
+t_coord_f	vector_d_to_f(t_coord vector)
 {
 	t_coord_f	new;
 
@@ -45,4 +45,23 @@ float	get_angle(t_coord_f start, t_coord_f dest)
 		return (atan(-delta_y / delta_x));
 	else
 		return (atan (delta_x / delta_y) + M_PI + M_PI_2);
+}
+
+double	vector_d_len_sq(t_coord center, t_coord map)
+{
+	float	value_sq;
+
+	value_sq = (center.x - map.x) * (center.x - map.x) + \
+			(center.y - map.y) * (center.y - map.y);
+	return (value_sq);
+
+}
+
+float	calculate_len_vector(t_data *data, t_coord_f hit)
+{
+	float	len;
+
+	len = (hit.x - data->player.pos.x) * (hit.x - data->player.pos.x) + \
+				(hit.y - data->player.pos.y) * (hit.y - data->player.pos.y);
+	return (len);
 }
