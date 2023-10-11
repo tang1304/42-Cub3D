@@ -39,8 +39,9 @@
 # define WIN_HEIGHT 720
 # define FOV 60
 # define RAY_NUMBER WIN_WIDTH
+# define MOUSE_SPEED 0.01
 # define MOVE_SPEED 0.4
-# define ANGLE_MOVE 0.01
+# define ANGLE_MOVE 0.015
 
 // strings
 # define COLOR_CHAR "ErrorWrong char in array (%c b), must be only digits\n"

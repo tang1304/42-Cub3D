@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/11 10:11:43 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 11:21:59 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	move_left(t_data *data)
 	new_pos.x = new_dir.x * move_speed;
 	new_pos.y = new_dir.y * move_speed;
 	// check_wall_walking()
-	if (data->arr[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != '1')
+	if (data->arr[(int)data->player.pos.y / SQUARE_SIZE][(int) \
+		(data->player.pos.x + new_pos.x) / SQUARE_SIZE] != '1')
 		data->player.pos.x += new_pos.x;
 	if (data->arr[(int)(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
 		[(int)data->player.pos.x / SQUARE_SIZE] != '1')
@@ -83,8 +83,8 @@ void	move_right(t_data *data)
 				data->player.dir.y * cos(-M_PI_2);
 	new_pos.x = new_dir.x * move_speed;
 	new_pos.y = new_dir.y * move_speed;
-	if (data->arr[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != '1')
+	if (data->arr[(int)data->player.pos.y / SQUARE_SIZE][(int) \
+	(data->player.pos.x + new_pos.x) / SQUARE_SIZE] != '1')
 		data->player.pos.x += new_pos.x;
 	if (data->arr[(int)(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
 		[(int)data->player.pos.x / SQUARE_SIZE] != '1')

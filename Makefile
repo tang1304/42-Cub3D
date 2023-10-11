@@ -2,8 +2,7 @@
 
 CC = cc -g3 -O2 #-fsanitize=address
 CFLAGS = -Wall -Wextra -Werror
-SRCS = close.c \
-		collision.c \
+SRCS = 	collision.c \
 		errors.c \
 		frees.c \
 		get_map.c \
@@ -39,7 +38,7 @@ OBJ_DIR = objs/
 OBJS	=	$(addprefix $(OBJ_DIR), $(OBJ))
 NAME = cub3D
 RM = rm -rf
-HEADER = Incs/cub3D.h
+HEADER = Incs/cub3D.h Incs/general.h
 LIBFT = libft/libft.a
 LIBFT_DIR = libft/
 MLX_DIR	=	mlx/

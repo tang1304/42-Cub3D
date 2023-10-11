@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/11 10:19:19 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 11:26:43 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	img_loop(t_data *data)
 {
 	mlx_hook(data->win, 2, 1L << 0, key_pressed, data);
 	mlx_hook(data->win, 3, 1L << 1, key_released, data);
+	mlx_hook(data->win, 6, 1L << 6, mouse_moved, data);
 	mlx_hook(data->win, 17, 0, exit_cub, data);
 	mlx_loop_hook(data->mlx, actions, data);
 	mlx_loop(data->mlx);
