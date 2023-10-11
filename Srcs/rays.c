@@ -72,10 +72,5 @@ void	create_rays(t_data *data)
 	opp_len = tan(data->fov * 0.5f) * VIEW_DIST;
 	left = get_dst_coord(position, data->player.angle + M_PI_2, opp_len);
 	right = get_dst_coord(position, data->player.angle - M_PI_2, opp_len);
-
-// draw_point(data, data->player.view_dst_pos.x, data->player.view_dst_pos.y, RED);
-// draw_point(data, left.x, left.y, GREEN);
-// draw_point(data, right.x, right.y, BLUE);
-// mlx_put_image_to_window(data->mlx, data->win, data->minimap.img, 0, 0);
 	create_cone_multi_rays(data, left, right);
 }

@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/11 13:56:08 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 15:33:44 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_player
 	int			right_arrow;
 	int			left_mouse;
 	int			right_mouse;
-	float		mouse_pos;
+	int			mouse_pos;
 }				t_player;
 
 typedef struct s_bresenham

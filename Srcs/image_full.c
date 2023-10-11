@@ -33,6 +33,7 @@ void	create_full_img(t_data *data)
 		while (data->arr[coord.x][++coord.y])
 			add_squares(coord, data->arr[coord.x][coord.y], &data->full);
 	}
+	create_rays(data);
 }
 
 void	create_big_from_full(t_data *data)

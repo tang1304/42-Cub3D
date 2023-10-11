@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/11 15:03:16 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 15:59:55 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,10 @@ int	actions(t_data *data)
 		move_left(data);
 	if (data->player.d)
 		move_right(data);
-	if (data->player.left_arrow)
+	if (data->player.left_arrow || data->player.left_mouse)
 		rotate_left(data);
-	if (data->player.right_arrow)
+	if (data->player.right_arrow || data->player.right_mouse)
 		rotate_right(data);
-	if (data->player.right_mouse)
-		rotate_right(data);
-	if (data->player.left_mouse)
-		rotate_left(data);
 	data->player.view_dst_pos.x = data->player.dir.x * VIEW_DIST + \
 									data->player.pos.x;
 	data->player.view_dst_pos.y = data->player.dir.y * VIEW_DIST + \
@@ -37,10 +33,7 @@ int	actions(t_data *data)
 	if (data->player.w || data->player.s || data->player.a || data->player.d \
 		|| data->player.left_arrow || data->player.right_arrow || \
 		data->player.left_mouse || data->player.right_mouse)
-	{
 		create_full_img(data);
-		create_rays(data);
-	}
 	data->player.left_mouse = 0;
 	data->player.right_mouse = 0;
 	return (0);
@@ -88,20 +81,17 @@ int	key_released(int keycode, t_data *data)
 
 int	mouse_moved(int x, int y, t_data *data)
 {
-	float	new_mouse_pos;
+	int	new_mouse_pos;
 
 	(void)y;
-	new_mouse_pos = ((WIN_WIDTH * 0.5f) - x) / WIN_WIDTH;
+	new_mouse_pos = ((WIN_WIDTH * 0.5f) - x);
+	if (new_mouse_pos > (WIN_WIDTH * 0.5f) - 20 || \
+		new_mouse_pos < -(WIN_WIDTH * 0.5f) + 20)
+		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	if (new_mouse_pos > data->player.mouse_pos)
-	{
 		data->player.left_mouse = 1;
-		// rotate_left(data);
-	}
 	else if (new_mouse_pos < data->player.mouse_pos)
-	{
 		data->player.right_mouse = 1;
-		// rotate_right(data);
-	}
 	data->player.mouse_pos = new_mouse_pos;
 	return (0);
 }
