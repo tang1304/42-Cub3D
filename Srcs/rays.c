@@ -9,7 +9,7 @@ static double	calculate_len_sq_vector(t_data *data, t_coord_f hit)
 	return (len);
 }
 
-static t_coord_f	get_dst_coord(t_coord_f pos, double angle, int dist)
+t_coord_f	get_dst_coord(t_coord_f pos, double angle, int dist)
 {
 	t_coord_f	dest;
 
@@ -39,7 +39,7 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 	{
 		data->ray[i].hit_p.x = left.x * inc * i + (1 - (inc * i)) * right.x;
 		data->ray[i].hit_p.y = left.y * inc * i + (1 - (inc * i)) * right.y;
-		hit = init_data_collision(data, &data->ray[i]);
+		hit = init_data_collision(data, &data->ray[i], 0);
 		data->ray[i].angle = get_angle(data->player.pos, data->ray[i].hit_p);
 		if (hit.x != -1 && hit.y != -1)
 		{

@@ -35,7 +35,7 @@
 # define VIEW_DIST 400
 # define SQUARE_SIZE 15
 # define DOOR_OPEN_DST 1000
-# define DOOR_CLOSE_DST 1100
+// # define DOOR_CLOSE_DST 1100
 # define SQ_NUM 12
 # define WIN_WIDTH 1440
 # define WIN_HEIGHT 720
