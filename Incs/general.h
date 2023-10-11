@@ -34,6 +34,8 @@
 // data info
 # define VIEW_DIST 400
 # define SQUARE_SIZE 15
+# define DOOR_OPEN_DST 1000
+# define DOOR_CLOSE_DST 1100
 # define SQ_NUM 12
 # define WIN_WIDTH 1440
 # define WIN_HEIGHT 720
@@ -53,11 +55,12 @@ the map\nYou must have NO, SO, EA, WE, F and C\n"
 SO, EA, WE, F and C, one of each\n"
 # define WALLS_ERR "Error\nThe map must be surrounded by walls\n"
 # define WALLS_ALONE "Error\nThere is a wall outside the map\n"
-# define WRONG_CHAR "Error\nWrong char in map, must be 0, 1, N, S, E, W or a \
-whitespace\n"
+# define WRONG_CHAR "Error\nWrong char in map, must be 0, 1, N, S, E, W, D, O \
+or a whitespace\n"
 # define MORE_DIRECTION "Error\nThere must be only one player direction\n"
 # define LESS_DIRECTION "Error\nThere must be a player direction (N,S,E or W)\n"
 # define DIRECTION_OUT "Error\nThe player is not inside the map\n"
 # define XPM_OPEN_ERR "Error\nProblem opening the xpm texture\n"
+# define INVALID_DOOR "Error\nDoor must be places between two walls\n"
 
 #endif
