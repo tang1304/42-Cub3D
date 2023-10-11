@@ -1,6 +1,6 @@
 # --- VARIABLES --- #
 
-CC = cc -g3 -O3 #-fsanitize=address
+CC = cc -g3 -O2 #-fsanitize=address
 CFLAGS = -Wall -Wextra -Werror
 SRCS = close.c \
 		collision.c \
@@ -10,6 +10,11 @@ SRCS = close.c \
 		hooks.c \
 		hook_mouves.c \
 		hook_others.c \
+		image.c \
+		image_minimap.c \
+		image_bigmap.c \
+		image_full.c \
+		image_utils.c \
 		init_array_map.c \
 		init_data_struct.c \
 		line.c \
@@ -26,13 +31,8 @@ SRCS = close.c \
 		textures_extra.c \
 		utils.c \
 		vector_utils.c \
-		window.c \
-		math.c \
-		image.c \
-		image_minimap.c \
-		image_bigmap.c \
-		image_full.c \
-		image_utils.c
+		window.c
+		
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
 OBJ_DIR = objs/
