@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:31:50 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/10 11:09:23 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 16:05:19 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	load_extra_textures(t_data *data, t_map *map)
 			&map->text[4].bpp, &map->text[4].line_l, &map->text[4].endian);
 	if (!map->text[4].addr)
 		textures_error(data, "Error\nProblem saving image address\n");
-
 	map->text[5].path = "./textures/door/door.xpm";
 	map->text[5].text = mlx_xpm_file_to_image(data->mlx, map->text[5].path, \
 			&map->text[5].width, &map->text[5].height);
