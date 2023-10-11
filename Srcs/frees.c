@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:48:45 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/09 14:15:44 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 16:05:44 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	image_destroy(t_data *data)
 	int	i;
 
 	i = -1;
-	while (++i < 5)
+	while (++i < 6)
 	{
 		if (data->map.text[i].text != NULL)
 			mlx_destroy_image(data->mlx, data->map.text[i].text);
