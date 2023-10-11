@@ -6,16 +6,16 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/04 08:49:23 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 10:19:19 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-static void	create_minimap_img(t_data *data)
+static void	init_minimap_img(t_data *data)
 {
-	t_coord_d	size;
-	t_img		minimap;
+	t_coord	size;
+	t_img	minimap;
 
 	if (SQUARE_SIZE * SQ_NUM < data->mini.width)
 		size.x = SQUARE_SIZE * SQ_NUM;
@@ -25,49 +25,73 @@ static void	create_minimap_img(t_data *data)
 		size.y = SQUARE_SIZE * SQ_NUM;
 	else
 		size.y = data->mini.height;
-
 	minimap.img = mlx_new_image(data->mlx, size.x, size.y);
-	minimap.w = size.x; //240
-	minimap.h = size.y; //240
+	if (minimap.img == NULL)
+		exit_cub_error(data, "Problem changing xpm file to image\n");
+	minimap.w = size.x;
+	minimap.h = size.y;
 	minimap.addr = mlx_get_data_addr(minimap.img, &minimap.bpp, \
 					&minimap.line_l, &minimap.endian);
+	if (!minimap.addr)
+		exit_cub_error(data, "Error\nProblem saving image address\n");
 	data->minimap = minimap;
+}
+
+static void	init_fullmap_img(t_data *data)
+{
+	t_img	full;
+
+	full.img = mlx_new_image(data->mlx, data->mini.width, data->mini.height);
+	if (full.img == NULL)
+		exit_cub_error(data, "Error\nProblem changing xpm file to image\n");
+	full.w = data->mini.width;
+	full.h = data->mini.height;
+	full.addr = mlx_get_data_addr(full.img, &full.bpp, \
+					&full.line_l, &full.endian);
+	if (!full.addr)
+		exit_cub_error(data, "Error\nProblem saving image address\n");
+	data->full = full;
+}
+
+static void	init_game_img(t_data *data)
+{
+	t_img	game;
+
+	game.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (game.img == NULL)
+		exit_cub_error(data, "Error\nProblem changing xpm file to image\n");
+	game.w = WIN_WIDTH;
+	game.h = WIN_HEIGHT;
+	game.addr = mlx_get_data_addr(game.img, &game.bpp, &game.line_l, \
+								&game.endian);
+	if (!game.addr)
+		exit_cub_error(data, "Error\nProblem saving image address\n");
+	data->game = game;
 }
 
 void	create_window(t_data *data)
 {
-	t_img	game;
 	t_img	main;
-	t_img	big;
 
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
-	game.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
-	game.w = WIN_WIDTH;
-	game.h = WIN_HEIGHT;
-	game.addr = mlx_get_data_addr(game.img, &game.bpp, &game.line_l, &game.endian);
-	data->game = game;
-
-	// minimap complete
-	big.img = mlx_new_image(data->mlx, data->mini.width, data->mini.height);
-	big.w = data->mini.width;
-	big.h = data->mini.height;
-printf("w: %d h: %d\n", data->mini.width, data->mini.height);
-	big.addr = mlx_get_data_addr(big.img, &big.bpp, \
-					&big.line_l, &big.endian);
-
-	// portion of the minimap ( si trop petite marche pas bien)
-	//mettre condition, si trop petite alors tout affciher -> semble resolu
-	//si map trop grande > size windows, need autre chose
-	create_minimap_img(data);
+	if (data->win == NULL)
+		exit_cub_error(data, "Error\nProblem creating the window\n");
+	init_game_img(data);
+	init_fullmap_img(data);
+	init_bigmap_img(data);
+	init_minimap_img(data);
 	main.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (main.img == NULL)
+		exit_cub_error(data, "Error\nProblem changing xpm file to image\n");
 	main.w = WIN_WIDTH;
 	main.h = WIN_HEIGHT;
-	main.addr = mlx_get_data_addr(main.img, &main.bpp, &main.line_l, &main.endian);
+	main.addr = mlx_get_data_addr(main.img, &main.bpp, &main.line_l, \
+								&main.endian);
+	if (!main.addr)
+		exit_cub_error(data, "Error\nProblem saving image address\n");
 	data->main = main;
-	data->bigmap = big;
-	create_bigmap_img(data);
+	create_full_img(data);
 	create_rays(data);
-	img_loop(data);
 }
 
 void	img_loop(t_data *data)

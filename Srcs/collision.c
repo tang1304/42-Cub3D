@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   collision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/09/28 10:43:44 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 09:25:56 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-static float	vector_f_len_sq(t_coord_f position, t_coord_d map)
+static float	vector_f_len_sq(t_coord_f position, t_coord map)
 {
 	float		value_sq;
 	t_coord_f	map_bis;
@@ -25,7 +25,32 @@ static float	vector_f_len_sq(t_coord_f position, t_coord_d map)
 
 }
 
-static void	detection_wall_touched(t_data *data, t_ray *ray)
+static int	check_side_door(t_data *data, t_ray *ray, int x, int y)
+{
+	if (ray->side_hit == 1)
+	{
+		if (data->arr[x][--y] == 'O' && data->arr[x][--y] == '1')
+			return (1);
+	}
+	else if (ray->side_hit == 2)
+	{
+		if (data->arr[x][++y] == 'O' && data->arr[x][++y] == '1')
+			return (1);
+	}
+	else if (ray->side_hit == 3)
+	{
+		if (data->arr[--x][y] == 'O' && data->arr[--x][y] == '1')
+			return (1);
+	}
+	else if (ray->side_hit == 4)
+	{
+		if (data->arr[++x][y] == 'O' && data->arr[++x][y] == '1')
+			return (1);
+	}
+	return (0);
+}
+
+static void	detection_wall_touched(t_data *data, t_ray *ray, int x, int y)
 {
 	// right and left side
 	if (data->col.side_touched == 0)
@@ -47,6 +72,16 @@ static void	detection_wall_touched(t_data *data, t_ray *ray)
 		else
 			ray->side_hit = 4;//N
 	}
+	if (check_side_door(data, ray, x, y))
+		ray->wall_door = 1;
+	else
+		ray->wall_door = 0;
+	if (data->arr[ray->cell.y][ray->cell.x] == 'D')
+		ray->door = 1;
+	else
+		ray->door = 0;
+	if (ray->correction > data->max_correct_len)
+		data->max_correct_len = ray->correction;
 }
 
 static t_coord_f	wall_detection(t_data *data, t_ray *ray)
@@ -78,9 +113,11 @@ static t_coord_f	wall_detection(t_data *data, t_ray *ray)
 			continue ;
 		if (ray->cell.y < 0 || ray->cell.y >= data->mini.height)
 			continue ;
-		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1')
+		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1' ||
+			data->arr[(int)ray->cell.y][(int)ray->cell.x] == 'D')
 		{
-			detection_wall_touched(data, ray);
+			detection_wall_touched(data, ray, \
+					(int)ray->cell.y, (int)ray->cell.x);
 			// draw_coll(data, data->col.map.x, data->col.map.y, ray);
 			miss.x = (float)data->col.map.x;
 			miss.y = (float)data->col.map.y;
@@ -95,8 +132,6 @@ t_coord_f	init_data_collision(t_data *data, t_ray *ray)
 {
 	t_coord_f	miss;
 
-	// ray->hit_p.x = ray->dest.x;
-	// ray->hit_p.y = ray->dest.y;
 	data->col.map.x = data->player.pos.x;
 	data->col.map.y = data->player.pos.y;
 	data->col.dir.x = (ray->hit_p.x - data->player.pos.x);

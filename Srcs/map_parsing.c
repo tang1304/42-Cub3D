@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 11:11:35 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/23 14:05:13 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/10 09:46:41 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	authorized_char(char c)
 {
 	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' \
-		|| ft_is_space(c))
+		|| ft_is_space(c) || c == 'D')
 		return (1);
 	else
 		return (0);
@@ -23,7 +23,8 @@ static int	authorized_char(char c)
 
 int	neighbour_ok(char c)
 {
-	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || \
+		c == 'W' || c == 'D')
 		return (1);
 	else
 		return (0);
@@ -47,13 +48,13 @@ void	zero_check(t_map *map, char **tab, int i, int j)
 	if (j < len_down && ft_is_space(tab[i + 1][j]))
 		map_error(map, WALLS_ERR);
 	if (i > 0 && j > 0 && j < len_up && !neighbour_ok(tab[i - 1][j - 1]))
-		map_error(map, WALLS_ERR);
+		map_error(map, WRONG_CHAR);
 	if (i > 0 && j < len_up && !neighbour_ok(tab[i - 1][j + 1]))
-		map_error(map, WALLS_ERR);
+		map_error(map, WRONG_CHAR);
 	if (j > 0 && j < len_down && !neighbour_ok(tab[i + 1][j - 1]))
-		map_error(map, WALLS_ERR);
+		map_error(map, WRONG_CHAR);
 	if (j < len_down && !neighbour_ok(tab[i + 1][j + 1]))
-		map_error(map, WALLS_ERR);
+		map_error(map, WRONG_CHAR);
 	if (map->map[i][j + 1] == '\0')
 		map_error(map, WALLS_ERR);
 }

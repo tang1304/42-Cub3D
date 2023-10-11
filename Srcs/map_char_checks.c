@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_char_checks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:52:32 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/23 10:13:43 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 10:52:25 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,15 @@ void	direction_neighbour_check(t_map *map, char **tab, int i, int j)
 void	direction_check(t_map *map, char c, int i, int j)
 {
 	if (map->direction)
-		map_error(map, MORE_DIRECTION);
+	{
+		if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			map_error(map, MORE_DIRECTION);
+	}
 	else
-		map->direction = c;
+	{
+		if (!map->direction)
+			map->direction = c;
+	}
 	direction_neighbour_check(map, map->map, i, j);
 }
 
