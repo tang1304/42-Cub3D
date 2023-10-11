@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/09 16:22:00 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 09:25:56 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,22 @@ static int	check_side_door(t_data *data, t_ray *ray, int x, int y)
 {
 	if (ray->side_hit == 1)
 	{
-		if (data->arr[x][--y] == 'D' && data->arr[x][--y] == '1')
+		if (data->arr[x][--y] == 'O' && data->arr[x][--y] == '1')
 			return (1);
 	}
 	else if (ray->side_hit == 2)
 	{
-		if (data->arr[x][++y] == 'D' && data->arr[x][++y] == '1')
+		if (data->arr[x][++y] == 'O' && data->arr[x][++y] == '1')
 			return (1);
 	}
 	else if (ray->side_hit == 3)
 	{
-		if (data->arr[--x][y] == 'D' && data->arr[--x][y] == '1')
+		if (data->arr[--x][y] == 'O' && data->arr[--x][y] == '1')
 			return (1);
 	}
 	else if (ray->side_hit == 4)
 	{
-		if (data->arr[++x][y] == 'D' && data->arr[++x][y] == '1')
+		if (data->arr[++x][y] == 'O' && data->arr[++x][y] == '1')
 			return (1);
 	}
 	return (0);
@@ -73,25 +73,13 @@ static void	detection_wall_touched(t_data *data, t_ray *ray, int x, int y)
 			ray->side_hit = 4;//N
 	}
 	if (check_side_door(data, ray, x, y))
-	{
 		ray->wall_door = 1;
-		// ray->door = 0;
-	}
 	else
-	{
 		ray->wall_door = 0;
-		// ray->door = 1;
-	}
 	if (data->arr[ray->cell.y][ray->cell.x] == 'D')
-	{
-		// ray->wall_door = 0;
 		ray->door = 1;
-	}
 	else
-	{
-		// ray->wall_door = 1;
 		ray->door = 0;
-	}
 	if (ray->correction > data->max_correct_len)
 		data->max_correct_len = ray->correction;
 }
@@ -144,8 +132,6 @@ t_coord_f	init_data_collision(t_data *data, t_ray *ray)
 {
 	t_coord_f	miss;
 
-	// ray->hit_p.x = ray->dest.x;
-	// ray->hit_p.y = ray->dest.y;
 	data->col.map.x = data->player.pos.x;
 	data->col.map.y = data->player.pos.y;
 	data->col.dir.x = (ray->hit_p.x - data->player.pos.x);
