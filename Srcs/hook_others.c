@@ -58,6 +58,7 @@ void	open_close_doors(t_data *data)
 								DOOR_OPEN_DST);
 	change.x = -1;
 	change.y = -1;
+	// if (data->arr[(int)data->player.pos.y / SQUARE_SIZE][(int)data->player.pos.y / SQUARE_SIZE] == 'O')
 	change = init_data_collision(data, &ray, 1);
 	if (change.x != -1 && change.y != -1)
 	{
