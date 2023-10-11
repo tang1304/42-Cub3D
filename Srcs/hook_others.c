@@ -13,7 +13,6 @@ void	map_zoom(t_data *data, int keycode)
 		data->player.zoom_out = 1;
 	}
 	create_full_img(data);
-	create_rays(data);
 }
 
 void	change_board(t_data *data, int keycode)
@@ -88,5 +87,4 @@ void	open_close_doors(t_data *data)
 		data->arr[change.x][change.y] == 'O' && !check_bug(data, change))
 		data->arr[change.x][change.y] = 'D';
 	create_full_img(data);
-	create_rays(data);
 }
