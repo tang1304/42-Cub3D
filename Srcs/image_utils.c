@@ -18,41 +18,6 @@ void	transparency_img(t_img *img, t_coord size)
 	}
 }
 
-// void	add_door(t_data *data, t_coord coord, t_img * img)
-// {
-// 	int	i;
-// 	int	j;(void)data;
-// 	// int	width;
-// 	// int	height;
-
-// 	// if (data->map.map[coord.x - 1][coord.y] == 1 && \
-// 	// 	data->map.map[coord.x + 1][coord.y] == 1)
-// 	// {
-// 	// 	width = SQUARE_SIZE;
-// 	// 	height = SQUARE_SIZE / 3;
-// 	// }
-// 	// else
-// 	// {
-// 	// 	width = SQUARE_SIZE / 3;
-// 	// 	height = SQUARE_SIZE;
-// 	// }
-// 	i = coord.y * SQUARE_SIZE;
-// 	while (i < (coord.y * SQUARE_SIZE) + SQUARE_SIZE)
-// 	{
-// 		j = coord.x * SQUARE_SIZE;
-// 		while (j < (coord.x * SQUARE_SIZE) + SQUARE_SIZE)
-// 		{
-// 			// if (j < (coord.x * SQUARE_SIZE) + SQUARE_SIZE / 3)
-// 			// 	my_mlx_pixel_put(img, i, j, WHITE);
-// 			// else if (j > (coord.x * SQUARE_SIZE) + SQUARE_SIZE / 3 \
-// 			// && j < (coord.x * SQUARE_SIZE) +  2 * SQUARE_SIZE / 3)
-// 			// 	my_mlx_pixel_put(img, i, j, WALL);
-// 			// else
-// 				my_mlx_pixel_put(img, i, j, BROWN);
-// 		}
-// 	}
-// }
-
 void	add_squares(t_coord coord, int num, t_img *img)
 {
 	int	i;

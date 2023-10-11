@@ -76,10 +76,10 @@ void	open_close_doors(t_data *data)
 	while (++i < RAY_NUMBER)
 	{
 		if (data->arr[data->ray[i].cell.y][data->ray[i].cell.x] == 'D' && \
-			data->ray[i].len <= 200 && action == 0)
+			data->ray[i].len <= DOOR_OPEN_DST && action == 0)
 			update_infos(&action, &change, data->ray[i], 1);
-		else if (data->ray[i].wall_door == 1 && data->ray[i].len <= 300 && \
-			action == 0)
+		else if (data->ray[i].wall_door == 1 && \
+			data->ray[i].len <= DOOR_CLOSE_DST && action == 0)
 			update_infos(&action, &change, data->ray[i], 0);
 	}
 	if (action == 1)

@@ -8,7 +8,8 @@ SRCS = close.c \
 		frees.c \
 		get_map.c \
 		hooks.c \
-		hook_mouves.c \
+		hook_moves.c \
+		hook_rotate.c \
 		hook_others.c \
 		image.c \
 		image_minimap.c \
@@ -27,19 +28,20 @@ SRCS = close.c \
 		map_init.c \
 		map_parsing.c \
 		map_utils.c \
+		map_utils2.c \
 		textures.c \
 		textures_extra.c \
 		utils.c \
 		vector_utils.c \
 		window.c
-		
+
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
 OBJ_DIR = objs/
 OBJS	=	$(addprefix $(OBJ_DIR), $(OBJ))
 NAME = cub3D
 RM = rm -rf
-HEADER = Incs/cub3D.h
+HEADER = Incs/cub3D.h Incs/general.h
 LIBFT = libft/libft.a
 LIBFT_DIR = libft/
 MLX_DIR	=	mlx/

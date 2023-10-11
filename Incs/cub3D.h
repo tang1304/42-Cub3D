@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/11 10:31:54 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 15:05:10 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,17 +204,19 @@ int				key_released(int keycode, t_data *data);
 int				actions(t_data *data);
 
 /*	hooks_mouves.c	*/
-void		rotate_left(t_data *data);
-void		rotate_right(t_data *data);
-void		move_left(t_data *data);
-void		move_right(t_data *data);
-void		move_forward(t_data *data);
-void		move_backward(t_data *data);
+void			move_left(t_data *data);
+void			move_right(t_data *data);
+void			move_forward(t_data *data);
+void			move_backward(t_data *data);
 
 /*	hook_others.c	*/
-void		map_zoom(t_data *data, int keycode);
-void		change_board(t_data *data, int keycode);
-void		open_close_doors(t_data *data);
+void			map_zoom(t_data *data, int keycode);
+void			change_board(t_data *data, int keycode);
+void			open_close_doors(t_data *data);
+
+/*	hook_rotate.c	*/
+void			rotate_left(t_data *data);
+void			rotate_right(t_data *data);
 
 /*	image.c	*/
 void			init_black_img(t_data *data, int value);
@@ -278,6 +280,9 @@ int			check_if_map(t_map *map);
 void		check_enough_datas(t_map *map);
 int			count_lines(int fd);
 void		define_map_width(t_map *map);
+
+/*	map_utils2.c	*/
+void	check_valid_doors(t_map *map);
 
 /*	rays.c	*/
 double		get_straight_angle(t_data *data, t_coord_f dest);
