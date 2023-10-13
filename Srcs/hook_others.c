@@ -47,12 +47,12 @@ static int	check_bug(t_data *data, t_coord door)
 
 void	open_close_doors(t_data *data)
 {
-	int			i;
 	t_ray		ray;
 	t_coord_f	change;
 	t_coord		door;
 
-	i = -1;
+	door.x = -1;
+	door.y = -1;
 	ft_bzero(&ray, sizeof(t_ray));
 	ray.hit_p = get_dst_coord(data->player.pos, data->player.angle, \
 								DOOR_OPEN_DST);
@@ -64,11 +64,11 @@ void	open_close_doors(t_data *data)
 	{
 		door.x = change.x / SQUARE_SIZE;
 		door.y = change.y / SQUARE_SIZE;
+		if (data->arr[door.y][door.x] == 'D')
+			data->arr[door.y][door.x] = 'O';
+		else if (data->arr[door.y][door.x] == 'O' && !check_bug(data, door))
+			data->arr[door.y][door.x] = 'D';
 	}
-	if (data->arr[door.y][door.x] == 'D')
-		data->arr[door.y][door.x] = 'O';
-	else if (data->arr[door.y][door.x] == 'O' && !check_bug(data, door))
-		data->arr[door.y][door.x] = 'D';
 	create_full_img(data);
 	create_rays(data);
 }
