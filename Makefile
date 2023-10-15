@@ -2,8 +2,9 @@
 
 CC = cc -g3 -O2 #-fsanitize=address
 CFLAGS = -Wall -Wextra -Werror
-SRCS = close.c \
+SRCS =	close.c \
 		collision.c \
+		draw.c \
 		errors.c \
 		frees.c \
 		get_map.c \
@@ -20,15 +21,16 @@ SRCS = close.c \
 		init_data_struct.c \
 		line.c \
 		line_utils.c \
-		draw.c \
-		rays.c \
-		render.c \
 		main.c \
 		map_char_checks.c \
 		map_init.c \
 		map_parsing.c \
 		map_utils.c \
 		map_utils2.c \
+		rays.c \
+		render.c \
+		sprites.c \
+		sprites_utils.c \
 		textures.c \
 		textures_extra.c \
 		utils.c \
