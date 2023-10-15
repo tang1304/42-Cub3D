@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/11 15:58:09 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/13 13:33:24 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,40 @@
 # include <math.h>
 # include "general.h"
 
+// enum entity
+// {
+// 	test,
+// 	test1
+// };
+
+typedef struct s_node
+{
+	int				x;
+	int				y;
+	int				index;
+	int				color;
+	int				figure_size;
+	struct s_node	*next;
+}				t_node;
+
+typedef struct s_animation
+{
+	t_node		*torch;
+	int			delay;
+	int			tmp_delay;
+	long int	fps;
+	long int	last_updated;
+	long int	frame_count;
+}				t_animation;
+
+typedef struct s_slice
+{
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+}			t_slice;
+
 typedef struct s_img
 {
 	void	*img;
@@ -33,6 +67,17 @@ typedef struct s_img
 	int		w;
 	int		h;
 }			t_img;
+
+typedef struct s_sprite
+{
+	t_animation *animation;
+	char		*name;
+	char		*file_path;
+	t_img		sprite_img;
+	int			width;
+	int			height;
+	int			z_index;
+}				t_sprite;
 
 typedef struct s_texture
 {
@@ -151,13 +196,14 @@ typedef struct s_data
 	float		ray_len_sq;//used??
 	int			**arr;
 	int			**mini_arr;
+	t_sprite	*sprite;
 	t_ray		*ray;
 	t_player	player;
 	t_map		map;
 	t_col		col;
+	t_img		test;
 	t_img		main;
 	t_img		game;
-	t_img		text;//??
 	t_img		minimap;
 	t_img		bigmap;
 	t_img		full;
@@ -293,6 +339,12 @@ void		create_rays(t_data *data);
 
 /*	render.c	*/
 void		create_game_rays(t_data *data);
+
+/*	sprites_utils.c	*/
+t_sprite	new_sprite(char *name, char *file_path, t_data *data);
+
+/*	sprites.c	*/
+void	load_sprites(t_data *data);
 
 /*	textures.c	*/
 int				get_rgb(int *color);
