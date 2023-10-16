@@ -5,6 +5,6 @@ void	load_sprites(t_data *data)
 	t_sprite	sprite;
 
 	ft_bzero(&sprite, sizeof(t_sprite));
-	sprite = new_sprite("hood", "./textures/hood.xpm", data);
-	data->sprite = sprite;
+	sprite = new_sprite("necro", "./textures/necro.xpm", data);
+	// data->sprite = &sprite;
 }

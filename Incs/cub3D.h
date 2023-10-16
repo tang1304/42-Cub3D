@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/13 13:33:24 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 10:23:00 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,33 +29,17 @@
 // 	test1
 // };
 
-typedef struct s_node
-{
-	int				x;
-	int				y;
-	int				index;
-	int				color;
-	int				figure_size;
-	struct s_node	*next;
-}				t_node;
-
-typedef struct s_animation
-{
-	t_node		*torch;
-	int			delay;
-	int			tmp_delay;
-	long int	fps;
-	long int	last_updated;
-	long int	frame_count;
-}				t_animation;
-
-typedef struct s_slice
+typedef struct s_coord
 {
 	int	x;
 	int	y;
-	int	width;
-	int	height;
-}			t_slice;
+}				t_coord;
+
+typedef struct s_coord_f
+{
+	float	x;
+	float	y;
+}				t_coord_f;
 
 typedef struct s_img
 {
@@ -67,6 +51,34 @@ typedef struct s_img
 	int		w;
 	int		h;
 }			t_img;
+
+typedef struct s_frame
+{
+	t_img			img;
+	t_coord			coord;
+	int				index;
+	int				color;
+	int				figure_size;
+	struct s_frame	*next;
+}				t_frame;
+
+typedef struct s_animation
+{
+	t_frame				*frames;
+	int					delay;
+	int					tmp_delay;
+	long int			fps;
+	long int			last_updated;
+	long int			frame_count;
+	struct s_animation	*next;
+}				t_animation;
+
+typedef struct s_slice
+{
+	t_coord	coord;
+	int		width;
+	int		height;
+}			t_slice;
 
 typedef struct s_sprite
 {
@@ -91,18 +103,6 @@ typedef struct s_texture
 	int		width;
 
 }			t_texture;
-
-typedef struct s_coord
-{
-	int	x;
-	int	y;
-}				t_coord;
-
-typedef struct s_coord_f
-{
-	float	x;
-	float	y;
-}				t_coord_f;
 
 typedef struct s_player
 {
@@ -196,12 +196,12 @@ typedef struct s_data
 	float		ray_len_sq;//used??
 	int			**arr;
 	int			**mini_arr;
-	t_sprite	*sprite;
+	t_sprite	sprite;
 	t_ray		*ray;
 	t_player	player;
 	t_map		map;
 	t_col		col;
-	t_img		test;
+	t_img		torch;
 	t_img		main;
 	t_img		game;
 	t_img		minimap;

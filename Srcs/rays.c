@@ -57,6 +57,7 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 	create_game_rays(data);
 	create_main_image(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);
+	load_sprites(data);
 }
 
 void	create_rays(t_data *data)
