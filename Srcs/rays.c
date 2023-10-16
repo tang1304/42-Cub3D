@@ -15,14 +15,6 @@ static t_coord_f	get_dst_coord(t_coord_f pos, double angle, int dist)
 
 	dest.x = dist * cos(-angle) + pos.x;
 	dest.y = dist * sin(-angle) + pos.y;
-	// if (dest.x < 0)
-	// 	dest.x = 0;
-	// if (dest.x >= WIN_WIDTH - SQUARE_SIZE)
-	// 	dest.x = WIN_WIDTH - 1;
-	// if (dest.y < 0)
-	// 	dest.y = 0;
-	// if (dest.y >= WIN_HEIGHT - SQUARE_SIZE)
-	// 	dest.y = WIN_HEIGHT - 1;
 	return (dest);
 }
 
@@ -54,6 +46,7 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 		}
 		create_line(data, data->ray[i].hit_p);
 	}
+	// draw_point(data, data->player.pos.x, data->player.pos.y, PURPLE);
 	create_game_rays(data);
 	create_main_image(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);
