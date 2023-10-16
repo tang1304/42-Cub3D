@@ -7,7 +7,8 @@ SRCS = 	collision.c \
 		frees.c \
 		get_map.c \
 		hooks.c \
-		hook_mouves.c \
+		hook_moves.c \
+		hook_rotate.c \
 		hook_others.c \
 		image.c \
 		image_minimap.c \
@@ -18,20 +19,19 @@ SRCS = 	collision.c \
 		init_data_struct.c \
 		line.c \
 		line_utils.c \
-		draw.c \
-		rays.c \
-		render.c \
 		main.c \
 		map_char_checks.c \
 		map_init.c \
 		map_parsing.c \
 		map_utils.c \
+		map_utils2.c \
+		rays.c \
+		render.c \
 		textures.c \
 		textures_extra.c \
 		utils.c \
 		vector_utils.c \
 		window.c
-		
 SRCS_DIR = ./Srcs/
 OBJ	=	$(SRCS:.c=.o)
 OBJ_DIR = objs/

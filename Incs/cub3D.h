@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/11 15:33:44 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 10:49:47 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,40 @@
 # include <math.h>
 # include "general.h"
 
+// enum entity
+// {
+// 	test,
+// 	test1
+// };
+
+typedef struct s_node
+{
+	int				x;
+	int				y;
+	int				index;
+	int				color;
+	int				figure_size;
+	struct s_node	*next;
+}				t_node;
+
+typedef struct s_animation
+{
+	t_node		*torch;
+	int			delay;
+	int			tmp_delay;
+	long int	fps;
+	long int	last_updated;
+	long int	frame_count;
+}				t_animation;
+
+typedef struct s_slice
+{
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+}			t_slice;
+
 typedef struct s_img
 {
 	void	*img;
@@ -33,6 +67,17 @@ typedef struct s_img
 	int		w;
 	int		h;
 }			t_img;
+
+typedef struct s_sprite
+{
+	t_animation *animation;
+	char		*name;
+	char		*file_path;
+	t_img		sprite_img;
+	int			width;
+	int			height;
+	int			z_index;
+}				t_sprite;
 
 typedef struct s_texture
 {
@@ -154,10 +199,12 @@ typedef struct s_data
 	float		ray_len_sq;//used??
 	int			**arr;
 	int			**mini_arr;
+	t_sprite	*sprite;
 	t_ray		*ray;
 	t_player	player;
 	t_map		map;
 	t_col		col;
+	t_img		test;
 	t_img		main;
 	t_img		game;
 	t_img		minimap;
@@ -169,7 +216,7 @@ typedef struct s_data
 }			t_data;
 
 /*	collision.c	*/
-t_coord_f		init_data_collision(t_data *data, t_ray *ray);
+t_coord_f		init_data_collision(t_data *data, t_ray *ray, int i);
 
 /*	draw.c	*/
 void			draw_point(t_data *data, int tX, int tY, int color);
@@ -264,6 +311,7 @@ int				len_line_down(t_map *map, int i);
 
 /*	map_init.c	*/
 void			map_init(t_data *data, int argc, char **argv);
+
 /*	map_parsing.c	*/
 int				neighbour_ok(char c);
 void			parse_map(t_map *map);
@@ -274,12 +322,14 @@ int				check_if_map(t_map *map);
 void			check_enough_datas(t_map *map);
 int				count_lines(int fd);
 void			define_map_width(t_map *map);
+void			check_valid_doors(t_map *map);
 
 /*	rays.c	*/
 double			get_straight_angle(t_data *data, t_coord_f dest);
 void			create_cone_multi_rays(t_data *data, t_coord_f left, \
 									t_coord_f right);
 void			create_rays(t_data *data);
+t_coord_f		get_dst_coord(t_coord_f pos, double angle, int dist);
 
 /*	render.c	*/
 void			create_game_rays(t_data *data);
