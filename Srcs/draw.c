@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/16 11:51:44 by tgellon           #+#    #+#             */
+/*   Updated: 2023/10/16 11:56:21 by tgellon          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Incs/cub3D.h"
 
 void	draw_point(t_data *data, int tx, int ty, int color)
@@ -26,34 +38,6 @@ void	draw_point(t_data *data, int tx, int ty, int color)
 		while (start.y <= end.y)
 		{
 			my_mlx_pixel_put(&data->minimap, start.x, start.y, color);
-			start.y = start.y + 1;
-		}
-		start.x = start.x + 1;
-	}
-
-}
-
-void	draw_coll(t_data *data, int x, int y, t_ray *ray) //no need anymore
-{
-	t_coord	start;
-	t_coord	end;
-
-	start.x = x - 5;
-	end.x = x + 5;
-	end.y = y + 5;
-	while (start.x <= end.x)
-	{
-		start.y = y - 5;
-		while (start.y <= end.y)
-		{
-			if (ray->side_hit == 4)
-				my_mlx_pixel_put(&data->bigmap, start.x, start.y, 0x002C5577);
-			else if (ray->side_hit == 3)
-				my_mlx_pixel_put(&data->bigmap, start.x, start.y, BLUE);
-			else if (ray->side_hit == 2)
-				my_mlx_pixel_put(&data->bigmap, start.x, start.y, GREEN);
-			else if (ray->side_hit == 1)
-				my_mlx_pixel_put(&data->bigmap, start.x, start.y, PURPLE);
 			start.y = start.y + 1;
 		}
 		start.x = start.x + 1;

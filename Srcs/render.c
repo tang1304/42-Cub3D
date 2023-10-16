@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/16 10:45:03 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 11:54:17 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ void	create_game_rays(t_data *data)
 	i = -1;
 	j = RAY_NUMBER;
 	slice_w = WIN_WIDTH / RAY_NUMBER;
-	scale = (float)VIEW_DIST / (float)(SQUARE_SIZE * SQUARE_SIZE);
+	scale = (float)VIEW_DST / (float)(SQUARE_SIZE * SQUARE_SIZE);
 	while (++i < RAY_NUMBER)
 	{
 		j--;

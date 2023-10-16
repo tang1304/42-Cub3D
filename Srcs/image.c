@@ -1,15 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/16 11:48:13 by tgellon           #+#    #+#             */
+/*   Updated: 2023/10/16 11:48:13 by tgellon          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Incs/cub3D.h"
 
 void	create_main_image(t_data *data)
 {
-	// int	x;
-	// int	y;
-
-	// x = 0;
-	// y = 0;
-	// init_bigmap_img(data);
-	// x = WIN_WIDTH * 0.5 - data->bigmap.w * 0.5;
-	// y = WIN_HEIGHT * 0.5 - data->bigmap.h * 0.5;
 	if (!data->player.zoom_out)
 	{
 		put_img_to_img(data->main, data->game, 0, 0);
@@ -22,7 +26,6 @@ void	create_main_image(t_data *data)
 		put_img_to_img(data->main, data->game, 0, 0);
 		create_big_from_full(data);
 		put_img_to_img(data->main, data->bigmap, 0, 0);
-		// put_img_to_img(data->main, data->bigmap, x, y);
 	}
 }
 
@@ -37,12 +40,12 @@ unsigned int	get_pixel_img(t_img img, int x, int y)
 
 void	put_img_to_img(t_img dst, t_img src, int x, int y)
 {
-	int 		i;
-	int 		j;
+	int		i;
+	int		j;
 	t_coord	coord;
 
 	i = 0;
-	while(i < src.w)
+	while (i < src.w)
 	{
 		j = 0;
 		while (j < src.h)
@@ -67,4 +70,9 @@ void	put_pixel_img(t_img img, t_coord coord, int color)
 		dst = img.addr + (coord.y * img.line_l + coord.x * (img.bpp / 8));
 		*(unsigned int *) dst = color;
 	}
+}
+
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+{
+	((int *)img->addr)[y * (img->line_l >> 2) + x] = color;
 }

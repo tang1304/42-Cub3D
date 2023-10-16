@@ -44,7 +44,7 @@
 # define GREYW 0x009c9c9c
 
 // data info
-# define VIEW_DIST 400
+# define VIEW_DST 400
 # define SQUARE_SIZE 15
 # define DOOR_OPEN_DST 1500
 # define SQ_NUM 12

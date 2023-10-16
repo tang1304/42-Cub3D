@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:00:52 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/11 11:44:04 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 11:48:27 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,4 @@ int	correct_map_char(char c)
 		|| c == ' ' || c == '\t' || c == 'D' || c == 'O')
 		return (1);
 	return (0);
-}
-
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
-{
-	// char	*dst;
-
-	// dst = img->addr + (y * img->line_l + x * (img->bpp / 8));
-	// *(unsigned int*)dst = color;
-	((int *)img->addr)[y * (img->line_l >> 2) + x] = color;
 }

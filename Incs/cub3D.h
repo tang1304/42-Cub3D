@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/16 10:49:47 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 12:01:10 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_img
 
 typedef struct s_sprite
 {
-	t_animation *animation;
+	t_animation	*animation;
 	char		*name;
 	char		*file_path;
 	t_img		sprite_img;
@@ -196,7 +196,7 @@ typedef struct s_data
 	double		fov;
 	double		max_correct_len;
 	float		square_view_d;
-	float		ray_len_sq;//used??
+	float		ray_len_sq;
 	int			**arr;
 	int			**mini_arr;
 	t_sprite	*sprite;
@@ -261,11 +261,11 @@ void			change_board(t_data *data, int keycode);
 void			open_close_doors(t_data *data);
 
 /*	image.c	*/
-void			init_black_img(t_data *data, int value);
 void			create_main_image(t_data *data);
 unsigned int	get_pixel_img(t_img img, int x, int y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
 void			put_pixel_img(t_img img, t_coord coord, int color);
+void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 /*	image_bigmap.c	*/
 void			init_bigmap_img(t_data *data);
@@ -335,15 +335,15 @@ t_coord_f		get_dst_coord(t_coord_f pos, double angle, int dist);
 void			create_game_rays(t_data *data);
 
 /*	textures.c	*/
-int				get_rgb(int *color);
 void			load_textures(t_data *data, t_map *map);
 int				get_texture_x(t_data *data, t_ray *ray, float text_ratio);
-int				get_pixel_from_texture(t_texture *text, int x, int y);
 void			texture_init(t_data *data);
 
 /*	textures_extra.c	*/
 void			load_extra_textures(t_data *data, t_map *map);
 char			*get_texture_path(t_map *map, char *str, char *elem, int i);
+int				get_rgb(int *color);
+int				get_pixel_from_texture(t_texture *text, int x, int y);
 
 /*	utils.c	*/
 int				new_str_start(char *str, int k);
@@ -351,7 +351,6 @@ char			*double_strtrim(char *str, char *s1, char *s2);
 char			*double_strtrim_free(char *str, char *s1, char *s2);
 char			*triple_strtrim_free(char *str, char *s1, char *s2, char *s3);
 int				correct_map_char(char c);
-void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 /*	vector_utils.c	*/
 t_coord_f		calculate_vector(t_coord_f start, double angle, double len);

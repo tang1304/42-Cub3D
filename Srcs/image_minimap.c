@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image_minimap.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/16 11:57:44 by tgellon           #+#    #+#             */
+/*   Updated: 2023/10/16 11:57:52 by tgellon          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Incs/cub3D.h"
 
 void	create_mini_from_big(t_data *data)
@@ -20,8 +32,8 @@ void	create_mini_from_big(t_data *data)
 
 void	crop_full_image(t_data *data, t_coord start)
 {
-	int			i;
-	int			j;
+	int		i;
+	int		j;
 	t_coord	coord;
 
 	i = 0;

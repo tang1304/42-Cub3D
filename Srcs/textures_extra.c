@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:31:50 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/16 10:45:15 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 12:00:48 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,23 @@ char	*get_texture_path(t_map *map, char *str, char *elem, int i)
 		map_error(map, "Error\nMalloc failed\n");
 	map->elems++;
 	return (new);
+}
+
+int	get_rgb(int *color)
+{
+	return (1 | color[0] << 16 | color[1] << 8 | color[2]);
+}
+
+int	get_pixel_from_texture(t_texture *text, int x, int y)
+{
+	int		color;
+
+	if (x < 0 || x >= text->width)
+		return (0);
+	if (y < 0 || y >= text->height)
+		return (0);
+	color = (*(int *)(text->addr + (x * text->bpp / 8) + (y * text->line_l)));
+	if (color == BLACK)
+		color = LICORICE;
+	return (color);
 }

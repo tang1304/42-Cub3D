@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/16 10:42:22 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 11:54:17 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	actions(t_data *data)
 		rotate_left(data);
 	if (data->player.right_arrow || data->player.right_mouse)
 		rotate_right(data);
-	data->player.view_dst_pos.x = data->player.dir.x * VIEW_DIST + \
+	data->player.view_dst_pos.x = data->player.dir.x * VIEW_DST + \
 									data->player.pos.x;
-	data->player.view_dst_pos.y = data->player.dir.y * VIEW_DIST + \
+	data->player.view_dst_pos.y = data->player.dir.y * VIEW_DST + \
 									data->player.pos.y;
 	if (data->player.w || data->player.s || data->player.a || data->player.d \
 		|| data->player.left_arrow || data->player.right_arrow || \

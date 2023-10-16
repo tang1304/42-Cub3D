@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/10 10:20:10 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 11:54:17 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	init_data_values(t_data *data)
 	t_ray		*ray;
 	t_bresenham	bre;
 
-	data->square_view_d = VIEW_DIST * VIEW_DIST;
+	data->square_view_d = VIEW_DST * VIEW_DST;
 	data->fov = FOV * M_PI / 180;
 	data->mini.height = SQUARE_SIZE * data->map.height;
 	data->mini.width = SQUARE_SIZE * data->map.width;

@@ -6,27 +6,23 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/11 10:19:11 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 12:02:22 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
 
-int	get_rgb(int *color)
-{
-	return (1 | color[0] << 16 | color[1] << 8 | color[2]);
-}
-
 int	get_texture_x(t_data *data, t_ray *ray, float scale)
 {
 	double		p_angle;
 	double		hit_len;
-	int			x_texture = 0;
+	int			x_texture;
 	t_coord_f	wall_hit;
 	float		square_pos;
 
 	p_angle = M_PI_2 - ray->angle + get_angle(data->player.pos, \
 			vector_d_to_f(data->player.view_dst_pos));
+	x_texture = 0;
 	if (ray->side_hit == 1 || ray->side_hit == 2)
 		hit_len = ray->correction * -scale * (SQUARE_SIZE / sin(p_angle));
 	else
@@ -49,20 +45,6 @@ int	get_texture_x(t_data *data, t_ray *ray, float scale)
 	return (x_texture);
 }
 
-int	get_pixel_from_texture(t_texture *text, int x, int y)
-{
-	int		color;
-
-	if (x < 0 || x >= text->width)
-		return (0);
-	if (y < 0 || y >= text->height)
-		return (0);
-	color = (*(int *)(text->addr + (x * text->bpp / 8) + (y * text->line_l)));
-	if (color == BLACK)
-		color = LICORICE;
-	return (color);
-}
-
 void	load_textures(t_data *data, t_map *map)
 {
 	int	i;
@@ -82,19 +64,24 @@ void	load_textures(t_data *data, t_map *map)
 	load_extra_textures(data, map);
 }
 
+static void	doors_texture_init()
+{
+	t_texture	wall_door;
+	t_texture	door;
+
+	ft_bzero(&wall_door, sizeof(t_texture));
+	data->map.text[4] = wall_door;
+	ft_bzero(&door, sizeof(t_texture));
+	data->map.text[5] = door;
+}
+
 void	texture_init(t_data *data)
 {
 	t_texture	no;
 	t_texture	so;
 	t_texture	ea;
 	t_texture	we;
-	t_texture	door;
-	t_texture	wall_door;
 
-	ft_bzero(&door, sizeof(t_texture));
-	data->map.text[5] = door;
-	ft_bzero(&wall_door, sizeof(t_texture));
-	data->map.text[4] = wall_door;
 	ft_bzero(&no, sizeof(t_texture));
 	data->map.text[3] = no;
 	ft_bzero(&so, sizeof(t_texture));
