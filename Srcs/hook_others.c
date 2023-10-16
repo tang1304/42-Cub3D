@@ -16,24 +16,6 @@ void	map_zoom(t_data *data, int keycode)
 	create_rays(data);
 }
 
-// void	change_board(t_data *data, int keycode)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
-// 	x /= SQUARE_SIZE;
-// 	y /= SQUARE_SIZE;
-// 	if (x < 0 || y < 0 || x > data->mini.width || y > data->mini.height)
-// 		return ;
-// 	if (keycode == Z)
-// 		data->arr[y][x] = '0';
-// 	else if (keycode == X)
-// 		data->arr[y][x] = '1';
-// 	// create_minimap_img(data);
-// 	// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-// }
-
 static int	check_bug(t_data *data, t_coord door)
 {
 	t_coord	player;

@@ -34,15 +34,14 @@
 // data info
 # define VIEW_DIST 400
 # define SQUARE_SIZE 15
-# define DOOR_OPEN_DST 1000
-// # define DOOR_CLOSE_DST 1100
+# define DOOR_OPEN_DST 1500
 # define SQ_NUM 12
 # define WIN_WIDTH 1440
 # define WIN_HEIGHT 720
 # define FOV 60
 # define RAY_NUMBER WIN_WIDTH
-# define MOVE_SPEED 0.4
-# define ANGLE_MOVE 0.01
+# define MOVE_SPEED 0.8
+# define ANGLE_MOVE 0.02
 
 // strings
 # define COLOR_CHAR "ErrorWrong char in array (%c b), must be only digits\n"

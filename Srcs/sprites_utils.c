@@ -23,7 +23,7 @@ t_sprite	new_sprite(char *name, char *file_path, t_data *data)
 	coord.x = 150;
 	coord.y = 150;
 	put_pixel_img(data->torch, coord, 0x00FFFFFF);
-	mlx_put_image_to_window (data->mlx, data->win, data->torch.img, 0, 0);
-	mlx_put_image_to_window (data->mlx, data->win, data->torch.img, 0, 0);
+	// mlx_put_image_to_window (data->mlx, data->win, data->torch.img, 0, 0);
+	// mlx_put_image_to_window (data->mlx, data->win, data->torch.img, 0, 0);
 	return (sprite);
 }

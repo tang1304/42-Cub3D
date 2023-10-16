@@ -15,14 +15,6 @@ t_coord_f	get_dst_coord(t_coord_f pos, double angle, int dist)
 
 	dest.x = dist * cos(-angle) + pos.x;
 	dest.y = dist * sin(-angle) + pos.y;
-	// if (dest.x < 0)
-	// 	dest.x = 0;
-	// if (dest.x >= WIN_WIDTH - SQUARE_SIZE)
-	// 	dest.x = WIN_WIDTH - 1;
-	// if (dest.y < 0)
-	// 	dest.y = 0;
-	// if (dest.y >= WIN_HEIGHT - SQUARE_SIZE)
-	// 	dest.y = WIN_HEIGHT - 1;
 	return (dest);
 }
 
