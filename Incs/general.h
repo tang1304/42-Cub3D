@@ -46,7 +46,7 @@
 // data info
 # define VIEW_DIST 400
 # define SQUARE_SIZE 15
-# define DOOR_OPEN_DST 20
+# define DOOR_OPEN_DST 1500
 # define SQ_NUM 12
 # define WIN_WIDTH 1440
 # define WIN_HEIGHT 720

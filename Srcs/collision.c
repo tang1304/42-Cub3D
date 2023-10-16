@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:18:59 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/16 10:39:43 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 11:22:05 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ static t_coord_f	check_door_col(t_data *data, t_ray *ray)
 	miss.y = -1;
 	ray->side_hit = 0;
 	data->ray_len_sq = vector_f_len_sq(data->player.pos, data->col.map);
-	while (data->ray_len_sq < data->square_view_d)
+	while (data->ray_len_sq < DOOR_OPEN_DST)
 	{
 		if (data->col.side_d.x < data->col.side_d.y)
 		{
