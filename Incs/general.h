@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   general.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/11 16:49:01 by tgellon           #+#    #+#             */
+/*   Updated: 2023/10/11 16:49:01 by tgellon          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GENERAL_H
 # define GENERAL_H
 
@@ -35,16 +47,16 @@
 # define VIEW_DIST 400
 # define SQUARE_SIZE 15
 # define SQ_NUM 12
-# define WIN_WIDTH 1440
-# define WIN_HEIGHT 720
-# define FOV 60
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
+# define FOV 55
 # define RAY_NUMBER WIN_WIDTH
 # define MOUSE_SPEED 0.01
 # define MOVE_SPEED 0.4
 # define ANGLE_MOVE 0.015
 
 // strings
-# define COLOR_CHAR "ErrorWrong char in array (%c b), must be only digits\n"
+# define COLOR_CHAR "Error\nWrong char in array (%c b), must be only digits\n"
 # define COLOR_NBR "Error\nWrong color numbers, must be 3 colors x,y,z\n"
 # define COLOR_VAL "Error\nWrong color value (%d), must be between 0 and 255 \
 included\n"
