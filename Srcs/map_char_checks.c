@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_char_checks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:52:32 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/05 10:52:25 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 10:43:38 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	direction_neighbour(char c)
 {
-	if (c == '0' || c == '1')
+	if (c == '0' || c == '1' || c == 'D' || c == 'O')
 		return (1);
 	else
 		return (0);
@@ -58,7 +58,7 @@ void	direction_check(t_map *map, char c, int i, int j)
 	}
 	else
 	{
-		if (!map->direction)
+		if (!map->direction && (c == 'N' || c == 'S' || c == 'E' || c == 'W'))
 			map->direction = c;
 	}
 	direction_neighbour_check(map, map->map, i, j);
@@ -79,7 +79,7 @@ int	len_line_down(t_map *map, int i)
 {
 	int	len;
 
-	if (i < map->height)
+	if (i < map->height - 1)
 		len = ft_strlen(map->map[i + 1]);
 	else
 		len = 0;

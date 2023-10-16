@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:00:52 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/21 11:13:08 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 11:44:04 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*triple_strtrim_free(char *str, char *s1, char *s2, char *s3)
 int	correct_map_char(char c)
 {
 	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' \
-		|| c == ' ' || c == '\t')
+		|| c == ' ' || c == '\t' || c == 'D' || c == 'O')
 		return (1);
 	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hook_others.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/16 10:47:28 by tgellon           #+#    #+#             */
+/*   Updated: 2023/10/16 10:47:41 by tgellon          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Incs/cub3D.h"
 
 void	map_zoom(t_data *data, int keycode)
@@ -13,78 +25,62 @@ void	map_zoom(t_data *data, int keycode)
 		data->player.zoom_out = 1;
 	}
 	create_full_img(data);
+	create_rays(data);
 }
 
-void	change_board(t_data *data, int keycode)
-{
-	int	x;
-	int	y;
+// void	change_board(t_data *data, int keycode)
+// {
+// 	int	x;
+// 	int	y;
 
-	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
-	x /= SQUARE_SIZE;
-	y /= SQUARE_SIZE;
-	if (x < 0 || y < 0 || x > data->mini.width || y > data->mini.height)
-		return ;
-	if (keycode == Z)
-		data->arr[y][x] = '0';
-	else if (keycode == X)
-		data->arr[y][x] = '1';
-	// create_minimap_img(data);
-	// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-}
+// 	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
+// 	x /= SQUARE_SIZE;
+// 	y /= SQUARE_SIZE;
+// 	if (x < 0 || y < 0 || x > data->mini.width || y > data->mini.height)
+// 		return ;
+// 	if (keycode == Z)
+// 		data->arr[y][x] = '0';
+// 	else if (keycode == X)
+// 		data->arr[y][x] = '1';
+// 	// create_minimap_img(data);
+// 	// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+// }
 
-static void	update_infos(int *action, t_coord *change, t_ray ray, int i)
-{
-	*action = i;
-	(*change).x = ray.cell.y;
-	(*change).y = ray.cell.x;
-	if (i == 0)
-	{
-		if (ray.side_hit == 1)
-			(*change).y--;
-		if (ray.side_hit == 2)
-			(*change).y++;
-		if (ray.side_hit == 3)
-			(*change).x--;
-		if (ray.side_hit == 4)
-			(*change).x++;
-	}
-}
-
-static int	check_bug(t_data *data, t_coord change)
+static int	check_bug(t_data *data, t_coord door)
 {
 	t_coord	player;
 
-	player.y = data->player.pos.x / SQUARE_SIZE;
-	player.x = data->player.pos.y / SQUARE_SIZE;
-	if (player.x == change.x && player.y == change.y)
+	player.x = data->player.pos.x / SQUARE_SIZE;
+	player.y = data->player.pos.y / SQUARE_SIZE;
+	if (player.x == door.x && player.y == door.y)
 		return (1);
 	return (0);
 }
 
 void	open_close_doors(t_data *data)
 {
-	int		i;
-	int		action;
-	t_coord	change;
+	t_ray		ray;
+	t_coord_f	change;
+	t_coord		door;
 
-	i = -1;
-	action = 0;
+	door.x = -1;
+	door.y = -1;
+	ft_bzero(&ray, sizeof(t_ray));
+	ray.hit_p = get_dst_coord(data->player.pos, data->player.angle, \
+								DOOR_OPEN_DST);
 	change.x = -1;
 	change.y = -1;
-	while (++i < RAY_NUMBER)
+	// if (data->arr[(int)data->player.pos.y / SQUARE_SIZE][(int)data->player.pos.y / SQUARE_SIZE] == 'O')
+	change = init_data_collision(data, &ray, 1);
+	if (change.x != -1 && change.y != -1)
 	{
-		if (data->arr[data->ray[i].cell.y][data->ray[i].cell.x] == 'D' && \
-			data->ray[i].len <= 200 && action == 0)
-			update_infos(&action, &change, data->ray[i], 1);
-		else if (data->ray[i].wall_door == 1 && data->ray[i].len <= 300 && \
-			action == 0)
-			update_infos(&action, &change, data->ray[i], 0);
+		door.x = change.x / SQUARE_SIZE;
+		door.y = change.y / SQUARE_SIZE;
+		if (data->arr[door.y][door.x] == 'D')
+			data->arr[door.y][door.x] = 'O';
+		else if (data->arr[door.y][door.x] == 'O' && !check_bug(data, door))
+			data->arr[door.y][door.x] = 'D';
 	}
-	if (action == 1)
-		data->arr[change.x][change.y] = 'O';
-	else if (action == 0 && change.x != -1 && \
-		data->arr[change.x][change.y] == 'O' && !check_bug(data, change))
-		data->arr[change.x][change.y] = 'D';
 	create_full_img(data);
+	create_rays(data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:07 by tgellon           #+#    #+#             */
-/*   Updated: 2023/09/27 14:09:50 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/11 15:06:02 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	define_map_width(t_map *map)
 	int	i;
 	int	len;
 
+	check_valid_doors(map);
 	i = -1;
 	len = 0;
 	while (map->map[++i])
