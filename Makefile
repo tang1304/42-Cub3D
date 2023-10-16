@@ -3,6 +3,7 @@
 CC = cc -g3 -O2 #-fsanitize=address
 CFLAGS = -Wall -Wextra -Werror
 SRCS = 	collision.c \
+		draw.c \
 		errors.c \
 		frees.c \
 		get_map.c \

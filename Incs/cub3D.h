@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/16 12:01:10 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 13:15:47 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,9 +247,7 @@ int				key_released(int keycode, t_data *data);
 int				actions(t_data *data);
 int				mouse_moved(int x, int y, t_data *data);
 
-/*	hooks_mouves.c	*/
-void			rotate_left(t_data *data);
-void			rotate_right(t_data *data);
+/*	hooks_moves.c	*/
 void			move_left(t_data *data);
 void			move_right(t_data *data);
 void			move_forward(t_data *data);
@@ -259,6 +257,10 @@ void			move_backward(t_data *data);
 void			map_zoom(t_data *data, int keycode);
 void			change_board(t_data *data, int keycode);
 void			open_close_doors(t_data *data);
+
+/*	hook_rotate.c	*/
+void			rotate_left(t_data *data);
+void			rotate_right(t_data *data);
 
 /*	image.c	*/
 void			create_main_image(t_data *data);
@@ -280,10 +282,6 @@ void			crop_full_img(t_data *data, t_coord start, t_coord size, \
 								t_img *img);
 
 /*	image_utils.c	*/
-void			transparency_img(t_img *img, t_coord size);
-void			add_door(t_data *data, t_coord coord, t_img *img);
-void			add_squares(t_coord coord, int num, t_img *img);
-void			add_border(int w, int h, t_img *img);
 void			transparency_img(t_img *img, t_coord size);
 void			add_squares(t_coord coord, int num, t_img *img);
 void			add_border(int w, int h, t_img *img);

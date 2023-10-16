@@ -6,11 +6,25 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/16 12:02:22 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 13:30:20 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Incs/cub3D.h"
+
+static int	check_wall_on_x_texture(t_data *data, t_ray *ray, float square_pos)
+{
+	int	x_texture;
+
+	x_texture = 0;
+	if (!ray->wall_door && !ray->door)
+		x_texture = square_pos * data->map.text[ray->side_hit - 1].width;
+	else if (ray->wall_door)
+		x_texture = square_pos * data->map.text[4].width;
+	else if (ray->door)
+		x_texture = square_pos * data->map.text[5].width;
+	return (x_texture);
+}
 
 int	get_texture_x(t_data *data, t_ray *ray, float scale)
 {
@@ -36,12 +50,7 @@ int	get_texture_x(t_data *data, t_ray *ray, float scale)
 		square_pos /= SQUARE_SIZE;
 	else
 		square_pos = 1.0f - (square_pos / SQUARE_SIZE);
-	if (!ray->wall_door && !ray->door)
-		x_texture = square_pos * data->map.text[ray->side_hit - 1].width;
-	else if (ray->wall_door)
-		x_texture = square_pos * data->map.text[4].width;
-	else if (ray->door)
-		x_texture = square_pos * data->map.text[5].width;
+	x_texture = check_wall_on_x_texture(data, ray, square_pos);
 	return (x_texture);
 }
 
@@ -64,7 +73,7 @@ void	load_textures(t_data *data, t_map *map)
 	load_extra_textures(data, map);
 }
 
-static void	doors_texture_init()
+static void	doors_texture_init(t_data *data)
 {
 	t_texture	wall_door;
 	t_texture	door;
@@ -90,4 +99,5 @@ void	texture_init(t_data *data)
 	data->map.text[1] = we;
 	ft_bzero(&ea, sizeof(t_texture));
 	data->map.text[0] = ea;
+	doors_texture_init(data);
 }

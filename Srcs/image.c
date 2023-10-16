@@ -19,12 +19,14 @@ void	create_main_image(t_data *data)
 		put_img_to_img(data->main, data->game, 0, 0);
 		create_big_from_full(data);
 		create_mini_from_big(data);
+		draw_point(data, data->player.pos.x, data->player.pos.y, RED);
 		put_img_to_img(data->main, data->minimap, 0, 0);
 	}
 	else
 	{
 		put_img_to_img(data->main, data->game, 0, 0);
 		create_big_from_full(data);
+		draw_point(data, data->player.pos.x, data->player.pos.y, RED);
 		put_img_to_img(data->main, data->bigmap, 0, 0);
 	}
 }
