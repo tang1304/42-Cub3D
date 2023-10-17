@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:48:45 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 11:33:43 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 13:03:16 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	image_destroy(t_data *data)
 	int	i;
 
 	i = -1;
-	while (++i < 6)
+	while (++i < 4)
 	{
 		if (data->map.text[i].text != NULL)
 			mlx_destroy_image(data->mlx, data->map.text[i].text);

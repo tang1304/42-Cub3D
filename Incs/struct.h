@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:11:48 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/17 11:31:50 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 13:01:38 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ typedef struct s_ray
 	t_coord		cell;
 	t_coord		w_top;
 	t_coord		w_bottom;
-	int			wall_door;
-	int			door;
 	int			top_bef;
 	int			bottom_bef;
 	int			x_text;
@@ -108,7 +106,7 @@ typedef struct s_map
 	char			direction;
 	char			**tmp;
 	char			**map;
-	t_texture		text[6];
+	t_texture		text[4];
 	int				f[3];
 	int				c[3];
 	int				elems;

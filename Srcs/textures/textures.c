@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/16 16:18:28 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 13:03:09 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,7 @@ int	get_texture_x(t_data *data, t_ray *ray, float scale)
 		square_pos /= SQUARE_SIZE;
 	else
 		square_pos = 1.0f - (square_pos / SQUARE_SIZE);
-	if (!ray->wall_door && !ray->door)
-		x_texture = square_pos * data->map.text[ray->side_hit - 1].width;
-	else if (ray->wall_door)
-		x_texture = square_pos * data->map.text[4].width;
-	else if (ray->door)
-		x_texture = square_pos * data->map.text[5].width;
+	x_texture = square_pos * data->map.text[ray->side_hit - 1].width;
 	return (x_texture);
 }
 
@@ -79,7 +74,6 @@ void	load_textures(t_data *data, t_map *map)
 		if (!map->text[i].addr)
 			textures_error(data, "Error\nProblem saving image address\n");
 	}
-	load_extra_textures(data, map);
 }
 
 void	texture_init(t_data *data)
@@ -88,13 +82,7 @@ void	texture_init(t_data *data)
 	t_texture	so;
 	t_texture	ea;
 	t_texture	we;
-	t_texture	door;
-	t_texture	wall_door;
 
-	ft_bzero(&door, sizeof(t_texture));
-	data->map.text[5] = door;
-	ft_bzero(&wall_door, sizeof(t_texture));
-	data->map.text[4] = wall_door;
 	ft_bzero(&no, sizeof(t_texture));
 	data->map.text[3] = no;
 	ft_bzero(&so, sizeof(t_texture));
