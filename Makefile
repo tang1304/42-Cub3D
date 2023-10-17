@@ -2,12 +2,12 @@
 
 CC		=	cc -g3 -O2 #-fsanitize=address
 CFLAGS	=	-Wall -Wextra -Werror
+
 LSTS_SRCS		=	main.c
 
 LSTS_SRCS_HK	=	hooks.c \
 					hook_moves.c \
-					hook_rotate.c \
-					hook_others.c
+					hook_rotate.c
 
 LSTS_SRCS_IMG	=	image.c \
 					image_minimap.c \
@@ -22,8 +22,7 @@ LSTS_SRCS_MAP	=	get_map.c \
 					map_char_checks.c \
 					map_init.c \
 					map_parsing.c \
-					map_utils.c \
-					map_utils2.c
+					map_utils.c
 
 LSTS_SRCS_RAYS	=	collision.c \
 					line.c \
@@ -58,14 +57,14 @@ D_OBJS_RAYS		=	objs/rays/
 D_OBJS_TEXT		=	objs/textures/
 D_OBJS_U		=	objs/utils/
 
-LST_OBJS		=	$(LST_SRCS:.c=.o)
-LST_OBJS_HK		=	$(LST_SRCS_HK:.c=.o)
-LST_OBJS_IMG	=	$(LST_SRCS_IMG:.c=.o)
-LST_OBJS_INIT	=	$(LST_SRCS_INIT.c=.o)
-LST_OBJS_MAP	=	$(LST_SRCS_MAP.c=.o)
-LST_OBJS_RAYS	=	$(LST_SRCS_RAYS.c=.o)
-LST_OBJS_TEXT	=	$(LST_SRCS_TEXT.c=.o)
-LST_OBJS_U		=	$(LST_SRCS_U:.c=.o)
+LST_OBJS		=	$(LSTS_SRCS:.c=.o)
+LST_OBJS_HK		=	$(LSTS_SRCS_HK:.c=.o)
+LST_OBJS_IMG	=	$(LSTS_SRCS_IMG:.c=.o)
+LST_OBJS_INIT	=	$(LSTS_SRCS_INIT:.c=.o)
+LST_OBJS_MAP	=	$(LSTS_SRCS_MAP:.c=.o)
+LST_OBJS_RAYS	=	$(LSTS_SRCS_RAYS:.c=.o)
+LST_OBJS_TEXT	=	$(LSTS_SRCS_TEXT:.c=.o)
+LST_OBJS_U		=	$(LSTS_SRCS_U:.c=.o)
 
 OBJS			=	$(addprefix $(D_OBJS), $(LST_OBJS))
 OBJS_HK			=	$(addprefix $(D_OBJS_HK), $(LST_OBJS_HK))
@@ -76,15 +75,98 @@ OBJS_RAYS		=	$(addprefix $(D_OBJS_RAYS), $(LST_OBJS_RAYS))
 OBJS_TEXT		=	$(addprefix $(D_OBJS_TEXT), $(LST_OBJS_TEXT))
 OBJS_U			=	$(addprefix $(D_OBJS_U), $(LST_OBJS_U))
 
-NAME = cub3D
-RM = rm -rf
-HEADER = Incs/cub3D.h Incs/general.h Incs/struct.h
-D_HEADER = Incs/
-LIBFT = libft/libft.a
-LIBFT_DIR = libft/
-MLX_DIR	=	mlx/
-MLX_A	=	${MLX_DIR}libmlx.a
-MLX_FLAGS = -lm -L/usr/lib -lXext -lX11
+# BONUS FILES #
+LSTS_SRCS_B			=	main_bonus.c
+
+LSTS_SRCS_HK_B		=	hooks_bonus.c \
+						hook_moves_bonus.c \
+						hook_rotate_bonus.c \
+						hook_others_bonus.c
+
+LSTS_SRCS_IMG_B		=	image_bonus.c \
+						image_minimap_bonus.c \
+						image_bigmap_bonus.c \
+						image_full_bonus.c \
+						image_utils_bonus.c
+
+LSTS_SRCS_INIT_B	=	init_array_map_bonus.c \
+						init_data_struct_bonus.c
+
+LSTS_SRCS_MAP_B		=	get_map_bonus.c \
+						map_char_checks_bonus.c \
+						map_init_bonus.c \
+						map_parsing_bonus.c \
+						map_utils_bonus.c \
+						map_utils2_bonus.c
+
+LSTS_SRCS_RAYS_B	=	collision_bonus.c \
+						line_bonus.c \
+						line_utils_bonus.c \
+						rays_bonus.c
+
+LSTS_SRCS_TEXT_B	=	render_bonus.c \
+						textures_bonus.c \
+						textures_extra_bonus.c
+
+LSTS_SRCS_U_B		=	errors_bonus.c \
+						frees_bonus.c \
+						utils_bonus.c \
+						vector_utils_bonus.c \
+						window_bonus.c
+
+D_SRCS_B		=	Srcs_bonus/
+D_SRCS_HK_B		=	Srcs_bonus/hooks/
+D_SRCS_IMG_B	=	Srcs_bonus/image/
+D_SRCS_INIT_B	=	Srcs_bonus/init/
+D_SRCS_MAP_B	=	Srcs_bonus/map/
+D_SRCS_RAYS_B	=	Srcs_bonus/rays/
+D_SRCS_TEXT_B	=	Srcs_bonus/textures/
+D_SRCS_U_B		=	Srcs_bonus/utils/
+
+D_OBJS_B		=	objs_bonus/
+D_OBJS_HK_B		=	objs_bonus/hooks/
+D_OBJS_IMG_B	=	objs_bonus/image/
+D_OBJS_INIT_B	=	objs_bonus/init/
+D_OBJS_MAP_B	=	objs_bonus/map/
+D_OBJS_RAYS_B	=	objs_bonus/rays/
+D_OBJS_TEXT_B	=	objs_bonus/textures/
+D_OBJS_U_B		=	objs_bonus/utils/
+
+LST_OBJS_B		=	$(LSTS_SRCS_B:.c=.o)
+LST_OBJS_HK_B	=	$(LSTS_SRCS_HK_B:.c=.o)
+LST_OBJS_IMG_B	=	$(LSTS_SRCS_IMG_B:.c=.o)
+LST_OBJS_INIT_B	=	$(LSTS_SRCS_INIT_B:.c=.o)
+LST_OBJS_MAP_B	=	$(LSTS_SRCS_MAP_B:.c=.o)
+LST_OBJS_RAYS_B	=	$(LSTS_SRCS_RAYS_B:.c=.o)
+LST_OBJS_TEXT_B	=	$(LSTS_SRCS_TEXT_B:.c=.o)
+LST_OBJS_U_B	=	$(LSTS_SRCS_U_B:.c=.o)
+
+OBJS_B			=	$(addprefix $(D_OBJS_B), $(LST_OBJS_B))
+OBJS_HK_B		=	$(addprefix $(D_OBJS_HK_B), $(LST_OBJS_HK_B))
+OBJS_IMG_B		=	$(addprefix $(D_OBJS_IMG_B), $(LST_OBJS_IMG_B))
+OBJS_INIT_B		=	$(addprefix $(D_OBJS_INIT_B), $(LST_OBJS_INIT_B))
+OBJS_MAP_B		=	$(addprefix $(D_OBJS_MAP_B), $(LST_OBJS_MAP_B))
+OBJS_RAYS_B		=	$(addprefix $(D_OBJS_RAYS_B), $(LST_OBJS_RAYS_B))
+OBJS_TEXT_B		=	$(addprefix $(D_OBJS_TEXT_B), $(LST_OBJS_TEXT_B))
+OBJS_U_B		=	$(addprefix $(D_OBJS_U_B), $(LST_OBJS_U_B))
+
+NAME		=	cub3D
+NAME_B		=	cub3D_bonus
+RM			=	rm -rf
+
+HEADER		=	cub3D.h general.h struct.h
+D_HEADER	=	Incs/
+INCS		=	$(addprefix $(D_HEADER), $(HEADER))
+
+HEADER_B	=	cub3D_bonus.h general_bonus.h struct_bonus.h
+D_HEADER_B	=	Incs_bonus/
+INCS_B		=	$(addprefix $(D_HEADER_B), $(HEADER_B))
+
+LIBFT		=	libft/libft.a
+LIBFT_DIR	=	libft/
+MLX_DIR		=	mlx/
+MLX_A		=	${MLX_DIR}libmlx.a
+MLX_FLAGS	=	-lm -L/usr/lib -lXext -lX11
 
 # --- COLORS --- #
 
@@ -104,49 +186,86 @@ ${NAME}	:	${OBJS} ${OBJS_HK} ${OBJS_IMG} ${OBJS_INIT} ${OBJS_MAP} ${OBJS_RAYS} $
 			${CC} ${CFLAGS} ${OBJS} ${OBJS_HK} ${OBJS_IMG} ${OBJS_INIT} ${OBJS_MAP} ${OBJS_RAYS} ${OBJS_TEXT} ${OBJS_U} ${LIBFT} ${MLX_A} ${MLX_FLAGS} -o ${NAME}
 			@echo "${_GREEN}### ${NAME} created ###${_NOC}\n"
 
-${D_OBJS}%.o		:	${D_SRCS}%.c ${D_HEADER} ${LIBFT} ${MLX_A}
+${D_OBJS}%.o		:	${D_SRCS}%.c ${INCS} ${LIBFT} ${MLX_A}
 						@mkdir -p ${D_OBJS}
-						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I$(D_HEADER) -c $< -o $@
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER} -c $< -o $@
 
-${D_OBJS_HK}%.o		:	${D_SRCS_HK}%.c ${D_HEADER} ${LIBFT} ${MLX_A}
+${D_OBJS_HK}%.o		:	${D_SRCS_HK}%.c ${INCS} ${LIBFT} ${MLX_A}
 						@mkdir -p ${D_OBJS_HK}
-						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I$(D_HEADER) -c $< -o $@
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER} -c $< -o $@
 
-${D_OBJS_IMG}%.o	:	${D_SRCS_IMG}%.c ${D_HEADER} ${LIBFT} ${MLX_A}
+${D_OBJS_IMG}%.o	:	${D_SRCS_IMG}%.c ${INCS} ${LIBFT} ${MLX_A}
 						@mkdir -p ${D_OBJS_IMG}
-						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I$(D_HEADER) -c $< -o $@
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER} -c $< -o $@
 
-${D_OBJS_INIT}%.o	:	${D_SRCS_INIT}%.c ${D_HEADER} ${LIBFT} ${MLX_A}
+${D_OBJS_INIT}%.o	:	${D_SRCS_INIT}%.c ${INCS} ${LIBFT} ${MLX_A}
 						@mkdir -p ${D_OBJS_INIT}
-						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I$(D_HEADER) -c $< -o $@
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER} -c $< -o $@
 
-${D_OBJS_MAP}%.o	:	${D_SRCS_MAP}%.c ${D_HEADER} ${LIBFT} ${MLX_A}
+${D_OBJS_MAP}%.o	:	${D_SRCS_MAP}%.c ${INCS} ${LIBFT} ${MLX_A}
 						@mkdir -p ${D_OBJS_MAP}
-						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I$(D_HEADER) -c $< -o $@
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER} -c $< -o $@
 
-${D_OBJS_RAYS}%.o	:	${D_SRCS_RAYS}%.c ${D_HEADER} ${LIBFT} ${MLX_A}
+${D_OBJS_RAYS}%.o	:	${D_SRCS_RAYS}%.c ${INCS} ${LIBFT} ${MLX_A}
 						@mkdir -p ${D_OBJS_RAYS}
-						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I$(D_HEADER) -c $< -o $@
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER} -c $< -o $@
 
-${D_OBJS_TEXT}%.o	:	${D_SRCS_TEXT}%.c ${D_HEADER} ${LIBFT} ${MLX_A}
+${D_OBJS_TEXT}%.o	:	${D_SRCS_TEXT}%.c ${INCS} ${LIBFT} ${MLX_A}
 						@mkdir -p ${D_OBJS_TEXT}
-						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I$(D_HEADER) -c $< -o $@
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER} -c $< -o $@
 
-${D_OBJS_U}%.o		:	${D_SRCS_U}%.c ${D_HEADER} ${LIBFT} ${MLX_A}
+${D_OBJS_U}%.o		:	${D_SRCS_U}%.c ${INCS} ${LIBFT} ${MLX_A}
 						@mkdir -p ${D_OBJS_U}
-						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I$(D_HEADER) -c $< -o $@
-clean :
-		@${MAKE} clean -C ${LIBFT_DIR}
-		@${MAKE} clean -C ${MLX_DIR}
-		$(RM) $(D_OBJS)
-		@echo "${_RED}### Removed ${NAME} object files ###${_NOC}"
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER} -c $< -o $@
 
-fclean :
-		$(MAKE) clean
-		@${MAKE} fclean -C ${LIBFT_DIR}
-		${RM} ${NAME} ${NAME_BONUS}
-		@echo "${_RED}### Removed ${NAME} ###${_NOC}"
+bonus	:	${OBJS_B} ${OBJS_HK_B} ${OBJS_IMG_B} ${OBJS_INIT_B} ${OBJS_MAP_B} ${OBJS_RAYS_B} ${OBJS_TEXT_B} ${OBJS_U_B}
+			${CC} ${CFLAGS} ${OBJS_B} ${OBJS_HK_B} ${OBJS_IMG_B} ${OBJS_INIT_B} ${OBJS_MAP_B} ${OBJS_RAYS_B} ${OBJS_TEXT_B} ${OBJS_U_B} ${LIBFT} ${MLX_A} ${MLX_FLAGS} -o ${NAME_B}
+			@echo "${_GREEN}### ${NAME_B} created ###${_NOC}\n"
 
-re : 	fclean all
+${D_OBJS_B}%.o		:	${D_SRCS_B}%.c ${INCS_B} ${LIBFT} ${MLX_A}
+						@mkdir -p ${D_OBJS_B}
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER_B} -c $< -o $@
 
-.PHONY : all clean fclean re FORCE bonus
+${D_OBJS_HK_B}%.o	:	${D_SRCS_HK_B}%.c ${INCS_B} ${LIBFT} ${MLX_A}
+						@mkdir -p ${D_OBJS_HK_B}
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER_B} -c $< -o $@
+
+${D_OBJS_IMG_B}%.o	:	${D_SRCS_IMG_B}%.c ${INCS_B} ${LIBFT} ${MLX_A}
+						@mkdir -p ${D_OBJS_IMG_B}
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER_B} -c $< -o $@
+
+${D_OBJS_INIT_B}%.o	:	${D_SRCS_INIT_B}%.c ${INCS_B} ${LIBFT} ${MLX_A}
+						@mkdir -p ${D_OBJS_INIT_B}
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER_B} -c $< -o $@
+
+${D_OBJS_MAP_B}%.o	:	${D_SRCS_MAP_B}%.c ${INCS_B} ${LIBFT} ${MLX_A}
+						@mkdir -p ${D_OBJS_MAP_B}
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER_B} -c $< -o $@
+
+${D_OBJS_RAYS_B}%.o	:	${D_SRCS_RAYS_B}%.c ${INCS_B} ${LIBFT} ${MLX_A}
+						@mkdir -p ${D_OBJS_RAYS_B}
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER_B} -c $< -o $@
+
+${D_OBJS_TEXT_B}%.o	:	${D_SRCS_TEXT_B}%.c ${INCS_B} ${LIBFT} ${MLX_A}
+						@mkdir -p ${D_OBJS_TEXT_B}
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER_B} -c $< -o $@
+
+${D_OBJS_U_B}%.o	:	${D_SRCS_U_B}%.c ${INCS_B} ${LIBFT} ${MLX_A}
+						@mkdir -p ${D_OBJS_U_B}
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER_B} -c $< -o $@
+
+clean	:
+			@${MAKE} clean -C ${LIBFT_DIR}
+			@${MAKE} clean -C ${MLX_DIR}
+			$(RM) $(D_OBJS) $(D_OBJS_B)
+			@echo "${_RED}### Removed ${NAME} object files ###${_NOC}"
+
+fclean	:
+			$(MAKE) clean
+			@${MAKE} fclean -C ${LIBFT_DIR}
+			${RM} ${NAME} ${NAME_B}
+			@echo "${_RED}### Removed ${NAME} ###${_NOC}"
+
+re		:	fclean all
+
+.PHONY	:	all clean fclean re FORCE bonus

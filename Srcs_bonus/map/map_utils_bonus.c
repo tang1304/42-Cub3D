@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   map_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:36:07 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 10:54:06 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 10:26:42 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Incs/cub3D.h"
+#include "../../Incs_bonus/cub3D_bonus.h"
 
 void	map_format(char *argv)
 {
@@ -77,6 +77,7 @@ void	define_map_width(t_map *map)
 	int	i;
 	int	len;
 
+	check_valid_doors(map);
 	i = -1;
 	len = 0;
 	while (map->map[++i])

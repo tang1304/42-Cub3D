@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 11:23:33 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 11:16:21 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 # include "../libft/incs/libft.h"
 # include "../mlx/mlx.h"
 # include <unistd.h>
@@ -21,8 +21,8 @@
 # include <stdint.h>
 # include <fcntl.h>
 # include <math.h>
-# include "general.h"
-# include "struct.h"
+# include "general_bonus.h"
+# include "struct_bonus.h"
 
 /*	collision.c	*/
 t_coord_f		init_data_collision(t_data *data, t_ray *ray, int i);
@@ -64,8 +64,14 @@ void			move_right(t_data *data);
 void			move_forward(t_data *data);
 void			move_backward(t_data *data);
 
+/*	hook_others.c	*/
+void			map_zoom(t_data *data, int keycode);
+void			change_board(t_data *data, int keycode);
+void			open_close_doors(t_data *data);
+
 /*	image.c	*/
 void			init_black_img(t_data *data, int value);
+void			create_main_image(t_data *data);
 unsigned int	get_pixel_img(t_img img, int x, int y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
 void			put_pixel_img(t_img img, t_coord coord, int color);
@@ -125,6 +131,9 @@ int				check_if_map(t_map *map);
 void			check_enough_datas(t_map *map);
 int				count_lines(int fd);
 void			define_map_width(t_map *map);
+
+/*	map_utils2.c	*/
+void			check_valid_doors(t_map *map);
 
 /*	rays.c	*/
 double			get_straight_angle(t_data *data, t_coord_f dest);

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_char_checks.c                                  :+:      :+:    :+:   */
+/*   map_char_checks_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:52:32 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 10:53:47 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 10:26:26 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Incs/cub3D.h"
+#include "../../Incs_bonus/cub3D_bonus.h"
 
 static int	direction_neighbour(char c)
 {
@@ -52,9 +52,15 @@ void	direction_neighbour_check(t_map *map, char **tab, int i, int j)
 void	direction_check(t_map *map, char c, int i, int j)
 {
 	if (map->direction)
-		map_error(map, MORE_DIRECTION);
+	{
+		if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			map_error(map, MORE_DIRECTION);
+	}
 	else
-		map->direction = c;
+	{
+		if (!map->direction && (c == 'N' || c == 'S' || c == 'E' || c == 'W'))
+			map->direction = c;
+	}
 	direction_neighbour_check(map, map->map, i, j);
 }
 
