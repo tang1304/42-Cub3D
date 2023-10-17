@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/17 13:13:12 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 16:30:31 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,12 @@ void	move_left(t_data *data)
 				data->player.dir.y * cos(-M_PI_2);
 	new_pos.x = new_dir.x * move_speed;
 	new_pos.y = new_dir.y * move_speed;
-	data->player.pos.x += new_pos.x;
-	data->player.pos.y += new_pos.y;
+	if ((int)(data->player.pos.x + new_pos.x) > 5 && \
+		(int)(data->player.pos.x + new_pos.x) < WIN_WIDTH - 5)
+		data->player.pos.x += new_pos.x;
+	if ((int)(data->player.pos.y + new_pos.y) > 5 \
+		&& (int)(data->player.pos.y + new_pos.y) < WIN_HEIGHT - 5)
+		data->player.pos.y += new_pos.y;
 }
 
 void	move_right(t_data *data)

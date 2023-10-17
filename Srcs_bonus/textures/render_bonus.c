@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 10:27:16 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 16:23:21 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,8 @@ static void	render_no_background(t_data *data, t_ray *ray, int slice_w, int i)
 {
 	int		j;
 	int		k;
-	int		color;
 	int		slice_h;
 
-	(void)color;
 	slice_h = (1.0f / ((float)(data->max_correct_len)) * (float)WIN_HEIGHT);
 	top_bottom_wall_pxl(ray, i, slice_h, slice_w);
 	k = ray->w_top.x - 1;
