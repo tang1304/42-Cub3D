@@ -6,11 +6,11 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:32:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/16 16:16:48 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 10:30:14 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Incs/cub3D.h"
+#include "../Incs_bonus/cub3D_bonus.h"
 
 int	main(int argc, char **argv)
 {

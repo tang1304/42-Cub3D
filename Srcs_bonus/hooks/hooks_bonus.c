@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/17 11:19:43 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 10:25:39 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Incs/cub3D.h"
+#include "../../Incs_bonus/cub3D_bonus.h"
 
 int	actions(t_data *data)
 {
@@ -43,6 +43,8 @@ int	key_pressed(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 		exit_cub(data);
+	if (keycode == E)
+		open_close_doors(data);
 	if (keycode == W)
 		data->player.w = 1;
 	if (keycode == S)
@@ -55,6 +57,8 @@ int	key_pressed(int keycode, t_data *data)
 		data->player.left_arrow = 1;
 	if (keycode == RIGHT)
 		data->player.right_arrow = 1;
+	if (keycode == PLUS || keycode == MINUS)
+		map_zoom(data, keycode);
 	return (1);
 }
 

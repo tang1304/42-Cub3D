@@ -1,4 +1,30 @@
-#include "../../Incs/cub3D.h"
+#include "../../Incs_bonus/cub3D_bonus.h"
+
+void	create_main_image(t_data *data)
+{
+	// int	x;
+	// int	y;
+
+	// x = 0;
+	// y = 0;
+	// init_bigmap_img(data);
+	// x = WIN_WIDTH * 0.5 - data->bigmap.w * 0.5;
+	// y = WIN_HEIGHT * 0.5 - data->bigmap.h * 0.5;
+	if (!data->player.zoom_out)
+	{
+		put_img_to_img(data->main, data->game, 0, 0);
+		create_big_from_full(data);
+		create_mini_from_big(data);
+		put_img_to_img(data->main, data->minimap, 0, 0);
+	}
+	else
+	{
+		put_img_to_img(data->main, data->game, 0, 0);
+		create_big_from_full(data);
+		put_img_to_img(data->main, data->bigmap, 0, 0);
+		// put_img_to_img(data->main, data->bigmap, x, y);
+	}
+}
 
 unsigned int	get_pixel_img(t_img img, int x, int y)
 {
@@ -11,12 +37,12 @@ unsigned int	get_pixel_img(t_img img, int x, int y)
 
 void	put_img_to_img(t_img dst, t_img src, int x, int y)
 {
-	int 	i;
-	int 	j;
+	int 		i;
+	int 		j;
 	t_coord	coord;
 
 	i = 0;
-	while (i < src.w)
+	while(i < src.w)
 	{
 		j = 0;
 		while (j < src.h)

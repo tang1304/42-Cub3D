@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GENERAL_H
-# define GENERAL_H
+#ifndef GENERAL_BONUS_H
+# define GENERAL_BONUS_H
 
 // Keycodes
 # define ESC 65307
@@ -66,7 +66,7 @@ the map\nYou must have NO, SO, EA, WE, F and C\n"
 SO, EA, WE, F and C, one of each\n"
 # define WALLS_ERR "Error\nThe map must be surrounded by walls\n"
 # define WALLS_ALONE "Error\nThere is a wall outside the map\n"
-# define WRONG_CHAR "Error\nWrong char in map, must be 0, 1, N, S, E, W, \
+# define WRONG_CHAR "Error\nWrong char in map, must be 0, 1, N, S, E, W, D, O \
 or a whitespace\n"
 # define MORE_DIRECTION "Error\nThere must be only one player direction\n"
 # define LESS_DIRECTION "Error\nThere must be a player direction (N,S,E or W)\n"

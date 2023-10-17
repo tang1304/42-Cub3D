@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parsing.c                                      :+:      :+:    :+:   */
+/*   map_parsing_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 11:11:35 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 10:50:45 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 10:26:37 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Incs/cub3D.h"
+#include "../../Incs_bonus/cub3D_bonus.h"
 
 static int	authorized_char(char c)
 {
 	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' \
-		|| ft_is_space(c))
+		|| ft_is_space(c) || c == 'D' || c == 'O')
 		return (1);
 	else
 		return (0);
@@ -24,7 +24,7 @@ static int	authorized_char(char c)
 int	neighbour_ok(char c)
 {
 	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || \
-		c == 'W' || c == '\0')
+		c == 'W' || c == 'D' || c == 'O' || c == '\0')
 		return (1);
 	else
 		return (0);
@@ -105,7 +105,8 @@ void	parse_map(t_map *map)
 				map_error(map, WRONG_CHAR);
 			if (map->map[i][j] == '1')
 				one_check(map, i, j);
-			else if (map->map[i][j] == '0')
+			else if (map->map[i][j] == '0' || map->map[i][j] == 'D' || \
+				map->map[i][j] == 'O')
 				zero_check(map, map->map, i, j);
 			else
 				direction_check(map, map->map[i][j], i, j);

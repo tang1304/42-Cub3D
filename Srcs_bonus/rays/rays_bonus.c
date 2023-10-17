@@ -1,4 +1,4 @@
-#include "../../Incs/cub3D.h"
+#include "../../Incs_bonus/cub3D_bonus.h"
 
 static double	calculate_len_sq_vector(t_data *data, t_coord_f hit)
 {
@@ -48,7 +48,7 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 	}
 	// draw_point(data, data->player.pos.x, data->player.pos.y, PURPLE);
 	create_game_rays(data);
-	put_img_to_img(data->main, data->game, 0, 0);
+	create_main_image(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);
 }
 
