@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/16 16:15:02 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 13:13:12 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,8 @@ void	move_left(t_data *data)
 				data->player.dir.y * cos(-M_PI_2);
 	new_pos.x = new_dir.x * move_speed;
 	new_pos.y = new_dir.y * move_speed;
-	if (data->arr[(int)data->player.pos.y / SQUARE_SIZE][(int)(data->player.\
-		pos.x + new_pos.x) / SQUARE_SIZE] != '1' && data->arr[(int)data->\
-		player.pos.y / SQUARE_SIZE][(int)(data->player.pos.x + \
-		new_pos.x) / SQUARE_SIZE] != 'D')
-		data->player.pos.x += new_pos.x;
-	if (data->arr[(int)(data->player.pos.y + new_pos.y) / SQUARE_SIZE] \
-		[(int)data->player.pos.x / SQUARE_SIZE] != '1' && data->arr[\
-		(int)(data->player.pos.y + new_pos.y) / SQUARE_SIZE][(int)data->\
-		player.pos.x / SQUARE_SIZE] != 'D')
-		data->player.pos.y += new_pos.y;
+	data->player.pos.x += new_pos.x;
+	data->player.pos.y += new_pos.y;
 }
 
 void	move_right(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 11:35:27 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 13:02:35 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include "struct.h"
 
 /*	collision.c	*/
-t_coord_f		init_data_collision(t_data *data, t_ray *ray, int i);
+t_coord_f		init_data_collision(t_data *data, t_ray *ray);
 
 /*	draw.c	*/
 void			draw_point(t_data *data, int tX, int tY, int color);
@@ -125,7 +125,6 @@ int				get_pixel_from_texture(t_texture *text, int x, int y);
 void			texture_init(t_data *data);
 
 /*	textures_extra.c	*/
-void			load_extra_textures(t_data *data, t_map *map);
 char			*get_texture_path(t_map *map, char *str, char *elem, int i);
 
 /*	utils.c	*/
