@@ -11,7 +11,6 @@ LSTS_SRCS_HK	=	hooks.c \
 
 LSTS_SRCS_IMG	=	image.c \
 					image_minimap.c \
-					image_bigmap.c \
 					image_full.c \
 					image_utils.c
 

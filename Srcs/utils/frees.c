@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:48:45 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/16 16:18:35 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 11:29:22 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ void	image_destroy(t_data *data)
 	}
 	if (data->minimap.img != NULL)
 		mlx_destroy_image(data->mlx, data->minimap.img);
-	if (data->bigmap.img != NULL)
-		mlx_destroy_image(data->mlx, data->bigmap.img);
 	if (data->full.img != NULL)
 		mlx_destroy_image(data->mlx, data->full.img);
 	if (data->game.img != NULL)

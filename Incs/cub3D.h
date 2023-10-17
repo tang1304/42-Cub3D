@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 11:23:33 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 11:29:11 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,8 @@ unsigned int	get_pixel_img(t_img img, int x, int y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
 void			put_pixel_img(t_img img, t_coord coord, int color);
 
-/*	image_bigmap.c	*/
-void			init_bigmap_img(t_data *data);
-
 /*	image_full.c	*/
 void			create_full_img(t_data *data);
-void			create_big_from_full(t_data *data);
 
 /*	image_minimap.c	*/
 void			create_mini_from_big(t_data *data);
