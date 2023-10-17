@@ -10,8 +10,6 @@ LSTS_SRCS_HK	=	hooks.c \
 					hook_rotate.c
 
 LSTS_SRCS_IMG	=	image.c \
-					image_minimap.c \
-					image_full.c \
 					image_utils.c
 
 LSTS_SRCS_INIT	=	init_array_map.c \

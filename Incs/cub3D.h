@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 11:30:29 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 11:35:27 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void			get_map(t_map *map, int i);
 int				key_pressed(int keycode, t_data *data);
 int				key_released(int keycode, t_data *data);
 int				actions(t_data *data);
-int				mouse_moved(int x, int y, t_data *data);
 
 /*	hooks_mouves.c	*/
 void			rotate_left(t_data *data);
@@ -70,17 +69,8 @@ unsigned int	get_pixel_img(t_img img, int x, int y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
 void			put_pixel_img(t_img img, t_coord coord, int color);
 
-/*	image_full.c	*/
-void			create_full_img(t_data *data);
-
 /*	image_utils.c	*/
 void			transparency_img(t_img *img, t_coord size);
-void			add_door(t_data *data, t_coord coord, t_img *img);
-void			add_squares(t_coord coord, int num, t_img *img);
-void			add_border(int w, int h, t_img *img);
-void			transparency_img(t_img *img, t_coord size);
-void			add_squares(t_coord coord, int num, t_img *img);
-void			add_border(int w, int h, t_img *img);
 
 /*	init_data_struct.c	*/
 void			init_player_data(t_data *data);

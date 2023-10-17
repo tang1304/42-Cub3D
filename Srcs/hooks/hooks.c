@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/17 11:19:43 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 11:35:06 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	actions(t_data *data)
 	if (data->player.w || data->player.s || data->player.a || data->player.d \
 		|| data->player.left_arrow || data->player.right_arrow || \
 		data->player.left_mouse || data->player.right_mouse)
-		create_full_img(data);
+		create_rays(data);
 	data->player.left_mouse = 0;
 	data->player.right_mouse = 0;
 	return (0);
@@ -73,21 +73,4 @@ int	key_released(int keycode, t_data *data)
 	if (keycode == RIGHT)
 		data->player.right_arrow = 0;
 	return (1);
-}
-
-int	mouse_moved(int x, int y, t_data *data)
-{
-	int	new_mouse_pos;
-
-	(void)y;
-	new_mouse_pos = ((WIN_WIDTH * 0.5f) - x);
-	if (new_mouse_pos > (WIN_WIDTH * 0.5f) - 20 || \
-		new_mouse_pos < -(WIN_WIDTH * 0.5f) + 20)
-		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-	if (new_mouse_pos > data->player.mouse_pos)
-		data->player.left_mouse = 1;
-	else if (new_mouse_pos < data->player.mouse_pos)
-		data->player.right_mouse = 1;
-	data->player.mouse_pos = new_mouse_pos;
-	return (0);
 }
