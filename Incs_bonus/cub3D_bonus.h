@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 11:16:21 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 11:32:57 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,6 @@ void			crop_full_img(t_data *data, t_coord start, t_coord size, \
 /*	image_utils.c	*/
 void			transparency_img(t_img *img, t_coord size);
 void			add_door(t_data *data, t_coord coord, t_img *img);
-void			add_squares(t_coord coord, int num, t_img *img);
-void			add_border(int w, int h, t_img *img);
-void			transparency_img(t_img *img, t_coord size);
 void			add_squares(t_coord coord, int num, t_img *img);
 void			add_border(int w, int h, t_img *img);
 

@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:11:48 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/17 11:30:34 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 11:31:50 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,6 @@ typedef struct s_data
 	t_img		test;
 	t_img		main;
 	t_img		game;
-	t_img		full;//
 	t_bresenham	bre;
 	t_mini		mini;
 	t_mini		max;
