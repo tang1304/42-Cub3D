@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 13:03:09 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 10:11:35 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	get_texture_x(t_data *data, t_ray *ray, float scale)
 {
 	double		p_angle;
 	double		hit_len;
-	int			x_texture = 0;
+	int			x_texture;
 	t_coord_f	wall_hit;
 	float		square_pos;
 

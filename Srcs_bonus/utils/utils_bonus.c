@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:00:52 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 10:30:03 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 10:15:31 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	correct_map_char(char c)
 	return (0);
 }
 
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+void	_put(t_img *img, int x, int y, int color)
 {
 	// char	*dst;
 

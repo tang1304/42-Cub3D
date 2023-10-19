@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/19 08:25:53 by rrebois           #+#    #+#             */
+/*   Updated: 2023/10/19 08:25:53 by rrebois          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../Incs/cub3D.h"
 
 unsigned int	get_pixel_img(t_img img, int x, int y)
@@ -11,8 +23,8 @@ unsigned int	get_pixel_img(t_img img, int x, int y)
 
 void	put_img_to_img(t_img dst, t_img src, int x, int y)
 {
-	int 	i;
-	int 	j;
+	int		i;
+	int		j;
 	t_coord	coord;
 
 	i = 0;

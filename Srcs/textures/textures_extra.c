@@ -6,11 +6,27 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:31:50 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 13:02:21 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 10:10:26 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Incs/cub3D.h"
+
+void	top_bottom_wall_pxl(t_ray *ray, int i, float wall_h, int wall_w)
+{
+	ray->w_top.x = (i * wall_w);
+	if (ray->w_top.x < 0)
+		ray->w_top.x = 0;
+	ray->w_top.y = (WIN_HEIGHT * 0.5 - wall_h * 0.5);
+	if (ray->w_top.y < 0)
+		ray->w_top.y = 0;
+	ray->w_bottom.x = (i * wall_w + wall_w);
+	if (ray->w_bottom.x > WIN_WIDTH)
+		ray->w_bottom.x = WIN_WIDTH;
+	ray->w_bottom.y = (WIN_HEIGHT * 0.5 + wall_h * 0.5);
+	if (ray->w_bottom.y > WIN_HEIGHT)
+		ray->w_bottom.y = WIN_HEIGHT;
+}
 
 static void	malloc_check(t_map *map, char *tmp, char *new)
 {

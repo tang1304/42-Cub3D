@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:00:52 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 16:18:13 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 10:18:49 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,4 @@ int	correct_map_char(char c)
 		|| c == ' ' || c == '\t' || c == 'D' || c == 'O')
 		return (1);
 	return (0);
-}
-
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
-{
-	((int *)img->addr)[y * (img->line_l >> 2) + x] = color;
 }

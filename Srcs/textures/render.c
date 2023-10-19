@@ -6,27 +6,11 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 16:27:05 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 10:18:04 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Incs/cub3D.h"
-
-static void	top_bottom_wall_pxl(t_ray *ray, int i, float wall_h, int wall_w)
-{
-	ray->w_top.x = (i * wall_w);
-	if (ray->w_top.x < 0)
-		ray->w_top.x = 0;
-	ray->w_top.y = (WIN_HEIGHT * 0.5 - wall_h * 0.5);
-	if (ray->w_top.y < 0)
-		ray->w_top.y = 0;
-	ray->w_bottom.x = (i * wall_w + wall_w);
-	if (ray->w_bottom.x > WIN_WIDTH)
-		ray->w_bottom.x = WIN_WIDTH;
-	ray->w_bottom.y = (WIN_HEIGHT * 0.5 + wall_h * 0.5);
-	if (ray->w_bottom.y > WIN_HEIGHT)
-		ray->w_bottom.y = WIN_HEIGHT;
-}
 
 static void	only_wall(t_data *data, t_ray *ray, double ratio, int k)
 {
@@ -53,11 +37,17 @@ static void	only_wall(t_data *data, t_ray *ray, double ratio, int k)
 	}
 }
 
+static void	set_color_ratio(t_data *data, t_ray *ray, double ratio)
+{
+	data->color = get_pixel_from_texture(&data->map.text \
+					[ray->side_hit - 1], ray->x_text, ray->y_text);
+	ray->y_text += ratio;
+}
+
 static void	render_walls(t_data *data, t_ray *ray, float slice_h)
 {
 	int		j;
 	int		k;
-	int		color = BLACK;
 	double	ratio;
 
 	ratio = data->map.text[ray->side_hit - 1].height / slice_h;
@@ -75,10 +65,8 @@ static void	render_walls(t_data *data, t_ray *ray, float slice_h)
 		ray->y_text = 0;
 		while (j < ray->w_bottom.y)
 		{
-			color = get_pixel_from_texture(&data->map.text[ray->side_hit - 1], \
-				ray->x_text, ray->y_text);
-			ray->y_text += ratio;
-			my_mlx_pixel_put(&data->game, k, j++, color);
+			set_color_ratio(data, ray, ratio);
+			my_mlx_pixel_put(&data->game, k, j++, data->color);
 		}
 		while (j < WIN_HEIGHT)
 			my_mlx_pixel_put(&data->game, k, j++, get_rgb(data->map.f));
