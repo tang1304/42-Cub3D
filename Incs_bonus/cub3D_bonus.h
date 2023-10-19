@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/19 13:06:08 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 13:39:39 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,6 @@ float			vector_f_len_sq(t_coord_f position, t_coord map);
 void			set_values(t_data *data);
 void			wall_detection(t_data *data, t_ray *ray, t_coord_f *miss);
 
-/*	draw.c	*/
-void			draw_point(t_data *data, int tX, int tY, int color);
-void			draw_coll(t_data *data, int x, int y, t_ray *ray);
-
 /*	errors.c	*/
 void			exit_error(char *str);
 void			map_error(t_map *map, char *str);
@@ -60,28 +56,28 @@ void			get_floor_color(t_map *map, char *str, char *elem, int i);
 void			get_map(t_map *map, int i);
 
 /*	hooks.c	*/
+int				actions(t_data *data);
 int				key_pressed(int keycode, t_data *data);
 int				key_released(int keycode, t_data *data);
-int				actions(t_data *data);
 int				mouse_moved(int x, int y, t_data *data);
 
-/*	hooks_mouves.c	*/
-void			rotate_left(t_data *data);
-void			rotate_right(t_data *data);
+/*	hooks_moves.c	*/
 void			move_left(t_data *data);
 void			move_right(t_data *data);
 void			move_forward(t_data *data);
 void			move_backward(t_data *data);
 
+/*	hooks_rotate_bonus.c	*/
+void			rotate_left(t_data *data);
+void			rotate_right(t_data *data);
+
 /*	hook_others.c	*/
 void			map_zoom(t_data *data, int keycode);
-void			change_board(t_data *data, int keycode);
 void			open_close_doors(t_data *data);
 
 /*	image.c	*/
-void			init_black_img(t_data *data, int value);
-void			create_main_image(t_data *data);
 unsigned int	get_pixel_img(t_img img, int x, int y);
+void			create_main_image(t_data *data);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
 void			put_pixel_img(t_img img, t_coord coord, int color);
 
@@ -89,17 +85,16 @@ void			put_pixel_img(t_img img, t_coord coord, int color);
 void			init_bigmap_img(t_data *data);
 
 /*	image_full.c	*/
+void			crop_full_img(t_data *data, t_coord start, \
+							t_coord size, t_img *img);
 void			create_full_img(t_data *data);
 void			create_big_from_full(t_data *data);
 
 /*	image_minimap.c	*/
 void			create_mini_from_big(t_data *data);
-void			crop_full_img(t_data *data, t_coord start, t_coord size, \
-								t_img *img);
 
 /*	image_utils.c	*/
 void			transparency_img(t_img *img, t_coord size);
-void			add_door(t_data *data, t_coord coord, t_img *img);
 void			add_squares(t_coord coord, int num, t_img *img);
 void			add_border(int w, int h, t_img *img);
 
@@ -117,6 +112,8 @@ void			init_data_line(t_data *data, t_coord_f start, \
 void			create_line(t_data *data, t_coord_f dest);
 
 /*	map_char_checks.c	*/
+void			direction_neighbour_check(t_map *map, char **tab, \
+										int i, int j);
 void			direction_check(t_map *map, char c, int i, int j);
 int				len_line_up(t_map *map, int i);
 int				len_line_down(t_map *map, int i);
@@ -139,11 +136,10 @@ void			define_map_width(t_map *map);
 void			check_valid_doors(t_map *map);
 
 /*	rays.c	*/
-double			get_straight_angle(t_data *data, t_coord_f dest);
+t_coord_f		get_dst_coord(t_coord_f pos, double angle, int dist);
 void			create_cone_multi_rays(t_data *data, t_coord_f left, \
 									t_coord_f right);
 void			create_rays(t_data *data);
-t_coord_f		get_dst_coord(t_coord_f pos, double angle, int dist);
 
 /*	render.c	*/
 void			create_game_rays(t_data *data);
@@ -154,14 +150,14 @@ void			set_ratio_val(t_data *data, t_ray *ray, float slice_h);
 
 /*	textures.c	*/
 int				get_rgb(int *color);
-void			load_textures(t_data *data, t_map *map);
 int				get_texture_x(t_data *data, t_ray *ray, float text_ratio);
 int				get_pixel_from_texture(t_texture *text, int x, int y);
+void			load_textures(t_data *data, t_map *map);
 void			texture_init(t_data *data);
 
 /*	textures_extra.c	*/
 void			wall_door_text_init(t_data *data);
-int				get_x_texture(t_data *data, t_ray *ray, float val);
+int				set_x_texture_val(t_data *data, t_ray *ray, float val);
 void			load_extra_textures(t_data *data, t_map *map);
 char			*get_texture_path(t_map *map, char *str, char *elem, int i);
 

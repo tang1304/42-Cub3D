@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 11:11:35 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 10:26:37 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 13:39:44 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	neighbour_ok(char c)
 		return (0);
 }
 
-void	zero_check(t_map *map, char **tab, int i, int j)
+static void	zero_check(t_map *map, char **tab, int i, int j)
 {
 	int	len_up;
 	int	len_down;

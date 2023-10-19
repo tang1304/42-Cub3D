@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:28:14 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/19 10:28:35 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 13:17:36 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,4 @@ void	create_mini_from_big(t_data *data)
 	transparency_img(&data->minimap, size);
 	crop_full_img(data, start_cell, size, &data->minimap);
 	add_border(data->minimap.w, data->minimap.h, &data->minimap);
-}
-
-void	crop_full_image(t_data *data, t_coord start)
-{
-	int		i;
-	int		j;
-	t_coord	coord;
-
-	i = 0;
-	while (i < data->minimap.w)
-	{
-		j = 0;
-		while (j < data->minimap.h)
-		{
-			coord.x = i;
-			coord.y = j;
-			put_pixel_img(data->minimap, coord, \
-				get_pixel_img(data->full, start.x + i, start.y + j));
-			j++;
-		}
-		i++;
-	}
 }

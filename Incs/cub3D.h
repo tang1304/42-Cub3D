@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/19 10:19:06 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 13:37:17 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ t_coord_f		init_data_collision(t_data *data, t_ray *ray);
 /*	collision_utils.c	*/
 t_coord_f		wall_detection(t_data *data, t_ray *ray);
 
-/*	draw.c	*/
-void			draw_point(t_data *data, int tX, int tY, int color);
-void			draw_coll(t_data *data, int x, int y, t_ray *ray);
-
 /*	errors.c	*/
 void			exit_error(char *str);
 void			map_error(t_map *map, char *str);
@@ -54,20 +50,21 @@ void			get_floor_color(t_map *map, char *str, char *elem, int i);
 void			get_map(t_map *map, int i);
 
 /*	hooks.c	*/
+int				actions(t_data *data);
 int				key_pressed(int keycode, t_data *data);
 int				key_released(int keycode, t_data *data);
-int				actions(t_data *data);
 
-/*	hooks_mouves.c	*/
-void			rotate_left(t_data *data);
-void			rotate_right(t_data *data);
+/*	hooks_moves.c	*/
 void			move_left(t_data *data);
 void			move_right(t_data *data);
 void			move_forward(t_data *data);
 void			move_backward(t_data *data);
 
+/*	hooks_rotate.c	*/
+void			rotate_left(t_data *data);
+void			rotate_right(t_data *data);
+
 /*	image.c	*/
-void			init_black_img(t_data *data, int value);
 unsigned int	get_pixel_img(t_img img, int x, int y);
 void			put_img_to_img(t_img dst, t_img src, int x, int y);
 void			put_pixel_img(t_img img, t_coord coord, int color);
@@ -89,6 +86,8 @@ void			init_data_line(t_data *data, t_coord_f start, \
 								t_coord_f end, int i);
 
 /*	map_char_checks.c	*/
+void			direction_neighbour_check(t_map *map, char **tab, \
+											int i, int j);
 void			direction_check(t_map *map, char c, int i, int j);
 int				len_line_up(t_map *map, int i);
 int				len_line_down(t_map *map, int i);
@@ -108,20 +107,19 @@ int				count_lines(int fd);
 void			define_map_width(t_map *map);
 
 /*	rays.c	*/
-double			get_straight_angle(t_data *data, t_coord_f dest);
+t_coord_f		get_dst_coord(t_coord_f pos, double angle, int dist);
 void			create_cone_multi_rays(t_data *data, t_coord_f left, \
 									t_coord_f right);
 void			create_rays(t_data *data);
-t_coord_f		get_dst_coord(t_coord_f pos, double angle, int dist);
 
 /*	render.c	*/
 void			create_game_rays(t_data *data);
 
 /*	textures.c	*/
 int				get_rgb(int *color);
-void			load_textures(t_data *data, t_map *map);
 int				get_texture_x(t_data *data, t_ray *ray, float text_ratio);
 int				get_pixel_from_texture(t_texture *text, int x, int y);
+void			load_textures(t_data *data, t_map *map);
 void			texture_init(t_data *data);
 
 /*	textures_extra.c	*/

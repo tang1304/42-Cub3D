@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:31:50 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/19 13:05:54 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 13:25:40 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	wall_door_text_init(t_data *data)
 	data->map.text[4] = wall_door;
 }
 
-int	get_x_texture(t_data *data, t_ray *ray, float val)
+int	set_x_texture_val(t_data *data, t_ray *ray, float val)
 {
 	if (!ray->wall_door && !ray->door)
 		return (val * data->map.text[ray->side_hit - 1].width);
