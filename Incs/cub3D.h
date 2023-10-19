@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 13:02:35 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 10:19:06 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 
 /*	collision.c	*/
 t_coord_f		init_data_collision(t_data *data, t_ray *ray);
+
+/*	collision_utils.c	*/
+t_coord_f		wall_detection(t_data *data, t_ray *ray);
 
 /*	draw.c	*/
 void			draw_point(t_data *data, int tX, int tY, int color);
@@ -82,11 +85,8 @@ void			create_cpy_map_arr(t_data *data);
 
 /*	line.c	*/
 void			create_line(t_data *data, t_coord_f dest);
-void			bresenham_algo(t_data *data, t_coord_f dest);
-
-/*	line_utils.c	*/
-void			draw_line_vert(t_data *data, t_coord_f start, t_coord_f end);
-void			draw_line_hor(t_data *data, t_coord_f start, t_coord_f end);
+void			init_data_line(t_data *data, t_coord_f start, \
+								t_coord_f end, int i);
 
 /*	map_char_checks.c	*/
 void			direction_check(t_map *map, char c, int i, int j);
@@ -125,6 +125,8 @@ int				get_pixel_from_texture(t_texture *text, int x, int y);
 void			texture_init(t_data *data);
 
 /*	textures_extra.c	*/
+void			top_bottom_wall_pxl(t_ray *ray, int i, float wall_h, \
+									int wall_w);
 char			*get_texture_path(t_map *map, char *str, char *elem, int i);
 
 /*	utils.c	*/
@@ -133,6 +135,8 @@ char			*double_strtrim(char *str, char *s1, char *s2);
 char			*double_strtrim_free(char *str, char *s1, char *s2);
 char			*triple_strtrim_free(char *str, char *s1, char *s2, char *s3);
 int				correct_map_char(char c);
+
+/*	utils2.c	*/
 void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 /*	vector_utils.c	*/

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rays.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/19 08:38:15 by rrebois           #+#    #+#             */
+/*   Updated: 2023/10/19 09:01:33 by rrebois          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../Incs/cub3D.h"
 
 static double	calculate_len_sq_vector(t_data *data, t_coord_f hit)
@@ -18,11 +30,29 @@ t_coord_f	get_dst_coord(t_coord_f pos, double angle, int dist)
 	return (dest);
 }
 
+static void	set_ray_info(t_data *data, t_coord_f hit, int i, int j)
+{
+	double		ang;
+
+	if (j == 0)
+	{
+		data->ray[i].hit_p = hit;
+		data->ray[i].len = calculate_len_sq_vector(data, hit);
+	}
+	else
+	{
+		data->ray[i].len = -1;
+		ang = data->player.angle - (data->fov * 0.5f) + \
+			(data->fov / RAY_NUMBER) * i;
+		data->ray[i].hit_p = get_dst_coord(data->player.pos, \
+											ang, VIEW_DIST);
+	}
+}
+
 void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 {
 	t_coord_f	hit;
 	double		inc;
-	double		ang;
 	int			i;
 
 	inc = 1.0f / (RAY_NUMBER - 1.0f);
@@ -34,19 +64,11 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 		hit = init_data_collision(data, &data->ray[i]);
 		data->ray[i].angle = get_angle(data->player.pos, data->ray[i].hit_p);
 		if (hit.x != -1 && hit.y != -1)
-		{
-			data->ray[i].hit_p = hit;
-			data->ray[i].len = calculate_len_sq_vector(data, hit);
-		}
+			set_ray_info(data, hit, i, 0);
 		else
-		{
-			data->ray[i].len = -1;
-			ang = data->player.angle - (data->fov * 0.5f) + (data->fov / RAY_NUMBER) * i;
-			data->ray[i].hit_p = get_dst_coord(data->player.pos, ang, VIEW_DIST);
-		}
+			set_ray_info(data, hit, i, 1);
 		create_line(data, data->ray[i].hit_p);
 	}
-	// draw_point(data, data->player.pos.x, data->player.pos.y, PURPLE);
 	create_game_rays(data);
 	put_img_to_img(data->main, data->game, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);

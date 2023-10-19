@@ -22,8 +22,8 @@ LSTS_SRCS_MAP	=	get_map.c \
 					map_utils.c
 
 LSTS_SRCS_RAYS	=	collision.c \
+					collision_utils.c \
 					line.c \
-					line_utils.c \
 					rays.c
 
 LSTS_SRCS_TEXT	=	render.c \
@@ -33,6 +33,7 @@ LSTS_SRCS_TEXT	=	render.c \
 LSTS_SRCS_U		=	errors.c \
 					frees.c \
 					utils.c \
+					utils2.c \
 					vector_utils.c \
 					window.c
 
