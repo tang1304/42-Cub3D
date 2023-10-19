@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/19 13:05:42 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 13:25:32 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	get_texture_x(t_data *data, t_ray *ray, float scale)
 		square_pos /= SQUARE_SIZE;
 	else
 		square_pos = 1.0f - (square_pos / SQUARE_SIZE);
-	x_texture = get_x_texture(data, ray, square_pos);
+	x_texture = set_x_texture_val(data, ray, square_pos);
 	return (x_texture);
 }
 
