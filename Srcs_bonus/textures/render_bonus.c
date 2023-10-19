@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:03:13 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/19 13:06:33 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 16:28:06 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static void	only_wall(t_data *data, t_ray *ray, double ratio, int k)
 	j = WIN_HEIGHT * 0.5f;
 	if (!ray->wall_door && !ray->door)
 		ray->y_text = (float)data->map.text[ray->side_hit - 1].height * 0.5f;
-	else if (ray->wall_door)
+	else //if (ray->wall_door)
 		ray->y_text = (float)data->map.text[4].height * 0.5f;
-	else
-		ray->y_text = (float)data->map.text[5].height * 0.5f;
+	// else
+	// 	ray->y_text = (float)data->map.text[5].height * 0.5f;
 	tmp = ray->y_text;
 	while (++j < WIN_HEIGHT)
 	{
@@ -85,7 +85,7 @@ static void	render_walls(t_data *data, t_ray *ray, float slice_h)
 			my_mlx_pixel_put(&data->game, k, j++, get_rgb(data->map.f));
 	}
 }
-
+// if rays hit no walls
 static void	render_no_background(t_data *data, t_ray *ray, int slice_w, int i)
 {
 	int		j;

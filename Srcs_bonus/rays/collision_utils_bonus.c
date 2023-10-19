@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:31:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/19 13:03:36 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 18:14:42 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,51 @@ static void	detection_wall_touched(t_data *data, t_ray *ray, int x, int y)
 		ray->correction = (data->col.side_d.x - data->col.delta_d.x) \
 							* SQUARE_SIZE;
 		if (data->col.step.x == 1)
-			ray->side_hit = 1;
+			ray->side_hit = 1;//E
 		else
-			ray->side_hit = 2;
+			ray->side_hit = 2;//O
 	}
 	else
 	{
 		ray->correction = (data->col.side_d.y - data->col.delta_d.y) \
 							* SQUARE_SIZE;
 		if (data->col.step.y == 1)
-			ray->side_hit = 3;
+			ray->side_hit = 3;//S
 		else
-			ray->side_hit = 4;
+			ray->side_hit = 4;//N
 	}
+// printf("side hit: %d\n", ray->side_hit);
 	set_door_val(data, ray, x, y);
+}
+
+static void	detection_wall_touched_door(t_data *data, t_ray *ray)
+{
+	if (data->col.side_touched == 0)
+	{
+		ray->correction = (data->col.side_d.x - data->col.delta_d.x) \
+							* SQUARE_SIZE;
+		if (data->col.step.x == 1)
+			ray->side_hit = 1;//E
+		else
+			ray->side_hit = 2;//O
+	}
+	else
+	{
+		ray->correction = (data->col.side_d.y - data->col.delta_d.y) \
+							* SQUARE_SIZE;
+		if (data->col.step.y == 1)
+			ray->side_hit = 3;//S
+		else
+			ray->side_hit = 4;//N
+	}
+	if (data->arr[ray->cell.y][ray->cell.x] == '1')
+		ray->wall_door = 1;
+	else
+		ray->wall_door = 0;
+	if (data->arr[ray->cell.y][ray->cell.x] == 'D')
+		ray->door = 1;
+	else
+		ray->door = 0;
 }
 
 void	set_values(t_data *data)
@@ -92,14 +123,67 @@ void	wall_detection(t_data *data, t_ray *ray, t_coord_f *miss)
 			continue ;
 		if (ray->cell.y < 0 || ray->cell.y >= data->mini.height)
 			continue ;
-		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1' ||
+		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1' || \
 			data->arr[(int)ray->cell.y][(int)ray->cell.x] == 'D')
 		{
-			detection_wall_touched(data, ray, \
+			if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1')
+			{
+				detection_wall_touched(data, ray, \
 					(int)ray->cell.y, (int)ray->cell.x);
-			(*miss).x = (float)data->col.map.x;
-			(*miss).y = (float)data->col.map.y;
-			return ;
+				(*miss).x = (float)data->col.map.x;
+				(*miss).y = (float)data->col.map.y;
+				return ;
+			}
+			else
+			{
+				t_coord	door;
+				t_coord_f	plan;
+				t_coord_f	dest;
+				door.x = data->col.map.x;
+				door.y = data->col.map.y;
+printf("pixel x: %d\n", door.x);
+printf("pixel y: %d\n", door.y);
+printf("cell x: %d\n", door.x / SQUARE_SIZE);
+printf("cell y: %d\n", door.y / SQUARE_SIZE);
+				detection_wall_touched(data, ray, \
+					(int)ray->cell.y, (int)ray->cell.x);
+				if (ray->side_hit == 1)
+				{
+					plan.x = door.x + 6;
+					plan.y = door.y; //varies
+					double len;
+
+					dest = get_dst_coord(door_f, ray->angle, )
+				}
+
+				while (data->ray_len_sq < data->square_view_d)
+				{
+					set_values(data);
+					data->ray_len_sq = vector_f_len_sq(data->player.pos, data->col.map);
+					ray->cell.x = data->col.map.x / SQUARE_SIZE;
+					ray->cell.y = data->col.map.y / SQUARE_SIZE;
+					if (ray->cell.x < 0 || ray->cell.x >= data->mini.width)
+						continue ;
+					if (ray->cell.y < 0 || ray->cell.y >= data->mini.height)
+						continue ;
+					if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1' || \
+						data->col.map.x > data->col.map.x + 7)
+						// data->col.map.x > door.x + 6 || data->col.map.y > door.y + 6 || sla
+						// data->col.map.x < door.x - 6 || data->col.map.y < door.y - 6)
+					{
+						printf("pixel x after: %d\n", data->col.map.x);
+						printf("pixel y after: %d\n", data->col.map.y);
+						detection_wall_touched_door(data, ray);
+						(*miss).x = (float)data->col.map.x;
+						(*miss).y = (float)data->col.map.y;
+						// if (data->col.map.x > door.x + 6)
+						// 	(*miss).x = door.x + 6;
+						// if (data->col.map.y > door.y + 6)
+						// 	(*miss).y = door.y + 6;
+						return ;
+					}
+				}
+			}
 		}
 	}
 }
