@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collision_utils.c                                  :+:      :+:    :+:   */
+/*   collision_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 08:53:45 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/19 11:43:00 by rrebois          ###   ########lyon.fr   */
+/*   Created: 2023/10/19 11:31:04 by rrebois           #+#    #+#             */
+/*   Updated: 2023/10/19 13:03:36 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Incs/cub3D.h"
+#include "../../Incs_bonus/cub3D_bonus.h"
 
-static float	vector_f_len_sq(t_coord_f position, t_coord map)
+float	vector_f_len_sq(t_coord_f position, t_coord map)
 {
 	float		value_sq;
 	t_coord_f	map_bis;
@@ -24,7 +24,21 @@ static float	vector_f_len_sq(t_coord_f position, t_coord map)
 	return (value_sq);
 }
 
-static void	detection_wall_touched(t_data *data, t_ray *ray)
+static void	set_door_val(t_data *data, t_ray *ray, int x, int y)
+{
+	if (check_side_door(data, ray, x, y))
+		ray->wall_door = 1;
+	else
+		ray->wall_door = 0;
+	if (data->arr[ray->cell.y][ray->cell.x] == 'D')
+		ray->door = 1;
+	else
+		ray->door = 0;
+	if (ray->correction > data->max_correct_len)
+		data->max_correct_len = ray->correction;
+}
+
+static void	detection_wall_touched(t_data *data, t_ray *ray, int x, int y)
 {
 	if (data->col.side_touched == 0)
 	{
@@ -44,9 +58,10 @@ static void	detection_wall_touched(t_data *data, t_ray *ray)
 		else
 			ray->side_hit = 4;
 	}
+	set_door_val(data, ray, x, y);
 }
 
-static void	set_values(t_data *data)
+void	set_values(t_data *data)
 {
 	if (data->col.side_d.x < data->col.side_d.y)
 	{
@@ -62,12 +77,10 @@ static void	set_values(t_data *data)
 	}
 }
 
-t_coord_f	wall_detection(t_data *data, t_ray *ray)
+void	wall_detection(t_data *data, t_ray *ray, t_coord_f *miss)
 {
-	t_coord_f	miss;
-
-	miss.x = -1;
-	miss.y = -1;
+	(*miss).x = -1;
+	(*miss).y = -1;
 	data->ray_len_sq = vector_f_len_sq(data->player.pos, data->col.map);
 	while (data->ray_len_sq < data->square_view_d)
 	{
@@ -79,13 +92,14 @@ t_coord_f	wall_detection(t_data *data, t_ray *ray)
 			continue ;
 		if (ray->cell.y < 0 || ray->cell.y >= data->mini.height)
 			continue ;
-		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1')
+		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1' ||
+			data->arr[(int)ray->cell.y][(int)ray->cell.x] == 'D')
 		{
-			detection_wall_touched(data, ray);
-			miss.x = (float)data->col.map.x;
-			miss.y = (float)data->col.map.y;
-			return (miss);
+			detection_wall_touched(data, ray, \
+					(int)ray->cell.y, (int)ray->cell.x);
+			(*miss).x = (float)data->col.map.x;
+			(*miss).y = (float)data->col.map.y;
+			return ;
 		}
 	}
-	return (miss);
 }

@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:11:48 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/17 10:21:36 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 11:22:35 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,10 +140,12 @@ typedef struct s_data
 	void		*win;
 	double		fov;
 	double		max_correct_len;
+	double		ratio;
 	float		square_view_d;
-	float		ray_len_sq;//used??
+	float		ray_len_sq;
 	int			**arr;
 	int			**mini_arr;
+	int			color;
 	t_ray		*ray;
 	t_player	player;
 	t_map		map;

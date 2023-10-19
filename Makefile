@@ -98,17 +98,20 @@ LSTS_SRCS_MAP_B		=	get_map_bonus.c \
 						map_utils2_bonus.c
 
 LSTS_SRCS_RAYS_B	=	collision_bonus.c \
+						collision_door_bonus.c \
+						collision_utils_bonus.c \
 						line_bonus.c \
-						line_utils_bonus.c \
 						rays_bonus.c
 
 LSTS_SRCS_TEXT_B	=	render_bonus.c \
+						render_utils_bonus.c \
 						textures_bonus.c \
 						textures_extra_bonus.c
 
 LSTS_SRCS_U_B		=	errors_bonus.c \
 						frees_bonus.c \
 						utils_bonus.c \
+						utils2_bonus.c \
 						vector_utils_bonus.c \
 						window_bonus.c
 
@@ -216,7 +219,7 @@ ${D_OBJS_U}%.o		:	${D_SRCS_U}%.c ${INCS} ${LIBFT} ${MLX_A}
 						@mkdir -p ${D_OBJS_U}
 						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER} -c $< -o $@
 
-bonus	:	${OBJS_B} ${OBJS_HK_B} ${OBJS_IMG_B} ${OBJS_INIT_B} ${OBJS_MAP_B} ${OBJS_RAYS_B} ${OBJS_TEXT_B} ${OBJS_U_B}
+bonus	:	lib ${OBJS_B} ${OBJS_HK_B} ${OBJS_IMG_B} ${OBJS_INIT_B} ${OBJS_MAP_B} ${OBJS_RAYS_B} ${OBJS_TEXT_B} ${OBJS_U_B}
 			${CC} ${CFLAGS} ${OBJS_B} ${OBJS_HK_B} ${OBJS_IMG_B} ${OBJS_INIT_B} ${OBJS_MAP_B} ${OBJS_RAYS_B} ${OBJS_TEXT_B} ${OBJS_U_B} ${LIBFT} ${MLX_A} ${MLX_FLAGS} -o ${NAME_B}
 			@echo "${_GREEN}### ${NAME_B} created ###${_NOC}\n"
 
