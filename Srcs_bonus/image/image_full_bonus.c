@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image_full_bonus.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/19 10:28:55 by rrebois           #+#    #+#             */
+/*   Updated: 2023/10/19 10:29:08 by rrebois          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../Incs_bonus/cub3D_bonus.h"
 
 void	crop_full_img(t_data *data, t_coord start, t_coord size, t_img *img)

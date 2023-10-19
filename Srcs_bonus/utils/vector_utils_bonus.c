@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 09:33:31 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 10:30:00 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 10:32:57 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ double	vector_d_len_sq(t_coord center, t_coord map)
 	value_sq = (center.x - map.x) * (center.x - map.x) + \
 			(center.y - map.y) * (center.y - map.y);
 	return (value_sq);
-
 }
 
 float	calculate_len_vector(t_data *data, t_coord_f hit)

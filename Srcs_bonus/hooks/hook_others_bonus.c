@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 10:25:30 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 11:25:17 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,6 @@ void	map_zoom(t_data *data, int keycode)
 	create_full_img(data);
 	create_rays(data);
 }
-
-// void	change_board(t_data *data, int keycode)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	mlx_mouse_get_pos(data->mlx, data->win, &x, &y);
-// 	x /= SQUARE_SIZE;
-// 	y /= SQUARE_SIZE;
-// 	if (x < 0 || y < 0 || x > data->mini.width || y > data->mini.height)
-// 		return ;
-// 	if (keycode == Z)
-// 		data->arr[y][x] = '0';
-// 	else if (keycode == X)
-// 		data->arr[y][x] = '1';
-// 	// create_minimap_img(data);
-// 	// mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-// }
 
 static int	check_bug(t_data *data, t_coord door)
 {
@@ -70,7 +52,6 @@ void	open_close_doors(t_data *data)
 								DOOR_OPEN_DST);
 	change.x = -1;
 	change.y = -1;
-	// if (data->arr[(int)data->player.pos.y / SQUARE_SIZE][(int)data->player.pos.y / SQUARE_SIZE] == 'O')
 	change = init_data_collision(data, &ray, 1);
 	if (change.x != -1 && change.y != -1)
 	{

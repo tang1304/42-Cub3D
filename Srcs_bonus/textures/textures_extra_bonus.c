@@ -6,11 +6,32 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:31:50 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 10:27:25 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 13:05:54 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Incs_bonus/cub3D_bonus.h"
+
+void	wall_door_text_init(t_data *data)
+{
+	t_texture	door;
+	t_texture	wall_door;
+
+	ft_bzero(&door, sizeof(t_texture));
+	data->map.text[5] = door;
+	ft_bzero(&wall_door, sizeof(t_texture));
+	data->map.text[4] = wall_door;
+}
+
+int	get_x_texture(t_data *data, t_ray *ray, float val)
+{
+	if (!ray->wall_door && !ray->door)
+		return (val * data->map.text[ray->side_hit - 1].width);
+	else if (ray->wall_door)
+		return (val * data->map.text[4].width);
+	else
+		return (val * data->map.text[5].width);
+}
 
 void	load_extra_textures(t_data *data, t_map *map)
 {

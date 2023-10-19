@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 11:32:57 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 13:06:08 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@
 
 /*	collision.c	*/
 t_coord_f		init_data_collision(t_data *data, t_ray *ray, int i);
+
+/*	collision_door_bonus.c	*/
+int				check_side_door(t_data *data, t_ray *ray, int x, int y);
+void			check_door_col(t_data *data, t_ray *ray, t_coord_f *miss);
+
+/*	collision_utils_bonus.c	*/
+float			vector_f_len_sq(t_coord_f position, t_coord map);
+void			set_values(t_data *data);
+void			wall_detection(t_data *data, t_ray *ray, t_coord_f *miss);
 
 /*	draw.c	*/
 void			draw_point(t_data *data, int tX, int tY, int color);
@@ -103,12 +112,9 @@ void			data_init(t_data *data);
 void			create_cpy_map_arr(t_data *data);
 
 /*	line.c	*/
+void			init_data_line(t_data *data, t_coord_f start, \
+								t_coord_f end, int i);
 void			create_line(t_data *data, t_coord_f dest);
-void			bresenham_algo(t_data *data, t_coord_f dest);
-
-/*	line_utils.c	*/
-void			draw_line_vert(t_data *data, t_coord_f start, t_coord_f end);
-void			draw_line_hor(t_data *data, t_coord_f start, t_coord_f end);
 
 /*	map_char_checks.c	*/
 void			direction_check(t_map *map, char c, int i, int j);
@@ -142,6 +148,10 @@ t_coord_f		get_dst_coord(t_coord_f pos, double angle, int dist);
 /*	render.c	*/
 void			create_game_rays(t_data *data);
 
+/*	render_utils_bonus.c*/
+void			get_color_from_text(t_data *data, t_ray *ray);
+void			set_ratio_val(t_data *data, t_ray *ray, float slice_h);
+
 /*	textures.c	*/
 int				get_rgb(int *color);
 void			load_textures(t_data *data, t_map *map);
@@ -150,6 +160,8 @@ int				get_pixel_from_texture(t_texture *text, int x, int y);
 void			texture_init(t_data *data);
 
 /*	textures_extra.c	*/
+void			wall_door_text_init(t_data *data);
+int				get_x_texture(t_data *data, t_ray *ray, float val);
 void			load_extra_textures(t_data *data, t_map *map);
 char			*get_texture_path(t_map *map, char *str, char *elem, int i);
 
@@ -159,6 +171,8 @@ char			*double_strtrim(char *str, char *s1, char *s2);
 char			*double_strtrim_free(char *str, char *s1, char *s2);
 char			*triple_strtrim_free(char *str, char *s1, char *s2, char *s3);
 int				correct_map_char(char c);
+
+/*	utils2_bonus.c	*/
 void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 /*	vector_utils.c	*/

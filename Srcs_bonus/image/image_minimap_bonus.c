@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image_minimap_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/19 10:28:14 by rrebois           #+#    #+#             */
+/*   Updated: 2023/10/19 10:28:35 by rrebois          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../Incs_bonus/cub3D_bonus.h"
 
 void	create_mini_from_big(t_data *data)
@@ -20,8 +32,8 @@ void	create_mini_from_big(t_data *data)
 
 void	crop_full_image(t_data *data, t_coord start)
 {
-	int			i;
-	int			j;
+	int		i;
+	int		j;
 	t_coord	coord;
 
 	i = 0;
