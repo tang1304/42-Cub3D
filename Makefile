@@ -99,6 +99,7 @@ LSTS_SRCS_MAP_B		=	get_map_bonus.c \
 
 LSTS_SRCS_RAYS_B	=	collision_bonus.c \
 						collision_door_bonus.c \
+						collision_improved_doors_bonus.c \
 						collision_utils_bonus.c \
 						line_bonus.c \
 						rays_bonus.c

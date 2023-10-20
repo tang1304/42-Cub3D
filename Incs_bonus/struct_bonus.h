@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:11:48 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/19 11:22:35 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/20 17:03:33 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,12 @@ typedef struct s_mini
 	int	width;
 }				t_mini;
 
+typedef struct s_door
+{
+	t_coord		d_hit;
+	t_coord_f	d_plan;
+}				t_door;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -146,6 +152,7 @@ typedef struct s_data
 	int			**arr;
 	int			**mini_arr;
 	int			color;
+	t_door		door;
 	t_ray		*ray;
 	t_player	player;
 	t_map		map;

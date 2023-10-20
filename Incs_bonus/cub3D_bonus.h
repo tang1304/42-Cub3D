@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/19 13:39:39 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/20 17:05:16 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,15 @@ t_coord_f		init_data_collision(t_data *data, t_ray *ray, int i);
 int				check_side_door(t_data *data, t_ray *ray, int x, int y);
 void			check_door_col(t_data *data, t_ray *ray, t_coord_f *miss);
 
+/*	collision_improved_doors_bonus.c	*/
+void			get_miss_values(t_data *data, t_ray *ray, t_coord_f *miss);
+void			improved_doors(t_data *data, t_ray *ray, t_coord_f *miss, \
+							 int check);
+
 /*	collision_utils_bonus.c	*/
 float			vector_f_len_sq(t_coord_f position, t_coord map);
 void			set_values(t_data *data);
+void			detection_wall_touched(t_data *data, t_ray *ray, int x, int y);
 void			wall_detection(t_data *data, t_ray *ray, t_coord_f *miss);
 
 /*	errors.c	*/
