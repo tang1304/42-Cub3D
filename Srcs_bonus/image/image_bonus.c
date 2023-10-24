@@ -63,7 +63,8 @@ void	put_pixel_img(t_img img, t_coord coord, int color)
 {
 	char	*dst;
 
-	if (color == BLACK || color == (int)TRANS)
+	if (color == BLACK || color == (int)TRANS || color == PURPLE || \
+		color == WHITE)
 		return ;
 	if (coord.x >= 0 && coord.y >= 0 && coord.x < img.w && coord.y < img.h)
 	{

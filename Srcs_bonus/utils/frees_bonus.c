@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:48:45 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 10:27:36 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/24 10:42:52 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	t_texture_cleaning(t_texture *text)
 }
 
 void	t_map_cleaning(t_map *map)
-{
+{//ajoutes les textures porte et mur_porte?
 	t_texture_cleaning(&map->text[0]);
 	t_texture_cleaning(&map->text[1]);
 	t_texture_cleaning(&map->text[2]);

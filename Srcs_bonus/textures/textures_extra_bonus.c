@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:31:50 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/24 08:41:25 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/24 10:33:15 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	load_extra_textures(t_data *data, t_map *map)
 	map->text[4].addr = mlx_get_data_addr(map->text[4].text, \
 			&map->text[4].bpp, &map->text[4].line_l, &map->text[4].endian);
 	if (!map->text[4].addr)
-		textures_error(data, "Error\nProblem saving image address\n");
+		textures_error(data, ADDR_ERR);
 	map->text[5].path = "./textures/door/door.xpm";
 	map->text[5].text = mlx_xpm_file_to_image(data->mlx, map->text[5].path, \
 			&map->text[5].width, &map->text[5].height);
@@ -52,8 +52,8 @@ void	load_extra_textures(t_data *data, t_map *map)
 	map->text[5].addr = mlx_get_data_addr(map->text[5].text, \
 			&map->text[5].bpp, &map->text[5].line_l, &map->text[5].endian);
 	if (!map->text[5].addr)
-		textures_error(data, "Error\nProblem saving image address\n");
-	load_weapons(data);
+		textures_error(data, ADDR_ERR);
+	load_sprite_weapons(data);
 }
 
 static void	malloc_check(t_map *map, char *tmp, char *new)

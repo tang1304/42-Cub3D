@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:50:51 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/19 13:17:55 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/24 09:36:13 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	add_squares(t_coord coord, int num, t_img *img)
 				my_mlx_pixel_put(img, i, j, WALL);
 			else if (num == '0' || num == 69 || num == 78 || num == 83 \
 					|| num == 87 || num == 'O')
-				my_mlx_pixel_put(img, i, j, WHITE);
+				my_mlx_pixel_put(img, i, j, GROUND);
 			else if (num == 32)
 				my_mlx_pixel_put(img, i, j, BLACK);
 			else if (num == 'D')

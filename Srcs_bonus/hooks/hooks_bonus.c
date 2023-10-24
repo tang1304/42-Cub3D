@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/17 10:25:39 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/24 18:19:34 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,45 @@ int	actions(t_data *data)
 	return (0);
 }
 
-int	key_pressed(int keycode, t_data *data)
+static void	update_weapon(t_data *data, int keycode)
 {
-	if (keycode == ESC)
+	if (keycode - 48 == data->player.weapon)
+		data->player.weapon = 0;
+	else
+		data->player.weapon = keycode - 48;
+	create_rays(data);
+	// mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);
+}
+
+int	key_pressed(int key, t_data *data)
+{printf("key: %d\n", key);
+	if (key == ESC)
 		exit_cub(data);
-	if (keycode == E)
+	if (key == E)
 		open_close_doors(data);
-	if (keycode == W)
+	if (key == W)
 		data->player.w = 1;
-	if (keycode == S)
+	if (key == S)
 		data->player.s = 1;
-	if (keycode == A)
+	if (key == A)
 		data->player.a = 1;
-	if (keycode == D)
+	if (key == D)
 		data->player.d = 1;
-	if (keycode == LEFT)
+	if (key == LEFT)
 		data->player.left_arrow = 1;
-	if (keycode == RIGHT)
+	if (key == RIGHT)
 		data->player.right_arrow = 1;
-	if (keycode == PLUS || keycode == MINUS)
-		map_zoom(data, keycode);
+	if (key == PLUS || key == MINUS)
+		map_zoom(data, key);
+	if (key == ONE || key == TWO || key == THREE || key == FOUR)
+		update_weapon(data, key);
+	if (key == ACTION)
+	{
+		if (data->player.action == 1 || data->player.weapon == 0)
+			return (1);
+		data->player.action = 1;
+		weapon_animation(data);
+	}
 	return (1);
 }
 
