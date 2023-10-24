@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/21 08:54:59 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/24 08:50:01 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,9 @@ void			data_init(t_data *data);
 
 /*	init_array_map.c	*/
 void			create_cpy_map_arr(t_data *data);
+
+/*	init_animations_bonus.c	*/
+void	load_weapons(t_data *data);
 
 /*	line.c	*/
 void			init_data_line(t_data *data, t_coord_f start, \
