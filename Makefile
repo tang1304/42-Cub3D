@@ -117,6 +117,8 @@ LSTS_SRCS_U_B		=	errors_bonus.c \
 						vector_utils_bonus.c \
 						window_bonus.c
 
+LSTS_SRCS_RAYS_B	=	init_animations_bonus.c
+
 D_SRCS_B		=	Srcs_bonus/
 D_SRCS_HK_B		=	Srcs_bonus/hooks/
 D_SRCS_IMG_B	=	Srcs_bonus/image/
@@ -125,6 +127,7 @@ D_SRCS_MAP_B	=	Srcs_bonus/map/
 D_SRCS_RAYS_B	=	Srcs_bonus/rays/
 D_SRCS_TEXT_B	=	Srcs_bonus/textures/
 D_SRCS_U_B		=	Srcs_bonus/utils/
+D_SRCS_S_B		=	Srcs_bonus/sprites/
 
 D_OBJS_B		=	objs_bonus/
 D_OBJS_HK_B		=	objs_bonus/hooks/
@@ -134,6 +137,7 @@ D_OBJS_MAP_B	=	objs_bonus/map/
 D_OBJS_RAYS_B	=	objs_bonus/rays/
 D_OBJS_TEXT_B	=	objs_bonus/textures/
 D_OBJS_U_B		=	objs_bonus/utils/
+D_OBJS_S_B		=	objs_bonus/sprites/
 
 LST_OBJS_B		=	$(LSTS_SRCS_B:.c=.o)
 LST_OBJS_HK_B	=	$(LSTS_SRCS_HK_B:.c=.o)
@@ -143,6 +147,7 @@ LST_OBJS_MAP_B	=	$(LSTS_SRCS_MAP_B:.c=.o)
 LST_OBJS_RAYS_B	=	$(LSTS_SRCS_RAYS_B:.c=.o)
 LST_OBJS_TEXT_B	=	$(LSTS_SRCS_TEXT_B:.c=.o)
 LST_OBJS_U_B	=	$(LSTS_SRCS_U_B:.c=.o)
+LST_OBJS_S_B	=	$(LSTS_SRCS_S_B:.c=.o)
 
 OBJS_B			=	$(addprefix $(D_OBJS_B), $(LST_OBJS_B))
 OBJS_HK_B		=	$(addprefix $(D_OBJS_HK_B), $(LST_OBJS_HK_B))
@@ -152,6 +157,7 @@ OBJS_MAP_B		=	$(addprefix $(D_OBJS_MAP_B), $(LST_OBJS_MAP_B))
 OBJS_RAYS_B		=	$(addprefix $(D_OBJS_RAYS_B), $(LST_OBJS_RAYS_B))
 OBJS_TEXT_B		=	$(addprefix $(D_OBJS_TEXT_B), $(LST_OBJS_TEXT_B))
 OBJS_U_B		=	$(addprefix $(D_OBJS_U_B), $(LST_OBJS_U_B))
+OBJS_S_B		=	$(addprefix $(D_OBJS_S_B), $(LST_OBJS_S_B))
 
 NAME		=	cub3D
 NAME_B		=	cub3D_bonus
@@ -221,8 +227,8 @@ ${D_OBJS_U}%.o		:	${D_SRCS_U}%.c ${INCS} ${LIBFT} ${MLX_A}
 						@mkdir -p ${D_OBJS_U}
 						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER} -c $< -o $@
 
-bonus	:	lib ${OBJS_B} ${OBJS_HK_B} ${OBJS_IMG_B} ${OBJS_INIT_B} ${OBJS_MAP_B} ${OBJS_RAYS_B} ${OBJS_TEXT_B} ${OBJS_U_B}
-			${CC} ${CFLAGS} ${OBJS_B} ${OBJS_HK_B} ${OBJS_IMG_B} ${OBJS_INIT_B} ${OBJS_MAP_B} ${OBJS_RAYS_B} ${OBJS_TEXT_B} ${OBJS_U_B} ${LIBFT} ${MLX_A} ${MLX_FLAGS} -o ${NAME_B}
+bonus	:	lib ${OBJS_B} ${OBJS_HK_B} ${OBJS_IMG_B} ${OBJS_INIT_B} ${OBJS_MAP_B} ${OBJS_RAYS_B} ${OBJS_TEXT_B} ${OBJS_U_B} ${OBJS_S_B}
+			${CC} ${CFLAGS} ${OBJS_B} ${OBJS_HK_B} ${OBJS_IMG_B} ${OBJS_INIT_B} ${OBJS_MAP_B} ${OBJS_RAYS_B} ${OBJS_TEXT_B} ${OBJS_U_B} ${OBJS_S_B} ${LIBFT} ${MLX_A} ${MLX_FLAGS} -o ${NAME_B}
 			@echo "${_GREEN}### ${NAME_B} created ###${_NOC}\n"
 
 ${D_OBJS_B}%.o		:	${D_SRCS_B}%.c ${INCS_B} ${LIBFT} ${MLX_A}
@@ -255,6 +261,10 @@ ${D_OBJS_TEXT_B}%.o	:	${D_SRCS_TEXT_B}%.c ${INCS_B} ${LIBFT} ${MLX_A}
 
 ${D_OBJS_U_B}%.o	:	${D_SRCS_U_B}%.c ${INCS_B} ${LIBFT} ${MLX_A}
 						@mkdir -p ${D_OBJS_U_B}
+						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER_B} -c $< -o $@
+
+${D_OBJS_S_B}%.o	:	${D_SRCS_S_B}%.c ${INCS_B} ${LIBFT} ${MLX_A}
+						@mkdir -p ${D_OBJS_S_B}
 						${CC} ${CFLAGS} -I/usr/include -I ${MLX_DIR} -I ${D_HEADER_B} -c $< -o $@
 
 clean	:

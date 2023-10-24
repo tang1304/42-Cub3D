@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:31:50 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/19 13:25:40 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/24 08:41:25 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	load_extra_textures(t_data *data, t_map *map)
 			&map->text[5].bpp, &map->text[5].line_l, &map->text[5].endian);
 	if (!map->text[5].addr)
 		textures_error(data, "Error\nProblem saving image address\n");
+	load_weapons(data);
 }
 
 static void	malloc_check(t_map *map, char *tmp, char *new)
