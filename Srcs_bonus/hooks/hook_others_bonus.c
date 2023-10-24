@@ -6,11 +6,74 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:28 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/19 11:25:17 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/24 18:38:50 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Incs_bonus/cub3D_bonus.h"
+
+// void	ft_lstiter_test(t_animation *a, void (*f)(void *))
+// {
+// 	if (a == NULL || f == NULL)
+// 		return ;
+// 	while (a->next != NULL)
+// 	{
+// 		f(a->tmp_delay);
+// 		a = a->next;
+// 	}
+// 	f(a->content);
+// }
+
+static void	display_anim(t_data *data, t_frame *f)
+{
+	create_rays(data);
+	put_img_to_img(data->main, f->frame, WIN_WIDTH * 0.5 - 34, \
+			WIN_HEIGHT - 65);
+	mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);
+
+}
+
+void	weapon_animation(t_data *data)
+{
+	t_frame		*f;
+	t_animation	*anim;
+
+	anim = data->weapons.animation;
+	if (data->player.weapon == 0)
+		return ;
+	while (anim->index != (data->player.weapon - 1))
+		anim = anim->next;
+	f = anim->frames;
+int count = 0;
+	while (count < 4)
+	{
+		printf("test\n");
+printf("index: %d\n", f->index);
+		display_anim(data, f);
+		while (anim->tmp_delay++ < anim->delay)
+			usleep(500);
+		f = f->next;
+		anim->tmp_delay = 0;
+	}
+	// create_rays(data);
+	// f = anim->frames;
+	// mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);
+	data->player.action = 0;
+	return ;
+}
+
+void	select_weapon(t_data *data)
+{
+	t_animation	*anim;
+// printf("weapon selected: %d\n", data->player.weapon);
+	anim = data->weapons.animation;
+	if (data->player.weapon == 0)
+		return ;
+	while (anim->index != (data->player.weapon - 1))
+		anim = anim->next;
+	put_img_to_img(data->main, anim->frames->frame, WIN_WIDTH * 0.5 - 34, \
+					WIN_HEIGHT - 65);
+}
 
 void	map_zoom(t_data *data, int keycode)
 {

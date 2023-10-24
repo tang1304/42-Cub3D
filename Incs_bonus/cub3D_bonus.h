@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/24 08:50:01 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/24 17:04:27 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void			rotate_left(t_data *data);
 void			rotate_right(t_data *data);
 
 /*	hook_others.c	*/
+void			weapon_animation(t_data *data);
+void			select_weapon(t_data *data);
 void			map_zoom(t_data *data, int keycode);
 void			open_close_doors(t_data *data);
 
@@ -120,12 +122,18 @@ void			data_init(t_data *data);
 void			create_cpy_map_arr(t_data *data);
 
 /*	init_animations_bonus.c	*/
-void	load_weapons(t_data *data);
+void			load_sprite_weapons(t_data *data);
 
 /*	line.c	*/
 void			init_data_line(t_data *data, t_coord_f start, \
 								t_coord_f end, int i);
 void			create_line(t_data *data, t_coord_f dest);
+
+/*	list_bonus.c	*/
+t_frame			*add_new_frame(t_data *data, int i, int j);
+void			add_frame_last(t_animation *a, t_frame *node);
+t_animation		*add_anim_node(int i);
+void			add_anim_last(t_data *data, t_animation *node);
 
 /*	map_char_checks.c	*/
 void			direction_neighbour_check(t_map *map, char **tab, \

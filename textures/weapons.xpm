@@ -1,7 +1,7 @@
 /* XPM */
-static char *_e8e77d4ac8c4be2dd621dd4edac03f0X50a4LOhKIl9agUd[] = {
+static char *_4715a7c66ca4ad686404e832dde211cfLTNGSclLSZsdmH4[] = {
 /* columns rows colors chars-per-pixel */
-"324 259 89 1 ",
+"324 260 89 1 ",
 "  c #980088",
 ". c white",
 "X c gray66",
@@ -350,5 +350,6 @@ static char *_e8e77d4ac8c4be2dd621dd4edac03f0X50a4LOhKIl9agUd[] = {
 "                      Wa@W!LIP^oIPWET/dddaW                     .                 /TLoILoRLoLRooLI)`U^!E(_U/(YWfWY               .                 /TLoILoRLoLRooLI)`U^!E(_U/(YWfWY               .                 /TLoILoRLoLRooLI)`U^!E(_U/(YWfWY               .                     LI]IIIRLRoLI)`UYE)L`YWE                    ",
 "                      WET@ToI_)oI_Ed/^@dWaf                     .                /TIRRIRoLLoLoooLI)`U^!EEPU_~YEWfW               .                /TIRRIRoLLoLoooLI)`U^!EEPU_~YEWfW               .                /TIRRIRoLLoLoooLI)`U^!EEPU_~YEWfW               .                    TIRLoRLoLooLI)`U!EPU/U/WWY                  ",
 "                      aTT/oL)UIoI^@dP`Pd@da                     .                TIRoILoRLRLLoooLI)`UU/YE(_U/~YWffY              .                TIRoILoRLRLLoooLI)`UU/YE(_U/~YWffY              .                TIRoILoRLRLLoooLI)`UU/YE(_U/~YWffY              .                   /IoIooLLoLooLI)`U/EE_U/(!fWY                 ",
-"                      ao'ToL`TIoIU!d(TU@dEa                     .               TILRoIRoRLoLRoooLI)`UU/!E(PU/PYYWfW              .               TILRoIRoRLoLRoooLI)`UU/!E(PU/PYYWfW              .               TILRoIRoRLoLRoooLI)`UU/!E(PU/PYYWfW              .                  /ILRIoRLRLLooLI)`U_YEPU_~YWfWY                "
+"                      ao'ToL`TIoIU!d(TU@dEa                     .               TILRoIRoRLoLRoooLI)`UU/!E(PU/PYYWfW              .               TILRoIRoRLoLRoooLI)`UU/!E(PU/PYYWfW              .               TILRoIRoRLoLRoooLI)`UU/!E(PU/PYYWfW              .                  /ILRIoRLRLLooLI)`U_YEPU_~YWfWY                ",
+"...................................................................................................................................................................................................................................................................................................................................."
 };

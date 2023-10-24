@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:03:55 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/19 13:27:34 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/24 09:07:50 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	init_minimap_img(t_data *data)
 	minimap.addr = mlx_get_data_addr(minimap.img, &minimap.bpp, \
 					&minimap.line_l, &minimap.endian);
 	if (!minimap.addr)
-		exit_cub_error(data, "Error\nProblem saving image address\n");
+		exit_cub_error(data, ADDR_ERR);
 	data->minimap = minimap;
 }
 
@@ -49,7 +49,7 @@ static void	init_fullmap_img(t_data *data)
 	full.addr = mlx_get_data_addr(full.img, &full.bpp, \
 					&full.line_l, &full.endian);
 	if (!full.addr)
-		exit_cub_error(data, "Error\nProblem saving image address\n");
+		exit_cub_error(data, ADDR_ERR);
 	data->full = full;
 }
 
@@ -65,7 +65,7 @@ static void	init_game_img(t_data *data)
 	game.addr = mlx_get_data_addr(game.img, &game.bpp, &game.line_l, \
 								&game.endian);
 	if (!game.addr)
-		exit_cub_error(data, "Error\nProblem saving image address\n");
+		exit_cub_error(data, ADDR_ERR);
 	data->game = game;
 }
 
@@ -88,7 +88,7 @@ void	create_window(t_data *data)
 	main.addr = mlx_get_data_addr(main.img, &main.bpp, &main.line_l, \
 								&main.endian);
 	if (!main.addr)
-		exit_cub_error(data, "Error\nProblem saving image address\n");
+		exit_cub_error(data, ADDR_ERR);
 	data->main = main;
 	create_full_img(data);
 }

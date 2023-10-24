@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:30:25 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/19 10:30:27 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/24 09:06:45 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	init_bigmap_img(t_data *data)
 	big.addr = mlx_get_data_addr(big.img, &big.bpp, \
 					&big.line_l, &big.endian);
 	if (big.addr == NULL)
-		exit_cub_error(data, "Error\nProblem saving image address\n");
+		exit_cub_error(data, ADDR_ERR);
 	data->bigmap = big;
 }

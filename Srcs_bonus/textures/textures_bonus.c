@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/19 13:25:32 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/24 09:07:27 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	load_textures(t_data *data, t_map *map)
 		map->text[i].addr = mlx_get_data_addr(map->text[i].text, \
 				&map->text[i].bpp, &map->text[i].line_l, &map->text[i].endian);
 		if (!map->text[i].addr)
-			textures_error(data, "Error\nProblem saving image address\n");
+			textures_error(data, ADDR_ERR);
 	}
 	load_extra_textures(data, map);
 }

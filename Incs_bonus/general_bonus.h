@@ -27,6 +27,11 @@
 # define Z 122
 # define X 120
 # define RED_CROSS 33
+# define ONE 49
+# define TWO 50
+# define THREE 51
+# define FOUR 52
+# define ACTION 113
 
 // Colors
 # define GREEN 0x0000FF00
@@ -34,10 +39,10 @@
 # define BLUE 0x000000FF
 # define BLACK 0x00000000
 # define WHITE 0x00FFFFFF
+# define GROUND 0x00FFFFFE
 # define WALL 0x00b2b2b2
 # define TRANS 0xFF000000
-# define PURPLE 0x00890089
-# define ORANGE 0x00FFA500
+# define PURPLE 0x00980088
 # define BROWN 0x000F4A460
 # define LICORICE 0x001B1212
 # define GREYB 0x00373737
@@ -73,5 +78,7 @@ or a whitespace\n"
 # define DIRECTION_OUT "Error\nThe player is not inside the map\n"
 # define XPM_OPEN_ERR "Error\nProblem opening the xpm texture\n"
 # define INVALID_DOOR "Error\nDoor must be places between two walls\n"
+# define WEAPONS_ERR "Error\nProblem charging weapons xpm file to image\n"
+# define ADDR_ERR "Error\nProblem saving image address\n"
 
 #endif

@@ -6,12 +6,20 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:11:48 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/20 17:03:33 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/24 17:31:26 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_BONUS_H
 # define STRUCT_BONUS_H
+
+enum e_weapon
+{
+	knife,
+	gun,
+	rifle,
+	chaingun,
+};
 
 typedef struct s_img
 {
@@ -49,6 +57,38 @@ typedef struct s_coord_f
 	float	y;
 }				t_coord_f;
 
+typedef struct s_frame
+{
+	t_img			frame;
+	int				index;
+	t_coord			dimension;// usefull?
+	t_coord			offset;
+	struct s_frame	*next;
+}				t_frame;
+
+typedef struct s_animation
+{
+	t_frame				*frames;
+	int					width;
+	int					height;
+	int					index;
+	int					delay;
+	int					tmp_delay;
+	int					current_frame_num;
+	long int			last_updated;
+	long int			frame_count;
+	// enum e_weapon		weapon;//change into index?
+	struct s_animation	*next;
+}				t_animation;
+
+typedef struct s_sprite
+{
+	t_animation	*animation;
+	char		*name;
+	char		*path;
+	t_img		img;
+}				t_sprite;
+
 typedef struct s_player
 {
 	t_coord_f	pos;
@@ -66,6 +106,8 @@ typedef struct s_player
 	int			left_mouse;
 	int			right_mouse;
 	int			mouse_pos;
+	int			weapon;
+	int			action;
 }				t_player;
 
 typedef struct s_bresenham
@@ -157,7 +199,7 @@ typedef struct s_data
 	t_player	player;
 	t_map		map;
 	t_col		col;
-	t_img		test;
+	t_sprite	weapons;
 	t_img		main;
 	t_img		game;
 	t_img		minimap;
