@@ -6,30 +6,46 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:46:18 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/24 15:56:24 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/25 13:49:27 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Incs_bonus/cub3D_bonus.h"
 
+static void	create_nodes_frame(t_data *data, t_animation *a, int i, int j)
+{
+	if (j > 0 && j < 4)
+	{
+		while (++i < 4)
+		{
+			if (i == 1)
+				a->frames = add_new_frame(data, i, j);
+			else
+				add_frame_last(a, add_new_frame(data, i, j));
+		}
+	}
+	else
+	{
+		while (++i < 5)
+		{
+			if (i == 1)
+				a->frames = add_new_frame(data, i, j);
+			else
+				add_frame_last(a, add_new_frame(data, i, j));
+		}
+	}
+}
+
 static void	add_frames_to_anim(t_data *data)
 {
-	int			i;
 	int			j;
 	t_animation	*anim;
 
 	anim = data->weapons.animation;
-	j = 0; // which line
+	j = 0;
 	while (anim)
 	{
-		i = -1;
-		while (++i < 5)
-		{
-			if (i == 0)
-				anim->frames = add_new_frame(data, i, j);
-			else
-				add_frame_last(anim, add_new_frame(data, i, j));
-		}
+		create_nodes_frame(data, anim, 0, j);
 		anim = anim->next;
 		j++;
 	}
@@ -41,22 +57,9 @@ static void	create_anim_list(t_data *data)
 
 	i = 0;
 	if (data->weapons.animation == NULL)
-		data->weapons.animation = add_anim_node(i);
-	while (++i < 4)
-		add_anim_last(data, add_anim_node(i));
-
-	/*test
-t_animation *anim;
-anim = data->weapons.animation;
-int	count = 0;
-while (anim)
-{
-	count++;
-	anim = anim->next;
-}
-printf("count: %d\n", count);
-*/
-
+		data->weapons.animation = add_anim_node(data, i);
+	while (++i < 6)
+		add_anim_last(data, add_anim_node(data, i));
 	add_frames_to_anim(data);
 }
 
@@ -80,5 +83,3 @@ void	load_sprite_weapons(t_data *data)
 	// destroy_image(weapons.img);
 	//destroy data->weapons here, not needed anymore
 }
-
-

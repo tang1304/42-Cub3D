@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:03:12 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/24 18:23:39 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/25 09:49:44 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,7 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 	}
 	create_game_rays(data);
 	create_main_image(data);
-	if (data->player.weapon != 0 && data->player.action == 0)
-		select_weapon(data);
-	// if (data->player.action == 1)
-	// 	weapon_animation(data);
-	// put_img_to_img(data->main, test->frames->frame, WIN_WIDTH * 0.5 - 34,
-	// 				WIN_HEIGHT - 65);
+	select_weapon(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);
 }
 

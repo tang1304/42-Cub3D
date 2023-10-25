@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/24 17:04:27 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/25 13:48:37 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 # include "general_bonus.h"
 # include "struct_bonus.h"
 
+/*	animation_bonus.c	*/
+void			weapon_animation(t_data *data);
+void			select_weapon(t_data *data);
+
 /*	collision.c	*/
 t_coord_f		init_data_collision(t_data *data, t_ray *ray, int i);
 
@@ -32,10 +36,11 @@ int				check_side_door(t_data *data, t_ray *ray, int x, int y);
 void			check_door_col(t_data *data, t_ray *ray, t_coord_f *miss);
 
 /*	collision_improved_doors_bonus.c	*/
-void			detection_wall_touched_door(t_data *data, t_ray *ray);
+void			detection_wall_touched_door(t_data *data, t_ray *ray, \
+											t_col *col);
 void			get_miss_values(t_data *data, t_ray *ray, t_coord_f *miss);
 void			improved_doors(t_data *data, t_ray *ray, t_coord_f *miss, \
-							 int check);
+								int check);
 
 /*	collision_improved_doors_utils_bonus.c	*/
 int				set_miss_return_e_w(t_data *data, t_ray *ray, \
@@ -85,8 +90,6 @@ void			rotate_left(t_data *data);
 void			rotate_right(t_data *data);
 
 /*	hook_others.c	*/
-void			weapon_animation(t_data *data);
-void			select_weapon(t_data *data);
 void			map_zoom(t_data *data, int keycode);
 void			open_close_doors(t_data *data);
 
@@ -132,7 +135,7 @@ void			create_line(t_data *data, t_coord_f dest);
 /*	list_bonus.c	*/
 t_frame			*add_new_frame(t_data *data, int i, int j);
 void			add_frame_last(t_animation *a, t_frame *node);
-t_animation		*add_anim_node(int i);
+t_animation		*add_anim_node(t_data *data, int i);
 void			add_anim_last(t_data *data, t_animation *node);
 
 /*	map_char_checks.c	*/
