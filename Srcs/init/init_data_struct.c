@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:06:27 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/20 12:19:19 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/25 15:41:41 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	init_data_values(t_data *data)
 {
 	t_ray		*ray;
 	t_bresenham	bre;
-	t_door		door:
 
 	data->square_view_d = VIEW_DIST * VIEW_DIST;
 	data->fov = FOV * M_PI / 180;
@@ -81,8 +80,6 @@ void	init_data_values(t_data *data)
 	data->ray = ray;
 	ft_bzero(&bre, sizeof(t_bresenham));
 	data->bre = bre;
-	ft_bzero(&door, sizeof(t_door));
-	data->door = door;
 	create_cpy_map_arr(data);
 }
 

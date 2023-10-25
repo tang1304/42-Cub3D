@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:13:30 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/25 13:46:39 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/25 16:10:01 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_frame	*add_new_frame(t_data *data, int i, int j)
 
 	new = (t_frame *)malloc(sizeof(*new));
 	if (new == NULL)
-		exit (2);// free and all.
+		exit_cub_error(data, ERR_WEAPON_SPRITE);
 	ft_bzero(new, sizeof(t_frame));
 	new->index = i;
 	new->next = NULL;
@@ -71,7 +71,7 @@ t_animation	*add_anim_node(t_data *data, int i)
 
 	new = (t_animation *)malloc(sizeof(*new));
 	if (new == NULL)
-		exit (1);//free and free all previous nodes
+		exit_cub_error(data, ERR_WEAPON_SPRITE);
 	ft_bzero(new, sizeof(t_animation));
 	new->index = i;
 	new->weapon = set_frame_img(data, 0, new->index);

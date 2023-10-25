@@ -111,6 +111,7 @@ LSTS_SRCS_TEXT_B	=	render_bonus.c \
 						textures_extra_bonus.c
 
 LSTS_SRCS_U_B		=	errors_bonus.c \
+						free_utils_bonus.c \
 						frees_bonus.c \
 						utils_bonus.c \
 						utils2_bonus.c \
