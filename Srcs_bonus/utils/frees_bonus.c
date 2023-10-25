@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:48:45 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/25 13:48:06 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/25 15:50:19 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	image_destroy(t_data *data)
 
 int	exit_cub(t_data *data)
 {
+	if (data->weapons.animation)
+		destroy_sprites_img(data);
 	image_destroy(data);
 	if (data->win != NULL)
 		mlx_destroy_window(data->mlx, data->win);

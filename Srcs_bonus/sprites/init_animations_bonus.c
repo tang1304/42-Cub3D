@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:46:18 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/25 13:49:27 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/25 16:02:53 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,5 @@ void	load_sprite_weapons(t_data *data)
 		textures_error(data, ADDR_ERR);
 	data->weapons = weapons;
 	create_anim_list(data);
-	// destroy_image(weapons.img);
-	//destroy data->weapons here, not needed anymore
+	mlx_destroy_image(data->mlx, data->weapons.img.img);
 }

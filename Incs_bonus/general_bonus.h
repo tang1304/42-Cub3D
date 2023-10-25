@@ -83,5 +83,6 @@ or a whitespace\n"
 # define INVALID_DOOR "Error\nDoor must be places between two walls\n"
 # define WEAPONS_ERR "Error\nProblem charging weapons xpm file to image\n"
 # define ADDR_ERR "Error\nProblem saving image address\n"
+# define ERR_WEAPON_SPRITE "Error\nProblem loading weapon images\n"
 
 #endif

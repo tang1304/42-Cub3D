@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:06:36 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/25 13:47:50 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/25 16:09:10 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	ray_error(t_data *data, char *str)
 
 int	exit_cub_error(t_data *data, char *str)
 {
+	if (data->weapons.animation)
+		destroy_sprites_img(data);
 	image_destroy(data);
 	if (data->win != NULL)
 		mlx_destroy_window(data->mlx, data->win);

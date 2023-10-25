@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/25 13:48:37 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/25 14:10:56 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ void			map_error(t_map *map, char *str);
 void			textures_error(t_data *data, char *str);
 void			ray_error(t_data *data, char *str);
 int				exit_cub_error(t_data *data, char *str);
+
+/*	free_utils_bonus.c	*/
+void			destroy_sprites_img(t_data *data);
 
 /*	frees.c	*/
 void			t_texture_cleaning(t_texture *text);
