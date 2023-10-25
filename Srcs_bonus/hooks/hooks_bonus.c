@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/24 18:19:34 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/25 12:29:57 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	actions(t_data *data)
 		rotate_left(data);
 	if (data->player.right_arrow || data->player.right_mouse)
 		rotate_right(data);
+	if (data->player.action)
+		weapon_animation(data);
 	data->player.view_dst_pos.x = data->player.dir.x * VIEW_DIST + \
 									data->player.pos.x;
 	data->player.view_dst_pos.y = data->player.dir.y * VIEW_DIST + \
@@ -46,11 +48,10 @@ static void	update_weapon(t_data *data, int keycode)
 	else
 		data->player.weapon = keycode - 48;
 	create_rays(data);
-	// mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);
 }
 
 int	key_pressed(int key, t_data *data)
-{printf("key: %d\n", key);
+{
 	if (key == ESC)
 		exit_cub(data);
 	if (key == E)
@@ -69,15 +70,11 @@ int	key_pressed(int key, t_data *data)
 		data->player.right_arrow = 1;
 	if (key == PLUS || key == MINUS)
 		map_zoom(data, key);
-	if (key == ONE || key == TWO || key == THREE || key == FOUR)
+	if (key == ON || key == TW || key == TH || key == FO || key == FI \
+		|| key == SI)
 		update_weapon(data, key);
-	if (key == ACTION)
-	{
-		if (data->player.action == 1 || data->player.weapon == 0)
-			return (1);
+	if (key == ACTION && data->player.weapon)
 		data->player.action = 1;
-		weapon_animation(data);
-	}
 	return (1);
 }
 

@@ -55,25 +55,23 @@ void	get_miss_values(t_data *data, t_ray *ray, t_coord_f *miss)
 	}
 }
 
-void	detection_wall_touched_door(t_data *data, t_ray *ray)
+void	detection_wall_touched_door(t_data *data, t_ray *ray, t_col *col)
 {
-	if (data->col.side_touched == 0)
+	if (col->side_touched == 0)
 	{
-		ray->correction = (data->col.side_d.x - data->col.delta_d.x) \
-							* SQUARE_SIZE;
-		if (data->col.step.x == 1)
-			ray->side_hit = 1;//E door displaying ok
+		ray->correction = (col->side_d.x - col->delta_d.x) * SQUARE_SIZE;
+		if (col->step.x == 1)
+			ray->side_hit = 1;
 		else
-			ray->side_hit = 2;//O
+			ray->side_hit = 2;
 	}
 	else
 	{
-		ray->correction = (data->col.side_d.y - data->col.delta_d.y) \
-							* SQUARE_SIZE;
-		if (data->col.step.y == 1)
-			ray->side_hit = 3;//S door displaying ok
+		ray->correction = (col->side_d.y - col->delta_d.y) * SQUARE_SIZE;
+		if (col->step.y == 1)
+			ray->side_hit = 3;
 		else
-			ray->side_hit = 4;//N
+			ray->side_hit = 4;
 	}
 	if (data->arr[ray->cell.y][ray->cell.x] == '1')
 		ray->wall_door = 1;

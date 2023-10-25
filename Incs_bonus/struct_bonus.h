@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:11:48 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/24 17:31:26 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/25 13:48:50 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,23 +61,18 @@ typedef struct s_frame
 {
 	t_img			frame;
 	int				index;
-	t_coord			dimension;// usefull?
-	t_coord			offset;
 	struct s_frame	*next;
 }				t_frame;
 
 typedef struct s_animation
 {
 	t_frame				*frames;
-	int					width;
-	int					height;
+	t_img				weapon;
 	int					index;
 	int					delay;
 	int					tmp_delay;
-	int					current_frame_num;
-	long int			last_updated;
-	long int			frame_count;
-	// enum e_weapon		weapon;//change into index?
+	// long int			last_updated;//not used
+	// long int			frame_count;//not used
 	struct s_animation	*next;
 }				t_animation;
 

@@ -19,7 +19,7 @@ int	set_miss_return_e_w(t_data *data, t_ray *ray, t_coord_f *miss, int check)
 		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1' || \
 			data->col.map.x > check)
 		{
-			detection_wall_touched_door(data, ray);
+			detection_wall_touched_door(data, ray, &data->col);
 			(*miss).x = (float)data->col.map.x;
 			(*miss).y = (float)data->col.map.y;
 			return (1);
@@ -30,7 +30,7 @@ int	set_miss_return_e_w(t_data *data, t_ray *ray, t_coord_f *miss, int check)
 		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1' || \
 			data->col.map.x < check)
 		{
-			detection_wall_touched_door(data, ray);
+			detection_wall_touched_door(data, ray, &data->col);
 			(*miss).x = (float)data->col.map.x;
 			(*miss).y = (float)data->col.map.y;
 			return (1);
@@ -46,7 +46,7 @@ int	set_miss_return_n_s(t_data *data, t_ray *ray, t_coord_f *miss, int check)
 		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1' || \
 			data->col.map.y > check)
 		{
-			detection_wall_touched_door(data, ray);
+			detection_wall_touched_door(data, ray, &data->col);
 			(*miss).x = (float)data->col.map.x;
 			(*miss).y = (float)data->col.map.y;
 			return (1);
@@ -57,7 +57,7 @@ int	set_miss_return_n_s(t_data *data, t_ray *ray, t_coord_f *miss, int check)
 		if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1' || \
 			data->col.map.y < check)
 		{
-			detection_wall_touched_door(data, ray);
+			detection_wall_touched_door(data, ray, &data->col);
 			(*miss).x = (float)data->col.map.x;
 			(*miss).y = (float)data->col.map.y;
 			return (1);

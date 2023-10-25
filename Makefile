@@ -117,7 +117,8 @@ LSTS_SRCS_U_B		=	errors_bonus.c \
 						vector_utils_bonus.c \
 						window_bonus.c
 
-LSTS_SRCS_S_B		=	init_animations_bonus.c \
+LSTS_SRCS_S_B		=	animations_bonus.c \
+						init_animations_bonus.c \
 						lists_bonus.c
 
 D_SRCS_B		=	Srcs_bonus/

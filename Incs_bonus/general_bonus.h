@@ -27,10 +27,12 @@
 # define Z 122
 # define X 120
 # define RED_CROSS 33
-# define ONE 49
-# define TWO 50
-# define THREE 51
-# define FOUR 52
+# define ON 49
+# define TW 50
+# define TH 51
+# define FO 52
+# define FI 53
+# define SI 54
 # define ACTION 113
 
 // Colors
@@ -59,6 +61,7 @@
 # define RAY_NUMBER WIN_WIDTH
 # define MOVE_SPEED 0.4
 # define ANGLE_MOVE 0.01
+# define DELAY 10000
 
 // strings
 # define COLOR_CHAR "ErrorWrong char in array (%c b), must be only digits\n"

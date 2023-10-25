@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:13:30 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/24 18:27:47 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/25 13:46:39 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,18 @@ static t_img	set_frame_img(t_data *data, int i, int j)
 	t_img	img;
 	int		x;
 	int		y;
-// printf("i: %d j:%d\n", i, j);
-	img.img = mlx_new_image(data->mlx, 64.8, 65);
+
+	img.img = mlx_new_image(data->mlx, 129, 128);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_l, &img.endian);
-	img.w = 64.8;
-	img.h = 65;
+	img.w = 129;
+	img.h = 128;
 	x = -1;
 	while (++x < img.w)
 	{
-		y = -1;
+		if (j > 1)
+			y = 4;
+		else
+			y = -1;
 		while (++y < img.h)
 		{
 			coord.x = x;
@@ -62,7 +65,7 @@ void	add_frame_last(t_animation *a, t_frame *node)
 	f->next = node;
 }
 
-t_animation	*add_anim_node(int i)
+t_animation	*add_anim_node(t_data *data, int i)
 {
 	t_animation	*new;
 
@@ -70,10 +73,9 @@ t_animation	*add_anim_node(int i)
 	if (new == NULL)
 		exit (1);//free and free all previous nodes
 	ft_bzero(new, sizeof(t_animation));
-	new->width = 64.8;
-	new->height = 65;
 	new->index = i;
-	new->delay = 5000;
+	new->weapon = set_frame_img(data, 0, new->index);
+	new->delay = DELAY;
 	new->next = NULL;
 	return (new);
 }

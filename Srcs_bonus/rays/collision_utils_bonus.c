@@ -6,7 +6,7 @@
 /*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:31:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/20 17:05:05 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/25 11:01:46 by rrebois          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,19 @@ void	detection_wall_touched(t_data *data, t_ray *ray, int x, int y)
 		ray->correction = (data->col.side_d.x - data->col.delta_d.x) \
 							* SQUARE_SIZE;
 		if (data->col.step.x == 1)
-			ray->side_hit = 1;//E
+			ray->side_hit = 1;
 		else
-			ray->side_hit = 2;//O
+			ray->side_hit = 2;
 	}
 	else
 	{
 		ray->correction = (data->col.side_d.y - data->col.delta_d.y) \
 							* SQUARE_SIZE;
 		if (data->col.step.y == 1)
-			ray->side_hit = 3;//S
+			ray->side_hit = 3;
 		else
-			ray->side_hit = 4;//N
+			ray->side_hit = 4;
 	}
-// printf("side hit: %d\n", ray->side_hit);
 	set_door_val(data, ray, x, y);
 }
 
@@ -101,73 +100,3 @@ void	wall_detection(t_data *data, t_ray *ray, t_coord_f *miss)
 		}
 	}
 }
-/*
-				t_coord	door; //A point when touching the door cell
-				door.x = data->col.map.x;
-				door.y = data->col.map.y;
-
-				// t_coord_f	door_f;
-				// door_f.x = door.x;
-				// door_f.y = door.y;
-
-				t_coord_f	plan_f;
-				plan_f.x = -1;
-				plan_f.y = -1;
-				t_coord	plan;
-
-				if (ray->side_hit == 1)
-				{
-					plan_f.x = door.x + SQUARE_SIZE * 0.5 - 1; // B point
-					plan_f.y = door.y;
-				}
-				plan.x = plan_f.x;
-				plan.y = plan_f.y;
-
-				// t_coord_f	dest; // point C
-				// dest = get_dst_coord(door_f, ray->angle, (int)vector_f_len_sq(door_f, plan) / cos(ray->angle));
-printf("pixel x: %d\n", door.x);
-printf("pixel y: %d\n", door.y);
-printf("plan x: %d\n", plan.x);
-printf("plan y: %d\n", plan.y);
-// printf("dest x: %f\n", dest.x);
-// printf("dest y: %f\n", dest.y);
-//calculer new point avec cos
-				// if (ray->side_hit == 1)
-				// {
-				// 	plan.x = door.x + 6;
-				// 	plan.y = door.y; //varies
-				// 	double len;
-
-				// 	dest = get_dst_coord(door_f, ray->angle, )
-				// }
-
-				while (data->ray_len_sq < data->square_view_d)
-				{
-					set_values(data);
-					data->ray_len_sq = vector_f_len_sq(data->player.pos, data->col.map);
-					ray->cell.x = data->col.map.x / SQUARE_SIZE;
-					ray->cell.y = data->col.map.y / SQUARE_SIZE;
-					if (ray->cell.x < 0 || ray->cell.x >= data->mini.width)
-						continue ;
-					if (ray->cell.y < 0 || ray->cell.y >= data->mini.height)
-						continue ;
-					if (data->arr[(int)ray->cell.y][(int)ray->cell.x] == '1' || \
-						// data->col.map.x > data->col.map.x + 7)
-						data->col.map.x > plan_f.x)
-					{
-						printf("pixel x after: %d\n", data->col.map.x);
-						printf("pixel y after: %d\n", data->col.map.y);
-						detection_wall_touched_door(data, ray);
-						(*miss).x = (float)data->col.map.x;
-						(*miss).y = (float)data->col.map.y;
-						// if (data->col.map.x > door.x + 6)
-						// 	(*miss).x = door.x + 6;
-						// if (data->col.map.y > door.y + 6)
-						// 	(*miss).y = door.y + 6;
-						return ;
-					}
-				}
-			}
-		}
-	}
-}*/
