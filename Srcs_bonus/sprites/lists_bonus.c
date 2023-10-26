@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lists_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:13:30 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/25 16:10:01 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 09:32:19 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static t_img	set_frame_img(t_data *data, int i, int j)
 	img.w = 129;
 	img.h = 128;
 	x = -1;
-	while (++x < img.w)
+	while (++x < img.w - 1)
 	{
 		if (j > 1)
 			y = 4;
 		else
-			y = -1;
+			y = 0;
 		while (++y < img.h)
 		{
 			coord.x = x;
