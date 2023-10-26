@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:06:36 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/25 16:09:10 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 14:28:17 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ void	map_error(t_map *map, char *str)
 void	textures_error(t_data *data, char *str)
 {
 	t_map_cleaning(&data->map);
-	t_texture_cleaning(&data->map.text[0]);
-	t_texture_cleaning(&data->map.text[1]);
-	t_texture_cleaning(&data->map.text[2]);
-	t_texture_cleaning(&data->map.text[3]);
-	if (data->map.text[4].path) //added + needs clean sprite weapons here or in image
-		t_texture_cleaning(&data->map.text[4]);
-	if (data->map.text[5].path)
-		t_texture_cleaning(&data->map.text[5]);
 	image_destroy(data);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);

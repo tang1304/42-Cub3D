@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_extra_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:31:50 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/24 10:33:15 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 14:28:52 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
