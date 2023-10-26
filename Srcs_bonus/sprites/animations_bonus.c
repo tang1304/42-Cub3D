@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:40:58 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/26 10:12:40 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 13:28:02 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ static void	update_animation(t_data *data, t_frame *frame)
 			create_full_img(data);
 			return ;
 		}
-		create_game_rays(data);
-		create_main_image(data);
+		data->animation = 1;
+		create_rays(data);
+		data->animation = 0;
 		put_img_to_img(data->main, f->frame, WIN_WIDTH * 0.5 - 64, \
 					WIN_HEIGHT - 128);
 		mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);
