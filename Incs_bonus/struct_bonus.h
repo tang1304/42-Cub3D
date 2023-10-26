@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:11:48 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/26 12:27:06 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 13:48:26 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ typedef struct s_animation
 	int					index;
 	int					delay;
 	int					tmp_delay;
-	// long int			last_updated;//not used
-	// long int			frame_count;//not used
 	struct s_animation	*next;
 }				t_animation;
 
