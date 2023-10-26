@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collision_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:53:45 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/19 11:43:00 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 09:17:16 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static void	detection_wall_touched(t_data *data, t_ray *ray)
 		else
 			ray->side_hit = 4;
 	}
+	if (ray->correction > data->max_correct_len)
+		data->max_correct_len = ray->correction;
 }
 
 static void	set_values(t_data *data)

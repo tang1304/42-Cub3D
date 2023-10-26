@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animations_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:40:58 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/25 13:46:27 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 10:12:40 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static void	update_animation(t_data *data, t_frame *frame)
 			create_full_img(data);
 			return ;
 		}
+		create_game_rays(data);
+		create_main_image(data);
 		put_img_to_img(data->main, f->frame, WIN_WIDTH * 0.5 - 64, \
 					WIN_HEIGHT - 128);
 		mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);

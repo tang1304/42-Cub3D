@@ -61,7 +61,7 @@
 # define RAY_NUMBER WIN_WIDTH
 # define MOVE_SPEED 0.4
 # define ANGLE_MOVE 0.01
-# define DELAY 10000
+# define DELAY 15000
 
 // strings
 # define COLOR_CHAR "ErrorWrong char in array (%c b), must be only digits\n"
