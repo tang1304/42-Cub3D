@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:50:51 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/24 09:36:13 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 11:34:59 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,19 @@ void	add_border(int w, int h, t_img *img)
 			y++;
 		}
 		x++;
+	}
+}
+
+void	clear_image(t_img *img)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < WIN_WIDTH)
+	{
+		j = -1;
+		while (++j < WIN_HEIGHT)
+			my_mlx_pixel_put(img, i, j, 0x00000000);
 	}
 }

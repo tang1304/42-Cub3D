@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:03:12 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/26 10:12:32 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 13:28:05 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,11 @@ void	create_cone_multi_rays(t_data *data, t_coord_f left, t_coord_f right)
 	}
 	create_game_rays(data);
 	create_main_image(data);
-	select_weapon(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);
+	if (data->animation == 0)
+	{
+		select_weapon(data);
+		mlx_put_image_to_window(data->mlx, data->win, data->main.img, 0, 0);
+	}
 }
 
 void	create_rays(t_data *data)

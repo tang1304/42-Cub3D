@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/25 14:10:56 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 11:35:05 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void			create_mini_from_big(t_data *data);
 void			transparency_img(t_img *img, t_coord size);
 void			add_squares(t_coord coord, int num, t_img *img);
 void			add_border(int w, int h, t_img *img);
+void			clear_image(t_img *img);
 
 /*	init_data_struct.c	*/
 void			init_player_data(t_data *data);

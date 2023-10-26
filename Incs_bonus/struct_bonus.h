@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:11:48 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/26 10:12:44 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 12:27:06 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ typedef struct s_data
 	int			**arr;
 	int			**mini_arr;
 	int			color;
+	int			animation;
 	t_door		door;
 	t_ray		*ray;
 	t_player	player;
