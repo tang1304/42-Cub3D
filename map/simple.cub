@@ -1,0 +1,18 @@
+WE ./textures/Cloudy_Mountains.xpm
+    NO ./textures/Glowing_Sea.xpm
+
+F 120,86, 18
+
+C     56 ,  158 ,    250
+
+ EA ./textures/Misty_Rocks.xpm
+SO ./textures/Starry_Peaks.xpm
+
+ 11111
+ 100001
+ 1000001
+ 1N00011
+ 1000001
+ 1101011
+ 100001
+ 11111111
