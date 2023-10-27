@@ -53,7 +53,7 @@
 # define ANGLE_MOVE 0.01
 
 // strings
-# define COLOR_CHAR "ErrorWrong char in array (%c b), must be only digits\n"
+# define COLOR_CHAR "ErrorWrong char in array (%c), must be only digits\n"
 # define COLOR_NBR "Error\nWrong color numbers, must be 3 colors x,y,z\n"
 # define COLOR_VAL "Error\nWrong color value (%d), must be between 0 and 255 \
 included\n"
@@ -69,6 +69,6 @@ or a whitespace\n"
 # define LESS_DIRECTION "Error\nThere must be a player direction (N,S,E or W)\n"
 # define DIRECTION_OUT "Error\nThe player is not inside the map\n"
 # define XPM_OPEN_ERR "Error\nProblem opening the xpm texture\n"
-# define INVALID_DOOR "Error\nDoor must be places between two walls\n"
+# define INVALID_DOOR "Error\nDoor must be placed between two walls\n"
 
 #endif

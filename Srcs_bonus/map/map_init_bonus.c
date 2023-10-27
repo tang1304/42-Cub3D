@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:33:39 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 10:26:32 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/27 09:27:58 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ static int	get_textures(t_map *map)
 	int	j;
 
 	i = -1;
-	while (map->tmp[++i])
+	while (map->tmp[++i] && map->elems < 6)
 	{
 		j = 0;
 		while (ft_is_space(map->tmp[i][j]))
 			j++;
+		if (map->tmp[i][j] == '1')
+			break ;
 		if (ft_strstr(map->tmp[i], "NO"))
 			map->text[2].path = get_texture_path(map, map->tmp[i], "NO", 2);
 		else if (ft_strstr(map->tmp[i], "SO"))
@@ -35,8 +37,6 @@ static int	get_textures(t_map *map)
 			get_floor_color(map, map->tmp[i], "F", 1);
 		else if (ft_strstr(map->tmp[i], "C"))
 			get_ceiling_color(map, map->tmp[i], "C", 1);
-		if (map->elems == 6)
-			break ;
 	}
 	return (i);
 }

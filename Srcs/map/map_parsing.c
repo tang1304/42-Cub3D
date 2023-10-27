@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 11:11:35 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/19 13:32:14 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/27 09:06:52 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	authorized_char(char c)
 int	neighbour_ok(char c)
 {
 	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || \
-		c == 'W' || c == '\0')
+		c == 'W' || c == '\0' || c == ' ')
 		return (1);
 	else
 		return (0);

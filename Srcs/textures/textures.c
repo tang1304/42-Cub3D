@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:12:29 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/19 10:11:35 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/27 09:04:02 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	load_textures(t_data *data, t_map *map)
 		map->text[i].text = mlx_xpm_file_to_image(data->mlx, \
 			map->text[i].path, &map->text[i].width, &map->text[i].height);
 		if (!map->text[i].text)
-			textures_error(data, "Error\nProblem changing xpm file to image\n");
+			textures_error(data, XPM_OPEN_ERR);
 		map->text[i].addr = mlx_get_data_addr(map->text[i].text, \
 				&map->text[i].bpp, &map->text[i].line_l, &map->text[i].endian);
 		if (!map->text[i].addr)
