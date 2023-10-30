@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_rotate_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:41:04 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/19 13:13:59 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/30 16:09:20 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	rotate_left(t_data *data)
 		data->player.angle -= 2 * M_PI;
 	else if (data->player.angle < -(2 * M_PI))
 		data->player.angle += 2 * M_PI;
-	if (data->player.angle < 0)
-		data->player.angle = fabs(data->player.angle) + 2 * M_PI;
 }
 
 void	rotate_right(t_data *data)
@@ -44,6 +42,4 @@ void	rotate_right(t_data *data)
 		data->player.angle -= 2 * M_PI;
 	else if (data->player.angle < -(2 * M_PI))
 		data->player.angle += 2 * M_PI;
-	if (data->player.angle < 0)
-		data->player.angle = fabs(data->player.angle) + 2 * M_PI;
 }

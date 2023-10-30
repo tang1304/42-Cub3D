@@ -49,7 +49,7 @@
 # define WIN_HEIGHT 720
 # define FOV 60
 # define RAY_NUMBER WIN_WIDTH
-# define MOVE_SPEED 0.3
+# define MOVE_SPEED 0.4
 # define ANGLE_MOVE 0.01
 
 // strings
