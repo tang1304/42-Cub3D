@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:38:32 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/17 10:26:21 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/31 16:57:23 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_element(char *tmp, char *elem, int i)
 	return (1);
 }
 
-static int	get_rgb_map(t_map *map, int *color, char **tab)
+static int	get_rgb_map(t_map *map, int *color, char **tab, char *tmp)
 {
 	int	i;
 	int	j;
@@ -31,25 +31,25 @@ static int	get_rgb_map(t_map *map, int *color, char **tab)
 	i = -1;
 	while (tab[++i])
 	{
-		tab[i] = triple_strtrim_free(tab[i], "\n", " ", "\t");
+		tab[i] = triple_strtrim_free(tab[i], "\n", "\t", " ");
 		if (!tab[i])
-			return (ft_free_pp(tab), 0);
+			return (ft_free_pp(tab), free(tmp), 0);
 		j = -1;
 		while (tab[i][++j] && tab[i][j] != '\n')
 		{
 			if (!ft_isdigit(tab[i][j]))
-				return (printf(COLOR_VAL, tab[i][j]), ft_free_pp(tab), 0);
+				return (printf(COLOR_VAL), ft_free_pp(tab), free(tmp), 0);
 		}
 	}
 	if (i != 3)
-		return (ft_free_pp(tab), printf(COLOR_NBR), 0);
+		return (ft_free_pp(tab), free(tmp), printf(COLOR_NBR), 0);
 	while (--i >= 0)
 	{
 		color[i] = ft_atoi(tab[i]);
 		if (color[i] < 0 || color[i] > 255)
-			return (printf(COLOR_VAL, color[i]), ft_free_pp(tab), 0);
+			return (printf(COLOR_VAL), ft_free_pp(tab), free(tmp), 0);
 	}
-	return (ft_free_pp(tab), map->elems++, 1);
+	return (ft_free_pp(tab), free(tmp), map->elems++, 1);
 }
 
 void	get_ceiling_color(t_map *map, char *str, char *elem, int i)
@@ -60,7 +60,7 @@ void	get_ceiling_color(t_map *map, char *str, char *elem, int i)
 	char	**new;
 
 	k = 0;
-	tmp = double_strtrim(str, " ", "\t");
+	tmp = double_strtrim(str, "\t", " ");
 	if (!tmp)
 		map_error(map, "Error\nMalloc failed\n");
 	if (!check_element(tmp, elem, i))
@@ -73,12 +73,9 @@ void	get_ceiling_color(t_map *map, char *str, char *elem, int i)
 		free(tmp);
 		map_error(map, "Error\nMalloc failed\n");
 	}
-	if (!get_rgb_map(map, map->c, new))
-	{
-		free(tmp);
+	check_coma_color(map, new, tmp);
+	if (!get_rgb_map(map, map->c, new, tmp))
 		map_error(map, "");
-	}
-	free(tmp);
 }
 
 void	get_floor_color(t_map *map, char *str, char *elem, int i)
@@ -102,12 +99,9 @@ void	get_floor_color(t_map *map, char *str, char *elem, int i)
 		free(tmp);
 		map_error(map, "Error\nMalloc failed\n");
 	}
-	if (!get_rgb_map(map, map->f, new))
-	{
-		free(tmp);
+	check_coma_color(map, new, tmp);
+	if (!get_rgb_map(map, map->f, new, tmp))
 		map_error(map, "");
-	}
-	free(tmp);
 }
 
 void	get_map(t_map *map, int i)

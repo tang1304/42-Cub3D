@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:58:00 by tgellon           #+#    #+#             */
-/*   Updated: 2023/08/17 15:05:51 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/31 15:19:49 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_free_pp(char **ptr)
 	x = 0;
 	if (ptr == NULL)
 		return ;
-	while (ptr[x] != 0)
+	while (ptr[x])
 	{
 		if (ptr[x] != NULL)
 			free(ptr[x]);

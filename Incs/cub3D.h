@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrebois <rrebois@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 09:17:33 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/19 13:37:17 by rrebois          ###   ########lyon.fr   */
+/*   Updated: 2023/10/31 16:15:23 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ int				correct_map_char(char c);
 
 /*	utils2.c	*/
 void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void			check_coma_color(t_map *map, char **new, char *tmp);
 
 /*	vector_utils.c	*/
 t_coord_f		calculate_vector(t_coord_f start, double angle, double len);

@@ -6,11 +6,12 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:29:47 by rrebois           #+#    #+#             */
-/*   Updated: 2023/08/17 10:36:20 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/31 16:34:05 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
+#include <stdio.h>
 
 static size_t	index_front(char *s1, char const *set)
 {
@@ -78,7 +79,7 @@ char	*ft_strtrim_free(char *s1, char const *set)
 	end = index_back(s1, set, start);
 	ptr = (char *)malloc(sizeof(*ptr) * ((end - start) + 1));
 	if (ptr == NULL)
-		return (NULL);
+		return (free (s1), NULL);
 	while (start + i < end)
 	{
 		ptr[i] = ((char *)s1)[start + i];

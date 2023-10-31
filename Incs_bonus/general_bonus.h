@@ -61,12 +61,12 @@
 # define RAY_NUMBER WIN_WIDTH
 # define MOVE_SPEED 0.4
 # define ANGLE_MOVE 0.01
-# define DELAY 15000
+# define DELAY 30000
 
 // strings
 # define COLOR_CHAR "ErrorWrong char in array (%c), must be only digits\n"
 # define COLOR_NBR "Error\nWrong color numbers, must be 3 colors x,y,z\n"
-# define COLOR_VAL "Error\nWrong color value (%d), must be between 0 and 255 \
+# define COLOR_VAL "Error\nWrong color value, must be between 0 and 255 \
 included\n"
 # define LESS_ELEM "Error\nNot all configuration elements are present before \
 the map\nYou must have NO, SO, EA, WE, F and C\n"

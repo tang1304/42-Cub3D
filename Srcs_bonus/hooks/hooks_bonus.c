@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:36:09 by rrebois           #+#    #+#             */
-/*   Updated: 2023/10/26 09:48:40 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/31 08:28:54 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	key_pressed(int key, t_data *data)
 		data->player.right_arrow = 1;
 	if (key == PLUS || key == MINUS)
 		map_zoom(data, key);
-	if (key == ON || key == TW || key == TH || key == FO || key == FI \
-		|| key == SI)
+	if ((key == ON || key == TW || key == TH || key == FO || key == FI \
+		|| key == SI) && !data->player.action)
 		update_weapon(data, key);
 	if (key == ACTION && data->player.weapon)
 		data->player.action = 1;

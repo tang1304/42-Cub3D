@@ -31,7 +31,7 @@ LST_SRCS	=	ft_isalnum.c ft_memcmp.c ft_strdup.c ft_strnstr.c ft_isalpha.c ft_mem
 				get_next_line.c get_next_line_utils.c get_all_lines.c  get_next_line_error.c\
 				ft_convert_address.c ft_convert_nbr.c ft_printf.c ft_dprintf.c\
 				ft_putchar.c ft_putnbr_unsigned.c ft_putnbr.c ft_putstr.c ft_strstr.c\
-				ft_free_pp_int.c ft_is_odd.c
+				ft_free_pp_int.c ft_is_odd.c ft_tab_size.c
 
 SRCS		=	$(addprefix $(D_SRCS), $(LST_SRCS))
 
