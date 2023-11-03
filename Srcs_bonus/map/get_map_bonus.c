@@ -6,7 +6,7 @@
 /*   By: tgellon <tgellon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:38:32 by tgellon           #+#    #+#             */
-/*   Updated: 2023/10/31 16:57:23 by tgellon          ###   ########lyon.fr   */
+/*   Updated: 2023/11/03 14:44:42 by tgellon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ void	get_map(t_map *map, int i)
 
 	j = i - 1;
 	k = 0;
-	i++;
 	while (map->tmp[i] && map->tmp[i][0] == '\n')
 		i++;
 	while (map->tmp[++j])
