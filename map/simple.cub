@@ -3,7 +3,7 @@ WE ./textures/Cloudy_Mountains.xpm
 
 F 120,86, 18
 
-C     56 ,  158 ,    250
+C     56  ,  158 ,    250
 
  EA ./textures/Misty_Rocks.xpm
 SO ./textures/Starry_Peaks.xpm
