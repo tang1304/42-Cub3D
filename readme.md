@@ -59,7 +59,8 @@ object in a strict order such as :
 	- North texture: ```WE ./path_to_west_texture```
 	- Floor color: ```F x, y, z```
 	- Ceiling color: ```C x, y, z```
-With x, y and z as **RGB** colors in range [0, 255].
+   
+	With x, y and z as **RGB** colors in range [0, 255].
 
 ### Usage:
 
@@ -71,6 +72,9 @@ To execute it, run ```./cub3D map_config.cub``` or ```./cub3D_bonus map_config.c
 
 - Wall collisions.
 - A minimap system.
+Use `+` and `-` to zoom in or out.
 - Doors which can open and close.
+`D` is the character used to do so. You need to place it between two walls. Use `e` to open and close.
 - Animated sprites.
+Use keys `1`, `2`, `3`, `4`, `5`, `6` to select between different weapons, and `q` to use them.
 - Rotate the view with the mouse.
